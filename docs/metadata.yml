@@ -1,0 +1,8 @@
+projectId: "listwhatever"
+name: "List whatever"
+description: An app to make any kind of list and filter and display the items
+contactName: Andreas Lidholm
+contactEmail: lidholm.andreas@gmail.com
+allowedUsers: 
+  - regular@email.com
+  - lidholm.andreas@gmail.com
