@@ -78,8 +78,6 @@ jobs:
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
-        permissions: 
-          pull-requests: write 
         with:
           message: |
             https://anywhostudios--anywhostudios-8eef2.us-central1.hosted.app/projects/${{ env.pr_docs_link }}
