@@ -15,25 +15,25 @@
       "name": "Dart accessing data",
       "title": "Dart accessing data",
       "subpages": []
-    }
+    },
     {
       "filepath": "deploy_from_local.md",
       "name": "Deploy from local",
       "title": "Deploy from local",
       "subpages": []
-    }
+    },
     {
       "filepath": "firestore_structure.md",
       "name": "Firestore structure",
       "title": "Firestore structure",
       "subpages": []
-    }
+    },
     {
       "filepath": "functionality.md",
       "name": "Functionality",
       "title": "Functionality",
       "subpages": []
-    }
+    },
     {
       "filepath": "login_flow.md",
       "name": "Login flow",
