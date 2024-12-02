@@ -76,8 +76,8 @@ jobs:
         run: |
           echo "pr_docs_link=$(git rev-parse HEAD | head -c 7)" >> $GITHUB_ENV
 
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v3
-        with:
-          message: |
-            https://anywhostudios--anywhostudios-8eef2.us-central1.hosted.app/projects/${{ env.pr_docs_link }}
+      # - name: Comment PR
+      #   uses: thollander/actions-comment-pull-request@v3
+      #   with:
+      #     message: |
+      #       https://anywhostudios--anywhostudios-8eef2.us-central1.hosted.app/projects/${{ env.pr_docs_link }}
