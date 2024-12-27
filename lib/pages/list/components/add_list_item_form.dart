@@ -175,8 +175,7 @@ class AddListItemForm extends StatelessWidget {
         //   categories!.remove(indexKey);
         // });
         _formKey.currentState?.value[getCategoryId(Side.left, indexKey)] = null;
-        _formKey.currentState?.value[getCategoryId(Side.right, indexKey)] =
-            null;
+        _formKey.currentState?.value[getCategoryId(Side.right, indexKey)] = null;
       },
       isLoading: isLoading,
     );
@@ -330,8 +329,7 @@ class AddListItemForm extends StatelessWidget {
     if (text == null || text.isEmpty) {
       return null;
     }
-    const latLongPattern =
-        r'^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$';
+    const latLongPattern = r'^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$';
     final regex = RegExp(latLongPattern);
     return regex.hasMatch(text) ? null : 'Not a valid LatLong';
   }
@@ -414,7 +412,7 @@ class AddListItemForm extends StatelessWidget {
     final listBloc = BlocProvider.of<ListBloc>(context);
     final goRouter = GoRouter.of(context);
 
-    final newItem = const ListItem(id: 'idItem', name: 'Hello');
+    const newItem = ListItem(id: 'idItem', name: 'Hello');
 
     // LoggerHelper.logger.d('newList: $newList');
     // if (widget.listId == null) {
