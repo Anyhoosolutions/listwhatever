@@ -1,12 +1,12 @@
 {
-    "@@locale": "en",
-    "appBarTitle": "Example app",
+    "@@locale": "es",
+    "appBarTitle": "Some in spanish",
     "@appBarTitle": {
-        "description": "Text shown in the AppBar of the main page"
+        "description": "Texto mostrado en la AppBar de la página del contador"
     },
-    "counterAppBarTitle": "Counter",
+    "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+        "description": "Texto mostrado en la AppBar de la página del contador"
     },
     "petAppBarTitle": "Pets",
     "@petAppBarTitle": {
