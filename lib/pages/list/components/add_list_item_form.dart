@@ -50,9 +50,13 @@ enum FieldId {
 class AddListItemForm extends StatelessWidget {
   AddListItemForm({
     required this.list,
+    required this.isLoading,
+    required this.save,
     super.key,
   });
   final ListOfThings? list;
+  final bool isLoading;
+  final Future<void> Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -74,7 +78,7 @@ class AddListItemForm extends StatelessWidget {
         latLongField(isLoading: isLoading),
       ],
       cancelButton(isLoading: isLoading),
-      submitButton(isLoading: isLoading),
+      submitButton(context: context, isLoading: isLoading),
     ];
 
     final sections = getSections();
@@ -83,10 +87,11 @@ class AddListItemForm extends StatelessWidget {
       formKey: _formKey,
       sections: sections,
       fields: fields,
-      isLoading: false, // TODO: Update
+      isLoading: isLoading,
     );
 
     return SingleChildScrollView(
+      key: const Key('addListItemForm'),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: formGenerator,
@@ -346,7 +351,7 @@ class AddListItemForm extends StatelessWidget {
     );
   }
 
-  FormInputFieldInfo submitButton({required bool isLoading}) {
+  FormInputFieldInfo submitButton({required BuildContext context, required bool isLoading}) {
     return FormInputFieldInfo.submitButton(
       id: FieldId.submit.value,
       label: 'Submit',
@@ -355,7 +360,7 @@ class AddListItemForm extends StatelessWidget {
         if (values == null) {
           return;
         }
-        // save(values);
+        save(context, list, values);
       },
       isLoading: isLoading,
     );
@@ -402,25 +407,5 @@ class AddListItemForm extends StatelessWidget {
     // final values = categoriesForList[t]?.toList() ?? [];
     // return values;
     return [];
-  }
-
-  Future<void> save(
-    BuildContext context,
-    ListOfThings? list,
-    Map<String, dynamic> values,
-  ) async {
-    final listBloc = BlocProvider.of<ListBloc>(context);
-    final goRouter = GoRouter.of(context);
-
-    const newItem = ListItem(id: 'idItem', name: 'Hello');
-
-    // LoggerHelper.logger.d('newList: $newList');
-    // if (widget.listId == null) {
-    listBloc.add(AddListItem(list!.id!, newItem));
-    // } else {
-    //   listCrudBloc.add(UpdateList(newList));
-    // }
-    // LoggerHelper.logger.i('$className -> popping once');
-    goRouter.pop();
   }
 }

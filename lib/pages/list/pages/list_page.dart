@@ -46,6 +46,23 @@ class _ListPageState extends State<ListPage> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            actions: [
+              IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  // AddListPageRoute(list: list!).push<void>(context);
+                },
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  // BlocProvider.of<ListBloc>(context).add(DeleteList(list!.id!));
+                  // Navigator.pop(context);
+                },
+              ),
+            ],
             pinned: true,
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(

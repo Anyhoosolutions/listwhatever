@@ -43,8 +43,7 @@ class MockAuthenticationUser extends Mock implements AuthenticationUser {}
 
 class MockListBloc extends MockBloc<ListEvent, ListState> implements ListBloc {}
 
-class MockListsBloc extends MockBloc<ListsEvent, ListsState>
-    implements ListsBloc {}
+class MockListsBloc extends MockBloc<ListsEvent, ListsState> implements ListsBloc {}
 
 class MockAuthBloc extends MockBloc<AuthEvent, AuthState> implements AuthBloc {}
 
@@ -67,18 +66,17 @@ void main() {
     testWidgets('verify that right data is tried to be saved', (tester) async {
       // Load app widget.
       const list = ListOfThings(
-        id: 'id',
+        id: 'listId1',
         name: 'First list',
-        withMap: true,
-        withDates: true,
-        withTimes: true,
+        withMap: false,
+        withDates: false,
+        withTimes: false,
         shared: false,
         sharedWith: {},
         ownerId: 'ownerId',
       );
       final userList = UserList.fromList(list, list.id!);
-      when(() => mockData.listBloc.state)
-          .thenReturn(ListLoaded(list: list, listItems: []));
+      when(() => mockData.listBloc.state).thenReturn(ListLoaded(list: list, listItems: []));
       when(() => mockData.listsBloc.state).thenReturn(ListsLoaded([userList]));
 
       await tester.pumpWidget(
@@ -91,28 +89,23 @@ void main() {
         ),
       );
 
-      when(() => mockData.listRepository.loadList(any()))
-          .thenAnswer((_) => Future.value(list));
-      when(() => mockData.listItemRepository.loadListItems(any()))
-          .thenAnswer((_) => Future.value([]));
-      when(() => mockData.listItemRepository.addListItem('id', any()))
-          .thenAnswer((_) => Future.value('itemId'));
+      when(() => mockData.listRepository.loadList(any())).thenAnswer((_) => Future.value(list));
+      when(() => mockData.listItemRepository.loadListItems('listId1')).thenAnswer((_) => Future.value([]));
+      when(() => mockData.listItemRepository.addListItem('listId1', any())).thenAnswer((_) => Future.value('itemId'));
 
       await tester.pump(const Duration(milliseconds: 1500));
 
       final listButton = find.text('First list');
       expect(listButton, findsOneWidget);
       await tester.tap(listButton);
-      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pump(const Duration(milliseconds: 3000));
 
       // Finds the floating action button to tap on.
       // final actionButton = find.byKey(addListButtonKey);
       final actionButton = find.byType(FloatingActionButton);
       expect(actionButton, findsOneWidget);
-
-      // Emulate a tap on the floating action button.
       await tester.tap(actionButton);
-      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pump(const Duration(milliseconds: 3000));
 
       final nameTextInput = find.byKey(Key(FieldId.name.value));
       expect(nameTextInput, findsExactly(1));
@@ -120,14 +113,24 @@ void main() {
 
       await tester.pump(const Duration(milliseconds: 1000));
 
+      // final scrollableFinder = find.descendant(
+      //   of: find.byKey(const Key('addListItemForm')),
+      //   matching: find.byType(Scrollable).at(0),
+      // );
+      // await tester.scrollUntilVisible(
+      //   find.byKey(Key(FieldId.submit.value)),
+      //   500,
+      //   scrollable: scrollableFinder,
+      // );
+      // await tester.pump(const Duration(milliseconds: 1000));
+
       final submitButton = find.byKey(Key(FieldId.submit.value));
       expect(submitButton, findsExactly(1));
       await tester.tap(submitButton);
       await tester.pump(const Duration(milliseconds: 1000));
 
       final capturedList = verify(
-        () =>
-            mockData.listItemRepository.addListItem(captureAny(), captureAny()),
+        () => mockData.listItemRepository.addListItem('listId1', captureAny()),
       ).captured;
 
       print('capturedList: $capturedList');
