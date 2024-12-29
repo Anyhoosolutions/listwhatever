@@ -8,6 +8,7 @@ import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
+import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
 import 'package:listwhatever/routing/routes.dart';
 
 const addListButtonKey = Key('AddListButtonKey');
@@ -51,7 +52,7 @@ class _ListPageState extends State<ListPage> {
                 color: Colors.white,
                 icon: const Icon(Icons.edit),
                 onPressed: () {
-                  // AddListPageRoute(list: list!).push<void>(context);
+                  EditListPageRoute(id: list!.id!).push<void>(context);
                 },
               ),
               IconButton(

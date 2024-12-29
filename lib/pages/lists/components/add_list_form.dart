@@ -1,16 +1,12 @@
 // ignore_for_file: avoid_redundant_argument_values
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:go_router/go_router.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
 import 'package:listwhatever/form/form_input_field_info.dart';
 import 'package:listwhatever/form/form_input_section.dart';
-import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
-import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
 const String className = 'ListTiles';
@@ -48,14 +44,16 @@ final addListFormKey = GlobalKey<FormBuilderState>();
 class AddListForm extends StatelessWidget {
   const AddListForm({
     required this.list,
+    required this.isLoading,
+    required this.save,
     super.key,
   });
   final ListOfThings? list;
+  final bool isLoading;
+  final Future<void> Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
 
   @override
   Widget build(BuildContext context) {
-    const isLoading = false;
-
     final fields = [
       nameField(isLoading: isLoading),
       // imagePickerField(list),
@@ -176,45 +174,5 @@ class AddListForm extends StatelessWidget {
       },
       isLoading: isLoading,
     );
-  }
-
-  Future<void> save(
-    BuildContext context,
-    ListOfThings? list,
-    Map<String, dynamic> values,
-  ) async {
-    final listBloc = BlocProvider.of<ListBloc>(context);
-    final goRouter = GoRouter.of(context);
-
-    // String? imageFilename;
-    // if (values.containsKey(FieldId.listTypeImage.value)) {
-    //   imageFilename = await uploadImage(values[FieldId.listTypeImage.value] as List);
-    //   // LoggerHelper.logger.i('$className: imageFilename: $imageFilename');
-    // }
-
-    // final filterTypes = getFilterTypes(values);
-    // // LoggerHelper.logger.d('values: $values');
-    final newList = ListOfThings(
-      id: null, //widget.listId,
-      name: values[FieldId.name.value]! as String,
-      // imageFilename: imageFilename,
-      withMap: false, // values[FieldId.withMap.value] as bool,
-      withDates: values[FieldId.withDates.value] as bool,
-      withTimes: values[FieldId.withTimes.value] as bool,
-      shared: false, //values[AddListValues.share.toString()] as bool,
-      // shareCodeForViewer: null,
-      // shareCodeForEditor: null,
-      sharedWith: {},
-      ownerId: list?.ownerId,
-      // filterTypes: filterTypes,
-    );
-    // LoggerHelper.logger.d('newList: $newList');
-    // if (widget.listId == null) {
-    listBloc.add(AddList(newList));
-    // } else {
-    //   listCrudBloc.add(UpdateList(newList));
-    // }
-    // LoggerHelper.logger.i('$className -> popping once');
-    goRouter.pop();
   }
 }

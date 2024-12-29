@@ -45,9 +45,14 @@ class ListRepository {
     return ref.id;
   }
 
+  Future<void> editList(ListOfThings list) async {
+    final listsCollection = await getCollection();
+    final docRef = listsCollection.doc(list.id);
+    await docRef.set(list.toJson());
+  }
+
   Future<String> addListItem(String listId, ListItem listItem) async {
-    final listsCollection =
-        (await getCollectionWithId(listId)).collection('items');
+    final listsCollection = (await getCollectionWithId(listId)).collection('items');
     final ref = await listsCollection.add(listItem.toJson());
     return ref.id;
   }

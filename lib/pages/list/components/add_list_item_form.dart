@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:go_router/go_router.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
 import 'package:listwhatever/form/form_input_field_info.dart';
 import 'package:listwhatever/form/form_input_section.dart';
 import 'package:listwhatever/helpers/constants.dart';
-import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
-import 'package:listwhatever/pages/list/bloc/list_event.dart';
-import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
 const String className = 'AddListItemPage';

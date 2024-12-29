@@ -18,25 +18,26 @@ RouteBase get $mainPageRoute => GoRouteData.$route(
           path: 'lists',
           name: 'lists',
           factory: $ListsPageRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: ':actualListId',
-              name: 'items',
-              factory: $ListPageRouteExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'add',
-                  name: 'addListItem',
-                  factory: $AddListItemPageRouteExtension._fromState,
-                ),
-              ],
-            ),
-            GoRouteData.$route(
-              path: 'add',
-              name: 'addList',
-              factory: $AddListPageRouteExtension._fromState,
-            ),
-          ],
+        ),
+        GoRouteData.$route(
+          path: 'lists/:id',
+          name: 'items',
+          factory: $ListPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'add',
+          name: 'addListItem',
+          factory: $AddListItemPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'lists/:id/edit',
+          name: 'editList',
+          factory: $EditListPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'lists/add',
+          name: 'addList',
+          factory: $AddListPageRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'login',
@@ -83,11 +84,11 @@ extension $ListsPageRouteExtension on ListsPageRoute {
 
 extension $ListPageRouteExtension on ListPageRoute {
   static ListPageRoute _fromState(GoRouterState state) => ListPageRoute(
-        actualListId: state.pathParameters['actualListId']!,
+        id: state.pathParameters['id']!,
       );
 
   String get location => GoRouteData.$location(
-        '/lists/${Uri.encodeComponent(actualListId)}',
+        '/lists/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -103,11 +104,33 @@ extension $ListPageRouteExtension on ListPageRoute {
 extension $AddListItemPageRouteExtension on AddListItemPageRoute {
   static AddListItemPageRoute _fromState(GoRouterState state) =>
       AddListItemPageRoute(
-        actualListId: state.pathParameters['actualListId']!,
+        actualListId: state.uri.queryParameters['actual-list-id']!,
       );
 
   String get location => GoRouteData.$location(
-        '/lists/${Uri.encodeComponent(actualListId)}/add',
+        '/add',
+        queryParams: {
+          'actual-list-id': actualListId,
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EditListPageRouteExtension on EditListPageRoute {
+  static EditListPageRoute _fromState(GoRouterState state) => EditListPageRoute(
+        id: state.pathParameters['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/lists/${Uri.encodeComponent(id)}/edit',
       );
 
   void go(BuildContext context) => context.go(location);

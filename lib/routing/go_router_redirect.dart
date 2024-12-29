@@ -41,13 +41,12 @@ bool isLoggingInPage(GoRouterState state) {
     const LoginPageRoute().location,
   ];
   // [RouteName.logIn.value, RouteName.signUp.value]
-  return urls.contains(state.matchedLocation.replaceAll('/', ''));
+  return urls.contains(state.matchedLocation);
 }
 
 bool isLoggedIn(AuthBloc authBloc) {
-  // print('go_router_redirect: authBloc.state: ${authBloc.state}');
-  return authBloc.state is AuthLoggedIn ||
-      authBloc.state is AuthOnboardingRequired;
+  print('go_router_redirect: authBloc.state: ${authBloc.state}');
+  return authBloc.state is AuthLoggedIn || authBloc.state is AuthOnboardingRequired;
 }
 
 bool isLoggedOut(AuthBloc authBloc) {
@@ -59,6 +58,5 @@ bool isProtectedPage(GoRouterState state) {
     const LoginPageRoute().location,
   ];
   //[RouteName.logIn.value, RouteName.signUp.value]
-  return !nonProtectedRoutes
-      .contains(state.matchedLocation.replaceAll('/', ''));
+  return !nonProtectedRoutes.contains(state.matchedLocation.replaceAll('/', ''));
 }

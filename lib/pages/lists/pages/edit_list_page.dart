@@ -3,38 +3,50 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
-import 'package:listwhatever/pages/lists/bloc/lists_bloc.dart';
+import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/lists/components/add_list_form.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
-class AddListPage extends StatefulWidget {
-  const AddListPage({super.key});
+class EditListPage extends StatefulWidget {
+  const EditListPage({required this.listId, super.key});
+  final String listId;
 
   @override
-  State<AddListPage> createState() => _AddListPageState();
+  State<EditListPage> createState() => _EditListPageState();
 }
 
-class _AddListPageState extends State<AddListPage> {
+class _EditListPageState extends State<EditListPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ListsBloc>(context).add(const ListsEvent.watchUserLists());
+    BlocProvider.of<ListBloc>(context).add(GetList(widget.listId));
     // BlocProvider.of<FirebaseStorageBloc>(context)
     //     .add(const FirebaseStorageEvent.getAllUserLists());
   }
 
   @override
   Widget build(BuildContext context) {
+    final listState = context.watch<ListBloc>().state;
+    final isLoading = getIsLoading(listState);
+    final list = getList(listState);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add list'),
+        title: const Text('Edit list'),
       ),
-      body: AddListForm(
-        list: null,
-        isLoading: false,
-        save: save,
-      ),
+      body: AddListForm(list: list, isLoading: isLoading, save: save),
     );
+  }
+
+  bool getIsLoading(ListState listState) {
+    return listState is! ListLoaded;
+  }
+
+  ListOfThings? getList(ListState listState) {
+    if (listState is ListLoaded) {
+      return listState.list;
+    }
+    return null;
   }
 
   Future<void> save(
@@ -54,7 +66,7 @@ class _AddListPageState extends State<AddListPage> {
     // final filterTypes = getFilterTypes(values);
     // // LoggerHelper.logger.d('values: $values');
     final newList = ListOfThings(
-      id: null, //widget.listId,
+      id: widget.listId,
       name: values[FieldId.name.value]! as String,
       // imageFilename: imageFilename,
       withMap: false, // values[FieldId.withMap.value] as bool,
@@ -67,13 +79,7 @@ class _AddListPageState extends State<AddListPage> {
       ownerId: list?.ownerId,
       // filterTypes: filterTypes,
     );
-    // LoggerHelper.logger.d('newList: $newList');
-    // if (widget.listId == null) {
-    listBloc.add(AddList(newList));
-    // } else {
-    //   listCrudBloc.add(UpdateList(newList));
-    // }
-    // LoggerHelper.logger.i('$className -> popping once');
+    listBloc.add(EditList(newList));
     goRouter.pop();
   }
 }

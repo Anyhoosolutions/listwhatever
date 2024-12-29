@@ -107,6 +107,6 @@ class UserListTile extends StatelessWidget {
   }
 
   void onTap(BuildContext context) {
-    ListPageRoute(actualListId: list.listId).push<void>(context);
+    ListPageRoute(id: list.listId).push<void>(context);
   }
 }

@@ -13,6 +13,11 @@ class AddList extends ListEvent {
   final ListOfThings list;
 }
 
+class EditList extends ListEvent {
+  EditList(this.list);
+  final ListOfThings list;
+}
+
 class AddListItem extends ListEvent {
   AddListItem(this.listId, this.listItem);
   final String listId;
