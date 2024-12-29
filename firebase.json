@@ -26,13 +26,16 @@
     },
     "eventarc": {
       "port": 9299
+    },
+    "tasks": {
+      "port": 9499
     }
   },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-"hosting": {
+  "hosting": {
     "public": "build/web",
     "ignore": [
       "firebase.json",
@@ -49,18 +52,23 @@
   "storage": {
     "rules": "storage.rules"
   },
+  "remoteconfig": {},
+  "extensions": {},
   "functions": [
     {
       "source": "functions",
       "codebase": "default",
       "ignore": [
-        "venv",
+        "node_modules",
         ".git",
         "firebase-debug.log",
-        "firebase-debug.*.log"
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
-  ],
-"remoteconfig": {},
-  "extensions": {}
+  ]
 }

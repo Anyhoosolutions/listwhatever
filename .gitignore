@@ -159,3 +159,5 @@ backupProdDataList.json
 backupProdDataUserList.json
 emulatorImportData.json
 ai-key.txt
+
+apphosting.local.yaml
