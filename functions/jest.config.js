@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import {logger} from "firebase-functions";
-import {onObjectFinalized} from "firebase-functions/v2/storage";
-
-export const logstore = onObjectFinalized("my-bucket", (cloudEvent) => {
-  logger.log(cloudEvent);
-});
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+};
