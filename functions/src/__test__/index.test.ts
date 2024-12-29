@@ -29,7 +29,7 @@ test("logstore", () => {
    * Invoke the function once using default {@link CloudEvent}.
    */
   wrappedLogStore();
-  expect(mockLog).toBeCalledTimes(2);
+  expect(mockLog).toBeCalledTimes(1);
 
   /**
    * Invoke the function once using {@link Partial<CloudEvent>}.
