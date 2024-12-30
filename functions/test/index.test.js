@@ -3,7 +3,7 @@ const {logger} = require("firebase-functions");
 const test = require("firebase-functions-test");
 const {assert} = require("chai");
 const {spy} = require("sinon");
-const {logstore} = require("./index");
+const {logstore} = require("../index");
 
 const {wrap} = test();
 
