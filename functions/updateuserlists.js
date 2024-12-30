@@ -36,10 +36,10 @@ exports.updateuserlists = onDocumentWritten("/lists/{listId}", (event) => {
             const userList = doc.data();
     
             userList.listName = listInfo.name;
-            userList.listType = listInfo.listType;
             userList.imageFilename = listInfo.imageFilename;
     
             const userListPath = `users/${userListId}/lists/${docId}`;
+
             const userListDoc = db.doc(userListPath);
             userListDoc.set(userList, {merge: true});
         }
