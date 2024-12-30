@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listwhatever/auth/bloc/auth_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
@@ -27,18 +28,41 @@ class _EditListPageState extends State<EditListPage> {
   @override
   Widget build(BuildContext context) {
     final listState = context.watch<ListBloc>().state;
-    final isLoading = getIsLoading(listState);
+    final userState = context.watch<AuthBloc>().state;
+
+    final userId = getUserId(userState);
+    final isLoading = getIsLoading(listState, userId);
     final list = getList(listState);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit list'),
       ),
-      body: AddListForm(list: list, isLoading: isLoading, save: save),
+      body: AddListForm(
+        list: list,
+        save: save,
+        userId: userId,
+        isLoading: isLoading,
+      ),
     );
   }
 
-  bool getIsLoading(ListState listState) {
+  String? getUserId(AuthState userState) {
+    if (userState is AuthLoggedInWithData) {
+      return userState.user.uid;
+    } else if (userState is AuthOnboardingRequired) {
+      return userState.user.id;
+    } else if (userState is AuthLoggedIn) {
+      return userState.user.id;
+    } else {
+      return null;
+    }
+  }
+
+  bool getIsLoading(ListState listState, String? userId) {
+    if (userId == null) {
+      return true;
+    }
     return listState is! ListLoaded;
   }
 
@@ -53,6 +77,7 @@ class _EditListPageState extends State<EditListPage> {
     BuildContext context,
     ListOfThings? list,
     Map<String, dynamic> values,
+    String userId,
   ) async {
     final listBloc = BlocProvider.of<ListBloc>(context);
     final goRouter = GoRouter.of(context);

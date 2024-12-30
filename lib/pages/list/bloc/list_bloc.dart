@@ -38,9 +38,9 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   ) async {
     emit(ListLoading());
     await listRepository.editList(event.list);
-
-    // final userList = UserList.fromList(event.list, listId);
-    // await userListRepository.editUserList(userList);
+    final list = await listRepository.loadList(event.list.id!);
+    final listItems = await listItemRepository.loadListItems(event.list.id!);
+    emit(ListLoaded(list: list, listItems: listItems));
   }
 
   Future<void> _onGetList(

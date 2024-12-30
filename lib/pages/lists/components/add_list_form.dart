@@ -46,11 +46,18 @@ class AddListForm extends StatelessWidget {
     required this.list,
     required this.isLoading,
     required this.save,
+    required this.userId,
     super.key,
   });
   final ListOfThings? list;
   final bool isLoading;
-  final Future<void> Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
+  final Future<void> Function(
+    BuildContext context,
+    ListOfThings? list,
+    Map<String, dynamic> values,
+    String userId,
+  ) save;
+  final String? userId;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +177,7 @@ class AddListForm extends StatelessWidget {
         if (values == null) {
           return;
         }
-        save(context, list, values);
+        save(context, list, values, userId!);
       },
       isLoading: isLoading,
     );

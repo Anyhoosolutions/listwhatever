@@ -42,6 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final user = event.user;
+    print('AuthenticationUserChanged ${user.id} ${user.email}');
 
     if (user.isAnonymous()) {
       emit(AuthLoggedOut());
