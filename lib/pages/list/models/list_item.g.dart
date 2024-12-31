@@ -16,7 +16,7 @@ _$ListItemImpl _$$ListItemImplFromJson(Map<String, dynamic> json) =>
               const [],
       datetime: json['datetime'] == null
           ? null
-          : DateTime.parse(json['datetime'] as String),
+          : _fromTimestamp(json['datetime'] as Timestamp?),
       address: json['address'] as String? ?? null,
       categories: (json['categories'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$ListItemImplToJson(_$ListItemImpl instance) =>
       'name': instance.name,
       'info': instance.info,
       'urls': instance.urls,
-      'datetime': instance.datetime?.toIso8601String(),
+      'datetime': _toTimestamp(instance.datetime),
       'address': instance.address,
       'categories': instance.categories,
       'latestUpdateUser': instance.latestUpdateUser,

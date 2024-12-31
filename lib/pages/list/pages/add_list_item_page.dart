@@ -81,11 +81,16 @@ class AddListItemPage extends HookWidget {
     final listBloc = BlocProvider.of<ListBloc>(context);
     final goRouter = GoRouter.of(context);
 
-    final newItem = ListItem(
+    var newItem = ListItem(
       id: null,
       name: values['name'] as String,
       info: values['info'] as String,
     );
+    if (list?.withDates ?? false) {
+      newItem = newItem.copyWith(
+        datetime: values['date'] as DateTime,
+      );
+    }
     print('list: $list');
     print('newItem: $newItem');
     listBloc.add(AddListItem(list!.id!, newItem));

@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-enum DateFormatType { iso8601, us, monthAndDay }
+enum DateFormatType { iso8601, iso8601andTime, us, monthAndDay }
 
 class DateFormatHelper {
   static final dateTimeFormatter = DateFormat('yyyy-MM-dd HH:mm');
@@ -16,6 +16,9 @@ class DateFormatHelper {
     final diff = d.difference(DateTime.now());
     if (type == DateFormatType.iso8601) {
       return dateFormatter.format(d);
+    }
+    if (type == DateFormatType.iso8601andTime) {
+      return dateTimeFormatter.format(d);
     }
     if (type == DateFormatType.us) {
       return usDateFormatter.format(d);

@@ -24,6 +24,7 @@ mixin _$ListItem {
   String get name => throw _privateConstructorUsedError;
   String? get info => throw _privateConstructorUsedError;
   List<String> get urls => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
   DateTime? get datetime =>
       throw _privateConstructorUsedError; // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
 // @Default(null)
@@ -53,6 +54,7 @@ abstract class $ListItemCopyWith<$Res> {
       String name,
       String? info,
       List<String> urls,
+      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       DateTime? datetime,
       String? address,
       Map<String, List<String>> categories,
@@ -133,6 +135,7 @@ abstract class _$$ListItemImplCopyWith<$Res>
       String name,
       String? info,
       List<String> urls,
+      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       DateTime? datetime,
       String? address,
       Map<String, List<String>> categories,
@@ -206,6 +209,7 @@ class _$ListItemImpl implements _ListItem {
       required this.name,
       this.info = null,
       final List<String> urls = const [],
+      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       this.datetime = null,
       this.address = null,
       final Map<String, List<String>> categories = const {},
@@ -233,7 +237,7 @@ class _$ListItemImpl implements _ListItem {
   }
 
   @override
-  @JsonKey()
+  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
   final DateTime? datetime;
 // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
 // @Default(null)
@@ -312,6 +316,7 @@ abstract class _ListItem implements ListItem {
       required final String name,
       final String? info,
       final List<String> urls,
+      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       final DateTime? datetime,
       final String? address,
       final Map<String, List<String>> categories,
@@ -329,6 +334,7 @@ abstract class _ListItem implements ListItem {
   @override
   List<String> get urls;
   @override
+  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
   DateTime?
       get datetime; // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
 // @Default(null)

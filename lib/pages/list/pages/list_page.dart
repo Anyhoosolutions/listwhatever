@@ -31,7 +31,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     final listState = context.watch<ListBloc>().state;
 
-    getLoading(listState);
+    final isLoading = getLoading(listState);
     final list = getList(listState);
     final items = getItems(listState);
 
@@ -84,7 +84,11 @@ class _ListPageState extends State<ListPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return ListItemTile(item: items[index]);
+                return ListItemTile(
+                  list: list,
+                  item: items[index],
+                  isLoading: isLoading,
+                );
               },
               childCount: items.length,
             ),

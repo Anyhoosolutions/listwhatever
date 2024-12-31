@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // import '/custom/pages/listItems/searchLocation/geocoder/latlong.dart';
 
@@ -14,7 +15,7 @@ class ListItem with _$ListItem {
     required String name,
     @Default(null) String? info,
     @Default([]) List<String> urls,
-    @Default(null) DateTime? datetime,
+    @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp) @Default(null) DateTime? datetime,
     // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
     // @Default(null)
     // LatLong? latLong,
@@ -23,8 +24,7 @@ class ListItem with _$ListItem {
     @Default(null) String? latestUpdateUser,
   }) = _ListItem;
 
-  factory ListItem.fromJson(Map<String, Object?> json) =>
-      _$ListItemFromJson(json);
+  factory ListItem.fromJson(Map<String, Object?> json) => _$ListItemFromJson(json);
 }
 
 // GeoPoint? _toJsonGeoPoint(LatLong? latLong) {
@@ -33,10 +33,27 @@ class ListItem with _$ListItem {
 //   }
 //   return GeoPoint(latLong.lat, latLong.lng);
 // }
-
 // LatLong? _fromJsonGeoPoint(GeoPoint? geoPoint) {
 //   if (geoPoint == null) {
 //     return null;
 //   }
 //   return LatLong(lat: geoPoint.latitude, lng: geoPoint.longitude);
 // }
+
+DateTime? _fromTimestamp(Timestamp? timestamp) {
+  if (timestamp == null) {
+    return null;
+  }
+  return DateTime.fromMillisecondsSinceEpoch(
+    timestamp.millisecondsSinceEpoch,
+  );
+}
+
+Timestamp? _toTimestamp(DateTime? datetime) {
+  if (datetime == null) {
+    return null;
+  }
+  return Timestamp.fromMillisecondsSinceEpoch(
+    datetime.millisecondsSinceEpoch,
+  );
+}
