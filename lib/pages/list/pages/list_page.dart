@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
+import 'package:listwhatever/pages/list/models/list_item_tile.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
@@ -85,20 +84,7 @@ class _ListPageState extends State<ListPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Padding(
-                  // TODO: Break out and support shimmer
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ListTile(
-                      title: Text(items[index].name),
-                      subtitle: Text(getSubtitle(items[index])),
-                    ),
-                  ),
-                );
+                return ListItemTile(item: items[index]);
               },
               childCount: items.length,
             ),
@@ -140,12 +126,5 @@ class _ListPageState extends State<ListPage> {
       return listState.listItems;
     }
     return [];
-  }
-
-  String getSubtitle(ListItem item) {
-    if (item.info == null) {
-      return '';
-    }
-    return item.info!.substring(0, min(item.info!.length, 60));
   }
 }
