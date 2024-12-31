@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:listwhatever/pages/auth/routes/login_page_route.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
 import 'package:listwhatever/pages/list/routes/lists_page_route.dart';
+import 'package:listwhatever/pages/list_item/routes/list_item_info_page_route.dart';
 import 'package:listwhatever/pages/lists/routes/add_list_page_route.dart';
 import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
 import 'package:listwhatever/pages/lists/routes/lists_page_route.dart';
@@ -31,6 +32,10 @@ part 'routes.g.dart';
     TypedGoRoute<AddListPageRoute>(
       path: 'lists/add',
       name: 'addList',
+    ),
+    TypedGoRoute<ListItemInfoPageRoute>(
+      path: 'lists/:listId/items/:itemId',
+      name: 'listiteminfo',
     ),
     // TypedGoRoute<UserProfilePageRoute>(
     //   path: 'user_profile',

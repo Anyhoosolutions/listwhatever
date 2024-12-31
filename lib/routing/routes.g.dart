@@ -40,6 +40,11 @@ RouteBase get $mainPageRoute => GoRouteData.$route(
           factory: $AddListPageRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'lists/:listId/items/:itemId',
+          name: 'listiteminfo',
+          factory: $ListItemInfoPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'login',
           name: 'login',
           factory: $LoginPageRouteExtension._fromState,
@@ -149,6 +154,27 @@ extension $AddListPageRouteExtension on AddListPageRoute {
 
   String get location => GoRouteData.$location(
         '/lists/add',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ListItemInfoPageRouteExtension on ListItemInfoPageRoute {
+  static ListItemInfoPageRoute _fromState(GoRouterState state) =>
+      ListItemInfoPageRoute(
+        listId: state.pathParameters['listId']!,
+        itemId: state.pathParameters['itemId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/lists/${Uri.encodeComponent(listId)}/items/${Uri.encodeComponent(itemId)}',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -13,6 +13,15 @@ class ListItemRepository {
     return (await getFirestore()).collection(path);
   }
 
+  Future<DocumentReference<Map<String, dynamic>>> getDocument(
+    String listId,
+    String itemId,
+  ) async {
+    final path = '/lists/$listId/items/$itemId';
+    print('ListRepository path: $path');
+    return (await getFirestore()).doc(path);
+  }
+
   Future<List<ListItem>> loadListItems(String listId) async {
     final listsCollection = await getCollection(listId);
 
@@ -23,6 +32,14 @@ class ListItemRepository {
       listItems.add(convertToListItem(doc.id, doc.data()));
     }
     return listItems;
+  }
+
+  Future<ListItem> loadListItem(String listId, String itemId) async {
+    final document = await getDocument(listId, itemId);
+
+    final doc = await document.get();
+    final item = convertToListItem(doc.id, doc.data()!);
+    return item;
   }
 
   ListItem convertToListItem(String id, Map<String, dynamic> data) {
