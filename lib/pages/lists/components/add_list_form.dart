@@ -51,7 +51,7 @@ class AddListForm extends StatelessWidget {
   });
   final ListOfThings? list;
   final bool isLoading;
-  final Future<void> Function(
+  final void Function(
     BuildContext context,
     ListOfThings? list,
     Map<String, dynamic> values,

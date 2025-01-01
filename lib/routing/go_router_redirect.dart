@@ -21,7 +21,7 @@ FutureOr<String?> routerRedirect(BuildContext context, GoRouterState state) {
   if (isLoggedIn(authBloc)) {
     if (isLoggingInPage(state)) {
       print('routerRedirect return /lists');
-      return '/lists';
+      return '/lists/t5WBV1YXrhddc5GMQ0aA/items/O3vKbWxdWfyq3DaUUQVt';
     }
   }
 

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:intl/intl.dart';
 import 'package:listwhatever/helpers/date_format_helper.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
+import 'package:listwhatever/pages/list/routes/edit_list_item_page_route.dart';
 import 'package:listwhatever/pages/list_item/cubit/list_item_cubit.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
+import 'package:listwhatever/routing/routes.dart';
 
 class ListItemInfoPage extends HookWidget {
   const ListItemInfoPage({
@@ -37,6 +38,14 @@ class ListItemInfoPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: (listItem == null) ? const Text('Item') : Text(listItem.name),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {
+              EditListItemPageRoute(listId: listId, itemId: itemId).push<void>(context);
+            },
+          ),
+        ],
       ),
       body: (listItem == null || list == null) ? _loadingView() : _infoView(list, listItem),
     );

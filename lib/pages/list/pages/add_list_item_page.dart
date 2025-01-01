@@ -39,6 +39,7 @@ class AddListItemPage extends HookWidget {
           padding: const EdgeInsets.all(24),
           child: AddListItemForm(
             list: list,
+            listItem: null,
             isLoading: isLoading,
             save: save,
           ),
@@ -73,11 +74,11 @@ class AddListItemPage extends HookWidget {
     );
   }
 
-  Future<void> save(
+  void save(
     BuildContext context,
     ListOfThings? list,
     Map<String, dynamic> values,
-  ) async {
+  ) {
     final listBloc = BlocProvider.of<ListBloc>(context);
     final goRouter = GoRouter.of(context);
 

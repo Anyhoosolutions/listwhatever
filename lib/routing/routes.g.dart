@@ -45,6 +45,11 @@ RouteBase get $mainPageRoute => GoRouteData.$route(
           factory: $ListItemInfoPageRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'lists/:listId/items/:itemId/edit',
+          name: 'editlistitem',
+          factory: $EditListItemPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'login',
           name: 'login',
           factory: $LoginPageRouteExtension._fromState,
@@ -175,6 +180,27 @@ extension $ListItemInfoPageRouteExtension on ListItemInfoPageRoute {
 
   String get location => GoRouteData.$location(
         '/lists/${Uri.encodeComponent(listId)}/items/${Uri.encodeComponent(itemId)}',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EditListItemPageRouteExtension on EditListItemPageRoute {
+  static EditListItemPageRoute _fromState(GoRouterState state) =>
+      EditListItemPageRoute(
+        listId: state.pathParameters['listId']!,
+        itemId: state.pathParameters['itemId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/lists/${Uri.encodeComponent(listId)}/items/${Uri.encodeComponent(itemId)}/edit',
       );
 
   void go(BuildContext context) => context.go(location);

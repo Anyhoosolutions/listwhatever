@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
 import 'package:listwhatever/form/form_input_field_info.dart';
 import 'package:listwhatever/form/form_input_section.dart';
 import 'package:listwhatever/helpers/constants.dart';
+import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
 const String className = 'AddListItemPage';
@@ -42,39 +44,34 @@ enum FieldId {
   final String value;
 }
 
-class AddListItemForm extends StatelessWidget {
+class AddListItemForm extends HookWidget {
   AddListItemForm({
     required this.list,
+    required this.listItem,
     required this.isLoading,
     required this.save,
     super.key,
   });
   final ListOfThings? list;
+  final ListItem? listItem;
   final bool isLoading;
-  final Future<void> Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
+  final void Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
 
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
     const isLoading = false;
+    final urls = useState(<String, String>{});
+    print('urls: ${urls.value}');
 
-    final fields = [
-      nameInputField(isLoading: isLoading),
-      extraInfoField(isLoading: isLoading),
-      ...categoryFields(isLoading: isLoading),
-      addCategoryButton(isLoading: isLoading),
-      ...urlFields(isLoading: isLoading),
-      addUrlButton(isLoading: isLoading),
-      if (list?.withDates ?? false) dateInputField(isLoading: isLoading),
-      if (list?.withMap ?? false) ...[
-        searchLocationButton(isLoading: isLoading),
-        addressField(isLoading: isLoading),
-        latLongField(isLoading: isLoading),
-      ],
-      cancelButton(isLoading: isLoading),
-      submitButton(context: context, isLoading: isLoading),
-    ];
+    setupUrls(urls);
+    print('urls: ${urls.value}');
+    final fields = getFields(
+      context: context,
+      isLoading: isLoading,
+      urls: urls,
+    );
 
     final sections = getSections();
 
@@ -94,11 +91,47 @@ class AddListItemForm extends StatelessWidget {
     );
   }
 
+  void setupUrls(ValueNotifier<Map<String, String>> urls) {
+    if (urls.value.isNotEmpty) {
+      return;
+    }
+    final tmpUrls = <String, String>{};
+    for (final url in listItem?.urls ?? <String>[]) {
+      final indexKey = getRandomString(3);
+      tmpUrls[indexKey] = url;
+    }
+
+    urls.value = tmpUrls;
+  }
+
+  List<FormInputFieldInfo> getFields({
+    required BuildContext context,
+    required bool isLoading,
+    required ValueNotifier<Map<String, String>> urls,
+  }) {
+    return [
+      nameInputField(isLoading: isLoading),
+      extraInfoField(isLoading: isLoading),
+      ...categoryFields(isLoading: isLoading),
+      addCategoryButton(isLoading: isLoading),
+      ...urlFields(isLoading: isLoading, urls: urls),
+      addUrlButton(isLoading: isLoading, urls: urls),
+      if (list?.withDates ?? false) dateInputField(isLoading: isLoading),
+      if (list?.withMap ?? false) ...[
+        searchLocationButton(isLoading: isLoading),
+        addressField(isLoading: isLoading),
+        latLongField(isLoading: isLoading),
+      ],
+      cancelButton(isLoading: isLoading),
+      submitButton(context: context, isLoading: isLoading),
+    ];
+  }
+
   FormInputFieldInfo nameInputField({required bool isLoading}) {
     return FormInputFieldInfo.textArea(
       id: FieldId.name.value,
       label: 'Item name',
-      currentValue: /*listItem?.name ??*/ '',
+      currentValue: listItem?.name ?? '',
       validators: [
         FormBuilderValidators.required(),
         FormBuilderValidators.maxLength(70),
@@ -117,7 +150,7 @@ class AddListItemForm extends StatelessWidget {
       // textInputAction: TextInputAction.newline,
       id: FieldId.info.value,
       label: 'Extra info',
-      currentValue: /*listItem?.info ?? */ '',
+      currentValue: listItem?.info ?? '',
       validators: [
         FormBuilderValidators.maxLength(1200, checkNullOrEmpty: false),
       ],
@@ -200,27 +233,17 @@ class AddListItemForm extends StatelessWidget {
     );
   }
 
-  List<FormInputFieldInfo> urlFields({required bool isLoading}) {
-    // if (urls == null) {
-    //   setState(() {
-    //     urls = {};
-    //     for (final url in listItem?.urls ?? <String>[]) {
-    //       final indexKey = getRandomString(3);
-    //       urls![indexKey] = url;
-    //     }
-    //   });
-    // }
-
-    // return [
-    //   for (final ik in urls!.entries) urlField(ik.key, ik.value),
-    // ];
-    return [];
+  List<FormInputFieldInfo> urlFields({required bool isLoading, required ValueNotifier<Map<String, String>> urls}) {
+    return [
+      for (final ik in urls.value.entries) urlField(ik.key, ik.value, isLoading: isLoading, urls: urls),
+    ];
   }
 
   FormInputFieldInfo urlField(
     String indexKey,
     String url, {
     required bool isLoading,
+    required ValueNotifier<Map<String, String>> urls,
   }) {
     return FormInputFieldInfo.textArea(
       id: getUrlId(indexKey),
@@ -233,10 +256,11 @@ class AddListItemForm extends StatelessWidget {
       sectionName: SectionName.urls.value,
       deletable: true,
       onDelete: () {
-        // setState(() {
-        //   urls!.remove(indexKey);
-        // });
-        _formKey.currentState?.value[getUrlId(indexKey)] = null;
+        print('deleting $indexKey');
+        final tmpUrls = urls.value..remove(indexKey);
+        urls.value = {...tmpUrls};
+        print('urls: ${urls.value}');
+        // _formKey.currentState?.value[getUrlId(indexKey)] = null;
       },
       isLoading: isLoading,
     );
@@ -246,16 +270,14 @@ class AddListItemForm extends StatelessWidget {
     return '${FieldId.urls.value}-$indexKey';
   }
 
-  FormInputFieldInfo addUrlButton({required bool isLoading}) {
+  FormInputFieldInfo addUrlButton({required bool isLoading, required ValueNotifier<Map<String, String>> urls}) {
     return FormInputFieldInfo.customButton(
       id: FieldId.addUrl.value,
       label: 'Add url',
       sectionName: SectionName.urls.value,
       callback: () {
-        // setState(() {
-        //   final indexKey = getRandomString(3);
-        //   urls![indexKey] = '';
-        // });
+        final indexKey = getRandomString(3);
+        urls.value = {...urls.value, indexKey: ''};
       },
       isLoading: isLoading,
     );
@@ -265,7 +287,7 @@ class AddListItemForm extends StatelessWidget {
     return FormInputFieldInfo.date(
       id: FieldId.date.value,
       label: 'Date',
-      currentValue: /*listItem?.datetime ??*/ DateTime.now(),
+      currentValue: listItem?.datetime ?? DateTime.now(),
       inputType: (list?.withTimes ?? false) ? InputType.both : InputType.date,
       sectionName: SectionName.date.value,
       isLoading: isLoading,
