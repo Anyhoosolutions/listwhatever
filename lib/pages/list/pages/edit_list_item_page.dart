@@ -8,7 +8,9 @@ import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/components/add_list_item_form.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
-import 'package:listwhatever/pages/list_item/cubit/list_item_cubit.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_bloc.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_event.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_state.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
 const String className = 'EditListItemPage';
@@ -59,12 +61,14 @@ class EditListItemPage extends HookWidget {
       () {
         print('EditListItemPage: Calling bloc');
         BlocProvider.of<ListBloc>(context).add(GetList(listId));
+        BlocProvider.of<ListItemBloc>(context).add(WatchListItem(listId, itemId));
       },
       const [],
     );
 
     final listState = context.watch<ListBloc>().state;
-    final listItem = context.watch<ListItemCubit>().state;
+    final listItemState = context.watch<ListItemBloc>().state;
+    final listItem = getListItem(listItemState);
     final isLoading = getLoading(listState, listItem);
     final list = getList(listState);
 
@@ -160,6 +164,13 @@ class EditListItemPage extends HookWidget {
   ListOfThings? getList(ListState listState) {
     if (listState is ListLoaded) {
       return listState.list;
+    }
+    return null;
+  }
+
+  ListItem? getListItem(ListItemState listItemState) {
+    if (listItemState is ListItemLoaded) {
+      return listItemState.listItem;
     }
     return null;
   }

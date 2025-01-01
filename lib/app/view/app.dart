@@ -6,7 +6,7 @@ import 'package:listwhatever/auth/bloc/auth_bloc.dart';
 import 'package:listwhatever/changeUserBloc/change_user_bloc_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/repository/list_item_repository.dart';
-import 'package:listwhatever/pages/list_item/cubit/list_item_cubit.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_bloc.dart';
 import 'package:listwhatever/pages/lists/bloc/lists_bloc.dart';
 import 'package:listwhatever/pages/lists/repository/list_repository.dart';
 import 'package:listwhatever/pages/lists/repository/user_list_repository.dart';
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => ListItemCubit(listItemRepository: listItemRepository),
+            create: (_) => ListItemBloc(listItemRepository: listItemRepository),
           ),
           BlocProvider(
             create: (_) => ChangeUserBloc(userListRepository: userListRepository),

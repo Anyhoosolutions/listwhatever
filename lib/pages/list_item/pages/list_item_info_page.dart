@@ -7,7 +7,9 @@ import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/list/routes/edit_list_item_page_route.dart';
-import 'package:listwhatever/pages/list_item/cubit/list_item_cubit.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_bloc.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_event.dart';
+import 'package:listwhatever/pages/list_item/bloc/list_item_state.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 import 'package:listwhatever/routing/routes.dart';
 
@@ -27,14 +29,15 @@ class ListItemInfoPage extends HookWidget {
       () {
         print('ListItemInfoPage: Calling bloc');
         context.read<ListBloc>().add(GetList(listId));
-        context.read<ListItemCubit>().getListItem(listId, itemId);
+        context.read<ListItemBloc>().add(LoadListItem(listId, itemId));
       },
       const [],
     );
 
     final listState = context.watch<ListBloc>().state;
     final list = getList(listState);
-    final listItem = context.watch<ListItemCubit>().state;
+    final listItemState = context.watch<ListItemBloc>().state;
+    final listItem = getListItem(listItemState);
 
     return Scaffold(
       appBar: AppBar(
@@ -121,6 +124,13 @@ class ListItemInfoPage extends HookWidget {
   ListOfThings? getList(ListState listState) {
     if (listState is ListLoaded) {
       return listState.list;
+    }
+    return null;
+  }
+
+  ListItem? getListItem(ListItemState listItemState) {
+    if (listItemState is ListItemLoaded) {
+      return listItemState.listItem;
     }
     return null;
   }
