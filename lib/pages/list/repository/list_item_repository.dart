@@ -42,6 +42,13 @@ class ListItemRepository {
     return item;
   }
 
+  Stream<ListItem> watchListItem(String listId, String itemId) async* {
+    final document = await getDocument(listId, itemId);
+
+    final snapshots = document.snapshots();
+    yield* snapshots.map((doc) => convertToListItem(doc.id, doc.data()!));
+  }
+
   ListItem convertToListItem(String id, Map<String, dynamic> data) {
     final list = ListItem.fromJson(data);
     return list.copyWith(
@@ -53,5 +60,10 @@ class ListItemRepository {
     final listItemsCollection = await getCollection(listId);
     final ref = await listItemsCollection.add(listItem.toJson());
     return ref.id;
+  }
+
+  Future<void> editListItem(String listId, ListItem listItem) async {
+    final listItemDocument = await getDocument(listId, listItem.id!);
+    await listItemDocument.set(listItem.toJson());
   }
 }

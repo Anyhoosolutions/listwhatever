@@ -25,6 +25,7 @@ class ListItemInfoPage extends HookWidget {
     useEffect(
       // ignore: body_might_complete_normally_nullable
       () {
+        print('ListItemInfoPage: Calling bloc');
         context.read<ListBloc>().add(GetList(listId));
         context.read<ListItemCubit>().getListItem(listId, itemId);
       },

@@ -68,7 +68,7 @@ class EditListItemPage extends HookWidget {
     final isLoading = getLoading(listState, listItem);
     final list = getList(listState);
 
-    print('AddListItemPage: listState: $listState');
+    print('EditListItemPage: listState: $listState');
 
     return Scaffold(
       appBar: getAppBar(),
@@ -127,7 +127,7 @@ class EditListItemPage extends HookWidget {
     // final categories = widget.getCategories(values);
 
     final listItem = ListItem(
-      id: null, // listItemId,
+      id: itemId,
       name: values[FieldId.name.name]! as String,
       info: values[FieldId.info.name] as String?,
       urls: values.entries
@@ -142,12 +142,7 @@ class EditListItemPage extends HookWidget {
       // categories: categories,
     );
 
-    // if (listItemId == null) {
-    BlocProvider.of<ListBloc>(context).add(AddListItem(listId, listItem));
-    // } else {
-    //   BlocProvider.of<ListItemCrudBloc>(context)
-    //       .add(UpdateListItem(list!.id!, listItem));
-    // }
+    BlocProvider.of<ListBloc>(context).add(EditListItem(listId, listItem));
     GoRouter.of(context).pop();
   }
 

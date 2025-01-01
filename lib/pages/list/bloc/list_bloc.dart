@@ -15,6 +15,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     on<AddList>(_onAddList);
     on<EditList>(_onEditList);
     on<AddListItem>(_onAddListItem);
+    on<EditListItem>(_onEditListItem);
     on<GetList>(_onGetList);
   }
   final UserListRepository userListRepository;
@@ -60,6 +61,19 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     emit(ListLoading());
 
     await listItemRepository.addListItem(event.listId, event.listItem);
+
+    final list = await listRepository.loadList(event.listId);
+    final listItems = await listItemRepository.loadListItems(event.listId);
+    emit(ListLoaded(list: list, listItems: listItems));
+  }
+
+  Future<void> _onEditListItem(
+    EditListItem event,
+    Emitter<ListState> emit,
+  ) async {
+    emit(ListLoading());
+
+    await listItemRepository.editListItem(event.listId, event.listItem);
 
     final list = await listRepository.loadList(event.listId);
     final listItems = await listItemRepository.loadListItems(event.listId);

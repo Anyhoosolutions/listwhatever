@@ -23,3 +23,9 @@ class AddListItem extends ListEvent {
   final String listId;
   final ListItem listItem;
 }
+
+class EditListItem extends ListEvent {
+  EditListItem(this.listId, this.listItem);
+  final String listId;
+  final ListItem listItem;
+}
