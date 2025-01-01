@@ -64,7 +64,7 @@ class AddListForm extends StatelessWidget {
     final fields = [
       nameField(isLoading: isLoading),
       // imagePickerField(list),
-      // mapCheckboxField(list),
+      mapCheckboxField(isLoading: isLoading),
       dateCheckboxField(isLoading: isLoading),
       timeCheckboxField(isLoading: isLoading),
       // ...categoryFilterSettings(list, listItems),
@@ -131,7 +131,6 @@ class AddListForm extends StatelessWidget {
       currentValue: list?.withDates ?? false,
       validators: [
         FormBuilderValidators.required(),
-        FormBuilderValidators.maxLength(70),
       ],
       sectionName: SectionName.options.value,
       isLoading: isLoading,
@@ -145,7 +144,19 @@ class AddListForm extends StatelessWidget {
       currentValue: list?.withTimes ?? false,
       validators: [
         FormBuilderValidators.required(),
-        FormBuilderValidators.maxLength(70),
+      ],
+      sectionName: SectionName.options.value,
+      isLoading: isLoading,
+    );
+  }
+
+  FormInputFieldInfo mapCheckboxField({bool isLoading = false}) {
+    return FormInputFieldInfo.checkbox(
+      id: FieldId.withMap.value,
+      label: 'Use map',
+      currentValue: list?.withMap ?? false,
+      validators: [
+        FormBuilderValidators.required(),
       ],
       sectionName: SectionName.options.value,
       isLoading: isLoading,

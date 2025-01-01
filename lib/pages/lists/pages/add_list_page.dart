@@ -63,7 +63,7 @@ class _AddListPageState extends State<AddListPage> {
       id: null, //widget.listId,
       name: values[FieldId.name.value]! as String,
       // imageFilename: imageFilename,
-      withMap: false, // values[FieldId.withMap.value] as bool,
+      withMap: values[FieldId.withMap.value] as bool,
       withDates: values[FieldId.withDates.value] as bool,
       withTimes: values[FieldId.withTimes.value] as bool,
       shared: false, //values[AddListValues.share.toString()] as bool,
