@@ -119,33 +119,8 @@ class EditListItemPage extends HookWidget {
   void save(
     BuildContext context,
     ListOfThings? list,
-    Map<String, dynamic> values,
+    ListItem listItem,
   ) {
-    // final latLongString = values[FieldId.latlong.name] as String?;
-    // final latLongParts =
-    //     (latLongString?.isEmpty ?? true) ? null : latLongString?.split(',');
-    // final lat =
-    //     latLongParts == null ? null : double.parse(latLongParts.first.trim());
-    // final lng =
-    //     latLongParts == null ? null : double.parse(latLongParts.last.trim());
-    // final categories = widget.getCategories(values);
-
-    final listItem = ListItem(
-      id: itemId,
-      name: values[FieldId.name.name]! as String,
-      info: values[FieldId.info.name] as String?,
-      urls: values.entries
-          .where(
-            (element) => element.key.startsWith(FieldId.urls.name),
-          )
-          .map((entry) => entry.value as String)
-          .toList(),
-      datetime: values[FieldId.date.name] as DateTime?,
-      // latLong: lat != null ? LatLong(lat: lat, lng: lng!) : null,
-      address: values[FieldId.address.name] as String?,
-      // categories: categories,
-    );
-
     BlocProvider.of<ListBloc>(context).add(EditListItem(listId, listItem));
     GoRouter.of(context).pop();
   }

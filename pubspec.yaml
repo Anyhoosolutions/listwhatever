@@ -23,6 +23,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   flutter_localizations:
     sdk: flutter
+  flutter_map: ^7.0.2
   flutter_typeahead: ^5.2.0
   form_builder_extra_fields: ^11.0.0
   form_builder_image_picker: ^4.1.0
@@ -31,6 +32,8 @@ dependencies:
   go_router: ^14.6.2
   go_router_builder: ^2.7.1
   google_fonts: ^6.2.1
+  google_maps_flutter: ^2.10.0
+  google_maps_flutter_web: ^0.5.10
   google_sign_in: ^6.2.2
   google_sign_in_mocks: ^0.3.0
   hugeicons: ^0.0.7

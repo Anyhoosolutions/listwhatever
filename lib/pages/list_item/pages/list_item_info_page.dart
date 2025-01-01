@@ -84,6 +84,13 @@ class ListItemInfoPage extends HookWidget {
             listItem.categories.entries.map((e) => '${e.key}: ${e.value.join(', ')}').toList(),
           ),
           if (list.withMap) _buildTile('Address', listItem.address ?? 'No address'),
+          if (list.withMap)
+            _buildTile(
+              'Latitude and longitude',
+              listItem.latLong != null
+                  ? '${listItem.latLong?.latitude}, ${listItem.latLong?.longitude}'
+                  : 'No location',
+            ),
         ],
       ),
     );

@@ -3,6 +3,7 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import '/custom/pages/listItems/searchLocation/geocoder/latlong.dart';
 
 part 'list_item.freezed.dart';
@@ -16,9 +17,7 @@ class ListItem with _$ListItem {
     @Default(null) String? info,
     @Default([]) List<String> urls,
     @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp) @Default(null) DateTime? datetime,
-    // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
-    // @Default(null)
-    // LatLong? latLong,
+    @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint) @Default(null) LatLng? latLong,
     @Default(null) String? address,
     @Default({}) Map<String, List<String>> categories,
     @Default(null) String? latestUpdateUser,
@@ -27,18 +26,19 @@ class ListItem with _$ListItem {
   factory ListItem.fromJson(Map<String, Object?> json) => _$ListItemFromJson(json);
 }
 
-// GeoPoint? _toJsonGeoPoint(LatLong? latLong) {
-//   if (latLong == null) {
-//     return null;
-//   }
-//   return GeoPoint(latLong.lat, latLong.lng);
-// }
-// LatLong? _fromJsonGeoPoint(GeoPoint? geoPoint) {
-//   if (geoPoint == null) {
-//     return null;
-//   }
-//   return LatLong(lat: geoPoint.latitude, lng: geoPoint.longitude);
-// }
+GeoPoint? _toJsonGeoPoint(LatLng? latLong) {
+  if (latLong == null) {
+    return null;
+  }
+  return GeoPoint(latLong.latitude, latLong.longitude);
+}
+
+LatLng? _fromJsonGeoPoint(GeoPoint? geoPoint) {
+  if (geoPoint == null) {
+    return null;
+  }
+  return LatLng(geoPoint.latitude, geoPoint.longitude);
+}
 
 DateTime? _fromTimestamp(Timestamp? timestamp) {
   if (timestamp == null) {

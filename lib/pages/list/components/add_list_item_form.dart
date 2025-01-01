@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
 import 'package:listwhatever/form/form_input_field_info.dart';
@@ -55,7 +56,7 @@ class AddListItemForm extends HookWidget {
   final ListOfThings? list;
   final ListItem? listItem;
   final bool isLoading;
-  final void Function(BuildContext context, ListOfThings? list, Map<String, dynamic> values) save;
+  final void Function(BuildContext context, ListOfThings? list, ListItem listItem) save;
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -322,11 +323,12 @@ class AddListItemForm extends HookWidget {
     return FormInputFieldInfo.textArea(
       id: FieldId.address.value,
       label: 'Address',
-      currentValue: /*listItem?.address ?? */ '', // TODO
+      currentValue: listItem?.address ?? '',
       validators: [
         FormBuilderValidators.maxLength(150, checkNullOrEmpty: false),
       ],
-      sectionName: SectionName.location.value, isLoading: isLoading,
+      sectionName: SectionName.location.value,
+      isLoading: isLoading,
     );
   }
 
@@ -334,10 +336,7 @@ class AddListItemForm extends HookWidget {
     return FormInputFieldInfo.textArea(
       id: FieldId.latlong.value,
       label: 'LatLong',
-      currentValue: /*listItem?.latLong != null
-          ? '${listItem?.latLong?.lat}, ${listItem?.latLong?.lng}'
-          : */
-          '',
+      currentValue: listItem?.latLong != null ? '${listItem?.latLong?.latitude}, ${listItem?.latLong?.longitude}' : '',
       validators: [
         FormBuilderValidators.maxLength(70, checkNullOrEmpty: false),
         validLatLong,
@@ -377,7 +376,8 @@ class AddListItemForm extends HookWidget {
         if (values == null) {
           return;
         }
-        save(context, list, values);
+        final listItem = createListItem(values);
+        save(context, list, listItem);
       },
       isLoading: isLoading,
     );
@@ -424,5 +424,30 @@ class AddListItemForm extends HookWidget {
     // final values = categoriesForList[t]?.toList() ?? [];
     // return values;
     return [];
+  }
+
+  ListItem createListItem(Map<String, dynamic> values) {
+    final latLongString = values[FieldId.latlong.name] as String?;
+    final latLongParts = (latLongString?.isEmpty ?? true) ? null : latLongString?.split(',');
+    final lat = latLongParts == null ? null : double.parse(latLongParts.first.trim());
+    final lng = latLongParts == null ? null : double.parse(latLongParts.last.trim());
+    // final categories = widget.getCategories(values);
+
+    final createdItem = ListItem(
+      id: listItem?.id,
+      name: values[FieldId.name.name]! as String,
+      info: values[FieldId.info.name] as String?,
+      urls: values.entries
+          .where(
+            (element) => element.key.startsWith(FieldId.urls.name),
+          )
+          .map((entry) => entry.value as String)
+          .toList(),
+      datetime: values[FieldId.date.name] as DateTime?,
+      latLong: lat != null ? LatLng(lat, lng!) : null,
+      address: values[FieldId.address.name] as String?,
+      // categories: categories,
+    );
+    return createdItem;
   }
 }

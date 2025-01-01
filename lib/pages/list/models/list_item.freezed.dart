@@ -25,10 +25,9 @@ mixin _$ListItem {
   String? get info => throw _privateConstructorUsedError;
   List<String> get urls => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
-  DateTime? get datetime =>
-      throw _privateConstructorUsedError; // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
-// @Default(null)
-// LatLong? latLong,
+  DateTime? get datetime => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  LatLng? get latLong => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   Map<String, List<String>> get categories =>
       throw _privateConstructorUsedError;
@@ -56,6 +55,8 @@ abstract class $ListItemCopyWith<$Res> {
       List<String> urls,
       @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       DateTime? datetime,
+      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      LatLng? latLong,
       String? address,
       Map<String, List<String>> categories,
       String? latestUpdateUser});
@@ -81,6 +82,7 @@ class _$ListItemCopyWithImpl<$Res, $Val extends ListItem>
     Object? info = freezed,
     Object? urls = null,
     Object? datetime = freezed,
+    Object? latLong = freezed,
     Object? address = freezed,
     Object? categories = null,
     Object? latestUpdateUser = freezed,
@@ -106,6 +108,10 @@ class _$ListItemCopyWithImpl<$Res, $Val extends ListItem>
           ? _value.datetime
           : datetime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      latLong: freezed == latLong
+          ? _value.latLong
+          : latLong // ignore: cast_nullable_to_non_nullable
+              as LatLng?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -137,6 +143,8 @@ abstract class _$$ListItemImplCopyWith<$Res>
       List<String> urls,
       @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       DateTime? datetime,
+      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      LatLng? latLong,
       String? address,
       Map<String, List<String>> categories,
       String? latestUpdateUser});
@@ -160,6 +168,7 @@ class __$$ListItemImplCopyWithImpl<$Res>
     Object? info = freezed,
     Object? urls = null,
     Object? datetime = freezed,
+    Object? latLong = freezed,
     Object? address = freezed,
     Object? categories = null,
     Object? latestUpdateUser = freezed,
@@ -185,6 +194,10 @@ class __$$ListItemImplCopyWithImpl<$Res>
           ? _value.datetime
           : datetime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      latLong: freezed == latLong
+          ? _value.latLong
+          : latLong // ignore: cast_nullable_to_non_nullable
+              as LatLng?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -211,6 +224,8 @@ class _$ListItemImpl implements _ListItem {
       final List<String> urls = const [],
       @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       this.datetime = null,
+      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      this.latLong = null,
       this.address = null,
       final Map<String, List<String>> categories = const {},
       this.latestUpdateUser = null})
@@ -239,9 +254,9 @@ class _$ListItemImpl implements _ListItem {
   @override
   @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
   final DateTime? datetime;
-// @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
-// @Default(null)
-// LatLong? latLong,
+  @override
+  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  final LatLng? latLong;
   @override
   @JsonKey()
   final String? address;
@@ -260,7 +275,7 @@ class _$ListItemImpl implements _ListItem {
 
   @override
   String toString() {
-    return 'ListItem(id: $id, name: $name, info: $info, urls: $urls, datetime: $datetime, address: $address, categories: $categories, latestUpdateUser: $latestUpdateUser)';
+    return 'ListItem(id: $id, name: $name, info: $info, urls: $urls, datetime: $datetime, latLong: $latLong, address: $address, categories: $categories, latestUpdateUser: $latestUpdateUser)';
   }
 
   @override
@@ -274,6 +289,7 @@ class _$ListItemImpl implements _ListItem {
             const DeepCollectionEquality().equals(other._urls, _urls) &&
             (identical(other.datetime, datetime) ||
                 other.datetime == datetime) &&
+            (identical(other.latLong, latLong) || other.latLong == latLong) &&
             (identical(other.address, address) || other.address == address) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
@@ -290,6 +306,7 @@ class _$ListItemImpl implements _ListItem {
       info,
       const DeepCollectionEquality().hash(_urls),
       datetime,
+      latLong,
       address,
       const DeepCollectionEquality().hash(_categories),
       latestUpdateUser);
@@ -318,6 +335,8 @@ abstract class _ListItem implements ListItem {
       final List<String> urls,
       @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
       final DateTime? datetime,
+      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      final LatLng? latLong,
       final String? address,
       final Map<String, List<String>> categories,
       final String? latestUpdateUser}) = _$ListItemImpl;
@@ -335,10 +354,10 @@ abstract class _ListItem implements ListItem {
   List<String> get urls;
   @override
   @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
-  DateTime?
-      get datetime; // @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
-// @Default(null)
-// LatLong? latLong,
+  DateTime? get datetime;
+  @override
+  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  LatLng? get latLong;
   @override
   String? get address;
   @override
