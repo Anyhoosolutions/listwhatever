@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
+import 'package:listwhatever/pages/list/components/map_view.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/list/models/list_item_tile.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
@@ -12,29 +14,29 @@ import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
 import 'package:listwhatever/routing/routes.dart';
 
 const addListButtonKey = Key('AddListButtonKey');
+const appBarExpandedHeight = 150.0;
 
-class ListPage extends StatefulWidget {
+class ListPage extends HookWidget {
   const ListPage({required this.listId, super.key});
   final String listId;
 
   @override
-  State<ListPage> createState() => _ListPageState();
-}
-
-class _ListPageState extends State<ListPage> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<ListBloc>(context).add(GetList(widget.listId));
-  }
-
-  @override
   Widget build(BuildContext context) {
+    useEffect(
+      () {
+        BlocProvider.of<ListBloc>(context).add(GetList(listId));
+      },
+      [],
+    );
+    final showMap = useState(true);
+
     final listState = context.watch<ListBloc>().state;
 
     final isLoading = getLoading(listState);
     final list = getList(listState);
     final items = getItems(listState);
+
+    final mapHeight = MediaQuery.of(context).size.height - appBarExpandedHeight;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -48,6 +50,20 @@ class _ListPageState extends State<ListPage> {
         slivers: <Widget>[
           SliverAppBar(
             actions: [
+              if (showMap.value)
+                IconButton(
+                  onPressed: () {
+                    showMap.value = false;
+                  },
+                  icon: const Icon(Icons.list),
+                ),
+              if (!showMap.value)
+                IconButton(
+                  onPressed: () {
+                    showMap.value = true;
+                  },
+                  icon: const Icon(Icons.map),
+                ),
               IconButton(
                 onPressed: () {
                   FilterPageRoute(listId: list!.id!).push<void>(context);
@@ -86,7 +102,7 @@ class _ListPageState extends State<ListPage> {
               ),
             ],
             pinned: true,
-            expandedHeight: 200,
+            expandedHeight: appBarExpandedHeight,
             flexibleSpace: FlexibleSpaceBar(
               background: Opacity(
                 opacity: 0.3,
@@ -105,21 +121,30 @@ class _ListPageState extends State<ListPage> {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListItemTile(
-                    list: list,
-                    item: items[index],
-                    isLoading: isLoading,
-                  ),
-                );
-              },
-              childCount: items.length,
+          if (showMap.value)
+            SliverToBoxAdapter(
+              child: Container(
+                height: mapHeight,
+                alignment: Alignment.centerLeft,
+                child: MapView(items: items),
+              ),
+            )
+          else
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ListItemTile(
+                      list: list,
+                      item: items[index],
+                      isLoading: isLoading,
+                    ),
+                  );
+                },
+                childCount: items.length,
+              ),
             ),
-          ),
         ],
       ),
     );

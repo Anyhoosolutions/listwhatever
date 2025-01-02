@@ -22,7 +22,8 @@ FutureOr<String?> routerRedirect(BuildContext context, GoRouterState state) {
     if (isLoggingInPage(state)) {
       print('routerRedirect return /lists');
       // return '/lists/U5NlIYTIoH7r4wR06Ev0/items/O3vKbWxdWfyq3DaUUQVt';
-      return '/lists/U5NlIYTIoH7r4wR06Ev0/filter';
+      // return '/lists/U5NlIYTIoH7r4wR06Ev0/filter';
+      return '/lists/U5NlIYTIoH7r4wR06Ev0';
     }
   }
 

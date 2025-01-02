@@ -14,7 +14,8 @@ GoRouter getGoRouterConfiguration(BuildContext context) {
     ]),
     debugLogDiagnostics: true,
     // initialLocation: '/lists/t5WBV1YXrhddc5GMQ0aA/items/O3vKbWxdWfyq3DaUUQVt',
-    initialLocation: '/lists/U5NlIYTIoH7r4wR06Ev0/filter',
+    // initialLocation: '/lists/U5NlIYTIoH7r4wR06Ev0/filter',
+    initialLocation: '/lists/U5NlIYTIoH7r4wR06Ev0',
     redirect: routerRedirect,
     routes: $appRoutes,
   );
