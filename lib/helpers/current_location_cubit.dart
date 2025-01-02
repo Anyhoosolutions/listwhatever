@@ -14,10 +14,15 @@ class CurrentLocationCubit extends Cubit<LatLng?> {
     _locationSubscription = Stream<void>.periodic(const Duration(seconds: 5)).listen((_) {
       _getCurrentLocation();
     });
+
+    emit(const LatLng(0, 0));
   }
 
   Future<void> _getCurrentLocation() async {
     try {
+      if (!(await Geolocator.isLocationServiceEnabled())) {
+        emit(null);
+      }
       final position = await Geolocator.getCurrentPosition(
         // TODO: Fix
         // ignore: deprecated_member_use

@@ -52,7 +52,7 @@ class MapView extends HookWidget {
         items.where((e) => e.latLong != null).map((e) => LatLng(e.latLong!.latitude, e.latLong!.longitude)).toList();
 
     if (latLngList.isEmpty) {
-      return (const LatLng(56.0, 11.0), const LatLng(58.0, 13.0));
+      return (const LatLng(56, 11), const LatLng(58, 13));
     }
 
     double? x0;

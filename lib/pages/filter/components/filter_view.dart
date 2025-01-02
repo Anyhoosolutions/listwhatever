@@ -48,6 +48,7 @@ class FilterView extends HookWidget {
     useEffect(
       () {
         BlocProvider.of<ListBloc>(context).add(GetList(listId));
+        return null;
       },
       [],
     );
