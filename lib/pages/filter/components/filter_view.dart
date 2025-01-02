@@ -19,7 +19,7 @@ const String className = 'ListTiles';
 
 enum SectionName {
   basic._('Basic information'),
-  categoryFilterSettings._('Category filter settings');
+  submit._('Submit');
 
   const SectionName._(this.value);
 
@@ -27,9 +27,9 @@ enum SectionName {
 }
 
 enum FieldId {
+  name._('name'),
   date._('date'),
   distance._('distance'),
-
   submit._('submit');
 
   const FieldId._(this.value);
@@ -40,8 +40,9 @@ enum FieldId {
 final filterFormKey = GlobalKey<FormBuilderState>();
 
 class FilterView extends HookWidget {
-  const FilterView({required this.listId, super.key});
+  const FilterView({required this.listId, required this.showSubmitButton, super.key});
   final String listId;
+  final bool showSubmitButton;
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +97,17 @@ class FilterView extends HookWidget {
   }) {
     final dateF = dateField(isLoading: isLoading, listItems: listItems);
     final distanceF = distanceField(isLoading: isLoading, listItems: listItems, currentPosition: currentPosition);
-    return [
+
+    final fields = [
+      itemNameInputField(isLoading: isLoading),
       if (dateF != null && list.withDates) dateF,
       if (distanceF != null && list.withMap) distanceF,
+      if (showSubmitButton) submitButton(isLoading: isLoading),
     ];
+    print('fields: ${fields.length}');
+    print('fields: ${fields.map((f) => f.sectionName)}');
+
+    return fields;
   }
 
   List<FormInputSection> getSections({required bool isLoading}) {
@@ -110,9 +118,9 @@ class FilterView extends HookWidget {
         showBorder: !isLoading,
       ),
       FormInputSection(
-        name: SectionName.categoryFilterSettings.value,
+        name: SectionName.submit.value,
         direction: FormAxisDirection.vertical,
-        showBorder: !isLoading,
+        showBorder: false,
       ),
     ];
   }
@@ -139,6 +147,17 @@ class FilterView extends HookWidget {
     } else {
       return [];
     }
+  }
+
+  FormInputFieldInfo itemNameInputField({required bool isLoading}) {
+    return FormInputFieldInfo.textArea(
+      id: FieldId.name.value,
+      label: 'Item name',
+      currentValue: '',
+      validators: [],
+      sectionName: SectionName.basic.value,
+      isLoading: isLoading,
+    );
   }
 
   FormInputFieldInfo? dateField({required List<ListItem> listItems, required bool isLoading}) {
@@ -190,5 +209,24 @@ class FilterView extends HookWidget {
 
   double getDistance(LatLng currentPosition, LatLng? latLong) {
     return 100; // TODO: Implement
+  }
+
+  // FormInputFieldInfo resetButton() {
+  //   return FormInputFieldInfo.cancelButton(
+  //     id: FieldId.cancel.value,
+  //     label: 'Reset',
+  //     sectionName: SectionName.submit.value,
+  //     cancel: () {}, isLoading: isLoading,
+  //   );
+  // }
+
+  FormInputFieldInfo submitButton({required bool isLoading}) {
+    return FormInputFieldInfo.submitButton(
+      id: FieldId.submit.value,
+      label: 'Submit',
+      sectionName: SectionName.submit.value,
+      isLoading: isLoading,
+      save: (Map<String, dynamic>? values) {},
+    );
   }
 }

@@ -11,7 +11,10 @@ class FilterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Filter'),
       ),
-      body: FilterView(listId: listId),
+      body: FilterView(
+        listId: listId,
+        showSubmitButton: true,
+      ),
     );
   }
 }
