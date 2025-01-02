@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/pages/auth/routes/login_page_route.dart';
+import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
 import 'package:listwhatever/pages/list/routes/edit_list_item_page_route.dart';
 import 'package:listwhatever/pages/list/routes/lists_page_route.dart';
@@ -41,6 +42,11 @@ part 'routes.g.dart';
     TypedGoRoute<EditListItemPageRoute>(
       path: 'lists/:listId/items/:itemId/edit',
       name: 'editlistitem',
+    ),
+
+    TypedGoRoute<FilterPageRoute>(
+      path: 'filter',
+      name: 'filter',
     ),
     // TypedGoRoute<UserProfilePageRoute>(
     //   path: 'user_profile',

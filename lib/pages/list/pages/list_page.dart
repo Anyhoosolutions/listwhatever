@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
@@ -47,12 +48,17 @@ class _ListPageState extends State<ListPage> {
         slivers: <Widget>[
           SliverAppBar(
             actions: [
+              IconButton(
+                  onPressed: () {
+                    const FilterPageRoute().push<void>(context);
+                  },
+                  icon: const Icon(Icons.filter_alt_outlined)),
               PopupMenuButton<int>(
                 onSelected: (item) => {
                   if (item == 0)
                     {
                       EditListPageRoute(id: list!.id!).push<void>(context),
-                    }
+                    },
                 },
                 itemBuilder: (context) => [
                   const PopupMenuItem<int>(
@@ -82,11 +88,12 @@ class _ListPageState extends State<ListPage> {
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
               background: Opacity(
-                  opacity: 0.3,
-                  child: Image.asset(
-                    'assets/images/restaurants.jpeg',
-                    fit: BoxFit.cover,
-                  )),
+                opacity: 0.3,
+                child: Image.asset(
+                  'assets/images/restaurants.jpeg',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             centerTitle: true,
             title: Text(
