@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:listwhatever/pages/filter/components/filter_view.dart';
 
 class FilterPage extends StatelessWidget {
-  const FilterPage({super.key});
+  const FilterPage({required this.listId, super.key});
+  final String listId;
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,7 @@ class FilterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Filter'),
       ),
-      body: const Center(
-        child: Text('Filter Page'),
-      ),
+      body: FilterView(listId: listId),
     );
   }
 }

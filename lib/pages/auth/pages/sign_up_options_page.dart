@@ -11,7 +11,7 @@ class SignInOptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final nameController = TextEditingController(text: 'Regular');
     final emailController = TextEditingController(text: 'regular@email.com');
-    final passwordController = TextEditingController(text: 'test1234!');
+    final passwordController = TextEditingController(text: 'test1234');
 
     return Scaffold(
       body: Center(

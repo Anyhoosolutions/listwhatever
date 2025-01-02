@@ -50,7 +50,7 @@ RouteBase get $mainPageRoute => GoRouteData.$route(
           factory: $EditListItemPageRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'filter',
+          path: 'lists/:listId/filter',
           name: 'filter',
           factory: $FilterPageRouteExtension._fromState,
         ),
@@ -219,11 +219,12 @@ extension $EditListItemPageRouteExtension on EditListItemPageRoute {
 }
 
 extension $FilterPageRouteExtension on FilterPageRoute {
-  static FilterPageRoute _fromState(GoRouterState state) =>
-      const FilterPageRoute();
+  static FilterPageRoute _fromState(GoRouterState state) => FilterPageRoute(
+        listId: state.pathParameters['listId']!,
+      );
 
   String get location => GoRouteData.$location(
-        '/filter',
+        '/lists/${Uri.encodeComponent(listId)}/filter',
       );
 
   void go(BuildContext context) => context.go(location);

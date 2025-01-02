@@ -10,7 +10,7 @@ class LogInOptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emailController = TextEditingController(text: 'regular@email.com');
-    final passwordController = TextEditingController(text: 'test1234!');
+    final passwordController = TextEditingController(text: 'test1234');
 
     return Scaffold(
       body: Center(
@@ -102,8 +102,7 @@ class LogInOptionsPage extends StatelessWidget {
     String email,
     String password,
   ) {
-    BlocProvider.of<AuthBloc>(context)
-        .add(LoginWithEmailAndPassword(email: email, password: password));
+    BlocProvider.of<AuthBloc>(context).add(LoginWithEmailAndPassword(email: email, password: password));
   }
 
   void appleSignUp(BuildContext context) {

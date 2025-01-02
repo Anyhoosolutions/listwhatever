@@ -49,10 +49,11 @@ class _ListPageState extends State<ListPage> {
           SliverAppBar(
             actions: [
               IconButton(
-                  onPressed: () {
-                    const FilterPageRoute().push<void>(context);
-                  },
-                  icon: const Icon(Icons.filter_alt_outlined)),
+                onPressed: () {
+                  FilterPageRoute(listId: list!.id!).push<void>(context);
+                },
+                icon: const Icon(Icons.filter_alt_outlined),
+              ),
               PopupMenuButton<int>(
                 onSelected: (item) => {
                   if (item == 0)

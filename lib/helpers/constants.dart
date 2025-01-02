@@ -20,12 +20,19 @@ Iterable<(int, T)> mapIndexed<T>(
   }
 }
 
-const _chars = 'AaBbCcDdEeFfGgHhiJjKkLMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-Random _rnd = Random();
+class Constants {
+  static const _chars = 'AaBbCcDdEeFfGgHhiJjKkLMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  static final _rnd = Random();
 
-String getRandomString(int length) => String.fromCharCodes(
-      Iterable.generate(
-        length,
-        (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)),
-      ),
-    );
+  static String getRandomString(int length) => String.fromCharCodes(
+        Iterable.generate(
+          length,
+          (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)),
+        ),
+      );
+
+  static DateTime minDate = DateTime.parse('1970-01-01');
+  static DateTime maxDate = DateTime.parse('2040-01-01');
+
+  static double maxDistance = 1000000;
+}

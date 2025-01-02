@@ -13,7 +13,8 @@ GoRouter getGoRouterConfiguration(BuildContext context) {
       BlocProvider.of<AuthBloc>(context).stream,
     ]),
     debugLogDiagnostics: true,
-    initialLocation: '/lists/t5WBV1YXrhddc5GMQ0aA/items/O3vKbWxdWfyq3DaUUQVt',
+    // initialLocation: '/lists/t5WBV1YXrhddc5GMQ0aA/items/O3vKbWxdWfyq3DaUUQVt',
+    initialLocation: '/lists/U5NlIYTIoH7r4wR06Ev0/filter',
     redirect: routerRedirect,
     routes: $appRoutes,
   );

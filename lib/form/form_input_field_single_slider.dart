@@ -30,31 +30,36 @@ class FormInputFieldSingleSlider extends StatelessWidget {
           values = [formField.value!];
         }
 
-        //
-        return FlutterSlider(
-          values: values,
-          min: field.range.$1,
-          max: field.range.$2,
-          step: getStep(field),
-          handler: FlutterSliderHandler(
-            decoration: const BoxDecoration(),
-            child: const Icon(
-              Icons.circle,
-              size: 31,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(field.label, style: const TextStyle(color: Colors.yellow)),
+            FlutterSlider(
+              values: values,
+              min: field.range.$1,
+              max: field.range.$2,
+              step: getStep(field),
+              handler: FlutterSliderHandler(
+                decoration: const BoxDecoration(),
+                child: const Icon(
+                  Icons.circle,
+                  size: 31,
+                ),
+              ),
+              tooltip: getTooltip(field),
+              trackBar: FlutterSliderTrackBar(
+                inactiveTrackBar: BoxDecoration(
+                  color: Colors.black12,
+                  border: Border.all(width: 3),
+                ),
+                activeTrackBar: const BoxDecoration(),
+              ),
+              onDragCompleted: (handlerIndex, lowerValue, upperValue) {
+                final distanceValue = lowerValue as double;
+                formField.didChange(distanceValue);
+              },
             ),
-          ),
-          tooltip: getTooltip(field),
-          trackBar: FlutterSliderTrackBar(
-            inactiveTrackBar: BoxDecoration(
-              color: Colors.black12,
-              border: Border.all(width: 3),
-            ),
-            activeTrackBar: const BoxDecoration(),
-          ),
-          onDragCompleted: (handlerIndex, lowerValue, upperValue) {
-            final distanceValue = lowerValue as double;
-            formField.didChange(distanceValue);
-          },
+          ],
         );
       },
     );
@@ -82,7 +87,7 @@ class FormInputFieldSingleSlider extends StatelessWidget {
       SliderType.date => FlutterSliderTooltip(
           textStyle: textStyle,
           format: (s) {
-            final date = DateTime.fromMillisecondsSinceEpoch(int.parse(s));
+            final date = DateTime.fromMillisecondsSinceEpoch(int.parse(s) * 1000);
             return DateFormatHelper.formatReadableDate(
               date,
               DateFormatType.iso8601,

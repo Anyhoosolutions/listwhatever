@@ -45,7 +45,7 @@ part 'routes.g.dart';
     ),
 
     TypedGoRoute<FilterPageRoute>(
-      path: 'filter',
+      path: 'lists/:listId/filter',
       name: 'filter',
     ),
     // TypedGoRoute<UserProfilePageRoute>(

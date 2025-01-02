@@ -103,7 +103,7 @@ class AddListItemForm extends HookWidget {
     }
     final tmpUrls = <String, String>{};
     for (final url in listItem?.urls ?? <String>[]) {
-      final indexKey = getRandomString(3);
+      final indexKey = Constants.getRandomString(3);
       tmpUrls[indexKey] = url;
     }
 
@@ -115,7 +115,7 @@ class AddListItemForm extends HookWidget {
       final tmp = <String, (String, String)>{};
       final keys = listItem?.categories.keys ?? [];
       for (final key in keys) {
-        final indexKey = getRandomString(3);
+        final indexKey = Constants.getRandomString(3);
         tmp[indexKey] = (key, listItem?.categories[key]?.join(',') ?? '');
       }
       categories.value = {...tmp};
@@ -242,7 +242,7 @@ class AddListItemForm extends HookWidget {
       label: 'Add category',
       sectionName: SectionName.categories.value,
       callback: () {
-        final indexKey = getRandomString(3);
+        final indexKey = Constants.getRandomString(3);
         categories.value = {...categories.value, indexKey: ('', '')};
       },
       isLoading: isLoading,
@@ -292,7 +292,7 @@ class AddListItemForm extends HookWidget {
       label: 'Add url',
       sectionName: SectionName.urls.value,
       callback: () {
-        final indexKey = getRandomString(3);
+        final indexKey = Constants.getRandomString(3);
         urls.value = {...urls.value, indexKey: ''};
       },
       isLoading: isLoading,
