@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -64,14 +65,18 @@ class AddListItemForm extends HookWidget {
   Widget build(BuildContext context) {
     const isLoading = false;
     final urls = useState(<String, String>{});
-    print('urls: ${urls.value}');
+    final categories = useState(<String, (String, String)>{});
+    print('categories: ${urls.value}');
 
     setupUrls(urls);
-    print('urls: ${urls.value}');
+    setupCategories(categories);
+
+    print('categories: ${urls.value}');
     final fields = getFields(
       context: context,
       isLoading: isLoading,
       urls: urls,
+      categories: categories,
     );
 
     final sections = getSections();
@@ -105,16 +110,29 @@ class AddListItemForm extends HookWidget {
     urls.value = tmpUrls;
   }
 
+  void setupCategories(ValueNotifier<Map<String, (String, String)>> categories) {
+    if (categories.value.isEmpty) {
+      final tmp = <String, (String, String)>{};
+      final keys = listItem?.categories.keys ?? [];
+      for (final key in keys) {
+        final indexKey = getRandomString(3);
+        tmp[indexKey] = (key, listItem?.categories[key]?.join(',') ?? '');
+      }
+      categories.value = {...tmp};
+    }
+  }
+
   List<FormInputFieldInfo> getFields({
     required BuildContext context,
     required bool isLoading,
     required ValueNotifier<Map<String, String>> urls,
+    required ValueNotifier<Map<String, (String, String)>> categories,
   }) {
     return [
       nameInputField(isLoading: isLoading),
       extraInfoField(isLoading: isLoading),
-      ...categoryFields(isLoading: isLoading),
-      addCategoryButton(isLoading: isLoading),
+      ...categoryFields(isLoading: isLoading, categories: categories),
+      addCategoryButton(isLoading: isLoading, categories: categories),
       ...urlFields(isLoading: isLoading, urls: urls),
       addUrlButton(isLoading: isLoading, urls: urls),
       if (list?.withDates ?? false) dateInputField(isLoading: isLoading),
@@ -159,24 +177,20 @@ class AddListItemForm extends HookWidget {
     );
   }
 
-  List<FormInputFieldInfo> categoryFields({required bool isLoading}) {
-    // if (categories == null) {
-    //   setState(() {
-    //     categories = {};
-    //     final keys = listItem?.categories.keys ?? [];
-    //     for (final key in keys) {
-    //       final indexKey = getRandomString(3);
-    //       categories![indexKey] =
-    //           (key, listItem?.categories[key]?.join(',') ?? '');
-    //     }
-    //   });
-    // }
-
-    // return [
-    //   for (final ik in categories!.entries)
-    //     categoryField(ik.key, ik.value.$1, ik.value.$2, isLoading: isLoading),
-    // ];
-    return [];
+  List<FormInputFieldInfo> categoryFields({
+    required bool isLoading,
+    required ValueNotifier<Map<String, (String, String)>> categories,
+  }) {
+    return [
+      for (final ik in categories.value.entries)
+        categoryField(
+          ik.key,
+          ik.value.$1,
+          ik.value.$2,
+          isLoading: isLoading,
+          categories: categories,
+        ),
+    ];
   }
 
   FormInputFieldInfo categoryField(
@@ -184,6 +198,7 @@ class AddListItemForm extends HookWidget {
     String left,
     String right, {
     required bool isLoading,
+    required ValueNotifier<Map<String, (String, String)>> categories,
   }) {
     return FormInputFieldInfo.twoAutoCompleteFields(
       id: getCategoryId(Side.left, indexKey),
@@ -205,9 +220,8 @@ class AddListItemForm extends HookWidget {
       ],
       deletable: true,
       onDelete: () {
-        // setState(() {
-        //   categories!.remove(indexKey);
-        // });
+        final tmpCategories = categories.value..remove(indexKey);
+        categories.value = {...tmpCategories};
         _formKey.currentState?.value[getCategoryId(Side.left, indexKey)] = null;
         _formKey.currentState?.value[getCategoryId(Side.right, indexKey)] = null;
       },
@@ -219,16 +233,17 @@ class AddListItemForm extends HookWidget {
     return '${FieldId.categories.value}-${side.name}-$indexKey';
   }
 
-  FormInputFieldInfo addCategoryButton({required bool isLoading}) {
+  FormInputFieldInfo addCategoryButton({
+    required bool isLoading,
+    required ValueNotifier<Map<String, (String, String)>> categories,
+  }) {
     return FormInputFieldInfo.customButton(
       id: FieldId.addCategory.value,
       label: 'Add category',
       sectionName: SectionName.categories.value,
       callback: () {
-        // setState(() {
-        //   final indexKey = getRandomString(3);
-        //   categories![indexKey] = ('', '');
-        // });
+        final indexKey = getRandomString(3);
+        categories.value = {...categories.value, indexKey: ('', '')};
       },
       isLoading: isLoading,
     );
@@ -420,10 +435,26 @@ class AddListItemForm extends HookWidget {
     ];
   }
 
-  List<String> getValuesForCategory(String t) {
-    // final values = categoriesForList[t]?.toList() ?? [];
-    // return values;
-    return [];
+  Map<String, List<String>> getCategories(Map<String, dynamic> values) {
+    final categoriesZip = IterableZip([
+      values.entries
+          .where(
+            (element) => element.key.startsWith('${FieldId.categories.name}-left-'),
+          )
+          .toList(),
+      values.entries
+          .where(
+            (element) => element.key.startsWith('${FieldId.categories.name}-right-'),
+          )
+          .toList(),
+    ]);
+    final categories = <String, List<String>>{};
+    for (final e in categoriesZip) {
+      final category = e[0].value as String;
+      final values = (e[1].value as String).split(',').map((t) => t.trim()).toList();
+      categories[category] = values;
+    }
+    return categories;
   }
 
   ListItem createListItem(Map<String, dynamic> values) {
@@ -431,7 +462,7 @@ class AddListItemForm extends HookWidget {
     final latLongParts = (latLongString?.isEmpty ?? true) ? null : latLongString?.split(',');
     final lat = latLongParts == null ? null : double.parse(latLongParts.first.trim());
     final lng = latLongParts == null ? null : double.parse(latLongParts.last.trim());
-    // final categories = widget.getCategories(values);
+    final categories = getCategories(values);
 
     final createdItem = ListItem(
       id: listItem?.id,
@@ -446,7 +477,7 @@ class AddListItemForm extends HookWidget {
       datetime: values[FieldId.date.name] as DateTime?,
       latLong: lat != null ? LatLng(lat, lng!) : null,
       address: values[FieldId.address.name] as String?,
-      // categories: categories,
+      categories: categories,
     );
     return createdItem;
   }
