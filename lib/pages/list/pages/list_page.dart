@@ -47,31 +47,47 @@ class _ListPageState extends State<ListPage> {
         slivers: <Widget>[
           SliverAppBar(
             actions: [
-              IconButton(
-                color: Colors.white,
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  EditListPageRoute(id: list!.id!).push<void>(context);
+              PopupMenuButton<int>(
+                onSelected: (item) => {
+                  if (item == 0)
+                    {
+                      EditListPageRoute(id: list!.id!).push<void>(context),
+                    }
                 },
-              ),
-              IconButton(
-                color: Colors.white,
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  // BlocProvider.of<ListBloc>(context).add(DeleteList(list!.id!));
-                  // Navigator.pop(context);
-                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text('Edit'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text('Delete'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
             pinned: true,
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/restaurants.jpeg',
-                fit: BoxFit.cover,
-              ),
+              background: Opacity(
+                  opacity: 0.3,
+                  child: Image.asset(
+                    'assets/images/restaurants.jpeg',
+                    fit: BoxFit.cover,
+                  )),
             ),
-            backgroundColor: Colors.black,
             centerTitle: true,
             title: Text(
               list?.name ?? '',
@@ -84,10 +100,13 @@ class _ListPageState extends State<ListPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return ListItemTile(
-                  list: list,
-                  item: items[index],
-                  isLoading: isLoading,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ListItemTile(
+                    list: list,
+                    item: items[index],
+                    isLoading: isLoading,
+                  ),
                 );
               },
               childCount: items.length,
