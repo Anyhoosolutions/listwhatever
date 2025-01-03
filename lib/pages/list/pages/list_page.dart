@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_bloc.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_state.dart';
 import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
+import 'package:listwhatever/pages/list/bloc/list_items_sort_order_cubit.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/components/map_view.dart';
+import 'package:listwhatever/pages/list/helpers/filters_helper.dart';
+import 'package:listwhatever/pages/list/models/filters.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/list/models/list_item_tile.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
@@ -32,11 +37,23 @@ class ListPage extends HookWidget {
     final showMap = useState(true);
 
     final listState = context.watch<ListBloc>().state;
+    final filtersState = context.watch<FiltersBloc>().state;
+    final filters = getFilters(filtersState);
 
-    final isLoading = getLoading(listState);
+    final isLoading = getLoading(listState, filtersState);
     final list = getList(listState);
     final items = getItems(listState);
 
+    print('filters: $filters');
+    final filteredItems = isLoading
+        ? items
+        : FiltersHelper.sortAndFilterItems(
+            list!,
+            items,
+            filters!,
+            (ListItemsSortOrder.name, SortOrder.ascending),
+          );
+    print('filteredItems: $filteredItems');
     final mapHeight = MediaQuery.of(context).size.height - appBarExpandedHeight;
 
     return Scaffold(
@@ -129,7 +146,7 @@ class ListPage extends HookWidget {
                 child: Container(
                   height: mapHeight,
                   alignment: Alignment.centerLeft,
-                  child: MapView(items: items),
+                  child: MapView(items: filteredItems),
                 ),
               ),
             )
@@ -141,12 +158,12 @@ class ListPage extends HookWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ListItemTile(
                       list: list,
-                      item: items[index],
+                      item: filteredItems[index],
                       isLoading: isLoading,
                     ),
                   );
                 },
-                childCount: items.length,
+                childCount: filteredItems.length,
               ),
             ),
         ],
@@ -154,7 +171,10 @@ class ListPage extends HookWidget {
     );
   }
 
-  bool getLoading(ListState listState) {
+  bool getLoading(ListState listState, FiltersState filtersState) {
+    if (filtersState is! FiltersLoaded) {
+      return true;
+    }
     return switch (listState) {
       ListInitial() => true,
       ListLoading() => true,
@@ -186,5 +206,12 @@ class ListPage extends HookWidget {
       return listState.listItems;
     }
     return [];
+  }
+
+  Filters? getFilters(FiltersState filtersState) {
+    if (filtersState is FiltersLoaded) {
+      return filtersState.filters;
+    }
+    return null;
   }
 }

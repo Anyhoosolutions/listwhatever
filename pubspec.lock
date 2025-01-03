@@ -868,6 +868,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  great_circle_distance_calculator:
+    dependency: "direct main"
+    description:
+      name: great_circle_distance_calculator
+      sha256: "57b9a89a46406c404e75cde6e30b2e731d3057065a42c8292b77022ca305522b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   html:
     dependency: transitive
     description:

@@ -119,6 +119,7 @@ sealed class FormInputFieldInfo with _$FormInputFieldInfo {
     required List<FormFieldValidator<bool>> validators,
     required String sectionName,
     required bool isLoading,
+    @Default(null) String? unitName,
     @Default(null) double? currentValue,
     @Default(null) (double, double)? currentValues,
     @Default(false) bool rangeSlider,

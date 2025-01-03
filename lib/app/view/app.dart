@@ -5,6 +5,7 @@ import 'package:listwhatever/auth/auth_repository.dart';
 import 'package:listwhatever/auth/bloc/auth_bloc.dart';
 import 'package:listwhatever/changeUserBloc/change_user_bloc_bloc.dart';
 import 'package:listwhatever/helpers/current_location_cubit.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/repository/list_item_repository.dart';
 import 'package:listwhatever/pages/list_item/bloc/list_item_bloc.dart';
@@ -35,6 +36,9 @@ class App extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (_) => FiltersBloc(),
+          ),
           BlocProvider(
             create: (_) => CurrentLocationCubit(),
           ),

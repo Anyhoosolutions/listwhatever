@@ -82,7 +82,8 @@ class FormInputFieldSingleSlider extends StatelessWidget {
     return switch (field.type) {
       SliderType.numeric => FlutterSliderTooltip(
           textStyle: textStyle,
-          format: (s) => s == '${field.range.$2}' ? '∞' : s,
+          format: (s) =>
+              s == '${field.range.$2}' ? '∞${' ${field.unitName ?? ''}'}' : '$s${' ${field.unitName ?? ''}'}',
         ),
       SliderType.date => FlutterSliderTooltip(
           textStyle: textStyle,

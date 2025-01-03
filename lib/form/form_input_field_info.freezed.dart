@@ -100,6 +100,7 @@ mixin _$FormInputFieldInfo {
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -200,6 +201,7 @@ mixin _$FormInputFieldInfo {
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -300,6 +302,7 @@ mixin _$FormInputFieldInfo {
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -710,6 +713,7 @@ class _$FormInputFieldInfoTextAreaImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -814,6 +818,7 @@ class _$FormInputFieldInfoTextAreaImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -918,6 +923,7 @@ class _$FormInputFieldInfoTextAreaImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -1371,6 +1377,7 @@ class _$FormInputFieldInfoDropDownImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -1486,6 +1493,7 @@ class _$FormInputFieldInfoDropDownImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -1601,6 +1609,7 @@ class _$FormInputFieldInfoDropDownImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2020,6 +2029,7 @@ class _$FormInputFieldInfoCheckboxImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2124,6 +2134,7 @@ class _$FormInputFieldInfoCheckboxImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2228,6 +2239,7 @@ class _$FormInputFieldInfoCheckboxImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2563,6 +2575,7 @@ class _$FormInputFieldInfoCancelButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2666,6 +2679,7 @@ class _$FormInputFieldInfoCancelButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -2769,6 +2783,7 @@ class _$FormInputFieldInfoCancelButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -3097,6 +3112,7 @@ class _$FormInputFieldInfoSubmitButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -3200,6 +3216,7 @@ class _$FormInputFieldInfoSubmitButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -3303,6 +3320,7 @@ class _$FormInputFieldInfoSubmitButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -3786,6 +3804,7 @@ class _$FormInputFieldInfoTwoAutoCompleteFieldsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -3903,6 +3922,7 @@ class _$FormInputFieldInfoTwoAutoCompleteFieldsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -4020,6 +4040,7 @@ class _$FormInputFieldInfoTwoAutoCompleteFieldsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -4382,6 +4403,7 @@ class _$FormInputFieldInfoCustomButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -4485,6 +4507,7 @@ class _$FormInputFieldInfoCustomButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -4588,6 +4611,7 @@ class _$FormInputFieldInfoCustomButtonImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -4989,6 +5013,7 @@ class _$FormInputFieldInfoDateImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5093,6 +5118,7 @@ class _$FormInputFieldInfoDateImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5197,6 +5223,7 @@ class _$FormInputFieldInfoDateImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5335,6 +5362,7 @@ abstract class _$$FormInputFieldInfoSliderImplCopyWith<$Res>
       List<String? Function(bool?)> validators,
       String sectionName,
       bool isLoading,
+      String? unitName,
       double? currentValue,
       (double, double)? currentValues,
       bool rangeSlider,
@@ -5362,6 +5390,7 @@ class __$$FormInputFieldInfoSliderImplCopyWithImpl<$Res>
     Object? validators = null,
     Object? sectionName = null,
     Object? isLoading = null,
+    Object? unitName = freezed,
     Object? currentValue = freezed,
     Object? currentValues = freezed,
     Object? rangeSlider = null,
@@ -5392,6 +5421,10 @@ class __$$FormInputFieldInfoSliderImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      unitName: freezed == unitName
+          ? _value.unitName
+          : unitName // ignore: cast_nullable_to_non_nullable
+              as String?,
       currentValue: freezed == currentValue
           ? _value.currentValue
           : currentValue // ignore: cast_nullable_to_non_nullable
@@ -5424,6 +5457,7 @@ class _$FormInputFieldInfoSliderImpl
       required final List<String? Function(bool?)> validators,
       required this.sectionName,
       required this.isLoading,
+      this.unitName = null,
       this.currentValue = null,
       this.currentValues = null,
       this.rangeSlider = false,
@@ -5450,6 +5484,9 @@ class _$FormInputFieldInfoSliderImpl
   final bool isLoading;
   @override
   @JsonKey()
+  final String? unitName;
+  @override
+  @JsonKey()
   final double? currentValue;
   @override
   @JsonKey()
@@ -5463,7 +5500,7 @@ class _$FormInputFieldInfoSliderImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FormInputFieldInfo.slider(id: $id, label: $label, range: $range, validators: $validators, sectionName: $sectionName, isLoading: $isLoading, currentValue: $currentValue, currentValues: $currentValues, rangeSlider: $rangeSlider, type: $type)';
+    return 'FormInputFieldInfo.slider(id: $id, label: $label, range: $range, validators: $validators, sectionName: $sectionName, isLoading: $isLoading, unitName: $unitName, currentValue: $currentValue, currentValues: $currentValues, rangeSlider: $rangeSlider, type: $type)';
   }
 
   @override
@@ -5477,6 +5514,7 @@ class _$FormInputFieldInfoSliderImpl
       ..add(DiagnosticsProperty('validators', validators))
       ..add(DiagnosticsProperty('sectionName', sectionName))
       ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('unitName', unitName))
       ..add(DiagnosticsProperty('currentValue', currentValue))
       ..add(DiagnosticsProperty('currentValues', currentValues))
       ..add(DiagnosticsProperty('rangeSlider', rangeSlider))
@@ -5497,6 +5535,8 @@ class _$FormInputFieldInfoSliderImpl
                 other.sectionName == sectionName) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.unitName, unitName) ||
+                other.unitName == unitName) &&
             (identical(other.currentValue, currentValue) ||
                 other.currentValue == currentValue) &&
             (identical(other.currentValues, currentValues) ||
@@ -5515,6 +5555,7 @@ class _$FormInputFieldInfoSliderImpl
       const DeepCollectionEquality().hash(_validators),
       sectionName,
       isLoading,
+      unitName,
       currentValue,
       currentValues,
       rangeSlider,
@@ -5613,6 +5654,7 @@ class _$FormInputFieldInfoSliderImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5630,7 +5672,7 @@ class _$FormInputFieldInfoSliderImpl
     required TResult Function(String sectionName) shimmer,
   }) {
     return slider(id, label, range, validators, sectionName, isLoading,
-        currentValue, currentValues, rangeSlider, type);
+        unitName, currentValue, currentValues, rangeSlider, type);
   }
 
   @override
@@ -5717,6 +5759,7 @@ class _$FormInputFieldInfoSliderImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5734,7 +5777,7 @@ class _$FormInputFieldInfoSliderImpl
     TResult? Function(String sectionName)? shimmer,
   }) {
     return slider?.call(id, label, range, validators, sectionName, isLoading,
-        currentValue, currentValues, rangeSlider, type);
+        unitName, currentValue, currentValues, rangeSlider, type);
   }
 
   @override
@@ -5821,6 +5864,7 @@ class _$FormInputFieldInfoSliderImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -5840,7 +5884,7 @@ class _$FormInputFieldInfoSliderImpl
   }) {
     if (slider != null) {
       return slider(id, label, range, validators, sectionName, isLoading,
-          currentValue, currentValues, rangeSlider, type);
+          unitName, currentValue, currentValues, rangeSlider, type);
     }
     return orElse();
   }
@@ -5918,6 +5962,7 @@ abstract class FormInputFieldInfoSlider implements FormInputFieldInfo {
       required final List<String? Function(bool?)> validators,
       required final String sectionName,
       required final bool isLoading,
+      final String? unitName,
       final double? currentValue,
       final (double, double)? currentValues,
       final bool rangeSlider,
@@ -5930,6 +5975,7 @@ abstract class FormInputFieldInfoSlider implements FormInputFieldInfo {
   @override
   String get sectionName;
   bool get isLoading;
+  String? get unitName;
   double? get currentValue;
   (double, double)? get currentValues;
   bool get rangeSlider;
@@ -6195,6 +6241,7 @@ class _$FormInputFieldInfoChipsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -6299,6 +6346,7 @@ class _$FormInputFieldInfoChipsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -6403,6 +6451,7 @@ class _$FormInputFieldInfoChipsImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -6685,6 +6734,7 @@ class _$FormInputFieldInfoShimmerImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -6788,6 +6838,7 @@ class _$FormInputFieldInfoShimmerImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,
@@ -6891,6 +6942,7 @@ class _$FormInputFieldInfoShimmerImpl
             List<String? Function(bool?)> validators,
             String sectionName,
             bool isLoading,
+            String? unitName,
             double? currentValue,
             (double, double)? currentValues,
             bool rangeSlider,

@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
@@ -9,9 +12,13 @@ import 'package:listwhatever/form/form_input_field_info.dart';
 import 'package:listwhatever/form/form_input_section.dart';
 import 'package:listwhatever/helpers/constants.dart';
 import 'package:listwhatever/helpers/current_location_cubit.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_bloc.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_event.dart';
+import 'package:listwhatever/pages/filter/bloc/filters_state.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
+import 'package:listwhatever/pages/list/models/filters.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
@@ -54,11 +61,14 @@ class FilterView extends HookWidget {
       },
       [],
     );
+
     final listState = context.watch<ListBloc>().state;
     final list = getList(listState);
     final listItems = getListItems(listState);
     final isLoading = getLoading(listState);
     final currentLocation = context.watch<CurrentLocationCubit>().state;
+    final filtersState = context.watch<FiltersBloc>().state;
+    final filters = getFilters(filtersState);
 
     if (isLoading) {
       return const CircularProgressIndicator();
@@ -67,10 +77,12 @@ class FilterView extends HookWidget {
     final fields = isLoading
         ? <FormInputFieldInfo>[]
         : getFields(
+            context: context,
             isLoading: isLoading,
             listItems: listItems,
             list: list!,
             currentPosition: currentLocation,
+            filters: filters,
           );
 
     final sections = getSections(isLoading: isLoading);
@@ -91,20 +103,23 @@ class FilterView extends HookWidget {
   }
 
   List<FormInputFieldInfo> getFields({
+    required BuildContext context,
     required bool isLoading,
     required List<ListItem> listItems,
     required ListOfThings list,
     required LatLng? currentPosition,
+    Filters? filters,
   }) {
-    final dateF = dateField(isLoading: isLoading, listItems: listItems);
-    final distanceF = distanceField(isLoading: isLoading, listItems: listItems, currentPosition: currentPosition);
+    final dateF = dateField(isLoading: isLoading, listItems: listItems, filters: filters);
+    final distanceF =
+        distanceField(isLoading: isLoading, listItems: listItems, currentPosition: currentPosition, filters: filters);
 
     final fields = [
-      itemNameInputField(isLoading: isLoading),
+      itemNameInputField(isLoading: isLoading, filters: filters),
       if (dateF != null && list.withDates) dateF,
       if (distanceF != null && list.withMap) distanceF,
       resetButton(isLoading: isLoading),
-      if (showSubmitButton) submitButton(isLoading: isLoading),
+      if (showSubmitButton) submitButton(context: context, isLoading: isLoading),
     ];
     print('fields: ${fields.length}');
     print('fields: ${fields.map((f) => f.sectionName)}');
@@ -151,18 +166,18 @@ class FilterView extends HookWidget {
     }
   }
 
-  FormInputFieldInfo itemNameInputField({required bool isLoading}) {
+  FormInputFieldInfo itemNameInputField({required bool isLoading, Filters? filters}) {
     return FormInputFieldInfo.textArea(
       id: FieldId.name.value,
       label: 'Item name',
-      currentValue: '',
+      currentValue: filters?.itemName ?? '',
       validators: [],
       sectionName: SectionName.basic.value,
       isLoading: isLoading,
     );
   }
 
-  FormInputFieldInfo? dateField({required List<ListItem> listItems, required bool isLoading}) {
+  FormInputFieldInfo? dateField({required List<ListItem> listItems, required bool isLoading, Filters? filters}) {
     final minDate = listItems.map((i) => i.datetime ?? Constants.maxDate).reduce((a, b) => a.isBefore(b) ? a : b);
     final maxDate = listItems.map((i) => i.datetime ?? Constants.minDate).reduce((a, b) => a.isAfter(b) ? a : b);
 
@@ -189,6 +204,7 @@ class FilterView extends HookWidget {
     required List<ListItem> listItems,
     required bool isLoading,
     required LatLng? currentPosition,
+    Filters? filters,
   }) {
     if (currentPosition == null) {
       return null;
@@ -198,13 +214,19 @@ class FilterView extends HookWidget {
     if (maxDistance == Constants.maxDistance) {
       return null;
     } else {
+      final value = (
+        (filters?.distance?.$1 ?? 0) / 1000,
+        min((filters?.distance?.$2 ?? maxDistance * 1000) / 1000, maxDistance),
+      );
+      print('value: $value');
       return FormInputFieldInfo.slider(
         id: FieldId.distance.value,
         label: 'Distance',
-        currentValues: (0, maxDistance),
+        currentValues: value,
         isLoading: isLoading,
         sectionName: SectionName.basic.value,
         range: (0, maxDistance),
+        unitName: 'km',
         rangeSlider: true,
         validators: [],
       );
@@ -225,17 +247,35 @@ class FilterView extends HookWidget {
     );
   }
 
-  FormInputFieldInfo submitButton({required bool isLoading}) {
+  FormInputFieldInfo submitButton({required BuildContext context, required bool isLoading}) {
     return FormInputFieldInfo.submitButton(
       id: FieldId.submit.value,
       label: 'Submit',
       sectionName: SectionName.submit.value,
       isLoading: isLoading,
-      save: save,
+      save: (values) {
+        save(context: context, values: values);
+      },
     );
   }
 
-  void save(Map<String, dynamic>? values) {
+  void save({required BuildContext context, required Map<String, dynamic>? values}) {
     print('values: $values');
+    final distance = values![FieldId.distance.value] as (int, int);
+    print('distance: $distance');
+
+    final filters = Filters().copyWith(
+      itemName: values[FieldId.name.value] as String,
+      distance: (distance.$1 * 1000, distance.$2 * 1000),
+    );
+    context.read<FiltersBloc>().add(UpdateFilters(filters));
+    GoRouter.of(context).pop();
+  }
+
+  Filters? getFilters(FiltersState filtersState) {
+    if (filtersState is FiltersLoaded) {
+      return filtersState.filters;
+    }
+    return null;
   }
 }

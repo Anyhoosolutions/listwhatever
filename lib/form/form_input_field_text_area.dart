@@ -29,7 +29,7 @@ class FormInputFieldTextArea extends StatelessWidget {
           validator: FormBuilderValidators.compose(field.validators),
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.next,
-        )
+        ),
       ],
     );
 
