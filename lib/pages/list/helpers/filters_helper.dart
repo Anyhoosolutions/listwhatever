@@ -15,8 +15,9 @@ class FiltersHelper {
     List<ListItem> listItems,
     Filters filters,
     (ListItemsSortOrder, SortOrder) sortOrder,
+    LatLng? currentLocation,
   ) {
-    return sort(sortOrder, filterItems(list, listItems, filters));
+    return sort(sortOrder, filterItems(list, listItems, filters, currentLocation));
   }
 
   static List<ListItem> sort(
@@ -39,19 +40,14 @@ class FiltersHelper {
     ListOfThings list,
     List<ListItem> listItems,
     Filters filters,
+    LatLng? currentLocation,
   ) {
     return filterListItems(
       allItems: listItems,
       filters: filters,
       listHasDates: list.withDates,
       listHasMap: list.withMap,
-      distanceFilterCenter: null,
-      //  (currentLocation != null)
-      //     ? LatLong(
-      //         lat: currentLocation!.latitude,
-      //         lng: currentLocation!.longitude,
-      //       )
-      //     : null,
+      distanceFilterCenter: currentLocation,
     );
   }
 

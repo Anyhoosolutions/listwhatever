@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:great_circle_distance_calculator/great_circle_distance_calculator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
@@ -206,6 +207,7 @@ class FilterView extends HookWidget {
     required LatLng? currentPosition,
     Filters? filters,
   }) {
+    print('filters: $filters');
     if (currentPosition == null) {
       return null;
     }
@@ -234,7 +236,13 @@ class FilterView extends HookWidget {
   }
 
   double getDistance(LatLng currentPosition, LatLng? latLong) {
-    return 100; // TODO: Implement
+    final gcd = GreatCircleDistance.fromDegrees(
+      latitude1: latLong!.latitude,
+      longitude1: latLong.longitude,
+      latitude2: currentPosition.latitude,
+      longitude2: currentPosition.longitude,
+    );
+    return (gcd.haversineDistance() / 1000).ceil().toDouble();
   }
 
   FormInputFieldInfo resetButton({required bool isLoading}) {

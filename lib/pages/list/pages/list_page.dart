@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:listwhatever/helpers/current_location_cubit.dart';
 import 'package:listwhatever/pages/filter/bloc/filters_bloc.dart';
 import 'package:listwhatever/pages/filter/bloc/filters_state.dart';
 import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
@@ -44,6 +45,8 @@ class ListPage extends HookWidget {
     final list = getList(listState);
     final items = getItems(listState);
 
+    final currentLocation = context.watch<CurrentLocationCubit>().state;
+
     print('filters: $filters');
     final filteredItems = isLoading
         ? items
@@ -52,6 +55,7 @@ class ListPage extends HookWidget {
             items,
             filters!,
             (ListItemsSortOrder.name, SortOrder.ascending),
+            currentLocation,
           );
     print('filteredItems: $filteredItems');
     final mapHeight = MediaQuery.of(context).size.height - appBarExpandedHeight;
