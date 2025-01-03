@@ -146,7 +146,7 @@ class ListPage extends HookWidget {
           if (showMap.value)
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 child: Container(
                   height: mapHeight,
                   alignment: Alignment.centerLeft,
