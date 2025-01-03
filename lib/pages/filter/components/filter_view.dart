@@ -30,6 +30,7 @@ enum FieldId {
   name._('name'),
   date._('date'),
   distance._('distance'),
+  cancel._('cancel'),
   submit._('submit');
 
   const FieldId._(this.value);
@@ -102,6 +103,7 @@ class FilterView extends HookWidget {
       itemNameInputField(isLoading: isLoading),
       if (dateF != null && list.withDates) dateF,
       if (distanceF != null && list.withMap) distanceF,
+      resetButton(isLoading: isLoading),
       if (showSubmitButton) submitButton(isLoading: isLoading),
     ];
     print('fields: ${fields.length}');
@@ -115,11 +117,11 @@ class FilterView extends HookWidget {
       FormInputSection(
         name: SectionName.basic.value,
         direction: FormAxisDirection.vertical,
-        showBorder: !isLoading,
+        showBorder: false,
       ),
       FormInputSection(
         name: SectionName.submit.value,
-        direction: FormAxisDirection.vertical,
+        direction: FormAxisDirection.horizontal,
         showBorder: false,
       ),
     ];
@@ -167,13 +169,15 @@ class FilterView extends HookWidget {
     if (minDate == Constants.maxDate && maxDate == Constants.minDate) {
       return null;
     } else {
+      final minV = (minDate.millisecondsSinceEpoch / 1000).floor().toDouble();
+      final maxV = (maxDate.millisecondsSinceEpoch / 1000).ceil().toDouble();
       return FormInputFieldInfo.slider(
         id: FieldId.date.value,
         label: 'Date',
-        currentValues: (minDate.millisecondsSinceEpoch / 1000, maxDate.millisecondsSinceEpoch / 1000),
+        currentValues: (minV, maxV),
         isLoading: isLoading,
         sectionName: SectionName.basic.value,
-        range: (minDate.millisecondsSinceEpoch / 1000, maxDate.millisecondsSinceEpoch / 1000),
+        range: (minV, maxV),
         type: SliderType.date,
         rangeSlider: true,
         validators: [],
@@ -211,14 +215,15 @@ class FilterView extends HookWidget {
     return 100; // TODO: Implement
   }
 
-  // FormInputFieldInfo resetButton() {
-  //   return FormInputFieldInfo.cancelButton(
-  //     id: FieldId.cancel.value,
-  //     label: 'Reset',
-  //     sectionName: SectionName.submit.value,
-  //     cancel: () {}, isLoading: isLoading,
-  //   );
-  // }
+  FormInputFieldInfo resetButton({required bool isLoading}) {
+    return FormInputFieldInfo.cancelButton(
+      id: FieldId.cancel.value,
+      label: 'Reset',
+      sectionName: SectionName.submit.value,
+      cancel: () {},
+      isLoading: isLoading,
+    );
+  }
 
   FormInputFieldInfo submitButton({required bool isLoading}) {
     return FormInputFieldInfo.submitButton(
@@ -226,7 +231,11 @@ class FilterView extends HookWidget {
       label: 'Submit',
       sectionName: SectionName.submit.value,
       isLoading: isLoading,
-      save: (Map<String, dynamic>? values) {},
+      save: save,
     );
+  }
+
+  void save(Map<String, dynamic>? values) {
+    print('values: $values');
   }
 }

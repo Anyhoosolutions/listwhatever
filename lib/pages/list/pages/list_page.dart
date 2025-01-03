@@ -124,10 +124,13 @@ class ListPage extends HookWidget {
           ),
           if (showMap.value)
             SliverToBoxAdapter(
-              child: Container(
-                height: mapHeight,
-                alignment: Alignment.centerLeft,
-                child: MapView(items: items),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: Container(
+                  height: mapHeight,
+                  alignment: Alignment.centerLeft,
+                  child: MapView(items: items),
+                ),
               ),
             )
           else

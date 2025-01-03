@@ -12,16 +12,25 @@ class FormInputFieldTextArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textField = FormBuilderTextField(
-      decoration: InputDecoration(labelText: field.label),
-      key: Key(field.id),
-      autovalidateMode: AutovalidateMode.always,
-      name: field.id,
-      initialValue: field.currentValue,
-      controller: field.controller,
-      validator: FormBuilderValidators.compose(field.validators),
-      keyboardType: TextInputType.name,
-      textInputAction: TextInputAction.next,
+    final textField = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          field.label,
+          style: const TextStyle(color: Colors.yellow),
+        ),
+        FormBuilderTextField(
+          decoration: InputDecoration(labelText: field.label),
+          key: Key(field.id),
+          autovalidateMode: AutovalidateMode.always,
+          name: field.id,
+          initialValue: field.currentValue,
+          controller: field.controller,
+          validator: FormBuilderValidators.compose(field.validators),
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+        )
+      ],
     );
 
     if (field.deletable) {
