@@ -75,16 +75,17 @@ class FilterView extends HookWidget {
       return const CircularProgressIndicator();
     }
 
-    final fields = isLoading
-        ? <FormInputFieldInfo>[]
-        : getFields(
-            context: context,
-            isLoading: isLoading,
-            listItems: listItems,
-            list: list!,
-            currentPosition: currentLocation,
-            filters: filters,
-          );
+    var fields = <FormInputFieldInfo>[];
+    if (!isLoading) {
+      fields = getFields(
+        context: context,
+        isLoading: isLoading,
+        listItems: listItems,
+        list: list!,
+        currentPosition: currentLocation,
+        filters: filters,
+      );
+    }
 
     final sections = getSections(isLoading: isLoading);
 

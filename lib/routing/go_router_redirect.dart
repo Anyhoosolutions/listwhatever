@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/auth/bloc/auth_bloc.dart';
 import 'package:listwhatever/pages/auth/routes/login_page_route.dart';
+import 'package:listwhatever/pages/lists/bloc/lists_bloc.dart';
 import 'package:listwhatever/routing/routes.dart';
 
 FutureOr<String?> routerRedirect(BuildContext context, GoRouterState state) {
@@ -24,6 +25,7 @@ FutureOr<String?> routerRedirect(BuildContext context, GoRouterState state) {
       // return '/lists/U5NlIYTIoH7r4wR06Ev0/items/O3vKbWxdWfyq3DaUUQVt';
       // return '/lists/U5NlIYTIoH7r4wR06Ev0/filter';
       // return '/lists/U5NlIYTIoH7r4wR06Ev0';
+      context.read<ListsBloc>().add(const ListsEvent.watchUserLists());
       return '/';
     }
   }
