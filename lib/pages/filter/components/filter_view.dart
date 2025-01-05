@@ -77,6 +77,10 @@ class FilterView extends HookWidget {
 
     var fields = <FormInputFieldInfo>[];
     if (!isLoading) {
+      if (listItems.isEmpty) {
+        return noItemsView();
+      }
+
       fields = getFields(
         context: context,
         isLoading: isLoading,
@@ -286,5 +290,19 @@ class FilterView extends HookWidget {
       return filtersState.filters;
     }
     return null;
+  }
+
+  Widget noItemsView() {
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('No items found'),
+          ],
+        )
+      ],
+    );
   }
 }
