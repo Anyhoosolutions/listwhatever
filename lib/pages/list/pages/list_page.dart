@@ -15,6 +15,7 @@ import 'package:listwhatever/pages/list/models/filters.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/list/models/list_item_tile.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
+import 'package:listwhatever/pages/list/routes/delete_list_page_route.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
 import 'package:listwhatever/routing/routes.dart';
@@ -99,6 +100,10 @@ class ListPage extends HookWidget {
                   if (item == 0)
                     {
                       EditListPageRoute(id: list!.id!).push<void>(context),
+                    },
+                  if (item == 1)
+                    {
+                      DeleteListPageRoute(id: list!.id!).push<void>(context),
                     },
                 },
                 itemBuilder: (context) => [

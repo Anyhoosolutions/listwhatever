@@ -15,14 +15,14 @@ RouteBase get $mainPageRoute => GoRouteData.$route(
       factory: $MainPageRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'lists',
-          name: 'lists',
-          factory: $ListsPageRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: 'lists/:id',
           name: 'items',
           factory: $ListPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'lists/:id/delete',
+          name: 'deletelist',
+          factory: $DeleteListPageRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'add',
@@ -79,12 +79,13 @@ extension $MainPageRouteExtension on MainPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ListsPageRouteExtension on ListsPageRoute {
-  static ListsPageRoute _fromState(GoRouterState state) =>
-      const ListsPageRoute();
+extension $ListPageRouteExtension on ListPageRoute {
+  static ListPageRoute _fromState(GoRouterState state) => ListPageRoute(
+        id: state.pathParameters['id']!,
+      );
 
   String get location => GoRouteData.$location(
-        '/lists',
+        '/lists/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -97,13 +98,14 @@ extension $ListsPageRouteExtension on ListsPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ListPageRouteExtension on ListPageRoute {
-  static ListPageRoute _fromState(GoRouterState state) => ListPageRoute(
+extension $DeleteListPageRouteExtension on DeleteListPageRoute {
+  static DeleteListPageRoute _fromState(GoRouterState state) =>
+      DeleteListPageRoute(
         id: state.pathParameters['id']!,
       );
 
   String get location => GoRouteData.$location(
-        '/lists/${Uri.encodeComponent(id)}',
+        '/lists/${Uri.encodeComponent(id)}/delete',
       );
 
   void go(BuildContext context) => context.go(location);

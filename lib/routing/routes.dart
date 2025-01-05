@@ -3,22 +3,26 @@ import 'package:go_router/go_router.dart';
 import 'package:listwhatever/pages/auth/routes/login_page_route.dart';
 import 'package:listwhatever/pages/filter/routes/filter_page_route.dart';
 import 'package:listwhatever/pages/list/routes/add_list_item_page_route.dart';
+import 'package:listwhatever/pages/list/routes/delete_list_page_route.dart';
 import 'package:listwhatever/pages/list/routes/edit_list_item_page_route.dart';
 import 'package:listwhatever/pages/list/routes/lists_page_route.dart';
 import 'package:listwhatever/pages/list_item/routes/list_item_info_page_route.dart';
 import 'package:listwhatever/pages/lists/pages/lists_page.dart';
 import 'package:listwhatever/pages/lists/routes/add_list_page_route.dart';
 import 'package:listwhatever/pages/lists/routes/edit_list_page_route.dart';
-import 'package:listwhatever/pages/lists/routes/lists_page_route.dart';
 
 part 'routes.g.dart';
 
 @TypedGoRoute<MainPageRoute>(
-  path: '/lists',
+  path: '/',
   routes: [
     TypedGoRoute<ListPageRoute>(
       path: 'lists/:id',
       name: 'items',
+    ),
+    TypedGoRoute<DeleteListPageRoute>(
+      path: 'lists/:id/delete',
+      name: 'deletelist',
     ),
     TypedGoRoute<AddListItemPageRoute>(
       path: 'add',

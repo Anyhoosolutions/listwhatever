@@ -56,4 +56,10 @@ class ListRepository {
     final ref = await listsCollection.add(listItem.toJson());
     return ref.id;
   }
+
+  Future<void> deleteList(String listId) async {
+    final listsCollection = await getCollection();
+    final docRef = listsCollection.doc(listId);
+    await docRef.delete();
+  }
 }
