@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
@@ -13,10 +14,10 @@ class UserList with _$UserList {
     required String? imageFilename,
     required String ownerId,
     required bool? isOwnList,
+    @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) required DateTime createdAt,
   }) = _UserList;
 
-  factory UserList.fromJson(Map<String, Object?> json) =>
-      _$UserListFromJson(json);
+  factory UserList.fromJson(Map<String, Object?> json) => _$UserListFromJson(json);
 
   factory UserList.fromList(ListOfThings list, String listId) => UserList(
         id: null,
@@ -25,14 +26,28 @@ class UserList with _$UserList {
         ownerId: list.ownerId ?? 'Fix',
         isOwnList: true,
         imageFilename: '',
+        createdAt: DateTime.now(),
       );
 
-  factory UserList.shimmerList() => const UserList(
+  factory UserList.shimmerList() => UserList(
         id: null,
         listId: '',
         listName: '',
         ownerId: '',
         isOwnList: true,
         imageFilename: '',
+        createdAt: DateTime.now(),
       );
+}
+
+DateTime fromTimestamp(Timestamp timestamp) {
+  return DateTime.fromMillisecondsSinceEpoch(
+    timestamp.millisecondsSinceEpoch,
+  );
+}
+
+Timestamp toTimestamp(DateTime datetime) {
+  return Timestamp.fromMillisecondsSinceEpoch(
+    datetime.millisecondsSinceEpoch,
+  );
 }

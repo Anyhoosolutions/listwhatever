@@ -28,6 +28,8 @@ mixin _$ListOfThings {
   bool get shared => throw _privateConstructorUsedError;
   Map<String, ShareType> get sharedWith => throw _privateConstructorUsedError;
   String? get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  DateTime get createdAt => throw _privateConstructorUsedError;
   Map<String, FilterType> get filterTypes => throw _privateConstructorUsedError;
   String? get imageFilename => throw _privateConstructorUsedError;
   String? get shareCodeForViewer => throw _privateConstructorUsedError;
@@ -59,6 +61,7 @@ abstract class $ListOfThingsCopyWith<$Res> {
       bool shared,
       Map<String, ShareType> sharedWith,
       String? ownerId,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) DateTime createdAt,
       Map<String, FilterType> filterTypes,
       String? imageFilename,
       String? shareCodeForViewer,
@@ -89,6 +92,7 @@ class _$ListOfThingsCopyWithImpl<$Res, $Val extends ListOfThings>
     Object? shared = null,
     Object? sharedWith = null,
     Object? ownerId = freezed,
+    Object? createdAt = null,
     Object? filterTypes = null,
     Object? imageFilename = freezed,
     Object? shareCodeForViewer = freezed,
@@ -128,6 +132,10 @@ class _$ListOfThingsCopyWithImpl<$Res, $Val extends ListOfThings>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       filterTypes: null == filterTypes
           ? _value.filterTypes
           : filterTypes // ignore: cast_nullable_to_non_nullable
@@ -169,6 +177,7 @@ abstract class _$$ListOfThingsImplCopyWith<$Res>
       bool shared,
       Map<String, ShareType> sharedWith,
       String? ownerId,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) DateTime createdAt,
       Map<String, FilterType> filterTypes,
       String? imageFilename,
       String? shareCodeForViewer,
@@ -197,6 +206,7 @@ class __$$ListOfThingsImplCopyWithImpl<$Res>
     Object? shared = null,
     Object? sharedWith = null,
     Object? ownerId = freezed,
+    Object? createdAt = null,
     Object? filterTypes = null,
     Object? imageFilename = freezed,
     Object? shareCodeForViewer = freezed,
@@ -236,6 +246,10 @@ class __$$ListOfThingsImplCopyWithImpl<$Res>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       filterTypes: null == filterTypes
           ? _value._filterTypes
           : filterTypes // ignore: cast_nullable_to_non_nullable
@@ -272,6 +286,8 @@ class _$ListOfThingsImpl implements _ListOfThings {
       required this.shared,
       required final Map<String, ShareType> sharedWith,
       required this.ownerId,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      required this.createdAt,
       final Map<String, FilterType> filterTypes = const {},
       this.imageFilename = null,
       this.shareCodeForViewer = null,
@@ -305,6 +321,9 @@ class _$ListOfThingsImpl implements _ListOfThings {
 
   @override
   final String? ownerId;
+  @override
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  final DateTime createdAt;
   final Map<String, FilterType> _filterTypes;
   @override
   @JsonKey()
@@ -329,7 +348,7 @@ class _$ListOfThingsImpl implements _ListOfThings {
 
   @override
   String toString() {
-    return 'ListOfThings(id: $id, name: $name, withMap: $withMap, withDates: $withDates, withTimes: $withTimes, shared: $shared, sharedWith: $sharedWith, ownerId: $ownerId, filterTypes: $filterTypes, imageFilename: $imageFilename, shareCodeForViewer: $shareCodeForViewer, shareCodeForEditor: $shareCodeForEditor, shareType: $shareType)';
+    return 'ListOfThings(id: $id, name: $name, withMap: $withMap, withDates: $withDates, withTimes: $withTimes, shared: $shared, sharedWith: $sharedWith, ownerId: $ownerId, createdAt: $createdAt, filterTypes: $filterTypes, imageFilename: $imageFilename, shareCodeForViewer: $shareCodeForViewer, shareCodeForEditor: $shareCodeForEditor, shareType: $shareType)';
   }
 
   @override
@@ -348,6 +367,8 @@ class _$ListOfThingsImpl implements _ListOfThings {
             const DeepCollectionEquality()
                 .equals(other._sharedWith, _sharedWith) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other._filterTypes, _filterTypes) &&
             (identical(other.imageFilename, imageFilename) ||
@@ -372,6 +393,7 @@ class _$ListOfThingsImpl implements _ListOfThings {
       shared,
       const DeepCollectionEquality().hash(_sharedWith),
       ownerId,
+      createdAt,
       const DeepCollectionEquality().hash(_filterTypes),
       imageFilename,
       shareCodeForViewer,
@@ -404,6 +426,8 @@ abstract class _ListOfThings implements ListOfThings {
       required final bool shared,
       required final Map<String, ShareType> sharedWith,
       required final String? ownerId,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      required final DateTime createdAt,
       final Map<String, FilterType> filterTypes,
       final String? imageFilename,
       final String? shareCodeForViewer,
@@ -429,6 +453,9 @@ abstract class _ListOfThings implements ListOfThings {
   Map<String, ShareType> get sharedWith;
   @override
   String? get ownerId;
+  @override
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  DateTime get createdAt;
   @override
   Map<String, FilterType> get filterTypes;
   @override

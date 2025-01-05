@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_of_things.freezed.dart';
@@ -15,7 +16,6 @@ enum FilterType {
   timeOfDayRange._('Time range');
 
   const FilterType._(this.value);
-
   final String value;
 }
 
@@ -30,6 +30,7 @@ class ListOfThings with _$ListOfThings {
     required bool shared,
     required Map<String, ShareType> sharedWith,
     required String? ownerId,
+    @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) required DateTime createdAt,
     @Default({}) Map<String, FilterType> filterTypes,
     @Default(null) String? imageFilename,
     @Default(null) String? shareCodeForViewer,
@@ -37,6 +38,17 @@ class ListOfThings with _$ListOfThings {
     @Default(ShareType.viewer) ShareType shareType,
   }) = _ListOfThings;
 
-  factory ListOfThings.fromJson(Map<String, Object?> json) =>
-      _$ListOfThingsFromJson(json);
+  factory ListOfThings.fromJson(Map<String, Object?> json) => _$ListOfThingsFromJson(json);
+}
+
+DateTime fromTimestamp(Timestamp timestamp) {
+  return DateTime.fromMillisecondsSinceEpoch(
+    timestamp.millisecondsSinceEpoch,
+  );
+}
+
+Timestamp toTimestamp(DateTime datetime) {
+  return Timestamp.fromMillisecondsSinceEpoch(
+    datetime.millisecondsSinceEpoch,
+  );
 }

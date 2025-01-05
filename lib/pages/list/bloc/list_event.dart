@@ -29,3 +29,8 @@ class EditListItem extends ListEvent {
   final String listId;
   final ListItem listItem;
 }
+
+class DeleteList extends ListEvent {
+  DeleteList(this.listId);
+  final String listId;
+}

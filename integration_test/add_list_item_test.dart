@@ -65,7 +65,7 @@ void main() {
 
     testWidgets('verify that right data is tried to be saved', (tester) async {
       // Load app widget.
-      const list = ListOfThings(
+      final list = ListOfThings(
         id: 'listId1',
         name: 'First list',
         withMap: false,
@@ -74,6 +74,7 @@ void main() {
         shared: false,
         sharedWith: {},
         ownerId: 'ownerId',
+        createdAt: DateTime.now(),
       );
       final userList = UserList.fromList(list, list.id!);
       when(() => mockData.listBloc.state).thenReturn(ListLoaded(list: list, listItems: []));

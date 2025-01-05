@@ -18,6 +18,7 @@ _$ListOfThingsImpl _$$ListOfThingsImplFromJson(Map<String, dynamic> json) =>
         (k, e) => MapEntry(k, $enumDecode(_$ShareTypeEnumMap, e)),
       ),
       ownerId: json['ownerId'] as String?,
+      createdAt: fromTimestamp(json['createdAt'] as Timestamp),
       filterTypes: (json['filterTypes'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, $enumDecode(_$FilterTypeEnumMap, e)),
           ) ??
@@ -40,6 +41,7 @@ Map<String, dynamic> _$$ListOfThingsImplToJson(_$ListOfThingsImpl instance) =>
       'sharedWith': instance.sharedWith
           .map((k, e) => MapEntry(k, _$ShareTypeEnumMap[e]!)),
       'ownerId': instance.ownerId,
+      'createdAt': toTimestamp(instance.createdAt),
       'filterTypes': instance.filterTypes
           .map((k, e) => MapEntry(k, _$FilterTypeEnumMap[e]!)),
       'imageFilename': instance.imageFilename,

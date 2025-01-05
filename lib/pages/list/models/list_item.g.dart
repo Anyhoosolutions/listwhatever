@@ -16,10 +16,10 @@ _$ListItemImpl _$$ListItemImplFromJson(Map<String, dynamic> json) =>
               const [],
       datetime: json['datetime'] == null
           ? null
-          : _fromTimestamp(json['datetime'] as Timestamp?),
+          : fromMaybeTimestamp(json['datetime'] as Timestamp?),
       latLong: json['latLong'] == null
           ? null
-          : _fromJsonGeoPoint(json['latLong'] as GeoPoint?),
+          : fromJsonGeoPoint(json['latLong'] as GeoPoint?),
       address: json['address'] as String? ?? null,
       categories: (json['categories'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(
@@ -35,8 +35,8 @@ Map<String, dynamic> _$$ListItemImplToJson(_$ListItemImpl instance) =>
       'name': instance.name,
       'info': instance.info,
       'urls': instance.urls,
-      'datetime': _toTimestamp(instance.datetime),
-      'latLong': _toJsonGeoPoint(instance.latLong),
+      'datetime': toMaybeTimestamp(instance.datetime),
+      'latLong': toJsonGeoPoint(instance.latLong),
       'address': instance.address,
       'categories': instance.categories,
       'latestUpdateUser': instance.latestUpdateUser,

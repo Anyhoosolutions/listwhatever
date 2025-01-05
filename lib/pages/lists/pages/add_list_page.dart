@@ -72,6 +72,7 @@ class _AddListPageState extends State<AddListPage> {
       sharedWith: {},
       ownerId: userId,
       // filterTypes: filterTypes,
+      createdAt: DateTime.now(),
     );
     // LoggerHelper.logger.d('newList: $newList');
     // if (widget.listId == null) {

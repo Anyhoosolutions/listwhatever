@@ -15,8 +15,8 @@ class ListItem with _$ListItem {
     required String name,
     @Default(null) String? info,
     @Default([]) List<String> urls,
-    @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp) @Default(null) DateTime? datetime,
-    @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint) @Default(null) LatLng? latLong,
+    @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp) @Default(null) DateTime? datetime,
+    @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint) @Default(null) LatLng? latLong,
     @Default(null) String? address,
     @Default({}) Map<String, List<String>> categories,
     @Default(null) String? latestUpdateUser,
@@ -25,33 +25,41 @@ class ListItem with _$ListItem {
   factory ListItem.fromJson(Map<String, Object?> json) => _$ListItemFromJson(json);
 }
 
-GeoPoint? _toJsonGeoPoint(LatLng? latLong) {
+GeoPoint? toJsonGeoPoint(LatLng? latLong) {
   if (latLong == null) {
     return null;
   }
   return GeoPoint(latLong.latitude, latLong.longitude);
 }
 
-LatLng? _fromJsonGeoPoint(GeoPoint? geoPoint) {
+LatLng? fromJsonGeoPoint(GeoPoint? geoPoint) {
   if (geoPoint == null) {
     return null;
   }
   return LatLng(geoPoint.latitude, geoPoint.longitude);
 }
 
-DateTime? _fromTimestamp(Timestamp? timestamp) {
+DateTime? fromMaybeTimestamp(Timestamp? timestamp) {
   if (timestamp == null) {
     return null;
   }
+  return fromTimestamp(timestamp);
+}
+
+Timestamp? toMaybeTimestamp(DateTime? datetime) {
+  if (datetime == null) {
+    return null;
+  }
+  return toTimestamp(datetime);
+}
+
+DateTime fromTimestamp(Timestamp timestamp) {
   return DateTime.fromMillisecondsSinceEpoch(
     timestamp.millisecondsSinceEpoch,
   );
 }
 
-Timestamp? _toTimestamp(DateTime? datetime) {
-  if (datetime == null) {
-    return null;
-  }
+Timestamp toTimestamp(DateTime datetime) {
   return Timestamp.fromMillisecondsSinceEpoch(
     datetime.millisecondsSinceEpoch,
   );

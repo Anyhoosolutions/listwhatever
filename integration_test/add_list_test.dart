@@ -32,10 +32,8 @@ void main() {
         ),
       );
 
-      when(() => mockData.listRepository.addList(any()))
-          .thenAnswer((_) => Future.value('newlistid'));
-      when(() => mockData.userListRepository.addUserList(any()))
-          .thenAnswer((_) => Future.value('id2'));
+      when(() => mockData.listRepository.addList(any())).thenAnswer((_) => Future.value('newlistid'));
+      when(() => mockData.userListRepository.addUserList(any())).thenAnswer((_) => Future.value('id2'));
 
       // Finds the floating action button to tap on.
       // final actionButton = find.byKey(addListButtonKey);
@@ -60,12 +58,11 @@ void main() {
       print(formState);
       expect(formState.value[FieldId.name.value], 'My New List Name');
 
-      final capturedList =
-          verify(() => mockData.listRepository.addList(captureAny())).captured;
+      final capturedList = verify(() => mockData.listRepository.addList(captureAny())).captured;
       expect(
         capturedList.last,
         equals(
-          const ListOfThings(
+          ListOfThings(
             id: null,
             name: 'My New List Name',
             withMap: false,
@@ -74,23 +71,23 @@ void main() {
             shared: false,
             sharedWith: {},
             ownerId: null, // TODO: Change
+            createdAt: DateTime.now(),
           ),
         ),
       );
 
-      final capturedUserList =
-          verify(() => mockData.userListRepository.addUserList(captureAny()))
-              .captured;
+      final capturedUserList = verify(() => mockData.userListRepository.addUserList(captureAny())).captured;
       expect(
         capturedUserList.last,
         equals(
-          const UserList(
+          UserList(
             id: null,
             listId: 'newlistid',
             listName: 'My New List Name',
             imageFilename: '',
             ownerId: 'Fix',
             isOwnList: true,
+            createdAt: DateTime.now(),
           ),
         ),
       );

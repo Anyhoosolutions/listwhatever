@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listwhatever/components/shimmer/shimmer_container.dart';
+import 'package:listwhatever/helpers/date_format_helper.dart';
 import 'package:listwhatever/pages/list/routes/lists_page_route.dart';
 import 'package:listwhatever/pages/lists/models/user_list.dart';
 import 'package:listwhatever/routing/routes.dart';
@@ -82,7 +83,7 @@ class UserListTile extends StatelessWidget {
       return const ShimmerContainer(height: 20, width: 140);
     }
     return Text(
-      'Number of items: 14',
+      'Created: ${DateFormatHelper.formatReadableDate(list.createdAt, DateFormatType.iso8601)}',
       style: Theme.of(context).textTheme.titleMedium,
     );
   }

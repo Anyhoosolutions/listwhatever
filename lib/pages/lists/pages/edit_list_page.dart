@@ -103,6 +103,7 @@ class _EditListPageState extends State<EditListPage> {
       sharedWith: {},
       ownerId: list?.ownerId,
       // filterTypes: filterTypes,
+      createdAt: DateTime.now(),
     );
     listBloc.add(EditList(newList));
     goRouter.pop();

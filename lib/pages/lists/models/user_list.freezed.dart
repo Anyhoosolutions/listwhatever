@@ -26,6 +26,8 @@ mixin _$UserList {
   String? get imageFilename => throw _privateConstructorUsedError;
   String get ownerId => throw _privateConstructorUsedError;
   bool? get isOwnList => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this UserList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +50,9 @@ abstract class $UserListCopyWith<$Res> {
       String listName,
       String? imageFilename,
       String ownerId,
-      bool? isOwnList});
+      bool? isOwnList,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -72,6 +76,7 @@ class _$UserListCopyWithImpl<$Res, $Val extends UserList>
     Object? imageFilename = freezed,
     Object? ownerId = null,
     Object? isOwnList = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -98,6 +103,10 @@ class _$UserListCopyWithImpl<$Res, $Val extends UserList>
           ? _value.isOwnList
           : isOwnList // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -116,7 +125,9 @@ abstract class _$$UserListImplCopyWith<$Res>
       String listName,
       String? imageFilename,
       String ownerId,
-      bool? isOwnList});
+      bool? isOwnList,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -138,6 +149,7 @@ class __$$UserListImplCopyWithImpl<$Res>
     Object? imageFilename = freezed,
     Object? ownerId = null,
     Object? isOwnList = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_$UserListImpl(
       id: freezed == id
@@ -164,6 +176,10 @@ class __$$UserListImplCopyWithImpl<$Res>
           ? _value.isOwnList
           : isOwnList // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -177,7 +193,9 @@ class _$UserListImpl implements _UserList {
       required this.listName,
       required this.imageFilename,
       required this.ownerId,
-      required this.isOwnList});
+      required this.isOwnList,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      required this.createdAt});
 
   factory _$UserListImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserListImplFromJson(json);
@@ -194,10 +212,13 @@ class _$UserListImpl implements _UserList {
   final String ownerId;
   @override
   final bool? isOwnList;
+  @override
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'UserList(id: $id, listId: $listId, listName: $listName, imageFilename: $imageFilename, ownerId: $ownerId, isOwnList: $isOwnList)';
+    return 'UserList(id: $id, listId: $listId, listName: $listName, imageFilename: $imageFilename, ownerId: $ownerId, isOwnList: $isOwnList, createdAt: $createdAt)';
   }
 
   @override
@@ -213,13 +234,15 @@ class _$UserListImpl implements _UserList {
                 other.imageFilename == imageFilename) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
             (identical(other.isOwnList, isOwnList) ||
-                other.isOwnList == isOwnList));
+                other.isOwnList == isOwnList) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, listId, listName, imageFilename, ownerId, isOwnList);
+  int get hashCode => Object.hash(runtimeType, id, listId, listName,
+      imageFilename, ownerId, isOwnList, createdAt);
 
   /// Create a copy of UserList
   /// with the given fields replaced by the non-null parameter values.
@@ -244,7 +267,9 @@ abstract class _UserList implements UserList {
       required final String listName,
       required final String? imageFilename,
       required final String ownerId,
-      required final bool? isOwnList}) = _$UserListImpl;
+      required final bool? isOwnList,
+      @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+      required final DateTime createdAt}) = _$UserListImpl;
 
   factory _UserList.fromJson(Map<String, dynamic> json) =
       _$UserListImpl.fromJson;
@@ -261,6 +286,9 @@ abstract class _UserList implements UserList {
   String get ownerId;
   @override
   bool? get isOwnList;
+  @override
+  @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp)
+  DateTime get createdAt;
 
   /// Create a copy of UserList
   /// with the given fields replaced by the non-null parameter values.

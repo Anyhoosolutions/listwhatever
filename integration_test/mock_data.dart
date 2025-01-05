@@ -48,29 +48,30 @@ class MockData {
     registerFallbackValue(MockUserList());
     registerFallbackValue(MockListOfThings());
 
-    when(() => authRepository.user)
-        .thenAnswer((_) => Stream.value(authenticationUser).take(1));
+    when(() => authRepository.user).thenAnswer((_) => Stream.value(authenticationUser).take(1));
 
     when(authenticationUser.isAnonymous).thenReturn(false);
     when(() => authenticationUser.id).thenReturn('abcXYZ');
 
     when(userListRepository.loadUserLists).thenAnswer(
       (_) => Stream.value([
-        const UserList(
+        UserList(
           id: 'id1',
           listId: 'listId1',
           listName: 'First list',
           imageFilename: 'assets/images/restaurants.jpeg',
           ownerId: 'ownerId',
           isOwnList: true,
+          createdAt: DateTime.now(),
         ),
-        const UserList(
+        UserList(
           id: 'id2',
           listId: 'listId2',
           listName: 'Second list',
           imageFilename: 'assets/images/restaurants.jpeg',
           ownerId: 'ownerId',
           isOwnList: true,
+          createdAt: DateTime.now(),
         ),
       ]).take(1),
     );

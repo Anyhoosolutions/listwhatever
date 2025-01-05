@@ -14,6 +14,7 @@ _$UserListImpl _$$UserListImplFromJson(Map<String, dynamic> json) =>
       imageFilename: json['imageFilename'] as String?,
       ownerId: json['ownerId'] as String,
       isOwnList: json['isOwnList'] as bool?,
+      createdAt: fromTimestamp(json['createdAt'] as Timestamp),
     );
 
 Map<String, dynamic> _$$UserListImplToJson(_$UserListImpl instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$UserListImplToJson(_$UserListImpl instance) =>
       'imageFilename': instance.imageFilename,
       'ownerId': instance.ownerId,
       'isOwnList': instance.isOwnList,
+      'createdAt': toTimestamp(instance.createdAt),
     };

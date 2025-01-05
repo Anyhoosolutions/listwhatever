@@ -24,9 +24,9 @@ mixin _$ListItem {
   String get name => throw _privateConstructorUsedError;
   String? get info => throw _privateConstructorUsedError;
   List<String> get urls => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+  @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
   DateTime? get datetime => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
   LatLng? get latLong => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   Map<String, List<String>> get categories =>
@@ -53,9 +53,9 @@ abstract class $ListItemCopyWith<$Res> {
       String name,
       String? info,
       List<String> urls,
-      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+      @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
       DateTime? datetime,
-      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
       LatLng? latLong,
       String? address,
       Map<String, List<String>> categories,
@@ -141,9 +141,9 @@ abstract class _$$ListItemImplCopyWith<$Res>
       String name,
       String? info,
       List<String> urls,
-      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+      @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
       DateTime? datetime,
-      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
       LatLng? latLong,
       String? address,
       Map<String, List<String>> categories,
@@ -222,9 +222,9 @@ class _$ListItemImpl implements _ListItem {
       required this.name,
       this.info = null,
       final List<String> urls = const [],
-      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+      @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
       this.datetime = null,
-      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
       this.latLong = null,
       this.address = null,
       final Map<String, List<String>> categories = const {},
@@ -252,10 +252,10 @@ class _$ListItemImpl implements _ListItem {
   }
 
   @override
-  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+  @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
   final DateTime? datetime;
   @override
-  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
   final LatLng? latLong;
   @override
   @JsonKey()
@@ -333,9 +333,9 @@ abstract class _ListItem implements ListItem {
       required final String name,
       final String? info,
       final List<String> urls,
-      @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+      @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
       final DateTime? datetime,
-      @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+      @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
       final LatLng? latLong,
       final String? address,
       final Map<String, List<String>> categories,
@@ -353,10 +353,10 @@ abstract class _ListItem implements ListItem {
   @override
   List<String> get urls;
   @override
-  @JsonKey(fromJson: _fromTimestamp, toJson: _toTimestamp)
+  @JsonKey(fromJson: fromMaybeTimestamp, toJson: toMaybeTimestamp)
   DateTime? get datetime;
   @override
-  @JsonKey(fromJson: _fromJsonGeoPoint, toJson: _toJsonGeoPoint)
+  @JsonKey(fromJson: fromJsonGeoPoint, toJson: toJsonGeoPoint)
   LatLng? get latLong;
   @override
   String? get address;
