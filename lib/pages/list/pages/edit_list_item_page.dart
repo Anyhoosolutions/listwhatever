@@ -8,10 +8,12 @@ import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
 import 'package:listwhatever/pages/list/components/add_list_item_form.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
+import 'package:listwhatever/pages/list/routes/lists_page_route.dart';
 import 'package:listwhatever/pages/list_item/bloc/list_item_bloc.dart';
 import 'package:listwhatever/pages/list_item/bloc/list_item_event.dart';
 import 'package:listwhatever/pages/list_item/bloc/list_item_state.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
+import 'package:listwhatever/routing/routes.dart';
 
 const String className = 'EditListItemPage';
 
@@ -75,7 +77,7 @@ class EditListItemPage extends HookWidget {
     print('EditListItemPage: listState: $listState');
 
     return Scaffold(
-      appBar: getAppBar(),
+      appBar: getAppBar(context, listItem),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -90,28 +92,18 @@ class EditListItemPage extends HookWidget {
     );
   }
 
-  AppBar getAppBar() {
+  AppBar getAppBar(BuildContext context, ListItem? listItem) {
     return AppBar(
-      title: const Text(/*listItem == null ?*/ 'Add item' /* : 'Edit item'*/),
-      actions: const [
-        // if (listItem != null)
-        //   AppBarAction(
-        //     type: AppBarActionType.icon,
-        //     iconAction: AppBarActionIcon(
-        //       title: AppLocalizations.of(context).deleteListItem,
-        //       icon: Icons.delete,
-        //       key: const Key('deleteListItemAction'),
-        //       callback: () async {
-        //         context
-        //             .read<ListItemCrudBloc>()
-        //             .add(DeleteListItem(widget.actualListId, listItem!.id!));
-        //         context.read<RedirectCubit>().setRedirect(
-        //               ListItemsPageRoute(actualListId: widget.actualListId)
-        //                   .location,
-        //             );
-        //       },
-        //     ),
-        //   ),
+      title: Text(listItem == null ? 'Add item' : 'Edit item'),
+      actions: [
+        if (listItem != null)
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              context.read<ListItemBloc>().add(DeleteListItem(listId, listItem.id!));
+              ListPageRoute(id: listId).go(context);
+            },
+          ),
       ],
     );
   }

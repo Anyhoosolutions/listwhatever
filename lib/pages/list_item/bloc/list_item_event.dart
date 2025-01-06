@@ -13,3 +13,9 @@ class WatchListItem extends ListItemEvent {
   final String listId;
   final String itemId;
 }
+
+class DeleteListItem extends ListItemEvent {
+  const DeleteListItem(this.listId, this.itemId);
+  final String listId;
+  final String itemId;
+}

@@ -7,6 +7,7 @@ class ListItemBloc extends Bloc<ListItemEvent, ListItemState> {
   ListItemBloc({required this.listItemRepository}) : super(ListItemInitial()) {
     on<LoadListItem>(_onLoadListItem);
     on<WatchListItem>(_onWatchListItem);
+    on<DeleteListItem>(_onDeleteListItem);
   }
   final ListItemRepository listItemRepository;
 
@@ -20,5 +21,10 @@ class ListItemBloc extends Bloc<ListItemEvent, ListItemState> {
     emit(ListItemLoading());
     final listItem = listItemRepository.watchListItem(event.listId, event.itemId);
     await emit.forEach(listItem, onData: ListItemLoaded.new);
+  }
+
+  Future<void> _onDeleteListItem(DeleteListItem event, Emitter<ListItemState> emit) async {
+    emit(ListItemLoading());
+    await listItemRepository.deleteListItem(event.listId, event.itemId);
   }
 }

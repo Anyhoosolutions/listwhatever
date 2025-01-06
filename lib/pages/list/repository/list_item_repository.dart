@@ -66,4 +66,9 @@ class ListItemRepository {
     final listItemDocument = await getDocument(listId, listItem.id!);
     await listItemDocument.set(listItem.toJson());
   }
+
+  Future<void> deleteListItem(String listId, String itemId) async {
+    final listItemDocument = await getDocument(listId, itemId);
+    await listItemDocument.delete();
+  }
 }

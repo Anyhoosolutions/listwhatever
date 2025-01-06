@@ -301,7 +301,7 @@ class FilterView extends HookWidget {
           children: [
             Text('No items found'),
           ],
-        )
+        ),
       ],
     );
   }
