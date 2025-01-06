@@ -39,35 +39,7 @@ class DeleteListPage extends HookWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              Text('Are you sure you want to delete the "${list?.name}" list?'),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      GoRouter.of(context).pop();
-                    },
-                    child: const Text('No'),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<ListBloc>().add(DeleteList(listId));
-                      MainPageRoute().go(context);
-                    },
-                    child: const Text('Yes'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: isLoading ? loadingWidget() : deleteWidget(context, list),
         ),
       ),
     );
@@ -93,5 +65,43 @@ class DeleteListPage extends HookWidget {
       return listState.list;
     }
     return null;
+  }
+
+  Widget deleteWidget(BuildContext context, ListOfThings? list) {
+    return Column(
+      children: [
+        Text('Are you sure you want to delete the "${list?.name}" list?'),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+              child: const Text('No'),
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.read<ListBloc>().add(DeleteList(listId));
+                MainPageRoute().go(context);
+              },
+              child: const Text('Yes'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget loadingWidget() {
+    return const Column(
+      children: [CircularProgressIndicator()],
+    );
   }
 }
