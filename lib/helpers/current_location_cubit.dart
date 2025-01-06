@@ -15,7 +15,7 @@ class CurrentLocationCubit extends Cubit<LatLng?> {
       _getCurrentLocation();
     });
 
-    emit(const LatLng(0, 0));
+    emit(null);
   }
 
   Future<void> _getCurrentLocation() async {

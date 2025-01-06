@@ -30,6 +30,7 @@ class ListOfThings with _$ListOfThings {
     required bool shared,
     required Map<String, ShareType> sharedWith,
     required String? ownerId,
+    // ignore: invalid_annotation_target
     @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) required DateTime createdAt,
     @Default({}) Map<String, FilterType> filterTypes,
     @Default(null) String? imageFilename,

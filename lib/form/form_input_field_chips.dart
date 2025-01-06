@@ -23,7 +23,7 @@ class FormInputFieldChips extends StatelessWidget {
       initialValue: field.currentValue.toList(),
       options: field.values.map(
         (c) {
-          const iconText = 'S';
+          const iconText = '';
           return FormBuilderChipOption<String>(
             value: c,
             avatar: const CircleAvatar(

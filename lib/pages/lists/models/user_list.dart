@@ -14,6 +14,7 @@ class UserList with _$UserList {
     required String? imageFilename,
     required String ownerId,
     required bool? isOwnList,
+    // ignore: invalid_annotation_target
     @JsonKey(fromJson: fromTimestamp, toJson: toTimestamp) required DateTime createdAt,
   }) = _UserList;
 

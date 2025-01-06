@@ -19,6 +19,7 @@ import 'package:listwhatever/pages/filter/bloc/filters_state.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
+import 'package:listwhatever/pages/list/helpers/categories_helper.dart';
 import 'package:listwhatever/pages/list/models/filters.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
@@ -27,6 +28,7 @@ const String className = 'ListTiles';
 
 enum SectionName {
   basic._('Basic information'),
+  categories._('Categories'),
   submit._('Submit');
 
   const SectionName._(this.value);
@@ -38,6 +40,7 @@ enum FieldId {
   name._('name'),
   date._('date'),
   distance._('distance'),
+  categoryvalue._('categoryvalue'),
   cancel._('cancel'),
   submit._('submit');
 
@@ -124,8 +127,9 @@ class FilterView extends HookWidget {
       itemNameInputField(isLoading: isLoading, filters: filters),
       if (dateF != null && list.withDates) dateF,
       if (distanceF != null && list.withMap) distanceF,
+      ...categoriesFields(filters, CategoriesHelper().getCategories(listItems)),
       resetButton(isLoading: isLoading),
-      if (showSubmitButton) submitButton(context: context, isLoading: isLoading),
+      if (showSubmitButton) submitButton(context: context, isLoading: isLoading, list: list),
     ];
     print('fields: ${fields.length}');
     print('fields: ${fields.map((f) => f.sectionName)}');
@@ -137,6 +141,11 @@ class FilterView extends HookWidget {
     return [
       FormInputSection(
         name: SectionName.basic.value,
+        direction: FormAxisDirection.vertical,
+        showBorder: false,
+      ),
+      FormInputSection(
+        name: SectionName.categories.value,
         direction: FormAxisDirection.vertical,
         showBorder: false,
       ),
@@ -212,7 +221,6 @@ class FilterView extends HookWidget {
     required LatLng? currentPosition,
     Filters? filters,
   }) {
-    print('filters: $filters');
     if (currentPosition == null) {
       return null;
     }
@@ -221,11 +229,9 @@ class FilterView extends HookWidget {
     if (maxDistance == Constants.maxDistance) {
       return null;
     } else {
-      final value = (
-        (filters?.distance?.$1 ?? 0) / 1000,
-        min((filters?.distance?.$2 ?? maxDistance * 1000) / 1000, maxDistance),
-      );
-      print('value: $value');
+      final lowerValue = (filters?.distance?.$1 ?? 0) / 1000;
+      final upperValue = min((filters?.distance?.$2 ?? maxDistance * 1000) / 1000, maxDistance);
+      final value = (lowerValue, upperValue);
       return FormInputFieldInfo.slider(
         id: FieldId.distance.value,
         label: 'Distance',
@@ -250,6 +256,53 @@ class FilterView extends HookWidget {
     return (gcd.haversineDistance() / 1000).ceil().toDouble();
   }
 
+  List<FormInputFieldInfo> categoriesFields(
+    Filters? filters,
+    Map<String, Set<String>> categories,
+  ) {
+    final chipsFields = categories.entries.map((e) => getCategoryField(filters, e.key, e.value)).toList();
+
+    return chipsFields;
+  }
+
+  FormInputFieldInfo getCategoryField(Filters? filters, String categoryName, Set<String> values) {
+    final selectedValues = filters?.regularCategoryFilters?[categoryName] ?? values;
+    return getCategoriesChipsField(categoryName, values, selectedValues);
+
+    // final type = widget.list.filterTypes[categoryName];
+    // return switch (type) {
+    //   FilterType.regular => getCategoriesChipsField(categoryName, values),
+    //   FilterType.numericRange =>
+    //     getCategoriesNumericSliderField(categoryName, values),
+    //   FilterType.dateRange =>
+    //     getCategoriesDateSliderField(categoryName, values),
+    //   FilterType.timeOfDayRange =>
+    //     getCategoriesTimeOfDaySliderField(categoryName, values),
+    //   null => getCategoriesChipsField(categoryName, values),
+    // };
+  }
+
+  FormInputFieldInfo getCategoriesChipsField(
+    String categoryName,
+    Set<String> values,
+    Set<String> selectedValues,
+  ) {
+    print('              values: $values');
+    return FormInputFieldInfo.chips(
+      id: getCategoryFieldKey(categoryName),
+      label: categoryName,
+      currentValue: selectedValues,
+      values: values.where((e) => e.trim().isNotEmpty),
+      validators: [],
+      sectionName: SectionName.categories.value,
+      isLoading: false,
+    );
+  }
+
+  String getCategoryFieldKey(String category) {
+    return '${FieldId.categoryvalue.name}-$category';
+  }
+
   FormInputFieldInfo resetButton({required bool isLoading}) {
     return FormInputFieldInfo.cancelButton(
       id: FieldId.cancel.value,
@@ -260,29 +313,77 @@ class FilterView extends HookWidget {
     );
   }
 
-  FormInputFieldInfo submitButton({required BuildContext context, required bool isLoading}) {
+  FormInputFieldInfo submitButton({
+    required BuildContext context,
+    required bool isLoading,
+    required ListOfThings list,
+  }) {
     return FormInputFieldInfo.submitButton(
       id: FieldId.submit.value,
       label: 'Submit',
       sectionName: SectionName.submit.value,
       isLoading: isLoading,
       save: (values) {
-        save(context: context, values: values);
+        save(context: context, values: values, list: list);
       },
     );
   }
 
-  void save({required BuildContext context, required Map<String, dynamic>? values}) {
+  void save({required BuildContext context, required Map<String, dynamic>? values, required ListOfThings list}) {
     print('values: $values');
-    final distance = values![FieldId.distance.value] as (int, int);
-    print('distance: $distance');
+    final distance = values![FieldId.distance.value] != null ? values[FieldId.distance.value] as (int, int) : null;
 
     final filters = Filters().copyWith(
       itemName: values[FieldId.name.value] as String,
-      distance: (distance.$1 * 1000, distance.$2 * 1000),
+      distance: distance != null ? (distance.$1 * 1000, distance.$2 * 1000) : null,
+      regularCategoryFilters: getRegularCategoryFilters(list, values),
+      // dateCategoryFilters: getDateCategoryFilters(values),
+      // timeOfDayCategoryFilters: getTimeOfDayCategoryFilters(values),
+      // numericCategoryFilters: getNumericCategoryFilters(values),
     );
     context.read<FiltersBloc>().add(UpdateFilters(filters));
     GoRouter.of(context).pop();
+  }
+
+  Map<String, Set<String>> getRegularCategoryFilters(
+    ListOfThings list,
+    Map<String, dynamic> values,
+  ) {
+    final categoryConvertedValues = getConvertedCategories(
+      list,
+      values,
+      FilterType.regular,
+      (x) => x as List<String>,
+    );
+
+    final categoryFilters = CategoriesHelper.getAllCategoriesAndValuesForListOfCategories(
+      categoryConvertedValues,
+    );
+    return categoryFilters;
+  }
+
+  List<MapEntry<String, T>> getConvertedCategories<T>(
+    ListOfThings list,
+    Map<String, dynamic> values,
+    FilterType filterType,
+    T Function(dynamic) converter,
+  ) {
+    final categoryValues = values.entries
+        .where((entry) => entry.key.startsWith(FieldId.categoryvalue.name))
+        .map((e) => (e.key.split('-')[1], e.value))
+        .where(
+          (e) =>
+              list.filterTypes[e.$1] == filterType ||
+              (filterType == FilterType.regular) && list.filterTypes[e.$1] == null,
+        )
+        .toList();
+
+    final categoryConvertedValues = categoryValues
+        .map(
+          (entry) => MapEntry(entry.$1, converter(entry.$2)),
+        )
+        .toList();
+    return categoryConvertedValues;
   }
 
   Filters? getFilters(FiltersState filtersState) {

@@ -51,4 +51,19 @@ class CategoriesHelper {
   ) {
     return [];
   }
+
+  Map<String, Set<String>> getCategories(List<ListItem> items) {
+    final categories = <String, Set<String>>{};
+
+    for (final item in items) {
+      for (final category in item.categories.entries) {
+        final categoryName = category.key.trim();
+        if (!categories.containsKey(categoryName)) {
+          categories[categoryName] = {};
+        }
+        categories[categoryName]!.addAll(category.value.map((e) => e.trim()));
+      }
+    }
+    return categories;
+  }
 }

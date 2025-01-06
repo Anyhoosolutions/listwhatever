@@ -14,7 +14,6 @@ class ListTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final listsState = context.watch<ListsBloc>().state;
-    print('listsState: $listsState');
 
     final lists = getLists(listsState);
     final isLoading = isLoadingState(listsState);

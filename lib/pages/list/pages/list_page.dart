@@ -29,7 +29,6 @@ class ListPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('ListPage building');
     useEffect(
       () {
         print('ListPage getting list for listId: $listId');
