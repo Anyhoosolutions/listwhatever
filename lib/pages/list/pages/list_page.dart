@@ -49,7 +49,6 @@ class ListPage extends HookWidget {
 
     final currentLocation = context.watch<CurrentLocationCubit>().state;
 
-    print('filters: $filters');
     final filteredItems = isLoading
         ? items
         : FiltersHelper.sortAndFilterItems(
@@ -59,7 +58,6 @@ class ListPage extends HookWidget {
             (ListItemsSortOrder.name, SortOrder.ascending),
             currentLocation,
           );
-    print('filteredItems: $filteredItems');
     final mapHeight = MediaQuery.of(context).size.height - appBarExpandedHeight;
 
     return Scaffold(

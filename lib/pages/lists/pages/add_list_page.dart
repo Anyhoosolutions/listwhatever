@@ -35,6 +35,7 @@ class _AddListPageState extends State<AddListPage> {
       ),
       body: AddListForm(
         userId: userId,
+        listItems: const [],
         list: null,
         isLoading: userId == null,
         save: save,

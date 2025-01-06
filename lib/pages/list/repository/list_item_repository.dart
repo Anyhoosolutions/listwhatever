@@ -9,7 +9,7 @@ class ListItemRepository {
     String listId,
   ) async {
     final path = '/lists/$listId/items';
-    print('ListRepository path: $path');
+    // print('ListItemRepository path: $path');
     return (await getFirestore()).collection(path);
   }
 
@@ -18,7 +18,7 @@ class ListItemRepository {
     String itemId,
   ) async {
     final path = '/lists/$listId/items/$itemId';
-    print('ListRepository path: $path');
+    // print('ListItemRepository path: $path');
     return (await getFirestore()).doc(path);
   }
 

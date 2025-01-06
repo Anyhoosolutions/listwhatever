@@ -8,7 +8,7 @@ class ListRepository {
 
   Future<CollectionReference<Map<String, dynamic>>> getCollection() async {
     const path = '/lists';
-    print('ListRepository path: $path');
+    // print('ListRepository path: $path');
     return (await getFirestore()).collection(path);
   }
 
@@ -16,7 +16,7 @@ class ListRepository {
     String listId,
   ) async {
     final path = '/lists/$listId';
-    print('ListRepository path: $path');
+    // print('ListRepository path: $path');
     return (await getFirestore()).doc(path);
   }
 

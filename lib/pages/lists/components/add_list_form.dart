@@ -7,6 +7,8 @@ import 'package:listwhatever/form/form_axis_direction.dart';
 import 'package:listwhatever/form/form_generator.dart';
 import 'package:listwhatever/form/form_input_field_info.dart';
 import 'package:listwhatever/form/form_input_section.dart';
+import 'package:listwhatever/pages/list/helpers/categories_helper.dart';
+import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
 const String className = 'ListTiles';
@@ -44,12 +46,14 @@ final addListFormKey = GlobalKey<FormBuilderState>();
 class AddListForm extends StatelessWidget {
   const AddListForm({
     required this.list,
+    required this.listItems,
     required this.isLoading,
     required this.save,
     required this.userId,
     super.key,
   });
   final ListOfThings? list;
+  final List<ListItem>? listItems;
   final bool isLoading;
   final void Function(
     BuildContext context,
@@ -67,7 +71,7 @@ class AddListForm extends StatelessWidget {
       mapCheckboxField(isLoading: isLoading),
       dateCheckboxField(isLoading: isLoading),
       timeCheckboxField(isLoading: isLoading),
-      // ...categoryFilterSettings(list, listItems),
+      ...categoryFilterSettings(list, listItems),
       cancelButton(isLoading: isLoading),
       submitButton(context, list, isLoading: isLoading),
     ];
@@ -161,6 +165,35 @@ class AddListForm extends StatelessWidget {
       sectionName: SectionName.options.value,
       isLoading: isLoading,
     );
+  }
+
+  List<FormInputFieldInfo> categoryFilterSettings(
+    ListOfThings? list,
+    List<ListItem>? listItems,
+  ) {
+    final categories = CategoriesHelper.getAllCategoriesAndValues(listItems ?? []);
+    print('categories: $categories');
+    return categories.entries
+        .map(
+          (entry) => FormInputFieldInfo.dropdown(
+            id: getCategoryFilterFieldKey(entry.key),
+            label: entry.key,
+            currentValue: list?.filterTypes[entry.key] ?? FilterType.regular,
+            validators: [
+              FormBuilderValidators.required(),
+              FormBuilderValidators.maxLength(70),
+            ],
+            options: FilterType.values.toList(),
+            optionToString: (filterType) => (filterType as FilterType?)?.value ?? '',
+            sectionName: SectionName.categoryFilterSettings.value,
+            isLoading: false,
+          ),
+        )
+        .toList();
+  }
+
+  String getCategoryFilterFieldKey(String filterTypeName) {
+    return '${FieldId.categoryFilter.value}-$filterTypeName';
   }
 
   FormInputFieldInfo cancelButton({required bool isLoading}) {

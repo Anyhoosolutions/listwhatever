@@ -5,6 +5,7 @@ import 'package:listwhatever/auth/bloc/auth_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_bloc.dart';
 import 'package:listwhatever/pages/list/bloc/list_event.dart';
 import 'package:listwhatever/pages/list/bloc/list_state.dart';
+import 'package:listwhatever/pages/list/models/list_item.dart';
 import 'package:listwhatever/pages/lists/components/add_list_form.dart';
 import 'package:listwhatever/pages/lists/models/list_of_things.dart';
 
@@ -33,6 +34,7 @@ class _EditListPageState extends State<EditListPage> {
     final userId = getUserId(userState);
     final isLoading = getIsLoading(listState, userId);
     final list = getList(listState);
+    final listItems = getListItems(listState);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,6 +42,7 @@ class _EditListPageState extends State<EditListPage> {
       ),
       body: AddListForm(
         list: list,
+        listItems: listItems,
         save: save,
         userId: userId,
         isLoading: isLoading,
@@ -88,7 +91,7 @@ class _EditListPageState extends State<EditListPage> {
     //   // LoggerHelper.logger.i('$className: imageFilename: $imageFilename');
     // }
 
-    // final filterTypes = getFilterTypes(values);
+    final filterTypes = getFilterTypes(values);
     // // LoggerHelper.logger.d('values: $values');
     final newList = ListOfThings(
       id: widget.listId,
@@ -102,10 +105,33 @@ class _EditListPageState extends State<EditListPage> {
       // shareCodeForEditor: null,
       sharedWith: {},
       ownerId: list?.ownerId,
-      // filterTypes: filterTypes,
+      filterTypes: filterTypes,
       createdAt: DateTime.now(),
     );
     listBloc.add(EditList(newList));
     goRouter.pop();
+  }
+
+  List<ListItem> getListItems(ListState listState) {
+    if (listState is ListLoaded) {
+      return listState.listItems;
+    }
+    return [];
+  }
+
+  Map<String, FilterType> getFilterTypes(Map<String, dynamic> values) {
+    final response = <String, FilterType>{};
+
+    for (final entry in values.entries) {
+      if (!entry.key.startsWith(FieldId.categoryFilter.name)) {
+        continue;
+      }
+      final parts = entry.key.split('-');
+      final name = parts[1];
+      final value = entry.value as FilterType;
+
+      response[name] = value;
+    }
+    return response;
   }
 }

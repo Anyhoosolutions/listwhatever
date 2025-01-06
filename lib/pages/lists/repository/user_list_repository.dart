@@ -14,7 +14,7 @@ class UserListRepository {
 
   Future<CollectionReference<Map<String, dynamic>>> getCollection() async {
     final path = '/users/$userId/lists';
-    print('UserListRepository path: $path');
+    // print('UserListRepository path: $path');
     return (await getFirestore()).collection(path);
   }
 
