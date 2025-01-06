@@ -4,14 +4,14 @@
 
 ## Flutter setup
 
-`git stash`
+`git stash`  
 `flutter pub get`  
-`dart run build_runner build --delete-conflicting-outputs`
-`flutter gen-l10n`
+`dart run build_runner build --delete-conflicting-outputs`  
+`flutter gen-l10n`  
 
 ## Decrypt sops
 
-`cat key.txt`
+`cat key.txt`  
 `SOPS_AGE_KEY="XXXXXXX" sh scripts/gitlabci/decryptSops.sh`  
 `source .prod.env`  
 
@@ -23,10 +23,10 @@
 
 `flutter analyze`  
 `flutter test -r expanded`  
-In `tests/firestore`, run `./node_modules/.bin/firebase emulators:exec --only firestore "./runtest.sh"`
-In `functions`, run `./node_modules/.bin/firebase emulators:exec --only firestore --project=fakeproject "./runtest.sh"`
-`sh scripts/gitlabci/buildIntegrationTestApk.sh`
-`sh scripts/gitlabci/runIntegrationTest.sh`
+In `tests/firestore`, run `./node_modules/.bin/firebase emulators:exec --only firestore "./runtest.sh"`  
+In `functions`, run `./node_modules/.bin/firebase emulators:exec --only firestore --project=fakeproject "./runtest.sh"`  
+`sh scripts/gitlabci/buildIntegrationTestApk.sh`  
+`sh scripts/gitlabci/runIntegrationTest.sh`  
 
 ## Build 
 
