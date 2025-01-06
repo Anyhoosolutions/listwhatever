@@ -88,7 +88,7 @@ class FormInputFieldSingleSlider extends StatelessWidget {
       SliderType.date => FlutterSliderTooltip(
           textStyle: textStyle,
           format: (s) {
-            final date = DateTime.fromMillisecondsSinceEpoch(int.parse(s) * 1000);
+            final date = DateTime.fromMillisecondsSinceEpoch(int.parse(s));
             return DateFormatHelper.formatReadableDate(
               date,
               DateFormatType.iso8601,

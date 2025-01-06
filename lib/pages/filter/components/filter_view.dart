@@ -127,7 +127,7 @@ class FilterView extends HookWidget {
       itemNameInputField(isLoading: isLoading, filters: filters),
       if (dateF != null && list.withDates) dateF,
       if (distanceF != null && list.withMap) distanceF,
-      ...categoriesFields(filters, CategoriesHelper().getCategories(listItems)),
+      ...categoriesFields(list, filters, CategoriesHelper().getCategories(listItems)),
       resetButton(isLoading: isLoading),
       if (showSubmitButton) submitButton(context: context, isLoading: isLoading, list: list),
     ];
@@ -257,29 +257,29 @@ class FilterView extends HookWidget {
   }
 
   List<FormInputFieldInfo> categoriesFields(
+    ListOfThings list,
     Filters? filters,
     Map<String, Set<String>> categories,
   ) {
-    final chipsFields = categories.entries.map((e) => getCategoryField(filters, e.key, e.value)).toList();
+    final chipsFields = categories.entries.map((e) => getCategoryField(list, filters, e.key, e.value)).toList();
 
     return chipsFields;
   }
 
-  FormInputFieldInfo getCategoryField(Filters? filters, String categoryName, Set<String> values) {
-    final selectedValues = filters?.regularCategoryFilters?[categoryName] ?? values;
-    return getCategoriesChipsField(categoryName, values, selectedValues);
-
-    // final type = widget.list.filterTypes[categoryName];
-    // return switch (type) {
-    //   FilterType.regular => getCategoriesChipsField(categoryName, values),
-    //   FilterType.numericRange =>
-    //     getCategoriesNumericSliderField(categoryName, values),
-    //   FilterType.dateRange =>
-    //     getCategoriesDateSliderField(categoryName, values),
-    //   FilterType.timeOfDayRange =>
-    //     getCategoriesTimeOfDaySliderField(categoryName, values),
-    //   null => getCategoriesChipsField(categoryName, values),
-    // };
+  FormInputFieldInfo getCategoryField(ListOfThings list, Filters? filters, String categoryName, Set<String> values) {
+    final type = list.filterTypes[categoryName];
+    print('filters: $filters');
+    return switch (type) {
+      FilterType.regular =>
+        getCategoriesChipsField(categoryName, values, filters?.regularCategoryFilters?[categoryName] ?? values),
+      FilterType.numericRange =>
+        getCategoriesNumericSliderField(categoryName, values, filters?.numericCategoryFilters?[categoryName]),
+      FilterType.dateRange =>
+        getCategoriesDateSliderField(categoryName, values, filters?.dateCategoryFilters?[categoryName]),
+      FilterType.timeOfDayRange =>
+        getCategoriesTimeOfDaySliderField(categoryName, values, filters?.timeOfDayCategoryFilters?[categoryName]),
+      null => getCategoriesChipsField(categoryName, values, filters?.regularCategoryFilters?[categoryName] ?? values),
+    };
   }
 
   FormInputFieldInfo getCategoriesChipsField(
@@ -287,12 +287,93 @@ class FilterView extends HookWidget {
     Set<String> values,
     Set<String> selectedValues,
   ) {
-    print('              values: $values');
     return FormInputFieldInfo.chips(
       id: getCategoryFieldKey(categoryName),
       label: categoryName,
       currentValue: selectedValues,
       values: values.where((e) => e.trim().isNotEmpty),
+      validators: [],
+      sectionName: SectionName.categories.value,
+      isLoading: false,
+    );
+  }
+
+  FormInputFieldInfo getCategoriesNumericSliderField(
+    String categoryName,
+    Set<String> values,
+    (int, int)? selectedValues,
+  ) {
+    final minValue = values.map((s) => double.tryParse(s) ?? 0).reduce(min);
+    var maxValue = values.map((s) => double.tryParse(s) ?? 0).reduce(max);
+    if (minValue == maxValue) {
+      maxValue += 1;
+    }
+
+    final currentValues =
+        selectedValues != null ? (selectedValues.$1.toDouble(), selectedValues.$2.toDouble()) : (minValue, maxValue);
+    print('selectedValues: $selectedValues');
+    print('currentValues: $currentValues');
+
+    return FormInputFieldInfo.slider(
+      id: getCategoryFieldKey(categoryName),
+      rangeSlider: true,
+      range: (minValue, maxValue),
+      label: categoryName,
+      currentValues: currentValues,
+      validators: [],
+      sectionName: SectionName.categories.value,
+      isLoading: false,
+    );
+  }
+
+  FormInputFieldInfo getCategoriesDateSliderField(
+    String categoryName,
+    Set<String> values,
+    (int, int)? selectedValues,
+  ) {
+    var minValue = values.map((s) => DateTime.tryParse(s)?.millisecondsSinceEpoch ?? 0).reduce(min) * 1.0;
+    final maxValue = values.map((s) => DateTime.tryParse(s)?.millisecondsSinceEpoch ?? 0).reduce(max) * 1.0;
+    if (minValue == maxValue) {
+      minValue -= 1;
+    }
+    final currentValues =
+        selectedValues != null ? (selectedValues.$1.toDouble(), selectedValues.$2.toDouble()) : (minValue, maxValue);
+    print('selectedValues: $selectedValues');
+    print('currentValues: $currentValues');
+
+    return FormInputFieldInfo.slider(
+      id: getCategoryFieldKey(categoryName),
+      type: SliderType.date,
+      rangeSlider: true,
+      range: (minValue, maxValue),
+      label: categoryName,
+      currentValues: currentValues,
+      validators: [],
+      sectionName: SectionName.categories.value,
+      isLoading: false,
+    );
+  }
+
+  FormInputFieldInfo getCategoriesTimeOfDaySliderField(
+    String categoryName,
+    Set<String> values,
+    (int, int)? selectedValues,
+  ) {
+    const minValue = 0.0;
+    const maxValue = 24 * 60 * 60.0;
+    print('minValue: $minValue');
+    print('maxValue: $maxValue');
+    final currentValues =
+        selectedValues != null ? (selectedValues.$1.toDouble(), selectedValues.$2.toDouble()) : (minValue, maxValue);
+    print('selectedValues: $selectedValues');
+    print('currentValues: $currentValues');
+    return FormInputFieldInfo.slider(
+      id: getCategoryFieldKey(categoryName),
+      type: SliderType.timeOfDay,
+      rangeSlider: true,
+      range: (minValue, maxValue),
+      label: categoryName,
+      currentValues: currentValues,
       validators: [],
       sectionName: SectionName.categories.value,
       isLoading: false,
@@ -337,9 +418,9 @@ class FilterView extends HookWidget {
       itemName: values[FieldId.name.value] as String,
       distance: distance != null ? (distance.$1 * 1000, distance.$2 * 1000) : null,
       regularCategoryFilters: getRegularCategoryFilters(list, values),
-      // dateCategoryFilters: getDateCategoryFilters(values),
-      // timeOfDayCategoryFilters: getTimeOfDayCategoryFilters(values),
-      // numericCategoryFilters: getNumericCategoryFilters(values),
+      dateCategoryFilters: getDateCategoryFilters(list, values),
+      timeOfDayCategoryFilters: getTimeOfDayCategoryFilters(list, values),
+      numericCategoryFilters: getNumericCategoryFilters(list, values),
     );
     context.read<FiltersBloc>().add(UpdateFilters(filters));
     GoRouter.of(context).pop();
@@ -360,6 +441,51 @@ class FilterView extends HookWidget {
       categoryConvertedValues,
     );
     return categoryFilters;
+  }
+
+  Map<String, (int, int)> getDateCategoryFilters(
+    ListOfThings list,
+    Map<String, dynamic> values,
+  ) {
+    final categoryConvertedValues = getConvertedCategories(
+      list,
+      values,
+      FilterType.dateRange,
+      (x) => x as (int, int),
+    );
+
+    final dateCategoryFilters = Map.fromEntries(categoryConvertedValues);
+    return dateCategoryFilters;
+  }
+
+  Map<String, (int, int)> getTimeOfDayCategoryFilters(
+    ListOfThings list,
+    Map<String, dynamic> values,
+  ) {
+    final categoryConvertedValues = getConvertedCategories(
+      list,
+      values,
+      FilterType.timeOfDayRange,
+      (x) => x as (int, int),
+    );
+
+    final timeOfDayCategoryFilters = Map.fromEntries(categoryConvertedValues);
+    return timeOfDayCategoryFilters;
+  }
+
+  Map<String, (int, int)> getNumericCategoryFilters(
+    ListOfThings list,
+    Map<String, dynamic> values,
+  ) {
+    final categoryConvertedValues = getConvertedCategories(
+      list,
+      values,
+      FilterType.numericRange,
+      (x) => x as (int, int),
+    );
+
+    final numericCategoryFilters = Map.fromEntries(categoryConvertedValues);
+    return numericCategoryFilters;
   }
 
   List<MapEntry<String, T>> getConvertedCategories<T>(
