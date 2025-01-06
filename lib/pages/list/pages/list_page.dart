@@ -150,14 +150,23 @@ class ListPage extends HookWidget {
               ),
             ),
           ),
-          if (showMap.value)
+          if (isLoading)
+            const SliverToBoxAdapter(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                ],
+              ),
+            )
+          else if (showMap.value)
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 child: Container(
                   height: mapHeight,
                   alignment: Alignment.centerLeft,
-                  child: MapView(items: filteredItems),
+                  child: MapView(list: list!, items: filteredItems),
                 ),
               ),
             )
@@ -183,7 +192,7 @@ class ListPage extends HookWidget {
   }
 
   bool getLoading(ListState listState, FiltersState filtersState) {
-    if (filtersState is! FiltersLoaded) {
+    if (filtersState is FiltersLoading) {
       return true;
     }
     return switch (listState) {
@@ -221,6 +230,9 @@ class ListPage extends HookWidget {
 
   Filters? getFilters(FiltersState filtersState) {
     if (filtersState is FiltersLoaded) {
+      return filtersState.filters;
+    }
+    if (filtersState is FiltersInitial) {
       return filtersState.filters;
     }
     return null;

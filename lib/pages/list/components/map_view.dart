@@ -7,9 +7,13 @@ import 'package:latlong2/latlong.dart';
 import 'package:listwhatever/helpers/current_location_cubit.dart';
 import 'package:listwhatever/pages/list/components/custom_marker.dart';
 import 'package:listwhatever/pages/list/models/list_item.dart';
+import 'package:listwhatever/pages/list_item/routes/list_item_info_page_route.dart';
+import 'package:listwhatever/pages/lists/models/list_of_things.dart';
+import 'package:listwhatever/routing/routes.dart';
 
 class MapView extends HookWidget {
-  const MapView({required this.items, super.key});
+  const MapView({required this.list, required this.items, super.key});
+  final ListOfThings list;
   final List<ListItem> items;
 
   @override
@@ -23,7 +27,7 @@ class MapView extends HookWidget {
         openStreetMapTileLayer,
         MarkerLayer(
           markers: [
-            ...getMarkers(items),
+            ...getMarkers(context, list, items),
             if (currentLocation != null) getCurrentLocationMarker(currentLocation),
           ],
         ),
@@ -91,7 +95,7 @@ class MapView extends HookWidget {
     );
   }
 
-  List<Marker> getMarkers(List<ListItem> items) {
+  List<Marker> getMarkers(BuildContext context, ListOfThings list, List<ListItem> items) {
     final markers = <Marker>[];
     for (final item in items) {
       if (item.latLong != null) {
@@ -104,7 +108,7 @@ class MapView extends HookWidget {
             child: CustomMarker(
               color: Colors.red,
               onPressed: () {
-                // widget.onTap(item.id!);
+                ListItemInfoPageRoute(listId: list.id!, itemId: item.id!).push<void>(context);
               },
             ),
           ),

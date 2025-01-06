@@ -2,7 +2,10 @@ import 'package:listwhatever/pages/list/models/filters.dart';
 
 sealed class FiltersState {}
 
-class FiltersInitial extends FiltersState {}
+class FiltersInitial extends FiltersState {
+  FiltersInitial({required this.filters});
+  final Filters filters;
+}
 
 class FiltersLoading extends FiltersState {}
 
