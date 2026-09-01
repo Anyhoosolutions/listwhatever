@@ -4,14 +4,14 @@ import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
 class FakeDynamicListsRepository implements DynamicListsRepository {
   FakeDynamicListsRepository({List<DynamicList>? seed})
     : _lists = {
-        for (final list in seed ?? _defaultLists) list.id: list,
+        for (final list in seed ?? defaultLists) list.id: list,
       };
 
   final Map<String, DynamicList> _lists;
 
   static final _now = DateTime.utc(2026, 9, 1, 17);
 
-  static final _defaultLists = [
+  static final defaultLists = [
     DynamicList(
       id: 'movies',
       ownerId: 'user-1',
