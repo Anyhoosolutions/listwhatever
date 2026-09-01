@@ -9,7 +9,6 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 Widget _listItemsChrome(Widget view, {required String title}) {
   return starterViewHost(
     view,
-    themeMode: ThemeMode.dark,
     appBar: AnyhooTopBar(topBarTitle: title),
     floatingActionButton: Builder(
       builder: (context) => FloatingActionButton(

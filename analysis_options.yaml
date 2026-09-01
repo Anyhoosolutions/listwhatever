@@ -12,6 +12,12 @@ analyzer:
     - "**/lib/**.g.dart"
     - widgetbook/build/**.dart
     - secrets/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
   errors:
     lines_longer_than_80_chars: ignore
