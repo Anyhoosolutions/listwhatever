@@ -1,4 +1,5 @@
-import 'package:core_models/src/category_def.dart';
+import 'package:core_models/core_models.dart';
+import 'package:core_models/src/typedefs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dynamic_list.freezed.dart';
@@ -12,8 +13,8 @@ abstract class DynamicList with _$DynamicList {
     required String title,
     required String description,
     required String visibility, // 'private' | 'shared' | 'public'
-    @Default([]) List<String> collaboratorIds,
-    @Default([]) List<CategoryDef> categories,
+    @Default([]) List<UserId> collaboratorIds,
+    @Default([]) List<ListItem> items,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _DynamicList;
