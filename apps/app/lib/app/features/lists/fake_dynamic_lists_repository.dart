@@ -55,4 +55,31 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
 
   @override
   Future<List<DynamicList>> listAll() async => List.unmodifiable(_lists.values);
+
+  @override
+  Future<DynamicList> create(DynamicList list) async {
+    if (_lists.containsKey(list.id)) {
+      throw StateError('List already exists: ${list.id}');
+    }
+    _lists[list.id] = list;
+    return list;
+  }
+
+  @override
+  Future<DynamicList> update(DynamicList list) async {
+    if (!_lists.containsKey(list.id)) {
+      throw StateError('List not found: ${list.id}');
+    }
+    final updated = list.copyWith(updatedAt: DateTime.now().toUtc());
+    _lists[list.id] = updated;
+    return updated;
+  }
+
+  @override
+  Future<void> delete(String id) async {
+    if (!_lists.containsKey(id)) {
+      throw StateError('List not found: $id');
+    }
+    _lists.remove(id);
+  }
 }
