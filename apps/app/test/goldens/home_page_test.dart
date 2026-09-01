@@ -1,7 +1,7 @@
 @Tags(['golden'])
 library;
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:listwhatever/app/features/home/home_page.dart';
 
@@ -10,33 +10,34 @@ import 'support/golden_test_helpers.dart';
 import 'support/hub_golden_harness.dart';
 
 void main() {
-  appGoldenTest(
-    description: 'Home Page laptop',
-    fileName: 'home_page_laptop',
-    surfaceWidth: GoldenScreenshotPresets.laptop.width.toDouble(),
-    surfaceHeight: GoldenScreenshotPresets.laptop.height.toDouble(),
-    child: _homePage(),
-  );
+  const devices = [
+    (
+      name: 'phone',
+      preset: GoldenScreenshotPresets.phone,
+    ),
+    (
+      name: 'tablet_landscape',
+      preset: GoldenScreenshotPresets.tabletLandscape,
+    ),
+    (
+      name: 'laptop',
+      preset: GoldenScreenshotPresets.laptop,
+    ),
+  ];
 
-  appGoldenTest(
-    description: 'Home Page tablet landscape',
-    fileName: 'home_page_tablet_landscape',
-    surfaceWidth: GoldenScreenshotPresets.tabletLandscape.width.toDouble(),
-    surfaceHeight: GoldenScreenshotPresets.tabletLandscape.height.toDouble(),
-    child: _homePage(),
-  );
-
-  appGoldenTest(
-    description: 'Home Page phone',
-    fileName: 'home_page_phone',
-    surfaceWidth: GoldenScreenshotPresets.phone.width.toDouble(),
-    surfaceHeight: GoldenScreenshotPresets.phone.height.toDouble(),
-    child: _homePage(),
-  );
-}
-
-Widget _homePage() {
-  return buildHubGoldenHarnessWithShell(
-    shellPage: const HomePage(),
-  );
+  for (final themeMode in [ThemeMode.light, ThemeMode.dark]) {
+    final themeName = themeMode == ThemeMode.dark ? 'dark' : 'light';
+    for (final device in devices) {
+      appGoldenTest(
+        description: 'Home Page ${device.name} $themeName',
+        fileName: 'home_page_${device.name}_$themeName',
+        surfaceWidth: device.preset.width.toDouble(),
+        surfaceHeight: device.preset.height.toDouble(),
+        child: buildHubGoldenHarnessWithShell(
+          themeMode: themeMode,
+          shellPage: const HomePage(),
+        ),
+      );
+    }
+  }
 }

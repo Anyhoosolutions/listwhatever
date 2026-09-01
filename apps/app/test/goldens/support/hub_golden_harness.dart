@@ -16,11 +16,13 @@ final kGoldenFixedNow = DateTime.utc(2026, 4, 19, 12);
 Widget buildHubGoldenHarness({
   required Widget child,
   DateTime? now,
+  ThemeMode? themeMode,
   List<RepositoryProvider<dynamic>> extraRepositoryProviders = const [],
   List<BlocProvider<dynamic>> extraBlocProviders = const [],
 }) {
   final fixedNow = now ?? kGoldenFixedNow;
   return _goldenMaterialApp(
+    themeMode: themeMode,
     home: providersWrapper(
       fixedNow: fixedNow,
       extraRepositoryProviders: extraRepositoryProviders,
@@ -39,6 +41,7 @@ Widget buildHubGoldenHarness({
 Widget buildHubGoldenHarnessWithShell({
   required Widget shellPage,
   DateTime? now,
+  ThemeMode? themeMode,
   String initialLocation = '/home',
   List<RepositoryProvider<dynamic>> extraRepositoryProviders = const [],
   List<BlocProvider<dynamic>> extraBlocProviders = const [],
@@ -47,6 +50,7 @@ Widget buildHubGoldenHarnessWithShell({
 
   return _HubShellGoldenHost(
     fixedNow: fixedNow,
+    themeMode: themeMode,
     initialLocation: initialLocation,
     shellPage: shellPage,
     extraRepositoryProviders: extraRepositoryProviders,
@@ -86,15 +90,17 @@ Widget _goldenMaterialApp({
   Widget? home,
   RouterConfig<Object>? routerConfig,
   TransitionBuilder? builder,
+  ThemeMode? themeMode,
 }) {
   final screenshotConfig = ScreenshotSurfaceConfig.fromEnvironment();
+  final resolvedThemeMode = themeMode ?? screenshotConfig.themeMode;
 
   if (routerConfig != null) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      themeMode: screenshotConfig.themeMode,
+      themeMode: resolvedThemeMode,
       routerConfig: routerConfig,
       builder: builder,
     );
@@ -103,7 +109,7 @@ Widget _goldenMaterialApp({
     debugShowCheckedModeBanner: false,
     theme: AppTheme.light,
     darkTheme: AppTheme.dark,
-    themeMode: screenshotConfig.themeMode,
+    themeMode: resolvedThemeMode,
     home: home,
   );
 }
@@ -113,11 +119,13 @@ class _HubShellGoldenHost extends StatefulWidget {
     required this.fixedNow,
     required this.initialLocation,
     required this.shellPage,
+    this.themeMode,
     this.extraRepositoryProviders = const [],
     this.extraBlocProviders = const [],
   });
 
   final DateTime fixedNow;
+  final ThemeMode? themeMode;
   final String initialLocation;
   final Widget shellPage;
   final List<RepositoryProvider<dynamic>> extraRepositoryProviders;
@@ -168,6 +176,7 @@ class _HubShellGoldenHostState extends State<_HubShellGoldenHost> {
   @override
   Widget build(BuildContext context) {
     return _goldenMaterialApp(
+      themeMode: widget.themeMode,
       routerConfig: _router,
       builder: (context, child) => providersWrapper(
         fixedNow: widget.fixedNow,
