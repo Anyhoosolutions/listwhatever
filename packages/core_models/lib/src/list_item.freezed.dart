@@ -232,7 +232,7 @@ return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.addr
 @JsonSerializable()
 
 class _ListItem implements ListItem {
-  const _ListItem({required this.id, required this.title, required this.notes, required final  Map<String, dynamic> categoryValues, this.address, this.latlong, required this.createdAt, required this.updatedAt, this.icon, this.iconBackground, this.imageUrl}): _categoryValues = categoryValues;
+  const _ListItem({required this.id, required this.title, required this.notes, required final  Map<String, dynamic> categoryValues, this.address, this.latlong, required this.createdAt, required this.updatedAt, this.icon = null, this.iconBackground = null, this.imageUrl}): _categoryValues = categoryValues;
   factory _ListItem.fromJson(Map<String, dynamic> json) => _$ListItemFromJson(json);
 
 @override final  String id;
@@ -250,8 +250,8 @@ class _ListItem implements ListItem {
 @override final  LatLong? latlong;
 @override final  DateTime createdAt;
 @override final  DateTime updatedAt;
-@override final  ListItemIcon? icon;
-@override final  ListItemIconBackground? iconBackground;
+@override@JsonKey() final  ListItemIcon? icon;
+@override@JsonKey() final  ListItemIconBackground? iconBackground;
 @override final  String? imageUrl;
 
 /// Create a copy of ListItem

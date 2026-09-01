@@ -100,13 +100,14 @@ class _MyListsPreviewState extends State<_MyListsPreview> {
       return matchesCategory && matchesQuery;
     }).toList();
 
-    return HomeView(
-      lists: filtered,
-      featured: _featured,
-      categories: _categories,
-      selectedCategory: _selectedCategory,
-      onCategorySelected: (category) => setState(() => _selectedCategory = category),
-      onSearchChanged: (value) => setState(() => _query = value),
-    );
+    return Text('Hello');
+    // return HomeView(
+    //   lists: filtered,
+    //   featured: _featured,
+    //   categories: _categories,
+    //   selectedCategory: _selectedCategory,
+    //   onCategorySelected: (category) => setState(() => _selectedCategory = category),
+    //   onSearchChanged: (value) => setState(() => _query = value),
+    // );
   }
 }

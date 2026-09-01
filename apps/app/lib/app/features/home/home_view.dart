@@ -1,15 +1,14 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/home/home_featured_card.dart';
 import 'package:listwhatever/app/features/home/home_list_card.dart';
-import 'package:listwhatever/app/features/home/list_preview.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
     super.key,
     required this.lists,
-    required this.featured,
+    // required this.featured,
     required this.categories,
     required this.selectedCategory,
     required this.onCategorySelected,
@@ -18,13 +17,13 @@ class HomeView extends StatelessWidget {
     this.onFeaturedTap,
   });
 
-  final List<ListPreview> lists;
-  final FeaturedListPreview featured;
+  final List<DynamicList> lists;
+  // final FeaturedListPreview featured;
   final List<String> categories;
   final String selectedCategory;
   final ValueChanged<String> onCategorySelected;
   final ValueChanged<String> onSearchChanged;
-  final ValueChanged<ListPreview>? onListTap;
+  final ValueChanged<DynamicList>? onListTap;
   final VoidCallback? onFeaturedTap;
 
   @override
@@ -84,10 +83,10 @@ class HomeView extends StatelessWidget {
           t.homePage.empty.headline(size: HeadlineSize.small, color: surface.secondaryText),
         ],
         const SizedBox(height: DesignTokens.spacingMd),
-        HomeFeaturedCard(
-          featured: featured,
-          onTap: onFeaturedTap,
-        ),
+        // HomeFeaturedCard(
+        //   featured: featured,
+        //   onTap: onFeaturedTap,
+        // ),
       ],
     );
   }

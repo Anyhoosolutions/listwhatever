@@ -2,6 +2,8 @@ import 'package:anyhoo_auth/anyhoo_auth.dart';
 import 'package:anyhoo_logging/anyhoo_logging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core_models/core_models.dart';
+import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_cubit.dart';
+import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
 
 abstract final class BlocProvidersFactory {
   /// App-wide cubits. Use [BlocProvider.create] and [BuildContext.read] for
@@ -15,6 +17,7 @@ abstract final class BlocProvidersFactory {
     return [
       BlocProvider<AnyhooAuthCubit<User>>.value(value: authCubit),
       BlocProvider<LoggingCubit>.value(value: loggingCubit),
+
       // Example — add shared cubits here:
       // BlocProvider<SomeAppCubit>(
       //   create: (context) => SomeAppCubit(
@@ -22,6 +25,11 @@ abstract final class BlocProvidersFactory {
       //     currentTimeRepository: context.read<CurrentTimeRepository>(),
       //   ),
       // ),
+      BlocProvider<DynamicListsCubit>(
+        create: (context) => DynamicListsCubit(
+          repository: context.read<DynamicListsRepository>(),
+        )..load(),
+      ),
     ];
   }
 }

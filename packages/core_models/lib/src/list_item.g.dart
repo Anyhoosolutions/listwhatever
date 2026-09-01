@@ -17,11 +17,13 @@ _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
       : LatLong.fromJson(json['latlong'] as Map<String, dynamic>),
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
-  icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']),
-  iconBackground: $enumDecodeNullable(
-    _$ListItemIconBackgroundEnumMap,
-    json['iconBackground'],
-  ),
+  icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']) ?? null,
+  iconBackground:
+      $enumDecodeNullable(
+        _$ListItemIconBackgroundEnumMap,
+        json['iconBackground'],
+      ) ??
+      null,
   imageUrl: json['imageUrl'] as String?,
 );
 

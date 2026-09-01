@@ -36,16 +36,6 @@ RouteBase get $appShellRouteData => ShellRouteData.$route(
       name: 'settings',
       factory: $SettingsRoute._fromState,
     ),
-    GoRouteData.$route(
-      path: '/items/:itemId',
-      name: 'item',
-      factory: $ItemRoute._fromState,
-    ),
-    GoRouteData.$route(
-      path: '/counter',
-      name: 'counter',
-      factory: $CounterRoute._fromState,
-    ),
   ],
 );
 
@@ -148,50 +138,6 @@ mixin $SettingsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/settings');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $ItemRoute on GoRouteData {
-  static ItemRoute _fromState(GoRouterState state) =>
-      ItemRoute(itemId: state.pathParameters['itemId']!);
-
-  ItemRoute get _self => this as ItemRoute;
-
-  @override
-  String get location =>
-      GoRouteData.$location('/items/${Uri.encodeComponent(_self.itemId)}');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $CounterRoute on GoRouteData {
-  static CounterRoute _fromState(GoRouterState state) => const CounterRoute();
-
-  @override
-  String get location => GoRouteData.$location('/counter');
 
   @override
   void go(BuildContext context) => context.go(location);

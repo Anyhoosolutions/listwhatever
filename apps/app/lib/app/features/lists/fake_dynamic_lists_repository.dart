@@ -3,9 +3,9 @@ import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
 
 class FakeDynamicListsRepository implements DynamicListsRepository {
   FakeDynamicListsRepository({List<DynamicList>? seed})
-      : _lists = {
-          for (final list in seed ?? _defaultLists) list.id: list,
-        };
+    : _lists = {
+        for (final list in seed ?? _defaultLists) list.id: list,
+      };
 
   final Map<String, DynamicList> _lists;
 
@@ -15,12 +15,14 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
     DynamicList(
       id: 'movies',
       ownerId: 'user-1',
-      title: 'Movies to Watch',
+      title: 'Movies to Watch 2',
       description: 'Personal watchlist',
       visibility: 'private',
       itemCount: 12,
       createdAt: _now.subtract(const Duration(days: 14)),
       updatedAt: _now.subtract(const Duration(hours: 2)),
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.red,
     ),
     DynamicList(
       id: 'golf',
@@ -32,6 +34,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       hasLocations: true,
       createdAt: _now.subtract(const Duration(days: 30)),
       updatedAt: _now.subtract(const Duration(days: 1)),
+      icon: ListItemIcon.flag,
+      iconBackground: ListItemIconBackground.green,
     ),
     DynamicList(
       id: 'groceries',
@@ -42,6 +46,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       itemCount: 24,
       createdAt: _now.subtract(const Duration(days: 7)),
       updatedAt: _now.subtract(const Duration(hours: 4)),
+      icon: ListItemIcon.eco,
+      iconBackground: ListItemIconBackground.yellow,
     ),
     DynamicList(
       id: 'trips',
@@ -53,6 +59,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       hasLocations: true,
       createdAt: _now.subtract(const Duration(days: 60)),
       updatedAt: _now.subtract(const Duration(days: 7)),
+      icon: ListItemIcon.flight,
+      iconBackground: ListItemIconBackground.blue,
     ),
   ];
 

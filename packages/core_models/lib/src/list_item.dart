@@ -1,31 +1,10 @@
+import 'package:core_models/src/item_icon_backgrounds.dart';
+import 'package:core_models/src/item_icons.dart';
 import 'package:core_models/src/lat_long.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_item.freezed.dart';
 part 'list_item.g.dart';
-
-enum ListItemIcon {
-  movie,
-  restaurant,
-  hotel,
-  flight,
-  car,
-  train,
-  bus,
-  flag,
-  park,
-  golfCourse,
-  eco,
-  waves,
-}
-
-enum ListItemIconBackground {
-  red,
-  green,
-  blue,
-  yellow,
-  purple,
-}
 
 @freezed
 abstract class ListItem with _$ListItem {
@@ -38,8 +17,8 @@ abstract class ListItem with _$ListItem {
     LatLong? latlong,
     required DateTime createdAt,
     required DateTime updatedAt,
-    ListItemIcon? icon,
-    ListItemIconBackground? iconBackground,
+    @Default(null) ListItemIcon? icon,
+    @Default(null) ListItemIconBackground? iconBackground,
     String? imageUrl,
   }) = _ListItem;
 
