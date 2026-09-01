@@ -1,0 +1,36 @@
+PODS:
+  - CocoaAsyncSocket (7.6.5)
+  - flutter_secure_storage_macos (6.1.3):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+  - patrol (0.0.1):
+    - CocoaAsyncSocket (~> 7.6)
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - flutter_secure_storage_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - patrol (from `Flutter/ephemeral/.symlinks/plugins/patrol/darwin`)
+
+SPEC REPOS:
+  trunk:
+    - CocoaAsyncSocket
+
+EXTERNAL SOURCES:
+  flutter_secure_storage_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  patrol:
+    :path: Flutter/ephemeral/.symlinks/plugins/patrol/darwin
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  flutter_secure_storage_macos: 7f45e30f838cf2659862a4e4e3ee1c347c2b3b54
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
+  patrol: cea8074f183a2a4232d0ebd10569ae05149ada42
+
+PODFILE CHECKSUM: 201b57c9c9b05924cd8fa9735b16396cfa48791d
+
+COCOAPODS: 1.16.2

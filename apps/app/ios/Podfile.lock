@@ -1,0 +1,48 @@
+PODS:
+  - CocoaAsyncSocket (7.6.5)
+  - Flutter (1.0.0)
+  - flutter_launch_arguments (1.0.0):
+    - Flutter
+  - flutter_secure_storage (6.0.0):
+    - Flutter
+  - patrol (0.0.1):
+    - CocoaAsyncSocket (~> 7.6)
+    - Flutter
+    - FlutterMacOS
+  - sign_in_with_apple (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_launch_arguments (from `.symlinks/plugins/flutter_launch_arguments/ios`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - patrol (from `.symlinks/plugins/patrol/darwin`)
+  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
+
+SPEC REPOS:
+  trunk:
+    - CocoaAsyncSocket
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_launch_arguments:
+    :path: ".symlinks/plugins/flutter_launch_arguments/ios"
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  patrol:
+    :path: ".symlinks/plugins/patrol/darwin"
+  sign_in_with_apple:
+    :path: ".symlinks/plugins/sign_in_with_apple/ios"
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_launch_arguments: 612fe2bfca02045d0bc01a54cb23cd5a562c9fdf
+  flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
+  patrol: cea8074f183a2a4232d0ebd10569ae05149ada42
+  sign_in_with_apple: c5dcc141574c8c54d5ac99dd2163c0c72ad22418
+
+PODFILE CHECKSUM: 94b28afb0ebdc8c4b688a57dba31ecfcd6be0f3a
+
+COCOAPODS: 1.16.2

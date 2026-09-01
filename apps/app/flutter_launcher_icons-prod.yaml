@@ -1,0 +1,8 @@
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/icon_prod.png"
+  remove_alpha_ios: true # Ensures compliance with App Store release requirements
+  web:
+    generate: true
+    image_path: "assets/icons/icon_prod.png"

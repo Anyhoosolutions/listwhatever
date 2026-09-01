@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Staged .dart files, excluding codegen outputs (formatter should not touch them).
+# The `|| true` keeps the script alive when grep finds nothing (otherwise exit 1 under `set -e`).
+staged_dart_files=$(
+  git diff --cached --name-only --diff-filter=ACM |
+    grep -E '\.dart$' |
+    grep -Ev '\.(g|freezed)\.dart$' ||
+    true
+)
+
+if [ -z "$staged_dart_files" ]; then
+  exit 0
+fi
+
+if ! command -v dart >/dev/null 2>&1; then
+  echo "pre-commit: 'dart' not on PATH; skipping format check."
+  exit 0
+fi
+
+# --set-exit-if-changed is non-destructive: it never rewrites files, just
+# exits non-zero when any file would change. Run `dart format .` to fix.
+if ! dart format --set-exit-if-changed $staged_dart_files; then
+  echo ""
+  echo "Files above are not formatted. Fix with:"
+  echo "    dart format ."
+  echo "Then stage the changes and commit again."
+  exit 1
+fi

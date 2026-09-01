@@ -1,0 +1,21 @@
+[
+	{
+		"origin": [
+			"https://listwhatever-prod.web.app",
+			"https://listwhatever-prod.firebaseapp.com",
+			"https://listwhatever-staging-prod.web.app",
+			"https://listwhatever-staging-prod.firebaseapp.com",
+			"http://localhost:5000",
+			"http://localhost:45678"
+		],
+		"method": ["GET", "HEAD", "PUT", "POST", "DELETE"],
+		"responseHeader": [
+			"Content-Type",
+			"Authorization",
+			"Content-Length",
+			"User-Agent",
+			"x-goog-resumable"
+		],
+		"maxAgeSeconds": 3600
+	}
+]

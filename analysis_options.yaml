@@ -1,0 +1,21 @@
+include: package:flutter_lints/flutter.yaml
+
+formatter:
+  page_width: 120
+  trailing_commas: preserve
+
+analyzer:
+  exclude:
+    - apps/app/build/**
+    - "build/**"
+    - "**/lib/**.freezed.dart"
+    - "**/lib/**.g.dart"
+    - widgetbook/build/**.dart
+
+  errors:
+    lines_longer_than_80_chars: ignore
+
+linter:
+  rules:
+    avoid_print: true
+    require_trailing_commas: true

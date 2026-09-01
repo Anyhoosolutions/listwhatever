@@ -1,0 +1,21 @@
+{
+	"projects": {
+		"default": "listwhatever-staging",
+		"staging": "listwhatever-staging",
+		"prod": "listwhatever"
+	},
+	"targets": {
+		"listwhatever-staging": {
+			"hosting": {
+				"main": ["your-staging-site-id"],
+				"widgetbook": ["your-staging-widgetbook-site-id"]
+			}
+		},
+		"listwhatever": {
+			"hosting": {
+				"main": ["your-prod-site-id"],
+				"widgetbook": ["your-prod-widgetbook-site-id"]
+			}
+		}
+	}
+}

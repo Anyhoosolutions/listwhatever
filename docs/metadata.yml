@@ -1,0 +1,10 @@
+projectId: "listwhatever"
+name: "List Whatever"
+description: <FILL_IN>
+contactName: <FILL_IN>
+contactEmail: <FILL_IN>
+allowedUsers:
+webpages:
+  - label: <FILL_IN>
+    url: <FILL_IN>
+github: <FILL_IN>

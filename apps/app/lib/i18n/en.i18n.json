@@ -1,0 +1,30 @@
+{
+	"appName": "List Whatever",
+	"staging": "Staging",
+	"genericLoading": "Loading...",
+	"genericNoData": "No data",
+	"genericError": "Error",
+	"listConjunction": "and",
+	"appShell": {
+		"menu": {
+			"settings": "Settings",
+			"profile": "Profile",
+			"logout": "Logout"
+		}
+	},
+	"mainPage": {
+		"homeTab": "Home",
+		"counterTab": "Counter",
+		"settingsTab": "Settings"
+	},
+	"homePage": {
+		"header": "Home",
+		"openButton": "Open sample item"
+	},
+	"itemPage": {
+		"refreshButton": "Refresh"
+	},
+	"settingsPage": {
+		"header": "Settings"
+	}
+}

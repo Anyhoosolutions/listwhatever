@@ -1,0 +1,21 @@
+{
+	"meta": {
+		"format": "JSON",
+		"version": "1.1.0",
+		"projectId": "listwhatever",
+		"resourcePath": [],
+		"recursive": false,
+		"creationTime": 1785436578,
+		"app": "firefoo"
+	},
+	"data": {
+		"__collections__": {
+			"items": {
+				"1": {
+					"name": "Test City",
+					"__collections__": {}
+				}
+			}
+		}
+	}
+}
