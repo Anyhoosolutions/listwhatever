@@ -8,9 +8,11 @@ class ListItemsRoute extends GoRouteData with $ListItemsRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ListItemsPage(
-      listId: listId,
-      hasLocations: ListItemsSampleData.hasLocations(listId),
+    return BlocProvider(
+      create: (context) => ListItemsCubit(
+        repository: context.read<ListItemsRepository>(),
+      )..load(listId),
+      child: ListItemsPage(listId: listId),
     );
   }
 }

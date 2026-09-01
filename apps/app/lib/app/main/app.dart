@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/di/bloc_providers_factory.dart';
 import 'package:listwhatever/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
 import 'package:listwhatever/app/main/app_theme.dart';
 import 'package:listwhatever/app/main/environments/interfaces/app_repositories.dart';
 import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profile.dart';
@@ -78,6 +80,12 @@ class _AppState extends State<App> {
       RepositoryProvider<Arguments>.value(value: widget.arguments),
       RepositoryProvider<ItemsRepository>(
         create: (_) => widget.repositories.itemsRepository,
+      ),
+      RepositoryProvider<DynamicListsRepository>(
+        create: (_) => widget.repositories.dynamicListsRepository,
+      ),
+      RepositoryProvider<ListItemsRepository>(
+        create: (_) => widget.repositories.listItemsRepository,
       ),
       RepositoryProvider<CurrentTimeRepository>(
         create: (_) => widget.repositories.currentTimeRepository,

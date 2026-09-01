@@ -47,6 +47,11 @@ const _$ListItemIconEnumMap = {
   ListItemIcon.car: 'car',
   ListItemIcon.train: 'train',
   ListItemIcon.bus: 'bus',
+  ListItemIcon.flag: 'flag',
+  ListItemIcon.park: 'park',
+  ListItemIcon.golfCourse: 'golfCourse',
+  ListItemIcon.eco: 'eco',
+  ListItemIcon.waves: 'waves',
 };
 
 const _$ListItemIconBackgroundEnumMap = {

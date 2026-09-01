@@ -12,6 +12,11 @@ enum ListItemIcon {
   car,
   train,
   bus,
+  flag,
+  park,
+  golfCourse,
+  eco,
+  waves,
 }
 
 enum ListItemIconBackground {
