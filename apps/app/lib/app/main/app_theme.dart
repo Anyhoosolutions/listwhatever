@@ -34,7 +34,7 @@ class AppTheme {
     );
   }
 
-  /// Lavender surfaces with emerald accent (light mockup + dark brand green).
+  /// Mint surfaces with emerald accent (light counterpart to Deep Emerald).
   static AppColors _getLightColors() => const AppColors(
     accent: AccentColors(
       primaryFixed: Color(0xFF4EDEA3),
@@ -43,36 +43,36 @@ class AppTheme {
       onPrimaryDisabled: Color(0xFF006C49),
       primaryContainer: Color(0xFF10B981),
       onPrimaryContainer: Color(0xFF00422B),
-      headline: Color(0xFF1B1B22),
+      headline: Color(0xFF0A1F1A),
       inversePrimary: Color(0xFF006C49),
     ),
     surface: SurfaceColors(
-      scaffoldBackground: Color(0xFFFBF8FF),
-      lowContrastBackground: Color(0xFFF5F2FC),
-      primaryText: Color(0xFF1B1B22),
-      secondaryText: Color(0xFF484554),
+      scaffoldBackground: Color(0xFFF2F8F4),
+      lowContrastBackground: Color(0xFFE8F4ED),
+      primaryText: Color(0xFF0A1F1A),
+      secondaryText: Color(0xFF3C4A42),
       cardBackground: Color(0xFFFFFFFF),
-      cardBorder: Color(0xFFC9C4D7),
-      containerHigh: Color(0xFFE9E7F1),
-      containerLow: Color(0xFFF5F2FC),
-      containerHighest: Color(0xFFE4E1EB),
+      cardBorder: Color(0xFFA8CFBC),
+      containerHigh: Color(0xFFD4EBE0),
+      containerLow: Color(0xFFE8F4ED),
+      containerHighest: Color(0xFFC3ECD7),
       containerLowest: Color(0xFFFFFFFF),
-      outline: Color(0xFF797586),
+      outline: Color(0xFF6B8F7E),
       secondaryContainer: Color(0xFFD1FAE5),
       onSecondaryContainer: Color(0xFF006C49),
-      inverseSurface: Color(0xFF303037),
-      inverseOnSurface: Color(0xFFF2EFF9),
+      inverseSurface: Color(0xFF20342F),
+      inverseOnSurface: Color(0xFFD0E8DF),
     ),
     appBar: AppBarColors(
-      topBarBackground: Color(0xFFFBF8FF),
-      topBarBorder: Color(0xFFC9C4D7),
-      topBarText: Color(0xFF1B1B22),
-      backButtonColor: Color(0xFF1B1B22),
+      topBarBackground: Color(0xFFF2F8F4),
+      topBarBorder: Color(0xFFA8CFBC),
+      topBarText: Color(0xFF0A1F1A),
+      backButtonColor: Color(0xFF0A1F1A),
       avatarColor: Color(0xFF10B981),
-      bottomBarBackground: Color(0xFFFBF8FF),
-      bottomBarIconColors: Color(0xFF484554),
+      bottomBarBackground: Color(0xFFF2F8F4),
+      bottomBarIconColors: Color(0xFF3C4A42),
       bottomBarIndicatorColor: Color(0xFF10B981),
-      bottomBarBorderColor: Color(0xFF10B981),
+      bottomBarBorderColor: Color(0xFFA8CFBC),
     ),
     status: StatusColors(
       error: Color(0xFFBA1A1A),
@@ -80,7 +80,7 @@ class AppTheme {
       warning: Color(0xFFF59E0B),
       success: Color(0xFF10B981),
     ),
-    shimmer: ShimmerColors(baseColor: Color(0xFFE9E7F1), highlightColor: Color(0xFFF5F2FC)),
+    shimmer: ShimmerColors(baseColor: Color(0xFFD4EBE0), highlightColor: Color(0xFFE8F4ED)),
   );
 
   /// Deep Emerald dark palette from `mockups/my_lists_dashboard/DESIGN.md`.
