@@ -85,107 +85,108 @@ Color colorFor(ListItemIconBackground? background) {
   };
 }
 
-ListItemIcon iconFromPreview(ListItemPreview preview) {
-  if (preview.icon == Icons.movie_outlined) return ListItemIcon.movie;
-  if (preview.icon == Icons.restaurant_outlined) return ListItemIcon.restaurant;
-  if (preview.icon == Icons.hotel_outlined) return ListItemIcon.hotel;
-  if (preview.icon == Icons.flight_outlined) return ListItemIcon.flight;
-  if (preview.icon == Icons.directions_car_outlined) return ListItemIcon.car;
-  if (preview.icon == Icons.train_outlined) return ListItemIcon.train;
-  if (preview.icon == Icons.directions_bus_outlined) return ListItemIcon.bus;
-  if (preview.icon == Icons.flag_outlined) return ListItemIcon.flag;
-  if (preview.icon == Icons.park_outlined) return ListItemIcon.park;
-  if (preview.icon == Icons.golf_course_outlined) return ListItemIcon.golfCourse;
-  if (preview.icon == Icons.eco_outlined) return ListItemIcon.eco;
-  if (preview.icon == Icons.waves_outlined) return ListItemIcon.waves;
-  return ListItemIcon.flag;
-}
-
-ListItemIconBackground backgroundFromPreview(ListItemPreview preview) {
-  if (preview.iconBackground == const Color(0xFFEF4444)) return ListItemIconBackground.red;
-  if (preview.iconBackground == const Color(0xFF1D4ED8) || preview.iconBackground == const Color(0xFF3B82F6)) {
-    return ListItemIconBackground.blue;
-  }
-  if (preview.iconBackground == const Color(0xFFF59E0B)) return ListItemIconBackground.yellow;
-  if (preview.iconBackground == const Color(0xFF4338CA)) return ListItemIconBackground.purple;
-  return ListItemIconBackground.green;
-}
-
 abstract final class ListItemsSampleData {
-  static const golfCourses = [
-    ListItemPreview(
+  static final _now = DateTime.utc(2026, 9, 1, 17);
+
+  static final golfCourses = [
+    ListItem(
       id: 'pebble',
       title: 'Pebble Beach Golf Links',
-      access: ListItemAccess.public,
-      par: 72,
-      rating: 4.9,
-      location: 'California',
-      description: 'Iconic coastal destination featuring scenic golf courses, luxury resort...',
-      distanceLabel: '5 miles away',
-      icon: Icons.flag_outlined,
-      iconBackground: Color(0xFF166534),
-      mapX: 0.42,
-      mapY: 0.38,
+      notes: 'Iconic coastal destination featuring scenic golf courses, luxury resort...',
+      address: 'California',
+      categoryValues: {
+        'access': ListItemAccess.public.name,
+        'par': 72,
+        'rating': 4.9,
+        'distanceLabel': '5 miles away',
+        'mapX': 0.42,
+        'mapY': 0.38,
+      },
+      langlong: const LatLong(latitude: 36.88, longitude: -121.48),
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.flag,
+      iconBackground: ListItemIconBackground.green,
     ),
-    ListItemPreview(
+    ListItem(
       id: 'cypress',
       title: 'Cypress Point Club',
-      access: ListItemAccess.private,
-      par: 72,
-      rating: 5.0,
-      location: 'California',
-      description: 'Exclusive clifftop layout known for its cypress trees and ocean holes.',
-      distanceLabel: '8 miles away',
-      icon: Icons.park_outlined,
-      iconBackground: Color(0xFF0F766E),
-      mapX: 0.28,
-      mapY: 0.52,
+      notes: 'Exclusive clifftop layout known for its cypress trees and ocean holes.',
+      address: 'California',
+      categoryValues: {
+        'access': ListItemAccess.private.name,
+        'par': 72,
+        'rating': 5.0,
+        'distanceLabel': '8 miles away',
+        'mapX': 0.28,
+        'mapY': 0.52,
+      },
+      langlong: const LatLong(latitude: 37.02, longitude: -121.62),
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
     ),
-    ListItemPreview(
+    ListItem(
       id: 'st-andrews',
       title: 'St Andrews (Old Course)',
-      access: ListItemAccess.public,
-      par: 72,
-      rating: 4.8,
-      location: 'Scotland',
-      description: 'The home of golf, with historic fairways and a town-center finish.',
-      distanceLabel: '5,200 miles away',
-      icon: Icons.golf_course_outlined,
-      iconBackground: Color(0xFF1D4ED8),
-      mapX: 0.62,
-      mapY: 0.22,
+      notes: 'The home of golf, with historic fairways and a town-center finish.',
+      address: 'Scotland',
+      categoryValues: {
+        'access': ListItemAccess.public.name,
+        'par': 72,
+        'rating': 4.8,
+        'distanceLabel': '5,200 miles away',
+        'mapX': 0.62,
+        'mapY': 0.22,
+      },
+      langlong: const LatLong(latitude: 36.72, longitude: -121.28),
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.golfCourse,
+      iconBackground: ListItemIconBackground.blue,
     ),
-    ListItemPreview(
+    ListItem(
       id: 'augusta',
       title: 'Augusta National',
-      access: ListItemAccess.private,
-      par: 72,
-      rating: 5.0,
-      location: 'Georgia',
-      description: 'Home of the Masters, famous for amen corner and azaleas.',
-      distanceLabel: '2,400 miles away',
-      icon: Icons.eco_outlined,
-      iconBackground: Color(0xFF15803D),
-      mapX: 0.7,
-      mapY: 0.58,
+      notes: 'Home of the Masters, famous for amen corner and azaleas.',
+      address: 'Georgia',
+      categoryValues: {
+        'access': ListItemAccess.private.name,
+        'par': 72,
+        'rating': 5.0,
+        'distanceLabel': '2,400 miles away',
+        'mapX': 0.7,
+        'mapY': 0.58,
+      },
+      langlong: const LatLong(latitude: 37.08, longitude: -121.2),
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.eco,
+      iconBackground: ListItemIconBackground.green,
     ),
-    ListItemPreview(
+    ListItem(
       id: 'county-down',
       title: 'Royal County Down',
-      access: ListItemAccess.private,
-      par: 71,
-      rating: 4.9,
-      location: 'Northern Ireland',
-      description: 'Links golf beneath the Mountains of Mourne, with dunes and sea views.',
-      distanceLabel: '5,100 miles away',
-      icon: Icons.waves_outlined,
-      iconBackground: Color(0xFF4338CA),
-      mapX: 0.18,
-      mapY: 0.3,
+      notes: 'Links golf beneath the Mountains of Mourne, with dunes and sea views.',
+      address: 'Northern Ireland',
+      categoryValues: {
+        'access': ListItemAccess.private.name,
+        'par': 71,
+        'rating': 4.9,
+        'distanceLabel': '5,100 miles away',
+        'mapX': 0.18,
+        'mapY': 0.3,
+      },
+      langlong: const LatLong(latitude: 36.8, longitude: -121.72),
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.waves,
+      iconBackground: ListItemIconBackground.purple,
     ),
   ];
 
-  static List<ListItemPreview> forListId(String listId) {
+  static List<ListItem> forListId(String listId) {
     return switch (listId) {
       'golf' => golfCourses,
       'trips' => golfCourses,

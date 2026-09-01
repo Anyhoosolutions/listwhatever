@@ -10,37 +10,10 @@ class FakeListItemsRepository implements ListItemsRepository {
 
   final Map<String, Map<String, ListItem>> _itemsByListId;
 
-  static final _now = DateTime.utc(2026, 9, 1, 17);
-
   static final _defaultItems = {
-    'golf': ListItemsSampleData.golfCourses.map(_fromPreview).toList(),
-    'trips': ListItemsSampleData.golfCourses.map(_fromPreview).toList(),
+    'golf': ListItemsSampleData.golfCourses,
+    'trips': ListItemsSampleData.golfCourses,
   };
-
-  static ListItem _fromPreview(ListItemPreview preview) {
-    return ListItem(
-      id: preview.id,
-      title: preview.title,
-      notes: preview.description,
-      address: preview.location,
-      categoryValues: {
-        'access': preview.access.name,
-        'par': preview.par,
-        'rating': preview.rating,
-        'distanceLabel': preview.distanceLabel,
-        'mapX': preview.mapX,
-        'mapY': preview.mapY,
-      },
-      langlong: LatLong(
-        latitude: 36.5 + preview.mapY,
-        longitude: -121.9 + preview.mapX,
-      ),
-      createdAt: _now,
-      updatedAt: _now,
-      icon: iconFromPreview(preview),
-      iconBackground: backgroundFromPreview(preview),
-    );
-  }
 
   @override
   Future<ListItem?> getById({required String listId, required String itemId}) async {
