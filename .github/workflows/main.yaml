@@ -7,3 +7,4 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       coverage_excludes: "*.g.dart *.freezed.dart *.tailor.dart" # defaults to "" (none)
+      analyze_directories: "apps/app/lib packages/core_models/lib functions/lib functions/bin"
