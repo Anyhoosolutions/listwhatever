@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:screenshot_kit/screenshot_kit.dart';
-import 'package:lowercase_app_name/app/di/bloc_providers_factory.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/mock_auth_cubit.dart';
-import 'package:lowercase_app_name/app/routing/app_shell.dart';
+import 'package:listwhatever/app/di/bloc_providers_factory.dart';
+import 'package:listwhatever/app/main/environments/fake/mock_auth_cubit.dart';
+import 'package:listwhatever/app/routing/app_shell.dart';
 
 final kGoldenFixedNow = DateTime.utc(2026, 4, 19, 12);
 

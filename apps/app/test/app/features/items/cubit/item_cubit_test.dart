@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lowercase_app_name/app/features/items/cubit/item_cubit.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/fake_repositories.dart';
+import 'package:listwhatever/app/features/items/cubit/item_cubit.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_repositories.dart';
 
 void main() {
   test('ItemCubit loads fake item', () async {

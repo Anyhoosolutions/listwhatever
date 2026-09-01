@@ -1,8 +1,8 @@
-# Display_name_to_replace: Business Requirements Document (BRD)
+# List Whatever: Business Requirements Document (BRD)
 
 # 1 Document Metadata & Versioning
 
-* **Project / Business Name:** Display_name_to_replace  
+* **Project / Business Name:** List Whatever  
 * **Document Version:** 1.0.0  
 * **Document Status:** Draft  
 * **Executive Sponsor / Lead:** Senior Lead Software Architect  

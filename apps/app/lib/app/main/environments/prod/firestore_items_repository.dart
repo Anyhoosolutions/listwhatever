@@ -1,6 +1,6 @@
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lowercase_app_name/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/features/items/items_repository.dart';
 
 import 'package:core_models/core_models.dart';
 

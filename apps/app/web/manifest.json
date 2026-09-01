@@ -1,6 +1,6 @@
 {
-	"name": "lowercase_app_name",
-	"short_name": "lowercase_app_name",
+	"name": "listwhatever",
+	"short_name": "listwhatever",
 	"start_url": ".",
 	"display": "standalone",
 	"background_color": "#0175C2",

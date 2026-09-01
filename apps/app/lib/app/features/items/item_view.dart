@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:core_models/core_models.dart';
-import 'package:lowercase_app_name/i18n/strings.g.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
 
 class ItemView extends StatelessWidget {
   const ItemView({

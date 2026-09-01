@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/features/items/item_view.dart';
+import 'package:listwhatever/app/features/items/item_view.dart';
 
 import 'package:core_models/core_models.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;

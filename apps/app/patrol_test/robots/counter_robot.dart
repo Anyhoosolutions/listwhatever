@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
-import 'package:lowercase_app_name/shared/keys.dart';
+import 'package:listwhatever/shared/keys.dart';
 
 class CounterRobot {
   const CounterRobot(this.$);

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:lowercase_app_name/app/features/items/cubit/item_state.dart';
-import 'package:lowercase_app_name/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/features/items/cubit/item_state.dart';
+import 'package:listwhatever/app/features/items/items_repository.dart';
 
 class ItemCubit extends Cubit<ItemState> {
   ItemCubit({required this._repository}) : super(const ItemState());

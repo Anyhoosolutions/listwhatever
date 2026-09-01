@@ -2,9 +2,9 @@ import 'package:anyhoo_auth/anyhoo_auth.dart';
 import 'package:anyhoo_core/models/arguments.dart';
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lowercase_app_name/app/di/auth_factory.dart';
-import 'package:lowercase_app_name/shared/firebase/emulator_host.dart';
-import 'package:lowercase_app_name/shared/firebase/emulator_ports.dart';
+import 'package:listwhatever/app/di/auth_factory.dart';
+import 'package:listwhatever/shared/firebase/emulator_host.dart';
+import 'package:listwhatever/shared/firebase/emulator_ports.dart';
 import 'package:core_models/core_models.dart';
 
 class AppAuthFactory {

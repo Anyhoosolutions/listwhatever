@@ -1,7 +1,7 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/features/counter/counter_click_handlers.dart';
-import 'package:lowercase_app_name/shared/keys.dart';
+import 'package:listwhatever/app/features/counter/counter_click_handlers.dart';
+import 'package:listwhatever/shared/keys.dart';
 
 class CounterView extends StatelessWidget {
   const CounterView({

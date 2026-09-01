@@ -1,4 +1,4 @@
-import 'package:lowercase_app_name/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/features/items/items_repository.dart';
 import 'package:core_models/core_models.dart';
 
 class FakeItemsRepository implements ItemsRepository {

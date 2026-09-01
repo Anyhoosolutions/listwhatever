@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:lowercase_app_name/app/features/counter/cubit/counter_state.dart';
+import 'package:listwhatever/app/features/counter/cubit/counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
   CounterCubit() : super(const CounterState());

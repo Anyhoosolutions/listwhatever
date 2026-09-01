@@ -4,10 +4,10 @@ import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lowercase_app_name/i18n/strings.g.dart';
-import 'package:lowercase_app_name/shared/keys.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:listwhatever/shared/keys.dart';
 import 'package:flutter/services.dart';
-import 'package:lowercase_app_name/shared/widgets/staging_banner.dart';
+import 'package:listwhatever/shared/widgets/staging_banner.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.child});

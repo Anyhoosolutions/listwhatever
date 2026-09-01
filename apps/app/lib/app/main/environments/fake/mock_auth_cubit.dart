@@ -3,8 +3,8 @@ import 'package:anyhoo_auth/cubit/anyhoo_auth_state.dart';
 import 'package:anyhoo_auth/services/anyhoo_auth_service.dart';
 import 'package:anyhoo_auth/services/anyhoo_enhance_user_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/fake_data.dart';
-import 'package:lowercase_app_name/shared/user/user_converter.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_data.dart';
+import 'package:listwhatever/shared/user/user_converter.dart';
 
 import 'package:core_models/core_models.dart';
 

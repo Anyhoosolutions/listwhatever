@@ -1,4 +1,4 @@
-name: lowercase_app_name_moonorepo
+name: listwhatever_moonorepo
 publish_to: none
 environment:
   sdk: ^3.12.0
@@ -26,7 +26,7 @@ melos:
     generate:icons:
       exec: dart run flutter_launcher_icons && dart run tool/generate_macos_icons.dart
       packageFilters:
-        scope: lowercase_app_name
+        scope: listwhatever
     cleanAndPubGet:
       run: melos exec -c 1 -- flutter clean && melos exec -c 1 -- flutter pub get
 

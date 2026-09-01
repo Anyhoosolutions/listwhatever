@@ -2,7 +2,7 @@
 
 # 1\. Document Overview & Scope
 
-* **Application Name:** Display_name_to_replace
+* **Application Name:** List Whatever
 * **Document Version:** 1.0.0  
 * **Target Platforms:** Web (Desktop & Mobile Web), Mobile (iOS & Android).  
 * **Scope:** This document defines the technical baseline and architectural requirements for an integrated development hub designed to unify project management, local emulation, cross-platform compilation, and deployment tracking.
@@ -32,7 +32,7 @@ The implementation must adhere to the following non-negotiable architectural bas
 
 Source code must reside in a unified monorepo managed via **Melos**.
 
-* **apps/lowercase_app_name:** The primary developer console application.  
+* **apps/listwhatever:** The primary developer console application.  
 * **packages/core\_models:** Pure Dart domain models and shared DTOs used by both the app and Cloud Functions.  
 * **functions:** Firebase functions written in Dart.
 

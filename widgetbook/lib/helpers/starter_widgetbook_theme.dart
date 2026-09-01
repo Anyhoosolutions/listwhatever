@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/flavors/flavor_profiles.dart';
+import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profiles.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 /// Widgetbook shell + preview themes — same [AppTheme] as the main app.

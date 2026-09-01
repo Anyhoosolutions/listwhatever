@@ -1,7 +1,7 @@
 import 'package:anyhoo_auth/anyhoo_auth.dart';
 import 'package:anyhoo_core/models/arguments.dart';
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
-import 'package:lowercase_app_name/shared/user/user_converter.dart';
+import 'package:listwhatever/shared/user/user_converter.dart';
 import 'package:core_models/core_models.dart';
 
 class AuthCubitFactory {

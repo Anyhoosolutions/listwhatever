@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "android_package_name_to_replace"
+    namespace = "com.anyhoosolutions.listwhatever"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "android_package_name_to_replace"
+        applicationId = "com.anyhoosolutions.listwhatever"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -36,12 +36,12 @@ android {
     productFlavors {
         create("prod") {
             dimension = "env"
-            resValue("string", "app_name", "Display_name_to_replace")
+            resValue("string", "app_name", "List Whatever")
         }
         create("staging") {
             dimension = "env"
             applicationIdSuffix = ".staging"
-            resValue("string", "app_name", "Display_name_to_replace Staging")
+            resValue("string", "app_name", "List Whatever Staging")
         }
     }
 }

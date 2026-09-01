@@ -1,4 +1,4 @@
-package android_package_name_to_replace
+package com.anyhoosolutions.listwhatever
 
 import io.flutter.embedding.android.FlutterActivity
 

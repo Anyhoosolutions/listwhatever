@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/main/app_theme.dart';
+import 'package:listwhatever/app/main/app_theme.dart';
 import 'package:widgetbook_workspace/helpers/device_frame_wrapper.dart';
 
 /// Material shell for stateless [view] widgets (no router or cubits).

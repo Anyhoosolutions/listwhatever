@@ -1,4 +1,4 @@
-name: lowercase_app_name
+name: listwhatever
 description: <FILL_IN>
 publish_to: "none"
 version: 1.0.0+1
@@ -108,13 +108,13 @@ dev_dependencies:
   slang_build_runner: ^4.15.0
 
 patrol:
-  app_name: Display_name_to_replace
+  app_name: List Whatever
   android:
-    package_name: android_package_name_to_replace
+    package_name: com.anyhoosolutions.listwhatever
   ios:
-    bundle_id: ios_package_name_to_replace
+    bundle_id: com.anyhoosolutions.listwhatever
   macos:
-    bundle_id: macos_package_name_to_replace
+    bundle_id: com.anyhoosolutions.listwhatever
 
 flutter:
   uses-material-design: true

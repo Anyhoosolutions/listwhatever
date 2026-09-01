@@ -1,17 +1,17 @@
 {
 	"projects": {
-		"default": "firebase_staging_project_id_to_replace",
-		"staging": "firebase_staging_project_id_to_replace",
-		"prod": "firebase_prod_project_id_to_replace"
+		"default": "listwhatever-staging",
+		"staging": "listwhatever-staging",
+		"prod": "listwhatever"
 	},
 	"targets": {
-		"firebase_staging_project_id_to_replace": {
+		"listwhatever-staging": {
 			"hosting": {
 				"main": ["your-staging-site-id"],
 				"widgetbook": ["your-staging-widgetbook-site-id"]
 			}
 		},
-		"firebase_prod_project_id_to_replace": {
+		"listwhatever": {
 			"hosting": {
 				"main": ["your-prod-site-id"],
 				"widgetbook": ["your-prod-widgetbook-site-id"]

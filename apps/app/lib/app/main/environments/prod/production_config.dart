@@ -2,13 +2,13 @@ import 'package:anyhoo_auth/cubit/anyhoo_auth_cubit.dart';
 import 'package:anyhoo_core/models/arguments.dart';
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lowercase_app_name/app/di/app_auth_factory.dart';
-import 'package:lowercase_app_name/app/main/environment_config.dart';
-import 'package:lowercase_app_name/app/main/environments/interfaces/app_repositories.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/flavors/flavor_profile.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/flavors/flavor_profiles.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/production_repositories.dart';
-import 'package:lowercase_app_name/shared/firebase/firebase_options_resolver.dart';
+import 'package:listwhatever/app/di/app_auth_factory.dart';
+import 'package:listwhatever/app/main/environment_config.dart';
+import 'package:listwhatever/app/main/environments/interfaces/app_repositories.dart';
+import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profile.dart';
+import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profiles.dart';
+import 'package:listwhatever/app/main/environments/prod/production_repositories.dart';
+import 'package:listwhatever/shared/firebase/firebase_options_resolver.dart';
 
 import 'package:core_models/core_models.dart';
 

@@ -41,8 +41,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 
-	/// en: 'Display_name_to_replace'
-	String get appName => 'Display_name_to_replace';
+	/// en: 'List Whatever'
+	String get appName => 'List Whatever';
 
 	/// en: 'Staging'
 	String get staging => 'Staging';
@@ -159,7 +159,7 @@ class Translations$appShell$menu$en {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'Display_name_to_replace',
+			'appName' => 'List Whatever',
 			'staging' => 'Staging',
 			'genericLoading' => 'Loading...',
 			'genericNoData' => 'No data',

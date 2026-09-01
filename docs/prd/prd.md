@@ -2,7 +2,7 @@
 
 # 1\. Document Overview & Metadata
 
-* **Product / App Name:** Display_name_to_replace
+* **Product / App Name:** List Whatever
 * **Document Version:** 1.0.0  
 * **Status:** Draft  
 * **Target Release:** QQ YYYY  
@@ -22,7 +22,7 @@
 
 Following the **Melos monorepo structure**, the project is organized into modular packages:
 
-* **Primary Application:** `apps/app/lowercase_app_name`  
+* **Primary Application:** `apps/app/listwhatever`  
 * **Data Models & Schemas:** `packages/core_models` (Freezed DTOs shared between app and functions).  
 * **Cloud Functions:** `functions/` (Dart-based Firebase Cloud Functions).
 
@@ -30,7 +30,7 @@ Following the **Melos monorepo structure**, the project is organized into modula
 
 | Feature ID | Feature Name | Priority | Primary Target Layer | Key Functionality |
 | ----- | ----- | ----- | ----- | ----- |
-| **FEAT-01** | **<FILL_IN>** | P0 | `apps/lowercase_app_name` | <FILL_IN> |
+| **FEAT-01** | **<FILL_IN>** | P0 | `apps/listwhatever` | <FILL_IN> |
 | **FEAT-02** | **<FILL_IN>** | P0 | `<FILL_IN>` | <FILL_IN> |
 | **FEAT-03** | **<FILL_IN>** | P1 | `<FILL_IN>` | <FILL_IN> |
 | **FEAT-04** | **<FILL_IN>** | P0 | `<FILL_IN>` | <FILL_IN> |

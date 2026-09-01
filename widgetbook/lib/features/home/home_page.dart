@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/features/home/home_page.dart';
+import 'package:listwhatever/app/features/home/home_page.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 

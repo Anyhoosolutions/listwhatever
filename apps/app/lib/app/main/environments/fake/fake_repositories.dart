@@ -1,7 +1,7 @@
 import 'package:anyhoo_core/repositories/current_time_repository.dart';
-import 'package:lowercase_app_name/app/features/items/items_repository.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/fake_items_repository.dart';
-import 'package:lowercase_app_name/app/main/environments/interfaces/app_repositories.dart';
+import 'package:listwhatever/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_items_repository.dart';
+import 'package:listwhatever/app/main/environments/interfaces/app_repositories.dart';
 
 class FakeRepositories extends AppRepositories {
   FakeRepositories();

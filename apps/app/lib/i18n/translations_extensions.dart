@@ -1,4 +1,4 @@
-import 'package:lowercase_app_name/i18n/strings.g.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
 
 extension TranslationsExtension on Translations {
   /// Joins [items] with locale-appropriate conjunctions and separators.

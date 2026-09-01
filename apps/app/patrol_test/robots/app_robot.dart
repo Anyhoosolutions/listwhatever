@@ -4,14 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
-import 'package:lowercase_app_name/app/main/app.dart';
-import 'package:lowercase_app_name/app/main/bootstrap.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/fake_repositories.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/mock_auth_cubit.dart';
-import 'package:lowercase_app_name/app/main/environments/interfaces/app_repositories.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/flavors/flavor_profiles.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/production_config.dart';
-import 'package:lowercase_app_name/shared/keys.dart';
+import 'package:listwhatever/app/main/app.dart';
+import 'package:listwhatever/app/main/bootstrap.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_repositories.dart';
+import 'package:listwhatever/app/main/environments/fake/mock_auth_cubit.dart';
+import 'package:listwhatever/app/main/environments/interfaces/app_repositories.dart';
+import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profiles.dart';
+import 'package:listwhatever/app/main/environments/prod/production_config.dart';
+import 'package:listwhatever/shared/keys.dart';
 import 'package:core_models/core_models.dart';
 
 class AppRobot {

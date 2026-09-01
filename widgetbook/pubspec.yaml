@@ -1,5 +1,5 @@
 name: widgetbook_workspace
-description: Widgetbook catalog for the Display_name_to_replace app — preview views and pages in isolation.
+description: Widgetbook catalog for the List Whatever app — preview views and pages in isolation.
 publish_to: "none"
 version: 0.1.0+1
 
@@ -17,7 +17,7 @@ dependencies:
   go_router: ^17.0.0
   device_frame_plus: ^1.5.0
 
-  lowercase_app_name:
+  listwhatever:
     path: ../apps/app
   core_models:
     path: ../packages/core_models

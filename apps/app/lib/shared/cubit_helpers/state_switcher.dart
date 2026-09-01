@@ -1,8 +1,8 @@
 import 'package:anyhoo_core/widgets/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lowercase_app_name/shared/cubit_helpers/loadable_shimmer.dart';
-import 'package:lowercase_app_name/shared/cubit_helpers/loadable_state.dart';
+import 'package:listwhatever/shared/cubit_helpers/loadable_shimmer.dart';
+import 'package:listwhatever/shared/cubit_helpers/loadable_state.dart';
 
 typedef StateSuccessBuilder<B extends StateStreamable<S>, S extends LoadableState<T>, T> =
     Widget Function(BuildContext context, T data, B bloc);

@@ -37,7 +37,7 @@ class TranslationsSv with BaseTranslations<AppLocale, Translations> implements T
 	TranslationsSv $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsSv(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'Display_name_to_replace';
+	@override String get appName => 'List Whatever';
 	@override String get staging => 'Staging';
 	@override String get genericLoading => 'Laddar...';
 	@override String get genericNoData => 'Inga data';
@@ -123,7 +123,7 @@ class _Translations$appShell$menu$sv implements Translations$appShell$menu$en {
 extension on TranslationsSv {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'Display_name_to_replace',
+			'appName' => 'List Whatever',
 			'staging' => 'Staging',
 			'genericLoading' => 'Laddar...',
 			'genericNoData' => 'Inga data',

@@ -6,16 +6,16 @@ import 'package:anyhoo_logging/anyhoo_logging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lowercase_app_name/app/di/bloc_providers_factory.dart';
-import 'package:lowercase_app_name/app/features/items/items_repository.dart';
-import 'package:lowercase_app_name/app/main/app_theme.dart';
-import 'package:lowercase_app_name/app/main/environments/interfaces/app_repositories.dart';
-import 'package:lowercase_app_name/app/main/environments/prod/flavors/flavor_profile.dart';
-import 'package:lowercase_app_name/app/routing/create_app_router.dart';
-// import 'package:lowercase_app_name/shared/widgets/staging_banner.dart';
+import 'package:listwhatever/app/di/bloc_providers_factory.dart';
+import 'package:listwhatever/app/features/items/items_repository.dart';
+import 'package:listwhatever/app/main/app_theme.dart';
+import 'package:listwhatever/app/main/environments/interfaces/app_repositories.dart';
+import 'package:listwhatever/app/main/environments/prod/flavors/flavor_profile.dart';
+import 'package:listwhatever/app/routing/create_app_router.dart';
+// import 'package:listwhatever/shared/widgets/staging_banner.dart';
 
 import 'package:core_models/core_models.dart';
-import 'package:lowercase_app_name/i18n/strings.g.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
 
 class App extends StatefulWidget {
   const App({

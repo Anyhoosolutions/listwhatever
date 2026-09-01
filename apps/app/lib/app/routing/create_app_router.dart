@@ -5,7 +5,7 @@ import 'package:anyhoo_core/widgets/error_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lowercase_app_name/app/routing/routes.dart';
+import 'package:listwhatever/app/routing/routes.dart';
 
 import 'package:core_models/core_models.dart';
 

@@ -1,4 +1,4 @@
-# Display_name_to_replace
+# List Whatever
 
 Copy this directory to bootstrap a new Flutter app using Anyhoo best practices.
 
@@ -15,7 +15,7 @@ flutter pub get
 dart run build_runner build
 ./tool/install_git_hooks.sh
 flutterfire configure --out=lib/shared/firebase/firebase_options.dart
-flutterfire configure --project=firebase_staging_project_id_to_replace --out=lib/shared/firebase/firebase_options_staging.dart
+flutterfire configure --project=listwhatever-staging --out=lib/shared/firebase/firebase_options_staging.dart
 ```
 
 Register the project path in Anyhoo Central when ready.
@@ -109,7 +109,7 @@ Register `widgetbookDirectory: widgetbook` in Anyhoo Central when linking the pr
 
 ## Deploy flavors (Android)
 
-Gradle `env` dimension: `prod` (`android_package_name_to_replace`) and `staging` (`android_package_name_to_replace.staging`).
+Gradle `env` dimension: `prod` (`com.anyhoosolutions.listwhatever`) and `staging` (`com.anyhoosolutions.listwhatever.staging`).
 
 Web hosting targets in `firebase.json`: `app` and `app-staging`.
 
@@ -125,12 +125,12 @@ See [docs/enable_four_mobile_variants.md](../../docs/enable_four_mobile_variants
 
 | Token | Default |
 |-------|---------|
-| Package | `lowercase_app_name` |
-| Android Package Name | `android_package_name_to_replace` |
-| iOS Bundle ID | `ios_package_name_to_replace` |
-| macOS Bundle ID | `macos_package_name_to_replace` |
-| Display name | `Display_name_to_replace` |
-| Firebase project | `firebase_prod_project_id_to_replace` / `firebase_staging_project_id_to_replace` |
+| Package | `listwhatever` |
+| Android Package Name | `com.anyhoosolutions.listwhatever` |
+| iOS Bundle ID | `com.anyhoosolutions.listwhatever` |
+| macOS Bundle ID | `com.anyhoosolutions.listwhatever` |
+| Display name | `List Whatever` |
+| Firebase project | `listwhatever` / `listwhatever-staging` |
 
 ## Health scoring
 

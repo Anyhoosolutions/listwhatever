@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:logging/logging.dart';
-import 'package:lowercase_app_name/shared/firebase/firebase_options.dart';
-import 'package:lowercase_app_name/shared/firebase/firebase_options_staging.dart';
+import 'package:listwhatever/shared/firebase/firebase_options.dart';
+import 'package:listwhatever/shared/firebase/firebase_options_staging.dart';
 
 /// Resolves [FirebaseOptions] for the active deploy flavor.
 ///

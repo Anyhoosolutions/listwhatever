@@ -1,10 +1,10 @@
 [
 	{
 		"origin": [
-			"https://firebase_prod_project_id_to_replace-prod.web.app",
-			"https://firebase_prod_project_id_to_replace-prod.firebaseapp.com",
-			"https://firebase_staging_project_id_to_replace-prod.web.app",
-			"https://firebase_staging_project_id_to_replace-prod.firebaseapp.com",
+			"https://listwhatever-prod.web.app",
+			"https://listwhatever-prod.firebaseapp.com",
+			"https://listwhatever-staging-prod.web.app",
+			"https://listwhatever-staging-prod.firebaseapp.com",
 			"http://localhost:5000",
 			"http://localhost:45678"
 		],

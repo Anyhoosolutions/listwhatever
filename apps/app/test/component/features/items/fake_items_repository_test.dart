@@ -1,8 +1,8 @@
 @Tags(['component'])
 library;
 
-import 'package:lowercase_app_name/app/main/environments/fake/fake_items_repository.dart';
-import 'package:lowercase_app_name/app/main/environments/fake/fake_repositories.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_items_repository.dart';
+import 'package:listwhatever/app/main/environments/fake/fake_repositories.dart';
 import 'package:test/test.dart';
 
 void main() {

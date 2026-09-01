@@ -1,7 +1,7 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:lowercase_app_name/app/routing/routes.dart';
-import 'package:lowercase_app_name/i18n/strings.g.dart';
+import 'package:listwhatever/app/routing/routes.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
