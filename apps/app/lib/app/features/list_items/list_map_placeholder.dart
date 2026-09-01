@@ -33,7 +33,7 @@ class ListMapPlaceholder extends StatelessWidget {
               for (final item in items)
                 Positioned(
                   left: 10, // constraints.maxWidth * item.mapX - 12,
-                  top: 10, //constraints.maxHeight * item.mapY - 24,
+                  top: 100, //constraints.maxHeight * item.mapY - 24,
                   child: GestureDetector(
                     onTap: onItemSelected == null ? null : () => onItemSelected!(item),
                     child: Column(

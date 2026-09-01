@@ -3,6 +3,10 @@ import 'package:anyhoo_logging/anyhoo_logging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listwhatever/app/features/list_items/fake_list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/fake_dynamic_lists_repository.dart';
 import 'package:screenshot_kit/screenshot_kit.dart';
 import 'package:listwhatever/app/di/bloc_providers_factory.dart';
 import 'package:listwhatever/app/main/app_theme.dart';
@@ -68,6 +72,12 @@ Widget providersWrapper({
     providers: [
       RepositoryProvider<CurrentTimeRepository>(
         create: (_) => CurrentTimeRepository(fixedNow),
+      ),
+      RepositoryProvider<DynamicListsRepository>(
+        create: (_) => FakeDynamicListsRepository(),
+      ),
+      RepositoryProvider<ListItemsRepository>(
+        create: (_) => FakeListItemsRepository(),
       ),
       ...extraRepositoryProviders,
     ],
