@@ -35,6 +35,6 @@ class FirestoreListItemsRepository implements ListItemsRepository {
 
   @override
   Future<void> delete({required String listId, required String itemId}) async {
-    await firestoreService.deleteDocument('lists/$listId/items/$itemId');
+    await firestoreService.deleteDocument('lists/$listId/items/', itemId);
   }
 }

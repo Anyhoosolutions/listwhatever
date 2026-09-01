@@ -35,6 +35,6 @@ class FirestoreDynamicListsRepository implements DynamicListsRepository {
 
   @override
   Future<void> delete(String id) async {
-    await _firestoreService.deleteDocument('lists/$id');
+    await _firestoreService.deleteDocument('lists/', id);
   }
 }
