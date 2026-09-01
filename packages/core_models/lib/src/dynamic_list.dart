@@ -1,4 +1,3 @@
-import 'package:core_models/src/list_item.dart';
 import 'package:core_models/src/typedefs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,7 +13,8 @@ abstract class DynamicList with _$DynamicList {
     required String description,
     required String visibility, // 'private' | 'shared' | 'public'
     @Default([]) List<UserId> collaboratorIds,
-    @Default([]) List<ListItem> items,
+    @Default(0) int itemCount,
+    @Default(false) bool hasLocations,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _DynamicList;
