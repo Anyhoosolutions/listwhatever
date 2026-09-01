@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:patrol/patrol.dart';
 import 'package:listwhatever/app/features/home/home_page.dart';
+import 'package:listwhatever/app/main/app_theme.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:patrol/patrol.dart';
 
 void main() {
   patrolTest('home page smoke', ($) async {
     await $.pumpWidgetAndSettle(
-      const MaterialApp(
-        home: Scaffold(body: HomePage()),
+      TranslationProvider(
+        child: MaterialApp(
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          themeMode: ThemeMode.dark,
+          home: const Scaffold(body: HomePage()),
+        ),
       ),
     );
 
-    expect($('Home'), findsOneWidget);
-    expect($('Open sample item'), findsOneWidget);
+    expect($('My Lists'), findsOneWidget);
+    expect($('Movies to Watch'), findsOneWidget);
+    expect($('Favorite Cafes'), findsOneWidget);
   });
 }

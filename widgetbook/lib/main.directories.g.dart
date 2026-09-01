@@ -35,12 +35,18 @@ import 'package:widgetbook_workspace/anyhoo_design_system/screens/executive_dash
     as _widgetbook_workspace_anyhoo_design_system_screens_executive_dashboard_screen;
 import 'package:widgetbook_workspace/anyhoo_design_system/typography/anyhoo_typography_gallery.dart'
     as _widgetbook_workspace_anyhoo_design_system_typography_anyhoo_typography_gallery;
+import 'package:widgetbook_workspace/features/add_item/add_item_page.dart'
+    as _widgetbook_workspace_features_add_item_add_item_page;
 import 'package:widgetbook_workspace/features/counter/counter_page.dart'
     as _widgetbook_workspace_features_counter_counter_page;
 import 'package:widgetbook_workspace/features/home/home_page.dart'
     as _widgetbook_workspace_features_home_home_page;
 import 'package:widgetbook_workspace/features/items/item_view.dart'
     as _widgetbook_workspace_features_items_item_view;
+import 'package:widgetbook_workspace/features/list_items/list_items_page.dart'
+    as _widgetbook_workspace_features_list_items_list_items_page;
+import 'package:widgetbook_workspace/features/new_list/new_list_page.dart'
+    as _widgetbook_workspace_features_new_list_new_list_page;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -239,6 +245,21 @@ final directories = <_widgetbook.WidgetbookNode>[
     name: 'features',
     children: [
       _widgetbook.WidgetbookFolder(
+        name: 'add_item',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AddItemView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Add Item',
+                builder: _widgetbook_workspace_features_add_item_add_item_page
+                    .addItemViewUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
         name: 'counter',
         children: [
           _widgetbook.WidgetbookComponent(
@@ -257,12 +278,12 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'home',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'HomePage',
+            name: 'HomeView',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Home',
+                name: 'My Lists',
                 builder: _widgetbook_workspace_features_home_home_page
-                    .homePageUseCase,
+                    .myListsDashboardUseCase,
               ),
             ],
           ),
@@ -278,6 +299,48 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Loaded',
                 builder: _widgetbook_workspace_features_items_item_view
                     .itemViewLoadedUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'list_items',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'ListItemsView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'List',
+                builder:
+                    _widgetbook_workspace_features_list_items_list_items_page
+                        .listItemsViewUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'ListMapView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Map',
+                builder:
+                    _widgetbook_workspace_features_list_items_list_items_page
+                        .listMapViewUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'new_list',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'NewListView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'New List',
+                builder: _widgetbook_workspace_features_new_list_new_list_page
+                    .newListViewUseCase,
               ),
             ],
           ),

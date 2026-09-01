@@ -7,6 +7,6 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 @widgetbook.UseCase(name: 'Executive Dashboard', type: AnyhooMetricCard, path: 'anyhoo_design_system/screens')
 Widget buildExecutiveDashboardScreen(BuildContext context) {
   return starterViewHost(
-    const AnyhooExecutiveDashboardScreen(),
+    AnyhooExecutiveDashboardScreen(),
   );
 }

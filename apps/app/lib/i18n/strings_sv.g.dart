@@ -46,6 +46,9 @@ class TranslationsSv with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _Translations$appShell$sv appShell = _Translations$appShell$sv._(_root);
 	@override late final _Translations$mainPage$sv mainPage = _Translations$mainPage$sv._(_root);
 	@override late final _Translations$homePage$sv homePage = _Translations$homePage$sv._(_root);
+	@override late final _Translations$listItemsPage$sv listItemsPage = _Translations$listItemsPage$sv._(_root);
+	@override late final _Translations$addItemPage$sv addItemPage = _Translations$addItemPage$sv._(_root);
+	@override late final _Translations$newListPage$sv newListPage = _Translations$newListPage$sv._(_root);
 	@override late final _Translations$itemPage$sv itemPage = _Translations$itemPage$sv._(_root);
 	@override late final _Translations$settingsPage$sv settingsPage = _Translations$settingsPage$sv._(_root);
 }
@@ -79,8 +82,74 @@ class _Translations$homePage$sv implements Translations$homePage$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get header => 'Hem';
-	@override String get openButton => 'Öppna exempelobjekt';
+	@override String get header => 'Mina listor';
+	@override String get searchHint => 'Sök listor...';
+	@override String itemCount({required Object n}) => '${n} objekt';
+	@override String get empty => 'Inga listor matchar filtren';
+	@override String get featuredTitle => 'Favoritkaféer';
+	@override String get featuredSubtitle => '7 platser taggade.';
+	@override String get featuredBadge => 'Kartvy aktiverad.';
+}
+
+// Path: listItemsPage
+class _Translations$listItemsPage$sv implements Translations$listItemsPage$en {
+	_Translations$listItemsPage$sv._(this._root);
+
+	final TranslationsSv _root; // ignore: unused_field
+
+	// Translations
+	@override String get listTab => 'Lista';
+	@override String get mapTab => 'Karta';
+	@override String get searchHint => 'Sök banor, platser...';
+	@override String get empty => 'Inga objekt matchar sökningen';
+	@override String get accessPublic => 'Publik';
+	@override String get accessPrivate => 'Privat';
+	@override String metaLine({required Object access, required Object par}) => '${access} · PAR ${par}';
+	@override String ratingLine({required Object rating, required Object location}) => '${rating} · ${location}';
+	@override String get directions => 'Vägbeskrivning';
+}
+
+// Path: addItemPage
+class _Translations$addItemPage$sv implements Translations$addItemPage$en {
+	_Translations$addItemPage$sv._(this._root);
+
+	final TranslationsSv _root; // ignore: unused_field
+
+	// Translations
+	@override String get itemNameLabel => 'Objektnamn';
+	@override String get itemNameHint => 'Ange objektnamn...';
+	@override String get descriptionLabel => 'Beskrivning';
+	@override String get descriptionHint => 'Lägg till detaljer...';
+	@override String get categoriesTitle => 'Kategorier';
+	@override String get categoriesSubtitle => 'Lägg till egna attribut som genre eller status.';
+	@override String get attributeKeyHint => 'Attribut (t.ex. Genre)';
+	@override String get attributeValueHint => 'Värde (t.ex. Drama)';
+	@override String get addCategory => 'Lägg till kategori';
+	@override String get locationTitle => 'Plats';
+	@override String get tapToSet => 'Tryck för att ange';
+	@override String get latitudeLabel => 'Latitud';
+	@override String get latitudeHint => '34.0522° N';
+	@override String get longitudeLabel => 'Longitud';
+	@override String get longitudeHint => '118.2437° W';
+	@override String get useCurrentLocation => 'Använd min position';
+	@override String get createItem => 'Skapa objekt';
+}
+
+// Path: newListPage
+class _Translations$newListPage$sv implements Translations$newListPage$en {
+	_Translations$newListPage$sv._(this._root);
+
+	final TranslationsSv _root; // ignore: unused_field
+
+	// Translations
+	@override String get previewLabel => 'Listförhandsvisning';
+	@override String get nameLabel => 'Listnamn';
+	@override String get nameHint => 't.ex. Sommarresa 2024';
+	@override String get iconLabel => 'Välj ikon';
+	@override String get themeColorLabel => 'Temafärg';
+	@override String get enableMapView => 'Aktivera kartvy';
+	@override String get shareWithFriends => 'Dela med vänner';
+	@override String get createList => 'Skapa lista';
 }
 
 // Path: itemPage
@@ -135,8 +204,47 @@ extension on TranslationsSv {
 			'mainPage.homeTab' => 'Hem',
 			'mainPage.counterTab' => 'Räknare',
 			'mainPage.settingsTab' => 'Inställningar',
-			'homePage.header' => 'Hem',
-			'homePage.openButton' => 'Öppna exempelobjekt',
+			'homePage.header' => 'Mina listor',
+			'homePage.searchHint' => 'Sök listor...',
+			'homePage.itemCount' => ({required Object n}) => '${n} objekt',
+			'homePage.empty' => 'Inga listor matchar filtren',
+			'homePage.featuredTitle' => 'Favoritkaféer',
+			'homePage.featuredSubtitle' => '7 platser taggade.',
+			'homePage.featuredBadge' => 'Kartvy aktiverad.',
+			'listItemsPage.listTab' => 'Lista',
+			'listItemsPage.mapTab' => 'Karta',
+			'listItemsPage.searchHint' => 'Sök banor, platser...',
+			'listItemsPage.empty' => 'Inga objekt matchar sökningen',
+			'listItemsPage.accessPublic' => 'Publik',
+			'listItemsPage.accessPrivate' => 'Privat',
+			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
+			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
+			'listItemsPage.directions' => 'Vägbeskrivning',
+			'addItemPage.itemNameLabel' => 'Objektnamn',
+			'addItemPage.itemNameHint' => 'Ange objektnamn...',
+			'addItemPage.descriptionLabel' => 'Beskrivning',
+			'addItemPage.descriptionHint' => 'Lägg till detaljer...',
+			'addItemPage.categoriesTitle' => 'Kategorier',
+			'addItemPage.categoriesSubtitle' => 'Lägg till egna attribut som genre eller status.',
+			'addItemPage.attributeKeyHint' => 'Attribut (t.ex. Genre)',
+			'addItemPage.attributeValueHint' => 'Värde (t.ex. Drama)',
+			'addItemPage.addCategory' => 'Lägg till kategori',
+			'addItemPage.locationTitle' => 'Plats',
+			'addItemPage.tapToSet' => 'Tryck för att ange',
+			'addItemPage.latitudeLabel' => 'Latitud',
+			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.longitudeLabel' => 'Longitud',
+			'addItemPage.longitudeHint' => '118.2437° W',
+			'addItemPage.useCurrentLocation' => 'Använd min position',
+			'addItemPage.createItem' => 'Skapa objekt',
+			'newListPage.previewLabel' => 'Listförhandsvisning',
+			'newListPage.nameLabel' => 'Listnamn',
+			'newListPage.nameHint' => 't.ex. Sommarresa 2024',
+			'newListPage.iconLabel' => 'Välj ikon',
+			'newListPage.themeColorLabel' => 'Temafärg',
+			'newListPage.enableMapView' => 'Aktivera kartvy',
+			'newListPage.shareWithFriends' => 'Dela med vänner',
+			'newListPage.createList' => 'Skapa lista',
 			'itemPage.refreshButton' => 'Uppdatera',
 			'settingsPage.header' => 'Inställningar',
 			_ => null,

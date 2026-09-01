@@ -11,7 +11,6 @@ completedColumns:
 
 - [update-theme](tasks/update-theme.md)
 - [remove-unwanted-code](tasks/remove-unwanted-code.md)
-- [set-git-origin](tasks/set-git-origin.md)
 - [replace-fill-in](tasks/replace-fill-in.md)
 - [generate-age-key](tasks/generate-age-key.md)
 - [verify-files](tasks/verify-files.md)
@@ -22,3 +21,5 @@ completedColumns:
 ## In Progress
 
 ## Done
+
+- [set-git-origin](tasks/set-git-origin.md)

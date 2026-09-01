@@ -6,5 +6,5 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 
 @widgetbook.UseCase(name: 'Default', type: AnyhooTopBar, path: 'anyhoo_design_system/appBar')
 Widget buildAnyhooTopBar(BuildContext context) {
-  return starterViewHost(const AnyhooAppBarGallery());
+  return starterViewHost(const AnyhooTopBarGallery());
 }

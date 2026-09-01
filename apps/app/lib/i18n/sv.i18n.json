@@ -18,8 +18,53 @@
 		"settingsTab": "Inställningar"
 	},
 	"homePage": {
-		"header": "Hem",
-		"openButton": "Öppna exempelobjekt"
+		"header": "Mina listor",
+		"searchHint": "Sök listor...",
+		"itemCount(n: int)": "$n objekt",
+		"empty": "Inga listor matchar filtren",
+		"featuredTitle": "Favoritkaféer",
+		"featuredSubtitle": "7 platser taggade.",
+		"featuredBadge": "Kartvy aktiverad."
+	},
+	"listItemsPage": {
+		"listTab": "Lista",
+		"mapTab": "Karta",
+		"searchHint": "Sök banor, platser...",
+		"empty": "Inga objekt matchar sökningen",
+		"accessPublic": "Publik",
+		"accessPrivate": "Privat",
+		"metaLine(access: String, par: int)": "$access · PAR $par",
+		"ratingLine(rating: String, location: String)": "$rating · $location",
+		"directions": "Vägbeskrivning"
+	},
+	"addItemPage": {
+		"itemNameLabel": "Objektnamn",
+		"itemNameHint": "Ange objektnamn...",
+		"descriptionLabel": "Beskrivning",
+		"descriptionHint": "Lägg till detaljer...",
+		"categoriesTitle": "Kategorier",
+		"categoriesSubtitle": "Lägg till egna attribut som genre eller status.",
+		"attributeKeyHint": "Attribut (t.ex. Genre)",
+		"attributeValueHint": "Värde (t.ex. Drama)",
+		"addCategory": "Lägg till kategori",
+		"locationTitle": "Plats",
+		"tapToSet": "Tryck för att ange",
+		"latitudeLabel": "Latitud",
+		"latitudeHint": "34.0522° N",
+		"longitudeLabel": "Longitud",
+		"longitudeHint": "118.2437° W",
+		"useCurrentLocation": "Använd min position",
+		"createItem": "Skapa objekt"
+	},
+	"newListPage": {
+		"previewLabel": "Listförhandsvisning",
+		"nameLabel": "Listnamn",
+		"nameHint": "t.ex. Sommarresa 2024",
+		"iconLabel": "Välj ikon",
+		"themeColorLabel": "Temafärg",
+		"enableMapView": "Aktivera kartvy",
+		"shareWithFriends": "Dela med vänner",
+		"createList": "Skapa lista"
 	},
 	"itemPage": {
 		"refreshButton": "Uppdatera"

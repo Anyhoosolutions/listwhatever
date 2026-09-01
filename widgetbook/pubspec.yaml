@@ -26,18 +26,18 @@ dependencies:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_design_system
-      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+      ref: 86def0c362fa674279cd268450ca6b03f252d36d
 
   anyhoo_core:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_core
-      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+      ref: 86def0c362fa674279cd268450ca6b03f252d36d
   anyhoo_auth:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_auth
-      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+      ref: 86def0c362fa674279cd268450ca6b03f252d36d
 
 dev_dependencies:
   flutter_test:
