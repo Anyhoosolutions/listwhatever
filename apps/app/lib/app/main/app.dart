@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/di/bloc_providers_factory.dart';
-import 'package:listwhatever/app/features/items/items_repository.dart';
 import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
 import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
 import 'package:listwhatever/app/main/app_theme.dart';
@@ -78,9 +77,6 @@ class _AppState extends State<App> {
     return [
       RepositoryProvider<AppRepositories>.value(value: widget.repositories),
       RepositoryProvider<Arguments>.value(value: widget.arguments),
-      RepositoryProvider<ItemsRepository>(
-        create: (_) => widget.repositories.itemsRepository,
-      ),
       RepositoryProvider<DynamicListsRepository>(
         create: (_) => widget.repositories.dynamicListsRepository,
       ),
