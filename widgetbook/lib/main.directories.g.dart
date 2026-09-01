@@ -257,12 +257,12 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'home',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'HomePage',
+            name: 'HomeView',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Home',
+                name: 'My Lists',
                 builder: _widgetbook_workspace_features_home_home_page
-                    .homePageUseCase,
+                    .myListsDashboardUseCase,
               ),
             ],
           ),
