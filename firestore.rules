@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+  // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+  // Helper function to check if the user owns the document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+
+    // User profile and preferences
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Shared items catalog — any signed-in user can read
+    match /items/{itemId} {
+      allow read: if  true; //isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+  }
+}

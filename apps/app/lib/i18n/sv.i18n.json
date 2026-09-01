@@ -1,0 +1,30 @@
+{
+	"appName": "Display_name_to_replace",
+	"staging": "Staging",
+	"genericLoading": "Laddar...",
+	"genericNoData": "Inga data",
+	"genericError": "Fel",
+	"listConjunction": "och",
+	"appShell": {
+		"menu": {
+			"settings": "Inställningar",
+			"profile": "Profil",
+			"logout": "Logga ut"
+		}
+	},
+	"mainPage": {
+		"homeTab": "Hem",
+		"counterTab": "Räknare",
+		"settingsTab": "Inställningar"
+	},
+	"homePage": {
+		"header": "Hem",
+		"openButton": "Öppna exempelobjekt"
+	},
+	"itemPage": {
+		"refreshButton": "Uppdatera"
+	},
+	"settingsPage": {
+		"header": "Inställningar"
+	}
+}

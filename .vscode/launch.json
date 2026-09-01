@@ -1,105 +1,153 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch development",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/standard/main/main_development.dart",
-      "args": [
-        "--flavor",
-        "development",
-        "--target",
-        "lib/standard/main/main_development.dart"
-      ]
-    },
-    {
-      "name": "Launch development (web)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/standard/main/main_development.dart",
-      "args": [
-        "--target",
-        "lib/standard/main/main_development.dart",
-        "-d",
-        "chrome",
-        "--web-hostname",
-        "localhost",
-        "--web-port",
-        "8088"
-      ]
-    },
-    {
-      "name": "Launch development (web) (web-renderer html)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/standard/main/main_development.dart",
-      "args": [
-        "--target",
-        "lib/standard/main/main_development.dart",
-        "-d",
-        "chrome",
-        "--web-hostname",
-        "localhost",
-        "--web-port",
-        "8088"
-      ]
-    },
-    {
-      "name": "Launch with profile",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile",
-      "program": "lib/main_production.dart",
-      "args": [
-        "--target",
-        "lib/main_production.dart",
-        "--web-renderer",
-        "html"
-      ]
-    },
-    {
-      "name": "Launch staging",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_staging.dart",
-      "args": [
-        "--flavor",
-        "staging",
-        "--target",
-        "lib/main_staging.dart"
-      ]
-    },
-    {
-      "name": "Launch production",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_production.dart",
-      "args": [
-        "--flavor",
-        "production",
-        "--target",
-        "lib/main_production.dart"
-      ]
-    },
-    {
-      "name": "Integration tests",
-      "request": "launch",
-      "type": "dart",
-      "program": "integration_test/router_integration_test.dart",
-      "args": [
-        "--flavor",
-        "development",
-      ]
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Debug emulator functions",
-      "port": 9229
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{ "name": "====== fake data and macOS ======" },
+		{
+			"name": "  -  fake data on macOS",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main_fake.dart",
+			"args": [
+				"-d",
+				"macos",
+				"--flavor",
+				"production",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FAKE_DATA=true"
+			]
+		},
+		{
+			"name": "  -  fake data on android device",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main_fake.dart",
+			"args": [
+				"-d",
+				"AQH7N17B15004387",
+				"--flavor",
+				"prod",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FAKE_DATA=true"
+			]
+		},
+
+		{ "name": "====== Firebase emulator ======" },
+		{
+			"name": "  -  Firebase emulator + macOS",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main.dart",
+			"args": [
+				"-d",
+				"macos",
+				"--flavor",
+				"production",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FIREBASE_EMULATOR=true"
+			]
+		},
+		{
+			"name": "  -  Firebase emulator + android device",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main.dart",
+			"args": [
+				"-d",
+				"AQH7N17B15004387",
+				"--flavor",
+				"production",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FIREBASE_EMULATOR=true"
+			]
+		},
+
+		{ "name": "====== Firebase DB ======" },
+		{
+			"name": "  - Firebase DB +  prod config + macOS",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main.dart",
+			"preLaunchTask": "copy-firebase-plist-prod",
+			"args": [
+				"-d",
+				"macos",
+				"--flavor",
+				"production",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FIREBASE_EMULATOR=false"
+			]
+		},
+		{
+			"name": "  - Firebase DB +  staging + macOS",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main.dart",
+			"preLaunchTask": "copy-firebase-plist-staging",
+			"args": [
+				"-d",
+				"macos",
+				"--flavor",
+				"staging",
+				"--dart-define=APP_FLAVOR=staging",
+				"--dart-define=USE_FIREBASE_EMULATOR=false"
+			]
+		},
+		{
+			"name": "  - Firebase DB +  prod config + android device",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"preLaunchTask": "copy-firebase-plist-prod",
+			"program": "lib/app/main/main.dart",
+			"args": [
+				"-d",
+				"AQH7N17B15004387",
+				"--flavor",
+				"prod",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FIREBASE_EMULATOR=false"
+			]
+		},
+		{
+			"name": "  - Firebase DB +  staging + android device",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"preLaunchTask": "copy-firebase-plist-staging",
+			"program": "lib/app/main/main.dart",
+			"args": [
+				"-d",
+				"AQH7N17B15004387",
+				"--flavor",
+				"staging",
+				"--dart-define=APP_FLAVOR=staging",
+				"--dart-define=USE_FIREBASE_EMULATOR=false"
+			]
+		},
+
+		{ "name": "====== Widgetbook ======" },
+
+		{
+			"name": "  -  Widgetbook (chrome)",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main.dart",
+			"cwd": "${workspaceFolder}/widgetbook",
+			"args": ["-d", "chrome", "--web-port", "45678"]
+		},
+		{
+			"name": "  -  Widgetbook (macos)",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main.dart",
+			"cwd": "${workspaceFolder}/widgetbook",
+			"args": ["-d", "macos"]
+		}
+	]
 }

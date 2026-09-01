@@ -1,0 +1,10 @@
+# Tag reference for selective runs, e.g.:
+#   dart test --tags component
+#   dart test -x component
+tags:
+  component:
+    description: >
+      Multi-class tests with faked I/O; not full app integration.
+  golden:
+    description: >
+      Widget golden image tests (flutter test); run with a pinned Flutter SDK for stable PNGs.

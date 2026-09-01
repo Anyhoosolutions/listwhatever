@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "copy-firebase-plist-prod",
+			"type": "shell",
+			"command": "cp ios/config/prod/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist && cp macos/config/prod/GoogleService-Info.plist macos/Runner/GoogleService-Info.plist",
+			"options": {
+				"cwd": "${workspaceFolder}/apps/app"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "copy-firebase-plist-staging",
+			"type": "shell",
+			"command": "cp ios/config/staging/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist && cp macos/config/staging/GoogleService-Info.plist macos/Runner/GoogleService-Info.plist",
+			"options": {
+				"cwd": "${workspaceFolder}/apps/app"
+			},
+			"problemMatcher": []
+		}
+	]
+}

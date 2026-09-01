@@ -1,0 +1,21 @@
+[
+	{
+		"origin": [
+			"https://firebase_prod_project_id_to_replace-prod.web.app",
+			"https://firebase_prod_project_id_to_replace-prod.firebaseapp.com",
+			"https://firebase_staging_project_id_to_replace-prod.web.app",
+			"https://firebase_staging_project_id_to_replace-prod.firebaseapp.com",
+			"http://localhost:5000",
+			"http://localhost:45678"
+		],
+		"method": ["GET", "HEAD", "PUT", "POST", "DELETE"],
+		"responseHeader": [
+			"Content-Type",
+			"Authorization",
+			"Content-Length",
+			"User-Agent",
+			"x-goog-resumable"
+		],
+		"maxAgeSeconds": 3600
+	}
+]

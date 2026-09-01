@@ -1,0 +1,63 @@
+{
+	"hosting": [
+		{
+			"target": "main",
+			"public": "build/web",
+			"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+			"rewrites": [{ "source": "**", "destination": "/index.html" }]
+		},
+		{
+			"target": "widgetbook",
+			"public": "widgetbook/build/web"
+		}
+	],
+	"firestore": {
+		"database": "(default)",
+		"location": "nam5",
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
+	},
+	"functions": [
+		{
+			"source": "functions",
+			"codebase": "default",
+			"disallowLegacyRuntimeConfig": true,
+			"ignore": [
+				"node_modules",
+				".git",
+				"firebase-debug.log",
+				"firebase-debug.*.log",
+				"*.local"
+			],
+			"predeploy": [
+				"npm --prefix \"$RESOURCE_DIR\" run lint",
+				"npm --prefix \"$RESOURCE_DIR\" run build"
+			]
+		}
+	],
+	"storage": { "rules": "storage.rules" },
+	"emulators": {
+		"ui": { "enabled": true, "port": 11111, "host": "0.0.0.0" },
+		"auth": { "port": 11111, "host": "0.0.0.0" },
+		"functions": { "port": 11111, "host": "0.0.0.0" },
+		"firestore": { "port": 11111, "host": "0.0.0.0" },
+		"hosting": { "port": 11111, "host": "0.0.0.0" },
+		"storage": { "port": 11111, "host": "0.0.0.0" },
+		"pubsub": { "port": 11111, "host": "0.0.0.0" },
+		"tasks": { "port": 11111, "host": "0.0.0.0" },
+		"hub": { "port": 11111, "host": "0.0.0.0" },
+		"singleProjectMode": true
+	},
+	"remoteconfig": { "template": "remoteconfig.template.json" },
+	"extensions": {},
+	"auth": {
+		"providers": {
+			"anonymous": true,
+			"emailPassword": true,
+			"googleSignIn": {
+				"oAuthBrandDisplayName": "Display_name_to_replace",
+				"supportEmail": "lowercase_app_name@anyhoosolutions.com"
+			}
+		}
+	}
+}

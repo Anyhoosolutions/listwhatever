@@ -1,0 +1,33 @@
+{
+	"filepath": "main.md",
+	"name": "Main",
+	"title": "Main",
+	"onlyAllowedUsers": true,
+	"subpages": [
+		{
+			"filepath": "prd/main.md",
+			"name": "PRD",
+			"title": "PRD",
+			"subpages": [
+				{
+					"filepath": "prd/prd.md",
+					"name": "PRD",
+					"title": "PRD",
+					"subpages": []
+				},
+				{
+					"filepath": "prd/srs.md",
+					"name": "SRS",
+					"title": "SRS",
+					"subpages": []
+				},
+				{
+					"filepath": "prd/brd.md",
+					"name": "BRD",
+					"title": "BRD",
+					"subpages": []
+				}
+			]
+		}
+	]
+}

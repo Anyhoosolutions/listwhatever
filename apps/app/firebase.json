@@ -1,0 +1,26 @@
+{
+	"flutter": {
+		"platforms": {
+			"dart": {
+				"lib/shared/firebase/firebase_options.dart": {
+					"projectId": "firebase_prod_project_id_to_replace",
+					"configurations": {
+						"android": "1:<FILL_IN>:android:<FILL_IN>",
+						"ios": "1:<FILL_IN>:ios:<FILL_IN>",
+						"macos": "1:<FILL_IN>:ios:<FILL_IN>",
+						"web": "1:<FILL_IN>:web:<FILL_IN>"
+					}
+				},
+				"lib/shared/firebase/firebase_options_staging.dart": {
+					"projectId": "firebase_staging_project_id_to_replace",
+					"configurations": {
+						"android": "1:<FILL_IN>:android:<FILL_IN>",
+						"ios": "1:<FILL_IN>:ios:<FILL_IN>",
+						"macos": "1:<FILL_IN>:ios:<FILL_IN>",
+						"web": "1:<FILL_IN>:web:<FILL_IN>"
+					}
+				}
+			}
+		}
+	}
+}

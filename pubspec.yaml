@@ -1,0 +1,43 @@
+name: lowercase_app_name_moonorepo
+publish_to: none
+environment:
+  sdk: ^3.12.0
+workspace:
+  - apps/app
+  - widgetbook
+  - packages/core_models
+  - functions
+
+dev_dependencies:
+  melos: ^7.8.1
+
+melos:
+  scripts:
+    generate:
+      run: melos exec -c 1 --depends-on build_runner -- dart run build_runner build
+    analyze:
+      run: melos exec -- flutter analyze\
+    format:
+      run: melos exec -- dart format lib test && melos exec --scope=caddiesync -- dart format patrol_test
+    format:check:
+      run: melos exec -- dart format --set-exit-if-changed lib test && melos exec --scope=caddiesync -- dart format --set-exit-if-changed patrol_test
+    pubGet:
+      run: melos exec -c 1 -- flutter pub get
+    generate:icons:
+      exec: dart run flutter_launcher_icons && dart run tool/generate_macos_icons.dart
+      packageFilters:
+        scope: lowercase_app_name
+    cleanAndPubGet:
+      run: melos exec -c 1 -- flutter clean && melos exec -c 1 -- flutter pub get
+
+  command:
+    bootstrap:
+      environment:
+        sdk: ^3.12.0
+      equatable: ^2.0.8
+      json_annotation: ^4.12.0
+
+      dev_dependencies:
+        build_runner: ^2.15.0
+        freezed: ^3.2.5
+        json_serializable: ^6.14.0

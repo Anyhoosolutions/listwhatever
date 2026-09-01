@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      freezed|freezed:
+        enabled: true
+      slang_build_runner|slang_build_runner:
+        enabled: false
+      json_serializable:
+        options:
+          explicit_to_json: true

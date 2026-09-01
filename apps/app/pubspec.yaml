@@ -1,0 +1,120 @@
+name: lowercase_app_name
+description: <FILL_IN>
+publish_to: "none"
+version: 1.0.0+1
+
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  core_models:
+    path: ../../packages/core_models
+
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  go_router: ^17.0.0
+  flutter_bloc: ^9.1.0
+  bloc: ^9.2.1
+  equatable: ^2.0.8
+  logging: ^1.3.0
+  firebase_core: ^4.0.0
+  cloud_firestore: ^6.0.0
+  firebase_auth: ^6.0.0
+  firebase_analytics: ^12.0.0
+  flutter_dotenv: ^5.1.0
+  shared_preferences: ^2.5.3
+  flutter_secure_storage: ^9.2.4
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.0.10
+  skeletonizer: ^2.1.0
+  shimmer: ^3.0.0
+  url_launcher: ^6.3.2
+  permission_handler: ^12.0.0
+  device_info_plus: ^11.4.0
+  package_info_plus: ^8.3.0
+  flutter_screenutil: ^5.9.3
+  theme_tailor_annotation: ^3.1.3
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+  slang: ^4.15.0
+  slang_flutter: ^4.15.0
+
+  anyhoo_core:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_core
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_auth:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_auth
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_firebase:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_firebase
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_router:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_router
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_logging:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_logging
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  screenshot_kit:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/screenshot_kit
+      ref: bd9550c98899527985c5ce4e12e65ba875f1344d
+  anyhoo_design_system:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_design_system
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_extension_methods:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_extension_methods
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+  anyhoo_widget_extension_methods:
+    git:
+      url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
+      path: packages/anyhoo_widget_extension_methods
+      ref: 7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.15.0
+  go_router_builder: ^4.0.1
+  theme_tailor: ^3.1.3
+  alchemist: ^0.14.0
+  patrol: ^4.6.0
+  test: ^1.25.15
+  freezed: ^3.2.5
+  json_serializable: ^6.14.0
+  integration_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  flutter_launcher_icons: ^0.14.4
+  image: ^4.8.0
+  slang_build_runner: ^4.15.0
+
+patrol:
+  app_name: Display_name_to_replace
+  android:
+    package_name: android_package_name_to_replace
+  ios:
+    bundle_id: ios_package_name_to_replace
+  macos:
+    bundle_id: macos_package_name_to_replace
+
+flutter:
+  uses-material-design: true
