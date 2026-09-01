@@ -37,12 +37,8 @@ import 'package:widgetbook_workspace/anyhoo_design_system/typography/anyhoo_typo
     as _widgetbook_workspace_anyhoo_design_system_typography_anyhoo_typography_gallery;
 import 'package:widgetbook_workspace/features/add_item/add_item_page.dart'
     as _widgetbook_workspace_features_add_item_add_item_page;
-import 'package:widgetbook_workspace/features/counter/counter_page.dart'
-    as _widgetbook_workspace_features_counter_counter_page;
 import 'package:widgetbook_workspace/features/home/home_page.dart'
     as _widgetbook_workspace_features_home_home_page;
-import 'package:widgetbook_workspace/features/items/item_view.dart'
-    as _widgetbook_workspace_features_items_item_view;
 import 'package:widgetbook_workspace/features/list_items/list_items_page.dart'
     as _widgetbook_workspace_features_list_items_list_items_page;
 import 'package:widgetbook_workspace/features/new_list/new_list_page.dart'
@@ -260,21 +256,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
-        name: 'counter',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'CounterPage',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'CounterPage',
-                builder: _widgetbook_workspace_features_counter_counter_page
-                    .homePageUseCase,
-              ),
-            ],
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookFolder(
         name: 'home',
         children: [
           _widgetbook.WidgetbookComponent(
@@ -284,21 +265,6 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'My Lists',
                 builder: _widgetbook_workspace_features_home_home_page
                     .myListsDashboardUseCase,
-              ),
-            ],
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookFolder(
-        name: 'items',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'ItemView',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'Loaded',
-                builder: _widgetbook_workspace_features_items_item_view
-                    .itemViewLoadedUseCase,
               ),
             ],
           ),

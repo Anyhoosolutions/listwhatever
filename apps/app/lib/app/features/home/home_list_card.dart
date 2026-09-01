@@ -1,8 +1,8 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_row.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class HomeListCard extends StatelessWidget {
   const HomeListCard({
@@ -31,12 +31,12 @@ class HomeListCard extends StatelessWidget {
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: colorFor(list.iconBackground),
+                    color: ColorMapping.colorFor(list.iconBackground),
                     borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(DesignTokens.spacingSm),
-                    child: Icon(iconDataFor(list.icon), color: Colors.white, size: 20),
+                    child: Icon(IconMapping.iconDataFor(list.icon), color: Colors.white, size: 20),
                   ),
                 ),
                 const SizedBox(width: DesignTokens.spacingSm),

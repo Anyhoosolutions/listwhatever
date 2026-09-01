@@ -1,9 +1,9 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/new_list/new_list_page.dart';
 import 'package:listwhatever/app/features/new_list/new_list_view.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
+import 'package:core_models/core_models.dart';
 
 @widgetbook.UseCase(name: 'New List', type: NewListView, path: 'features/new_list')
 Widget newListViewUseCase(BuildContext context) {
@@ -30,8 +30,8 @@ class _NewListPreview extends StatefulWidget {
 
 class _NewListPreviewState extends State<_NewListPreview> {
   late final TextEditingController _name;
-  IconData _icon = NewListPage.icons.first.icon;
-  Color _color = NewListPage.colors.first;
+  ListItemIcon _icon = ListItemIcon.movie;
+  ListItemIconBackground _color = ListItemIconBackground.blue;
   bool _enableMapView = true;
 
   @override
@@ -50,10 +50,10 @@ class _NewListPreviewState extends State<_NewListPreview> {
   Widget build(BuildContext context) {
     return NewListView(
       nameController: _name,
-      icons: NewListPage.icons,
+      icons: ListItemIcon.values,
       selectedIcon: _icon,
       onIconSelected: (icon) => setState(() => _icon = icon),
-      colors: NewListPage.colors,
+      colors: ListItemIconBackground.values,
       selectedColor: _color,
       onColorSelected: (color) => setState(() => _color = color),
       enableMapView: _enableMapView,

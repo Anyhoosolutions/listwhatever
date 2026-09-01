@@ -1,7 +1,13 @@
 enum ListItemIconBackground {
+  blue,
   red,
   green,
-  blue,
-  yellow,
+  orange,
   purple,
+  yellow,
+  bronze,
+  lightblue,
+  lightpurple,
+  lightgreen,
+  pink,
 }

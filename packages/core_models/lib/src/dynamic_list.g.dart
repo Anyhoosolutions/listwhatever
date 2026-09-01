@@ -63,9 +63,15 @@ const _$ListItemIconEnumMap = {
 };
 
 const _$ListItemIconBackgroundEnumMap = {
+  ListItemIconBackground.blue: 'blue',
   ListItemIconBackground.red: 'red',
   ListItemIconBackground.green: 'green',
-  ListItemIconBackground.blue: 'blue',
-  ListItemIconBackground.yellow: 'yellow',
+  ListItemIconBackground.orange: 'orange',
   ListItemIconBackground.purple: 'purple',
+  ListItemIconBackground.yellow: 'yellow',
+  ListItemIconBackground.bronze: 'bronze',
+  ListItemIconBackground.lightblue: 'lightblue',
+  ListItemIconBackground.lightpurple: 'lightpurple',
+  ListItemIconBackground.lightgreen: 'lightgreen',
+  ListItemIconBackground.pink: 'pink',
 };
