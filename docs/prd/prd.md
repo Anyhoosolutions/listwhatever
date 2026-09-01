@@ -1,67 +1,61 @@
-# Macro Product Requirements Document (PRD): AnyhooCentral Developer Console
+# Product Requirements Document (PRD)
 
-# 1\. Document Overview & Metadata
+### 1. Document Overview & Metadata
 
-* **Product / App Name:** List Whatever
-* **Document Version:** 1.0.0  
-* **Status:** Draft  
-* **Target Release:** QQ YYYY  
-* **Core Stack Reference:** engine-standards/01 through 08
+**Product / App Name:** ListWhatever (Working Title)  
+**Document Version:** 1.0.0  
+**Status:** Approved Draft  
+**Target Release:** Q4 2026  
+**Core Stack Reference:** `engine-standards/01` through `08`
 
-# 2\. Product Vision & Executive Summary
+---
 
-* **Problem Statement:** <FILL_IN>
-* **Product Vision:** <FILL_IN>
-* **Target Audience & User Personas:** <FILL_IN>
-* **Success Metrics & KPIs:**  
-  * 100% adherence to **engine standards** for all new projects.  
-  * Reduced cold start time to interactive state (\< 2.0s).  
-  * Real-time visibility into deployment pipelines for iOS, Android, and Web.
+### 2. Product Vision & Executive Summary
 
-# 3\. High-Level System Architecture & Package Scope
+**Problem Statement:** Users frequently maintain fragmented lists of restaurants, movies, books, and places across multiple notes apps and messaging threads without structured, multi-tag filtering or location-aware query capabilities.
+
+**Product Vision:** A unified dynamic list and filtering app enabling users to create custom schema-flexible lists with multi-select tags, numeric ranges, and live GPS distance filtering, complemented by single-item randomization and real-time list sharing.
+
+**Target Audience & User Personas:**
+
+* **Curators & Organized Socializers:** Users who maintain structured catalogs (e.g., top NYC restaurants, watchlist movies) and share them with friends.
+* **Indecisive Decision Makers:** Users who want to quickly filter by exact criteria (e.g., "Good Wine", "Italian", "< 3 miles") and randomize a selection for dinner or movie night.
+
+**Success Metrics & KPIs:**
+
+* **Engine Adherence:** 100% compliance with `engine-standards/` monorepo, Cubit, and local-first architecture.
+* **Performance:** Sub-100ms local filter and location-distance evaluation on dynamic lists.
+* **Sync Reliability:** Background sync flush execution in $< 1.5$s upon reconnecting.
+
+---
+
+### 3. High-Level System Architecture & Package Scope
 
 Following the **Melos monorepo structure**, the project is organized into modular packages:
 
-* **Primary Application:** `apps/app/listwhatever`  
-* **Data Models & Schemas:** `packages/core_models` (Freezed DTOs shared between app and functions).  
-* **Cloud Functions:** `functions/` (Dart-based Firebase Cloud Functions).
+* **Primary Application:** `apps/list_app`
+* **Shared UI Components:** `packages/ui_components` (Atomic design elements, dynamic category widgets, `theme_tailor` tokens)
+* **Data Models & Schemas:** `packages/core_models` (Freezed DTOs and dynamic list/item schemas shared between app and functions)
+* **Navigation Routes:** `packages/navigation` (`GoRouter` configuration with `StatefulShellRoute.indexedStack`)
+* **Sync & Local Storage:** `packages/sync_engine` (Offline-first architecture via Hive/Drift, `OutboundSyncQueue`, and LWW conflict resolution)
+* **Cloud Functions:** `functions/` (Dart-based Cloud Functions using `firebase_functions` SDK)
 
-# 4\. Feature Breakdown & Micro-PRD Matrix
+---
 
-| Feature ID | Feature Name | Priority | Primary Target Layer | Key Functionality |
-| ----- | ----- | ----- | ----- | ----- |
-| **FEAT-01** | **<FILL_IN>** | P0 | `apps/listwhatever` | <FILL_IN> |
-| **FEAT-02** | **<FILL_IN>** | P0 | `<FILL_IN>` | <FILL_IN> |
-| **FEAT-03** | **<FILL_IN>** | P1 | `<FILL_IN>` | <FILL_IN> |
-| **FEAT-04** | **<FILL_IN>** | P0 | `<FILL_IN>` | <FILL_IN> |
-| **FEAT-05** | **<FILL_IN>** | P1 | `<FILL_IN>` | <FILL_IN> |
+### 4. Feature Breakdown & Requirements Matrix
 
-# 5\. Technical Constraints & Non-Functional Requirements
+| Feature ID | Feature Name | Priority | Target Layer | Core Specifications & Functionality |
+| --- | --- | --- | --- | --- |
+| **FEAT-01** | **Dynamic Schema Builder** | P0 | `apps/list_app` | Screen and models allowing users to create lists with custom fields (`multiSelectTags`, `singleSelect`, `boolean`, `numericRange`, `location`, `text`).  |
+| **FEAT-02** | **Multi-Filter & Randomizer Engine** | P0 | `apps/list_app` | Real-time filtering on items using exact tags, ranges, and live GPS Haversine distance, with a single-click selection shuffle.  |
+| **FEAT-03** | **Geocoding & Location Resolver** | P0 | `packages/sync_engine` | Address-to-coordinate lookup caching GeoPoint attributes locally alongside text addresses.  |
+| **FEAT-04** | **Real-Time Sharing & List Forking** | P0 | `functions/` | Live Firestore list synchronization for collaborators and `onRequest`/`onCall` backend callable endpoints to fork/copy public lists.  |
+| **FEAT-05** | **AI Metadata Extraction Bridge (Phase 2)** | P2 | `functions/` | Social share intent handler calling LLM APIs via Dart Cloud Functions to parse shared URLs (e.g., Instagram) into structured tags/coordinates.  |
 
-* **Platform & Device Constraints:**  
-  * Must support **Web (Desktop/Mobile)** and **Mobile (iOS/Android)**.  
-  * Strict adherence to responsive breakpoints: Mobile (\<600px), Tablet (600-1024px), Desktop (\>1024px).  
-* **Offline Requirement:**  
-  * Utilize a **Local-First Single Source of Truth**; the UI renders data from local storage before background sync with Firestore.  
-  * Optimistic updates for project state and metadata.  
-* **Performance SLA:**  
-  * Background sync queue must flush in under 1.5s upon reconnection.  
-* **Security:**  
-  * Mandatory **Header Enforcing** (JWT Bearer tokens) for all protected Dart Cloud Function endpoints.
-* <FILL_IN>
+---
 
-# 6\. Development Workflow & Tooling Integration
+### 5. Technical Constraints & Non-Functional Requirements
 
-* **State Management:** Standardized **Cubit Architecture** using `freezed` for immutable states and `StateSwitcher` for UI rendering (Loading/Error/Success).  
-* **Monorepo Management:** All tasks and package linking handled via **Melos** (`melos bootstrap`, `melos run build_runner`).  
-* **Testing Pipeline:** Adherence to the **4-Tier Methodology**:  
-  * **Tier 1:** 100% coverage on domain math/models.  
-  * **Tier 2:** `bloc_test` for all Cubit transitions.  
-  * **Tier 3/4:** Golden tests for visual regression and Patrol for E2E flows.  
-* **Local Emulation:** Development must run against the **Firebase Emulator Suite** (localhost:8080, 9099, 5001).
-
-# 7\. Risks & Mitigation Plan
-
-| Risk Description | Severity | Impact | Mitigation Strategy |
-| ----- | ----- | ----- | ----- |
-| **<FILL_IN>** | <FILL_IN> | <FILL_IN> | <FILL_IN> |
+* **Platform Parity:** Support iOS, Android, and Web with responsive layout breakpoints: Mobile ($<600\text{px}$), Tablet ($600\text{px}–1024\text{px}$), and Desktop ($>1024\text{px}$).
+* **Offline-First:** All list mutations write to local storage instantly and queue to `OutboundSyncQueue` before syncing to Cloud Firestore.
+* **Security & Auth:** Firebase Auth (Google, Apple, Anonymous) with `Authorization: Bearer <token>` validation enforced on protected Cloud Functions.
