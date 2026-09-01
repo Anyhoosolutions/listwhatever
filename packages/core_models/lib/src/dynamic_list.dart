@@ -1,4 +1,4 @@
-import 'package:core_models/core_models.dart';
+import 'package:core_models/src/list_item.dart';
 import 'package:core_models/src/typedefs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -17,9 +17,9 @@ _DynamicList _$DynamicListFromJson(Map<String, dynamic> json) => _DynamicList(
           ?.map((e) => e as String)
           .toList() ??
       const [],
-  categories:
-      (json['categories'] as List<dynamic>?)
-          ?.map((e) => CategoryDef.fromJson(e as Map<String, dynamic>))
+  items:
+      (json['items'] as List<dynamic>?)
+          ?.map((e) => ListItem.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
   createdAt: DateTime.parse(json['createdAt'] as String),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$DynamicListToJson(_DynamicList instance) =>
       'description': instance.description,
       'visibility': instance.visibility,
       'collaboratorIds': instance.collaboratorIds,
-      'categories': instance.categories,
+      'items': instance.items,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
