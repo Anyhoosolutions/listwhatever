@@ -1,114 +1,40 @@
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_models/core_models.dart';
 import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
 
 class FirestoreListItemsRepository implements ListItemsRepository {
-  FirestoreListItemsRepository({required FirestoreService firestoreService}) : _firestore = firestoreService.firestore;
+  FirestoreListItemsRepository({required this.firestoreService});
 
-  final FirebaseFirestore _firestore;
-
-  CollectionReference<Map<String, dynamic>> _items(String listId) {
-    return _firestore.collection('lists').doc(listId).collection('items');
-  }
+  final FirestoreService firestoreService;
 
   @override
   Future<ListItem?> getById({required String listId, required String itemId}) async {
-    final doc = await _items(listId).doc(itemId).get();
-    if (!doc.exists) return null;
-    return _fromDoc(doc);
+    final doc = await firestoreService.getDocument('lists/$listId/items/$itemId');
+    if (doc == null) return null;
+    return ListItem.fromJson(doc);
   }
 
   @override
   Future<List<ListItem>> listByListId(String listId) async {
-    final snapshot = await _items(listId).get();
-    return snapshot.docs.map(_fromDoc).toList();
+    final snapshot = await firestoreService.getCollection('lists/$listId/items');
+    return snapshot.map(ListItem.fromJson).toList();
   }
 
   @override
   Future<ListItem> create({required String listId, required ListItem item}) async {
-    await _items(listId).doc(item.id).set(_toMap(item));
+    await firestoreService.addDocument(path: 'lists/$listId/items/$item.id', data: item.toJson());
     return item;
   }
 
   @override
   Future<ListItem> update({required String listId, required ListItem item}) async {
     final updated = item.copyWith(updatedAt: DateTime.now().toUtc());
-    await _items(listId).doc(item.id).set(_toMap(updated));
+    await firestoreService.updateDocument('lists/$listId/items/', item.id, updated.toJson());
     return updated;
   }
 
   @override
   Future<void> delete({required String listId, required String itemId}) async {
-    await _items(listId).doc(itemId).delete();
-  }
-
-  ListItem _fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data() ?? {};
-    final categoryValues = data['categoryValues'];
-    final latlong = data['latlong'];
-    return ListItem(
-      id: doc.id,
-      title: data['title'] as String? ?? '',
-      notes: data['notes'] as String? ?? '',
-      categoryValues: categoryValues is Map<String, dynamic>
-          ? categoryValues
-          : Map<String, dynamic>.from(categoryValues as Map? ?? {}),
-      address: data['address'] as String?,
-      latlong: _latLong(latlong),
-      createdAt: _date(data['createdAt']),
-      updatedAt: _date(data['updatedAt']),
-      icon: _icon(data['icon'] as String?),
-      iconBackground: _iconBackground(data['iconBackground'] as String?),
-      imageUrl: data['imageUrl'] as String?,
-    );
-  }
-
-  Map<String, dynamic> _toMap(ListItem item) {
-    return {
-      'title': item.title,
-      'notes': item.notes,
-      'categoryValues': item.categoryValues,
-      'address': item.address,
-      'latlong': item.latlong == null ? null : GeoPoint(item.latlong!.latitude, item.latlong!.longitude),
-      'createdAt': Timestamp.fromDate(item.createdAt),
-      'updatedAt': Timestamp.fromDate(item.updatedAt),
-      'icon': item.icon?.name,
-      'iconBackground': item.iconBackground?.name,
-      'imageUrl': item.imageUrl,
-    };
-  }
-
-  DateTime _date(dynamic value) {
-    if (value is Timestamp) return value.toDate();
-    if (value is DateTime) return value;
-    if (value is String) return DateTime.parse(value);
-    return DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
-  }
-
-  LatLong? _latLong(dynamic value) {
-    if (value is GeoPoint) {
-      return LatLong(latitude: value.latitude, longitude: value.longitude);
-    }
-    if (value is Map<String, dynamic>) {
-      return LatLong.fromJson(value);
-    }
-    return null;
-  }
-
-  ListItemIcon? _icon(String? name) {
-    if (name == null) return null;
-    for (final value in ListItemIcon.values) {
-      if (value.name == name) return value;
-    }
-    return null;
-  }
-
-  ListItemIconBackground? _iconBackground(String? name) {
-    if (name == null) return null;
-    for (final value in ListItemIconBackground.values) {
-      if (value.name == name) return value;
-    }
-    return null;
+    await firestoreService.deleteDocument('lists/$listId/items/$itemId');
   }
 }
