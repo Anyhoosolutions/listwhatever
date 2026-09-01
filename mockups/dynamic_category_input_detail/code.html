@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dynamic Category Input Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white min-h-screen">
+<div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-primary flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined text-3xl">chevron_left</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Add Item Details</h2>
+<div class="flex w-12 items-center justify-end">
+<p class="text-primary text-base font-bold leading-normal tracking-tight cursor-pointer">Save</p>
+</div>
+</header>
+<main class="flex-1 px-4 overflow-y-auto pb-10">
+<!-- Context Hint -->
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-2 mb-6 px-1">
+                Categories help you filter and organize your items on the map and in lists.
+            </p>
+<!-- Category Section: Genre -->
+<div class="bg-white dark:bg-[#1c2632] rounded-xl p-4 mb-6 shadow-sm">
+<!-- SectionHeader -->
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Genre</h3>
+<span class="material-symbols-outlined text-gray-400 text-xl cursor-pointer">more_horiz</span>
+</div>
+<!-- Chips Container -->
+<div class="flex gap-3 py-3 flex-wrap">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 border border-primary/30 pl-2 pr-4 transition-all hover:bg-primary/30">
+<span class="material-symbols-outlined text-primary text-lg cursor-pointer">close</span>
+<p class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Sci-Fi</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 border border-primary/30 pl-2 pr-4 transition-all hover:bg-primary/30">
+<span class="material-symbols-outlined text-primary text-lg cursor-pointer">close</span>
+<p class="text-gray-900 dark:text-white text-sm font-medium leading-normal">Adventure</p>
+</div>
+</div>
+<!-- SingleButton: Add Value -->
+<div class="flex py-1 justify-start">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-primary hover:bg-primary/10 transition-colors gap-2 text-sm font-bold leading-normal tracking-tight">
+<span class="material-symbols-outlined text-xl">add</span>
+<span class="truncate">Add Value</span>
+</button>
+</div>
+</div>
+<!-- Category Section: Status -->
+<div class="bg-white dark:bg-[#1c2632] rounded-xl p-4 mb-6 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Availability</h3>
+</div>
+<div class="flex gap-3 py-3 flex-wrap">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 border border-primary/30 pl-2 pr-4">
+<span class="material-symbols-outlined text-primary text-lg cursor-pointer">close</span>
+<p class="text-gray-900 dark:text-white text-sm font-medium leading-normal">In Stock</p>
+</div>
+</div>
+<div class="flex py-1 justify-start">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-primary hover:bg-primary/10 transition-colors gap-2 text-sm font-bold leading-normal tracking-tight">
+<span class="material-symbols-outlined text-xl">add</span>
+<span class="truncate">Add Value</span>
+</button>
+</div>
+</div>
+<!-- Location Settings Section -->
+<div class="bg-white dark:bg-[#1c2632] rounded-xl p-4 mb-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Location Settings</h3>
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div class="relative w-full h-32 rounded-lg overflow-hidden mb-3">
+<img class="w-full h-full object-cover grayscale brightness-75 dark:brightness-50" data-alt="Minimal map view showing a pin location" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbRl67H5-HFtDWdm6BV16PmHiVDg6HOFHkc9KNZYiZ29eJilSqkn2S1s_hhNbHJHq3HAhxwHjgGNWrjILyjIM1Wdl2lgb_lpBKSTow0rnj7XXARAaCE6yPqbrRfv5T65aReXUFvhl5AU82CF98YikUFjZbCi1cOctFYK6NnPNx8tAfcoQAFFXvRRzvavxEZIjt5MRVqBWjYrlfxnVi4jlR6tDfv7reVbBzFgY-syt1k6DWMgA9CLdKEgItIkDwcYtNMaYS30qnfRc"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">location_on</span>
+</div>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs">Based on: 37.7749° N, 122.4194° W</p>
+</div>
+<!-- Add New Category Button -->
+<div class="mt-8">
+<button class="w-full flex items-center justify-center gap-2 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl py-4 text-gray-500 dark:text-gray-400 font-bold hover:border-primary hover:text-primary transition-all group">
+<span class="material-symbols-outlined group-hover:text-primary">library_add</span>
+                    Add New Category
+                </button>
+</div>
+</main>
+<!-- Dynamic Modal Preview (Visual only) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#18212a] border-t border-gray-200 dark:border-gray-800 p-4 rounded-t-2xl shadow-2xl max-w-[430px] mx-auto">
+<div class="w-12 h-1 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mb-4"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex-1 bg-gray-100 dark:bg-[#283039] rounded-lg px-3 py-2 border border-transparent focus-within:border-primary">
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-gray-900 dark:text-white placeholder-gray-500" placeholder="Type a new value..." type="text"/>
+</div>
+<button class="bg-primary text-white p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="flex gap-2 mb-2">
+<p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Suggestions:</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="bg-gray-100 dark:bg-[#283039] px-3 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300">Mystery</span>
+<span class="bg-gray-100 dark:bg-[#283039] px-3 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300">Horror</span>
+<span class="bg-gray-100 dark:bg-[#283039] px-3 py-1 rounded-full text-xs text-gray-600 dark:text-gray-300">Fantasy</span>
+</div>
+</div>
+</div>
+</body></html>

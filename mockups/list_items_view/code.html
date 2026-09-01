@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Golf Courses - List View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-background-light dark:bg-background-dark/95 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-primary flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-[28px]">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Golf Courses</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-primary gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-[28px]">filter_list</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto">
+<!-- SegmentedButtons -->
+<div class="flex px-4 py-3">
+<div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-slate-200 dark:bg-[#283039] p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-[#9dabb9] text-sm font-medium leading-normal transition-all">
+<span class="truncate">List</span>
+<input checked="" class="invisible w-0" name="view-toggle" type="radio" value="List"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-[#9dabb9] text-sm font-medium leading-normal transition-all">
+<span class="truncate">Map</span>
+<input class="invisible w-0" name="view-toggle" type="radio" value="Map"/>
+</label>
+</div>
+</div>
+<!-- SearchBar -->
+<div class="px-4 py-1">
+<label class="flex flex-col min-w-40 h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm">
+<div class="text-slate-400 dark:text-[#9dabb9] flex border-none bg-slate-200/50 dark:bg-[#283039] items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-200/50 dark:bg-[#283039] focus:border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#9dabb9] px-3 border-l-0 text-base font-normal leading-normal" placeholder="Search courses, locations..." value=""/>
+</div>
+</label>
+</div>
+<!-- List Section -->
+<div class="mt-4 flex flex-col">
+<!-- ListItem 1 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[80px] py-2 justify-between border-b border-slate-200 dark:border-slate-800 active:bg-slate-100 dark:active:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-14 shadow-sm" data-alt="Scenic aerial view of Pebble Beach golf course" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoL0ZNPMXzQ-oWOOu5c-nnVUMQXDGxiNjwfkQLbQnpWfx3syInK1Ezlwo2oTKqR9Ph1UKMQ_QdLdmYdeshMKkEA765dVOS8vxrmmswO3UP6R4Xu64HgZUaH54Lso9wB0RNRsLpEcNTLxwllTvp7snrYr9MFym3Smmp5LDLIXY6Bmtiw7924CaTiWHXYHNpvkVnWvhX-2w3XapR1EylDlMJZEqmrY0YwXS7-Qh-4Swld7YQRdGAo4ya1TdvDJfIb-pqtMKEwW3BzYg");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Pebble Beach Golf Links</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-medium uppercase tracking-wider mt-1">Public · Par 72</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[14px] fill-current">star</span>
+<span class="text-slate-500 dark:text-[#9dabb9] text-xs">4.9 · California</span>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-slate-400 dark:text-white flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem 2 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[80px] py-2 justify-between border-b border-slate-200 dark:border-slate-800 active:bg-slate-100 dark:active:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-14 shadow-sm" data-alt="Dense green fairways of Cypress Point Club" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBl380mqln2VMPH5oUO16PTQ3Rcyc32nZ6MGEA9kVI_TlnzjtxAYWqx38IVjeTlFyCFBw_Fmff9bvrKZV5PX0qTs4UDm6R8wKaF2s_CMJNfPMdOqKMvzFZ_XldzV0ex-kOrf1qYSHMSSUzbTtqP9OH-clUi9PjJz89DJq5PO9aQOtI_WYWqci7ElFI3_OXNb4ujCWf5upHqOZA7FUyhuNmIiAkIvkLrWHs76iOH_GCnpFD9SP9TErDAdyrOP9rBBp3WuQB6k2sK2Mw");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Cypress Point Club</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-medium uppercase tracking-wider mt-1">Private · Par 72</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[14px] fill-current">star</span>
+<span class="text-slate-500 dark:text-[#9dabb9] text-xs">5.0 · California</span>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-slate-400 dark:text-white flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem 3 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[80px] py-2 justify-between border-b border-slate-200 dark:border-slate-800 active:bg-slate-100 dark:active:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-14 shadow-sm" data-alt="St Andrews Links golf course landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAfWohppuezGeEgGqeHdaDexePy0g-AbgTTccC0VSetBQcRFcTCgdRMgfGtz4t_gMJh2k3nUSleNkNjc-lrHUmJyn4YCxy6dERDyDc7mifWoNp53jErKK_fQikiRG-JjVq2bJ21WbVAWqXKGiqzlETJE4N6Y2CFg_Gk7RiAm34EtmdNMS6A2W4ONTuhIMhqrhFXBcmvRgdUXFx6ifJFoVF1UCYoG7CuZCWBCJMcYPVrKUVkEdgLWzDbmomYGq2q0b0LW7N9vt8Oug");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">St Andrews (Old Course)</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-medium uppercase tracking-wider mt-1">Public · Par 72</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[14px] fill-current">star</span>
+<span class="text-slate-500 dark:text-[#9dabb9] text-xs">4.8 · Scotland</span>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-slate-400 dark:text-white flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem 4 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[80px] py-2 justify-between border-b border-slate-200 dark:border-slate-800 active:bg-slate-100 dark:active:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-14 shadow-sm" data-alt="Augusta National golf course greenery" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCuN8YdQBnr099lUosxC3fgh-sOdrfYv6eUjdDZ1gvOLmN4U8TCZjTfXLSta38uQr2-Dwlm-MOYG2TLa_pyi0K4hdoaCwcDnnJ2gng4rUdgGpC3TbtZi63k08pLnkhxYfzyydWLe3SbCH2KIFB89wiy2GiaIl2wG5MZ9Hu3cgyI51RQ87xdJNZCQQGnLkOsh_MOdtGDXHptaVNFAQHfYok1r1Ah2tHeHOJ35ZX7Bm8TVRL1fcVRl7tobITgoa-m7RevLofsOEnUlA8");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Augusta National</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-medium uppercase tracking-wider mt-1">Private · Par 72</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[14px] fill-current">star</span>
+<span class="text-slate-500 dark:text-[#9dabb9] text-xs">5.0 · Georgia</span>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-slate-400 dark:text-white flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ListItem 5 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[80px] py-2 justify-between border-b border-slate-200 dark:border-slate-800 active:bg-slate-100 dark:active:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-14 shadow-sm" data-alt="Royal County Down golf course view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXW-JGBStgIinTd9xSKEbC5mNEh5C2yk-bHD0cuZsmnWGNoQYZknfsAl7-CBYyyLZshxRhko45T2WucTDGBgMEtZEtEOWE97SBTPnipPVhmfGtRImR6tCjIm7-bGnSA4ZMB3vIHN5irNXtR-8HkCnd0TzfcrP9Ww2kz4DGzmZOPwrWf09MmvZwNX6Fwp9uOku7nAwdB7gPJ9T_6BeI_WhwOJPZer0PV955POJ-Hv6hN25mRcGdd3Dk_Qc6fejqdCH2SiIqymxzXig");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Royal County Down</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-xs font-medium uppercase tracking-wider mt-1">Private · Par 71</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-amber-500 text-[14px] fill-current">star</span>
+<span class="text-slate-500 dark:text-[#9dabb9] text-xs">4.9 · Northern Ireland</span>
+</div>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-slate-400 dark:text-white flex size-7 items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-6 size-14 bg-primary text-white rounded-full shadow-lg shadow-primary/30 flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Bottom Navigation Bar (iOS style) -->
+<nav class="h-20 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-6 pb-4">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[24px] fill-current">format_list_bulleted</span>
+<span class="text-[10px] font-medium">Lists</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</div>
+</nav>
+</body></html>
