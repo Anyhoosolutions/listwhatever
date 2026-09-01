@@ -9,9 +9,9 @@ part of 'list_item.dart';
 _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
   id: json['id'] as String,
   title: json['title'] as String,
-  notes: json['notes'] as String,
+  notes: json['notes'] as String? ?? null,
   categoryValues: json['categoryValues'] as Map<String, dynamic>,
-  address: json['address'] as String?,
+  address: json['address'] as String? ?? null,
   latlong: json['latlong'] == null
       ? null
       : LatLong.fromJson(json['latlong'] as Map<String, dynamic>),

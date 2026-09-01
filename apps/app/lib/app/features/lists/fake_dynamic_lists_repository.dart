@@ -15,7 +15,7 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
     DynamicList(
       id: 'movies',
       ownerId: 'user-1',
-      title: 'Movies to Watch 2',
+      title: 'Movies to Watch',
       description: 'Personal watchlist',
       visibility: 'private',
       itemCount: 12,

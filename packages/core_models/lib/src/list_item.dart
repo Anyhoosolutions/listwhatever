@@ -11,10 +11,10 @@ abstract class ListItem with _$ListItem {
   const factory ListItem({
     required String id,
     required String title,
-    required String notes,
+    @Default(null) String? notes,
     required Map<String, dynamic> categoryValues, // Keys match CategoryDef.key
-    String? address,
-    LatLong? latlong,
+    @Default(null) String? address,
+    @Default(null) LatLong? latlong,
     required DateTime createdAt,
     required DateTime updatedAt,
     @Default(null) ListItemIcon? icon,

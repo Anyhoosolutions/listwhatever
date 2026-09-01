@@ -83,15 +83,17 @@ class MapItemPeekSheet extends StatelessWidget {
                           color: surface.primaryText,
                         ),
                       ),
-                      const SizedBox(height: DesignTokens.spacingXs),
-                      Text(
-                        item.notes,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AnyhooTypography.body(BodySize.medium).copyWith(
-                          color: surface.secondaryText,
+                      if (item.notes != null) ...[
+                        const SizedBox(height: DesignTokens.spacingXs),
+                        Text(
+                          item.notes!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: AnyhooTypography.body(BodySize.medium).copyWith(
+                            color: surface.secondaryText,
+                          ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ),
