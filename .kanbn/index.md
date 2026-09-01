@@ -17,8 +17,11 @@ completedColumns:
 - [generate-icons](tasks/generate-icons.md)
 - [get-files-from-firebase](tasks/get-files-from-firebase.md)
 - [re-generate-key-and-re-encrypt](tasks/re-generate-key-and-re-encrypt.md)
+- [github-actions](tasks/github-actions.md)
 
 ## In Progress
+
+- [prd-brd-srs](tasks/prd-brd-srs.md)
 
 ## Done
 
