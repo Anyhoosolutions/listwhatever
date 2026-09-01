@@ -17,6 +17,7 @@ completedColumns:
 - [verify-files](tasks/verify-files.md)
 - [generate-icons](tasks/generate-icons.md)
 - [get-files-from-firebase](tasks/get-files-from-firebase.md)
+- [re-generate-key-and-re-encrypt](tasks/re-generate-key-and-re-encrypt.md)
 
 ## In Progress
 
