@@ -1,13 +1,14 @@
 import 'package:anyhoo_core/repositories/current_time_repository.dart';
 import 'package:anyhoo_logging/anyhoo_logging.dart';
-import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:screenshot_kit/screenshot_kit.dart';
 import 'package:listwhatever/app/di/bloc_providers_factory.dart';
+import 'package:listwhatever/app/main/app_theme.dart';
 import 'package:listwhatever/app/main/environments/fake/mock_auth_cubit.dart';
 import 'package:listwhatever/app/routing/app_shell.dart';
+import 'package:listwhatever/i18n/strings.g.dart';
 
 final kGoldenFixedNow = DateTime.utc(2026, 4, 19, 12);
 
@@ -74,7 +75,9 @@ Widget providersWrapper({
         ),
         ...extraBlocProviders,
       ],
-      child: SafeArea(child: child),
+      child: TranslationProvider(
+        child: SafeArea(child: child),
+      ),
     ),
   );
 }
@@ -89,8 +92,8 @@ Widget _goldenMaterialApp({
   if (routerConfig != null) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: AnyhooTheme.light(),
-      darkTheme: AnyhooTheme.dark(),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       themeMode: screenshotConfig.themeMode,
       routerConfig: routerConfig,
       builder: builder,
@@ -98,8 +101,8 @@ Widget _goldenMaterialApp({
   }
   return MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: AnyhooTheme.light(),
-    darkTheme: AnyhooTheme.dark(),
+    theme: AppTheme.light,
+    darkTheme: AppTheme.dark,
     themeMode: screenshotConfig.themeMode,
     home: home,
   );

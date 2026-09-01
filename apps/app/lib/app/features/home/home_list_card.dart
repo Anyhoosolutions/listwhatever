@@ -38,12 +38,17 @@ class HomeListCard extends StatelessWidget {
                     child: Icon(list.icon, color: Colors.white, size: 20),
                   ),
                 ),
-                const Spacer(),
-                AnyhooChip(
-                  label: t.homePage.itemCount(n: list.itemCount),
-                  leadingIcon: list.hasLocations ? Icons.location_on_outlined : null,
-                  variant: AnyhooChipVariant.surface,
-                  shape: AnyhooChipShape.pill,
+                const SizedBox(width: DesignTokens.spacingSm),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: AnyhooChip(
+                      label: t.homePage.itemCount(n: list.itemCount),
+                      leadingIcon: list.hasLocations ? Icons.location_on_outlined : null,
+                      variant: AnyhooChipVariant.surface,
+                      shape: AnyhooChipShape.pill,
+                    ),
+                  ),
                 ),
               ],
             ),
