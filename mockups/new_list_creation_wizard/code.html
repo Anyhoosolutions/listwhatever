@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New List Creation Wizard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between px-4 py-3">
+<button class="text-primary text-base font-medium">Cancel</button>
+<h1 class="text-lg font-bold tracking-tight">New List</h1>
+<div class="w-12 flex justify-end">
+<span class="material-symbols-outlined text-slate-400">help</span>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Preview Section -->
+<div class="px-4 py-8 flex flex-col items-center">
+<div class="w-24 h-24 rounded-3xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/20 mb-4 transition-all duration-300">
+<span class="text-white text-5xl material-symbols-outlined">explore</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">List Preview</p>
+</div>
+<!-- List Name Input -->
+<section class="px-4 mb-8">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider mb-3 px-1">List Name</h3>
+<div class="flex flex-wrap items-end gap-4">
+<label class="flex flex-col min-w-40 flex-1">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1c2127] placeholder:text-slate-400 dark:placeholder:text-[#9dabb9] h-14 p-4 text-base font-normal transition-all" placeholder="e.g., Summer Road Trip 2024" type="text"/>
+</label>
+</div>
+</section>
+<!-- Icon Picker Section -->
+<section class="mb-8">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider mb-3 px-5">Choose an icon</h3>
+<div class="flex gap-3 px-5 overflow-x-auto hide-scrollbar pb-2">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-white border-2 border-primary">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">flight</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">hotel</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">park</span>
+</div>
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#283039] text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">movie</span>
+</div>
+</div>
+</section>
+<!-- Color Palette Section -->
+<section class="px-4 mb-8">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider mb-3 px-1">Theme Color</h3>
+<div class="grid grid-cols-6 gap-3">
+<button class="aspect-square rounded-full bg-primary ring-4 ring-primary/30 ring-offset-4 ring-offset-background-light dark:ring-offset-background-dark"></button>
+<button class="aspect-square rounded-full bg-rose-500"></button>
+<button class="aspect-square rounded-full bg-emerald-500"></button>
+<button class="aspect-square rounded-full bg-amber-500"></button>
+<button class="aspect-square rounded-full bg-violet-500"></button>
+<button class="aspect-square rounded-full bg-orange-500"></button>
+<button class="aspect-square rounded-full bg-cyan-500"></button>
+<button class="aspect-square rounded-full bg-pink-500"></button>
+<button class="aspect-square rounded-full bg-indigo-500"></button>
+<button class="aspect-square rounded-full bg-lime-500"></button>
+<button class="aspect-square rounded-full bg-slate-500"></button>
+<button class="aspect-square rounded-full bg-fuchsia-500"></button>
+</div>
+</section>
+<!-- Additional Settings (Optional for context) -->
+<section class="px-4">
+<div class="bg-white dark:bg-[#1c2127] rounded-xl border border-slate-200 dark:border-slate-800 divide-y divide-slate-200 dark:divide-slate-800">
+<div class="flex items-center justify-between p-4">
+<span class="font-medium">Enable Map View</span>
+<div class="w-10 h-6 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4">
+<span class="font-medium">Share with Friends</span>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Footer Action -->
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark pt-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 active:scale-[0.98] transition-all">
+            Create List
+        </button>
+<div class="h-6"></div> <!-- Safe area for iPhone home indicator -->
+</footer>
+</body></html>

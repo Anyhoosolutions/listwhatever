@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-primary flex size-10 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Search Results</h2>
+<div class="flex items-center justify-end absolute right-4">
+<button class="text-primary text-base font-semibold leading-normal tracking-tight">Cancel</button>
+</div>
+</div>
+<!-- Search Input Section -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full overflow-hidden">
+<div class="text-slate-400 flex border-none bg-slate-200 dark:bg-slate-800 items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-0 h-full placeholder:text-slate-500 px-3 text-base font-medium" placeholder="Search your lists..." value="Drama"/>
+<div class="flex items-center justify-center border-none bg-slate-200 dark:bg-slate-800 pr-3">
+<button class="flex items-center justify-center rounded-full bg-slate-300 dark:bg-slate-700 p-0.5">
+<span class="material-symbols-outlined text-[16px] text-slate-600 dark:text-slate-300">close</span>
+</button>
+</div>
+</div>
+</label>
+</div>
+</header>
+<main class="max-w-md mx-auto pb-10">
+<!-- List Section: Movies -->
+<section>
+<div class="flex items-center justify-between px-4 pt-6 pb-2">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider">Movies (2 results)</h3>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+</div>
+<!-- Result Card 1 -->
+<div class="px-4 py-2">
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-[#1c2127] p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex flex-[2_2_0px] flex-col justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">movie</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-tight">Classic Collection</p>
+</div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">The Godfather</p>
+<div class="mt-2 py-1 px-2 rounded bg-primary/10 border border-primary/20 w-fit">
+<p class="text-primary dark:text-primary text-xs font-medium">Match in Category: <span class="font-bold">Drama</span></p>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex flex-1 items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-semibold transition-colors">
+<span>Open</span>
+</button>
+<button class="flex size-9 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</button>
+</div>
+</div>
+<div class="w-24 h-32 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 border border-slate-200 dark:border-slate-700" data-alt="Cinematic movie poster for The Godfather" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCie9Nd8K7CnUk1rM143SPEhGmPuR5cJmlzfib7hLiRX125FwkmUMyVsJorsq5JvVEDkYFKigTw3ZPu0yHlQ6nTjRzCVk6KeKfe1sjoN7tO2mJgscoqoyPYN1lt8TmCPmYelGcRn6juU5WLOwFG9ufLB4L64qQ1v_FPsmnhKdm8fp628kmU2iyWW_gMQpwy9exH6YqLTOCEC6ROP5aFgqiVjmEHPjK_9CDspUSoZIhIP8C7uFKcDmvc8lw3Cbr3a-Opvhy-bVlmHhE");'>
+</div>
+</div>
+</div>
+<!-- Result Card 2 -->
+<div class="px-4 py-2">
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-[#1c2127] p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex flex-[2_2_0px] flex-col justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">movie</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-tight">Awards Winners</p>
+</div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Parasite</p>
+<div class="mt-2 py-1 px-2 rounded bg-primary/10 border border-primary/20 w-fit">
+<p class="text-primary dark:text-primary text-xs font-medium">Match in Category: Thriller, <span class="font-bold">Drama</span></p>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex flex-1 items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-semibold">
+<span>Open</span>
+</button>
+<button class="flex size-9 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</button>
+</div>
+</div>
+<div class="w-24 h-32 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 border border-slate-200 dark:border-slate-700" data-alt="Modern cinematic poster for Parasite movie" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAi6tLrOx0vpce63_u71ZpbsS-FQLHwunH-ZoikZxW9_IBpEAo-FvewcWRDWgCKaB8FFtwcYEaMdFewxo-sTy4oWtqrgoGPFxTA4YdliDWNKQTukFRq2tDyWuXtPVev-AdwJT2QBFGI1E4AUNcuTjElJoitvNQImPbzggsiY9IA4tjGFaKiR96yHI7v_bN7QOBfEvl07-s_r1oWXR2AgWM2cYvTaMnP8v35kdFwRsHEBpWHS_nU9Hr-J9nAWC68tUkIKO5BvCdtNcw");'>
+</div>
+</div>
+</div>
+</section>
+<!-- List Section: Book Club -->
+<section>
+<div class="flex items-center justify-between px-4 pt-8 pb-2">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider">Book Club (1 result)</h3>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+</div>
+<!-- Result Card 3 -->
+<div class="px-4 py-2">
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-[#1c2127] p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex flex-[2_2_0px] flex-col justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">book</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-tight">Victorian Era</p>
+</div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Great Expectations</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-2 leading-relaxed">
+                                ...a classic Victorian <span class="text-primary font-bold bg-primary/10 px-0.5 rounded">drama</span> that follows the growth...
+                            </p>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex flex-1 items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-semibold">
+<span>Open</span>
+</button>
+<button class="flex size-9 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<div class="w-24 h-32 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 border border-slate-200 dark:border-slate-700" data-alt="Classic book cover illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSFVQWucyCyjoPwpsQnBk1YoSkhJwxc-yOAhPyBlwQ-6uL36ny4b1nH9pxHHN7fjhvCZYkHCi3seA2aSiaR1_DzVW55SYIAxKvS9LRNNCtSNjcWFKEB3Yx0wYE_zfs85p9f3Kl7jh1wqNKEVhKRhpW3VhAuU3TMhQ75lBxkwyibc60daUL04Zrehv9RtIuFZ0PXug0Yap0rn-Aoz8BP24DsuN5COuuevMJxYK0jAGN7NNQc69qYbVJ7uxLSFRtYH6Lam83gmhK2L8");'>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty Result Hint -->
+<div class="mt-12 flex flex-col items-center justify-center px-8 text-center">
+<div class="size-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-slate-400 text-3xl">manage_search</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">No other matches found in your Travel, Recipes, or Gym lists.</p>
+</div>
+</main>
+<!-- Simple iOS Bottom Tab Bar (Contextual) -->
+<nav class="fixed bottom-0 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 pb-8 pt-2">
+<div class="flex justify-around items-center">
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+<span class="text-[10px] mt-1 font-medium">Lists</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] mt-1 font-medium">Search</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] mt-1 font-medium">Map</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] mt-1 font-medium">Settings</span>
+</div>
+</div>
+</nav>
+</body></html>

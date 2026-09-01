@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Advanced Filter Overlay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+<!-- Main Overlay Container -->
+<div class="flex flex-col min-h-screen max-w-md mx-auto relative bg-background-light dark:bg-background-dark">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between h-16">
+<div class="flex items-center justify-start w-12 cursor-pointer">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">close</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Filters</h2>
+<div class="flex w-12 items-center justify-end cursor-pointer">
+<p class="text-primary text-sm font-semibold tracking-tight">Reset</p>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Genre Section -->
+<section class="mt-4">
+<h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight px-4 pb-2 pt-4 uppercase tracking-wider opacity-60 text-xs">Genre</h3>
+<div class="flex gap-2.5 p-4 flex-wrap">
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-primary px-5 shadow-sm shadow-primary/20 cursor-pointer">
+<p class="text-white text-sm font-semibold">Drama</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Comedy</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-primary px-5 shadow-sm shadow-primary/20 cursor-pointer">
+<p class="text-white text-sm font-semibold">Action</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Sci-Fi</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Horror</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Thriller</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">Documentary</p>
+</div>
+</div>
+</section>
+<div class="mx-4 h-px bg-slate-200 dark:bg-slate-800 my-4"></div>
+<!-- Rating Section -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight px-4 pb-2 pt-2 uppercase tracking-wider opacity-60 text-xs">Rating</h3>
+<div class="flex gap-2.5 p-4 flex-wrap">
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">1 Star</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">2 Stars</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 px-5 cursor-pointer">
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium">3 Stars</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-primary px-5 shadow-sm shadow-primary/20 cursor-pointer">
+<p class="text-white text-sm font-semibold">4+ Stars</p>
+</div>
+</div>
+</section>
+<div class="mx-4 h-px bg-slate-200 dark:bg-slate-800 my-4"></div>
+<!-- Distance Slider Section -->
+<section>
+<div class="flex items-center justify-between px-4 pb-2 pt-2">
+<h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight uppercase tracking-wider opacity-60 text-xs">Radius</h3>
+<span class="text-primary font-bold text-sm">Within 15 miles</span>
+</div>
+<div class="px-4 py-6">
+<div class="relative w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full">
+<!-- Active track -->
+<div class="absolute left-0 h-full bg-primary rounded-full" style="width: 40%;"></div>
+<!-- Thumb -->
+<div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 bg-white border-2 border-primary rounded-full shadow-lg cursor-grab active:cursor-grabbing" style="left: 40%;"></div>
+</div>
+<div class="flex justify-between mt-4">
+<span class="text-xs text-slate-400">0 miles</span>
+<span class="text-xs text-slate-400">50+ miles</span>
+</div>
+</div>
+</section>
+<!-- Map View Placeholder (since it's a flexible list app with coordinates) -->
+<section class="mt-4 px-4">
+<div class="relative rounded-2xl overflow-hidden h-40 group cursor-pointer border border-slate-200 dark:border-slate-800">
+<img class="w-full h-full object-cover" data-alt="Stylized map showing pin drops for location filtering" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Kd1_TLaY0Didse8coVz1fMRQBChVd-IdNWj5Yjgwd1xnUgyVL0gI7hiHFffAk7oLE2UXw9UYUqqyCqq_RYyDNK3QCzAH43xW36NB4oNLPX0K6UXJc4MywGGGFsAm-7Qkr-fB1Ri-GSWRN6rrjMgeh_rBjsv83ENM3LSmOc6TWCg_i0aTpU26HF2sWinhDyh2EaO2HZ_r1uMhaevvTSrWWhMdEq3pvA-yWxYxyh9ON9h_E0eRZbGR2D_VCiszvjKE7klWE5XkKok"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+<div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 border border-white/20">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="text-xs font-bold uppercase tracking-tight">Set Center Point</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Footer Actions -->
+<footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-30 p-4 pb-8 bg-gradient-to-t from-background-light via-background-light/95 dark:from-background-dark dark:via-background-dark/95 to-transparent">
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]">
+                    Apply 3 Filters
+                </button>
+<button class="w-full py-2 text-slate-500 dark:text-slate-400 font-semibold text-sm hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
+                    Clear All
+                </button>
+</div>
+</footer>
+</div>
+</body></html>

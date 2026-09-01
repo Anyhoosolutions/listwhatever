@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Map View with Details Peek</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .marker-glow {
+            box-shadow: 0 0 15px rgba(19, 127, 236, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Top App Bar & Navigation -->
+<div class="absolute top-0 left-0 right-0 z-20 flex flex-col pt-safe px-4">
+<div class="flex items-center justify-between py-4">
+<div class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md rounded-full p-2 shadow-lg">
+<span class="material-symbols-outlined text-2xl px-2">chevron_left</span>
+</div>
+<!-- Segmented Control (Toggle) -->
+<div class="flex h-10 w-48 items-center justify-center rounded-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-1 shadow-lg border border-slate-200 dark:border-slate-800">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 text-slate-500 dark:text-slate-400 text-sm font-medium transition-all">
+<span class="truncate">List</span>
+<input class="hidden" name="view-toggle" type="radio" value="List"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 bg-primary text-white shadow-sm text-sm font-medium transition-all">
+<span class="truncate">Map</span>
+<input checked="" class="hidden" name="view-toggle" type="radio" value="Map"/>
+</label>
+</div>
+<div class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md rounded-full p-2 shadow-lg">
+<span class="material-symbols-outlined text-2xl px-2">search</span>
+</div>
+</div>
+</div>
+<!-- Full Screen Map Area -->
+<div class="relative flex-1 bg-slate-200 dark:bg-slate-900 overflow-hidden">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Dark styled coastal map with roads and topography" data-location="California Coast" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuARAbT7rut8QsKNrfMWjcNR2FPdEfdWjzDMd_OiBAujDBKSlCLQTE-qYyoTW0gtRy799kEDfnLyxN3Hzu3Z09iM6Rii2FdDktetj_o5WT0yoM4V-7WYE6YoJJxkVRVRDeXjOzr_iDGKJ8yoTQSG89gQNMSlz5Mya3l7hOfdSOnckNGIx5sWsbUCS_GD3IF0AiGIeUTR-d3Rn77PYJQ96IfHG_0eiifuRbb_mP-K8AHAc0xXHIkFmRepA5jcnqGm2xteIUW9buDnWro"); filter: grayscale(0.2) brightness(0.7);'></div>
+<!-- Custom Markers -->
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 group">
+<div class="relative flex flex-col items-center">
+<div class="marker-glow flex size-10 items-center justify-center rounded-full bg-primary border-2 border-white text-white">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+<div class="mt-2 rounded bg-white/90 dark:bg-background-dark/90 backdrop-blur px-2 py-1 text-[10px] font-bold uppercase tracking-wider shadow-md">
+                        Pebble Beach
+                    </div>
+</div>
+</div>
+<div class="absolute top-[40%] right-[30%] -translate-x-1/2 -translate-y-1/2 opacity-60">
+<div class="flex size-6 items-center justify-center rounded-full bg-slate-500 border-2 border-white text-white">
+<div class="size-2 rounded-full bg-white"></div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute right-4 bottom-72 flex flex-col gap-3 z-10">
+<div class="flex flex-col rounded-xl bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md shadow-xl border border-slate-200 dark:border-slate-800">
+<button class="flex size-12 items-center justify-center border-b border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex size-12 items-center justify-center">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="flex size-12 items-center justify-center rounded-xl bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md shadow-xl border border-slate-200 dark:border-slate-800 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">my_location</span>
+</button>
+</div>
+</div>
+<!-- Bottom Sheet Details Peek -->
+<div class="absolute bottom-0 left-0 right-0 z-30 transition-transform duration-300 transform translate-y-0">
+<!-- Semi-transparent overlay behind sheet if needed -->
+<div class="flex flex-col bg-background-light dark:bg-background-dark rounded-t-3xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)] border-t border-slate-200 dark:border-slate-800 pb-10">
+<!-- Handle -->
+<div class="flex h-6 w-full items-center justify-center pt-2">
+<div class="h-1.5 w-12 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+</div>
+<!-- Content Card -->
+<div class="px-6 py-4">
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-2">
+<span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">Public</span>
+<span class="text-slate-400 text-xs">•</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">5 miles away</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight">Pebble Beach</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
+                                Iconic coastal destination featuring scenic golf courses, luxury resorts, and the famous 17-Mile Drive.
+                            </p>
+</div>
+<div class="size-24 shrink-0 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="h-full w-full bg-cover bg-center" data-alt="Aerial view of Pebble Beach coastline" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuWGli0FUHp6A6lVIMvU-7tdIhSNzWjNYNkmWe9ffpnYT9MyxWgyQ6NCaeKNPZb5EN8E8EX03fow0e3-FhiMcShAkh9jwPA4O2_qLYU5LU0R5hs6FK-rYwTxdCxP8YZxF-WQWh5G0uG-GpOI3vLfydOGZiPyZB3-L7s4B99VEDEHTAgXfieO1LT-a2RGbVsmH06b8CCcSPI8mUhWsg9InyA3hR-UY2YsZ7zweRZlH1CbIbOH485QiZC7QZaEkagUkDeGiM4hqkU6I");'></div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-6 flex gap-3">
+<button class="flex-1 flex h-12 items-center justify-center gap-2 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-lg">directions</span>
+                            Directions
+                        </button>
+<button class="flex size-12 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="flex size-12 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- iOS Home Indicator Space -->
+<div class="bg-background-light dark:bg-background-dark h-8 w-full flex justify-center items-end pb-2">
+<div class="w-32 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700/50"></div>
+</div>
+</div>
+</body></html>
