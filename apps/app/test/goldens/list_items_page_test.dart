@@ -2,7 +2,10 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
+import 'package:listwhatever/app/features/list_items/fake_list_items_repository.dart';
 import 'package:listwhatever/app/features/list_items/list_items_page.dart';
 import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 
@@ -37,6 +40,11 @@ void main() {
         child: buildHubGoldenHarnessWithShell(
           themeMode: themeMode,
           initialLocation: '/lists/golf',
+          extraBlocProviders: [
+            BlocProvider<ListItemsCubit>(
+              create: (_) => ListItemsCubit(repository: FakeListItemsRepository())..load('golf'),
+            ),
+          ],
           shellPage: const ListItemsPage(listId: 'golf'),
         ),
       );
@@ -48,6 +56,11 @@ void main() {
         child: buildHubGoldenHarnessWithShell(
           themeMode: themeMode,
           initialLocation: '/lists/golf',
+          extraBlocProviders: [
+            BlocProvider<ListItemsCubit>(
+              create: (_) => ListItemsCubit(repository: FakeListItemsRepository())..load('golf'),
+            ),
+          ],
           shellPage: const ListItemsPage(
             listId: 'golf',
             initialMode: ListItemsViewMode.map,

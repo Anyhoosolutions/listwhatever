@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
 import 'package:listwhatever/app/features/list_items/list_item_row.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
@@ -17,12 +17,12 @@ class ListItemsView extends StatelessWidget {
     this.onItemTap,
   });
 
-  final List<ListItemPreview> items;
+  final List<ListItem> items;
   final ListItemsViewMode mode;
   final bool hasLocations;
   final ValueChanged<ListItemsViewMode> onModeChanged;
   final ValueChanged<String> onSearchChanged;
-  final ValueChanged<ListItemPreview>? onItemTap;
+  final ValueChanged<ListItem>? onItemTap;
 
   @override
   Widget build(BuildContext context) {

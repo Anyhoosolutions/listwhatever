@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
 
 class ListMapPlaceholder extends StatelessWidget {
   const ListMapPlaceholder({
@@ -10,9 +10,9 @@ class ListMapPlaceholder extends StatelessWidget {
     this.onItemSelected,
   });
 
-  final List<ListItemPreview> items;
-  final ListItemPreview selected;
-  final ValueChanged<ListItemPreview>? onItemSelected;
+  final List<ListItem> items;
+  final ListItem selected;
+  final ValueChanged<ListItem>? onItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class ListMapPlaceholder extends StatelessWidget {
               ),
               for (final item in items)
                 Positioned(
-                  left: constraints.maxWidth * item.mapX - 12,
-                  top: constraints.maxHeight * item.mapY - 24,
+                  left: 10, // constraints.maxWidth * item.mapX - 12,
+                  top: 10, //constraints.maxHeight * item.mapY - 24,
                   child: GestureDetector(
                     onTap: onItemSelected == null ? null : () => onItemSelected!(item),
                     child: Column(

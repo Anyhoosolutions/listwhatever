@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 class ListItemRow extends StatelessWidget {
@@ -10,17 +10,13 @@ class ListItemRow extends StatelessWidget {
     this.onTap,
   });
 
-  final ListItemPreview item;
+  final ListItem item;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     final surface = context.surface;
-    final accessLabel = switch (item.access) {
-      ListItemAccess.public => t.listItemsPage.accessPublic,
-      ListItemAccess.private => t.listItemsPage.accessPrivate,
-    };
 
     return InkWell(
       onTap: onTap,
@@ -30,13 +26,13 @@ class ListItemRow extends StatelessWidget {
           children: [
             DecoratedBox(
               decoration: BoxDecoration(
-                color: item.iconBackground,
+                color: colorFor(item.iconBackground),
                 borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
               ),
               child: SizedBox(
                 width: 64,
                 height: 64,
-                child: Icon(item.icon, color: Colors.white, size: 28),
+                child: Icon(iconDataFor(item.icon), color: Colors.white, size: 28),
               ),
             ),
             const SizedBox(width: DesignTokens.spacingMd),
@@ -52,15 +48,7 @@ class ListItemRow extends StatelessWidget {
                       color: surface.primaryText,
                     ),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    t.listItemsPage.metaLine(access: accessLabel.toUpperCase(), par: item.par),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AnyhooTypography.label(LabelSize.medium).copyWith(
-                      color: surface.secondaryText,
-                    ),
-                  ),
+
                   const SizedBox(height: DesignTokens.spacingXs),
                   Row(
                     children: [
@@ -69,8 +57,8 @@ class ListItemRow extends StatelessWidget {
                       Flexible(
                         child: Text(
                           t.listItemsPage.ratingLine(
-                            rating: item.rating.toStringAsFixed(1),
-                            location: item.location,
+                            rating: item.categoryValues['rating']?.toStringAsFixed(1) ?? '',
+                            location: '', // item.address,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -90,4 +78,33 @@ class ListItemRow extends StatelessWidget {
       ),
     );
   }
+}
+
+IconData iconDataFor(ListItemIcon? icon) {
+  return switch (icon) {
+    ListItemIcon.movie => Icons.movie_outlined,
+    ListItemIcon.restaurant => Icons.restaurant_outlined,
+    ListItemIcon.hotel => Icons.hotel_outlined,
+    ListItemIcon.flight => Icons.flight_outlined,
+    ListItemIcon.car => Icons.directions_car_outlined,
+    ListItemIcon.train => Icons.train_outlined,
+    ListItemIcon.bus => Icons.directions_bus_outlined,
+    ListItemIcon.flag => Icons.flag_outlined,
+    ListItemIcon.park => Icons.park_outlined,
+    ListItemIcon.golfCourse => Icons.golf_course_outlined,
+    ListItemIcon.eco => Icons.eco_outlined,
+    ListItemIcon.waves => Icons.waves_outlined,
+    null => Icons.place_outlined,
+  };
+}
+
+Color colorFor(ListItemIconBackground? background) {
+  return switch (background) {
+    ListItemIconBackground.red => const Color(0xFFEF4444),
+    ListItemIconBackground.green => const Color(0xFF166534),
+    ListItemIconBackground.blue => const Color(0xFF1D4ED8),
+    ListItemIconBackground.yellow => const Color(0xFFF59E0B),
+    ListItemIconBackground.purple => const Color(0xFF4338CA),
+    null => const Color(0xFF64748B),
+  };
 }

@@ -5,6 +5,7 @@ import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 import 'package:listwhatever/app/features/list_items/list_map_view.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
+import 'package:core_models/core_models.dart';
 
 Widget _listItemsChrome(Widget view, {required String title}) {
   return starterViewHost(
@@ -62,7 +63,7 @@ class _ListItemsPreviewState extends State<_ListItemsPreview> {
         return true;
       }
       final q = _query.toLowerCase();
-      return item.title.toLowerCase().contains(q) || item.location.toLowerCase().contains(q);
+      return item.title.toLowerCase().contains(q) || (item.address?.toLowerCase().contains(q) ?? false);
     }).toList();
 
     return ListItemsView(
@@ -83,7 +84,7 @@ class _ListMapPreview extends StatefulWidget {
 }
 
 class _ListMapPreviewState extends State<_ListMapPreview> {
-  ListItemPreview _selected = ListItemsSampleData.golfCourses.first;
+  ListItem _selected = ListItemsSampleData.golfCourses.first;
 
   @override
   Widget build(BuildContext context) {

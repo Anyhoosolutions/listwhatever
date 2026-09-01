@@ -13,6 +13,7 @@ Widget starterViewHost(
 }) {
   return Builder(
     builder: (context) {
+      // ignore: deprecated_member_use
       final themeModeSelection = context.knobs.list(
         label: 'Theme mode',
         options: const ['light', 'dark'],
