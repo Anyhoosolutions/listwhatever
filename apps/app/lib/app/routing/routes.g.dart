@@ -35,7 +35,8 @@ RouteBase get $appShellRouteData => ShellRouteData.$route(
 );
 
 extension $AppShellRouteDataExtension on AppShellRouteData {
-  static AppShellRouteData _fromState(GoRouterState state) => const AppShellRouteData();
+  static AppShellRouteData _fromState(GoRouterState state) =>
+      const AppShellRouteData();
 }
 
 mixin $HomeRoute on GoRouteData {
@@ -51,7 +52,8 @@ mixin $HomeRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
@@ -70,19 +72,22 @@ mixin $SettingsRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
 }
 
 mixin $ItemRoute on GoRouteData {
-  static ItemRoute _fromState(GoRouterState state) => ItemRoute(itemId: state.pathParameters['itemId']!);
+  static ItemRoute _fromState(GoRouterState state) =>
+      ItemRoute(itemId: state.pathParameters['itemId']!);
 
   ItemRoute get _self => this as ItemRoute;
 
   @override
-  String get location => GoRouteData.$location('/items/${Uri.encodeComponent(_self.itemId)}');
+  String get location =>
+      GoRouteData.$location('/items/${Uri.encodeComponent(_self.itemId)}');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -91,7 +96,8 @@ mixin $ItemRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
@@ -110,7 +116,8 @@ mixin $CounterRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
@@ -135,7 +142,8 @@ mixin $LoginRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
