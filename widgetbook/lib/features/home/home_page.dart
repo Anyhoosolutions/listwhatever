@@ -10,6 +10,7 @@ Widget myListsDashboardUseCase(BuildContext context) {
   return starterViewHost(
     const _MyListsPreview(),
     themeMode: ThemeMode.dark,
+    appBar: const AnyhooTopBar(topBarTitle: 'My Lists'),
     floatingActionButton: Builder(
       builder: (context) => FloatingActionButton(
         onPressed: () {},
@@ -20,12 +21,11 @@ Widget myListsDashboardUseCase(BuildContext context) {
     ),
     bottomNavigationBar: AnyhooBottomBar(
       selectedIndex: 0,
-      onDestinationSelected: (context, index) {},
-      destinations: const [
-        NavigationDestination(icon: Icon(Icons.grid_view_rounded), label: 'Dashboard'),
-        NavigationDestination(icon: Icon(Icons.map_outlined), label: 'Map View'),
-        NavigationDestination(icon: Icon(Icons.favorite_border), label: 'Favorites'),
-        NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile'),
+      destinations: [
+        AnyhooBottomBarButton(icon: Icons.grid_view_rounded, label: 'Dashboard', onTap: () {}),
+        AnyhooBottomBarButton(icon: Icons.map_outlined, label: 'Map View', onTap: () {}),
+        AnyhooBottomBarButton(icon: Icons.favorite_border, label: 'Favorites', onTap: () {}),
+        AnyhooBottomBarButton(icon: Icons.person_outline, label: 'Profile', onTap: () {}),
       ],
     ),
   );
@@ -101,17 +101,13 @@ class _MyListsPreviewState extends State<_MyListsPreview> {
       return matchesCategory && matchesQuery;
     }).toList();
 
-    return SafeArea(
-      child: HomeView(
-        lists: filtered,
-        featured: _featured,
-        categories: _categories,
-        selectedCategory: _selectedCategory,
-        onCategorySelected: (category) => setState(() => _selectedCategory = category),
-        onSearchChanged: (value) => setState(() => _query = value),
-        onSettingsTap: () {},
-        onProfileTap: () {},
-      ),
+    return HomeView(
+      lists: filtered,
+      featured: _featured,
+      categories: _categories,
+      selectedCategory: _selectedCategory,
+      onCategorySelected: (category) => setState(() => _selectedCategory = category),
+      onSearchChanged: (value) => setState(() => _query = value),
     );
   }
 }

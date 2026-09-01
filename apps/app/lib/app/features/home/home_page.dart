@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/home/home_view.dart';
 import 'package:listwhatever/app/features/home/list_preview.dart';
-import 'package:listwhatever/app/routing/routes.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,26 +75,22 @@ class _HomePageState extends State<HomePage> {
       return matchesCategory && matchesQuery;
     }).toList();
 
-    return SafeArea(
-      child: HomeView(
-        lists: filtered,
-        featured: FeaturedListPreview(
-          id: _featured.id,
-          title: t.homePage.featuredTitle,
-          subtitle: t.homePage.featuredSubtitle,
-          badgeLabel: t.homePage.featuredBadge,
-        ),
-        categories: _categories,
-        selectedCategory: _selectedCategory,
-        onCategorySelected: (category) {
-          setState(() => _selectedCategory = category);
-        },
-        onSearchChanged: (value) {
-          setState(() => _query = value);
-        },
-        onSettingsTap: () => const SettingsRoute().go(context),
-        onProfileTap: () => const SettingsRoute().go(context),
+    return HomeView(
+      lists: filtered,
+      featured: FeaturedListPreview(
+        id: _featured.id,
+        title: t.homePage.featuredTitle,
+        subtitle: t.homePage.featuredSubtitle,
+        badgeLabel: t.homePage.featuredBadge,
       ),
+      categories: _categories,
+      selectedCategory: _selectedCategory,
+      onCategorySelected: (category) {
+        setState(() => _selectedCategory = category);
+      },
+      onSearchChanged: (value) {
+        setState(() => _query = value);
+      },
     );
   }
 }

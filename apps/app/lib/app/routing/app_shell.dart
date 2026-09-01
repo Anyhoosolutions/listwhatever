@@ -1,12 +1,9 @@
-import 'package:anyhoo_auth/cubit/anyhoo_auth_cubit.dart';
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
-import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
-import 'package:listwhatever/shared/keys.dart';
 import 'package:flutter/services.dart';
+import 'package:listwhatever/shared/keys.dart';
 import 'package:listwhatever/shared/widgets/staging_banner.dart';
 
 class AppShell extends StatelessWidget {
@@ -28,18 +25,18 @@ class AppShell extends StatelessWidget {
     final showBackButton = (path != '/' && path != '/home' && path != '/counter' && path != '/settings');
 
     return Scaffold(
-      appBar: isHome
-          ? null
-          : AnyhooTopBar(
-              topBarText: '${t.appName}${(appFlavor == 'production') ? '' : ' (${t.staging})'}',
-              onLogoutClick: () {
-                context.read<AnyhooAuthCubit<User>>().logout();
-              },
-              showBackButton: showBackButton,
-              onBackTap: () {
-                context.pop();
-              },
-            ),
+      appBar: AnyhooTopBar(
+        topBarTitle: isHome ? t.homePage.header : '${t.appName}${(appFlavor == 'production') ? '' : ' (${t.staging})'}',
+        onLogoutClick: () {
+          // context.read<AnyhooAuthCubit<User>>().logout();
+        },
+        onSettingsTap: () => context.go('/settings'),
+        onProfileTap: () => context.go('/settings'),
+        showBackButton: showBackButton,
+        onBackTap: () {
+          context.pop();
+        },
+      ),
       floatingActionButton: isHome
           ? FloatingActionButton(
               onPressed: () {},
@@ -51,31 +48,24 @@ class AppShell extends StatelessWidget {
       body: (appFlavor == 'staging') ? StagingBanner(child: child) : child,
       bottomNavigationBar: AnyhooBottomBar(
         selectedIndex: selectedIndex,
-        onDestinationSelected: (context, index) {
-          switch (index) {
-            case 0:
-              context.go('/home');
-            case 1:
-              context.go('/counter');
-            case 2:
-              context.go('/settings');
-          }
-        },
         destinations: [
-          NavigationDestination(
+          AnyhooBottomBarButton(
             key: keys.bottomBarKeys.bottomBarButton(0),
-            icon: Icon(Icons.home),
+            icon: Icons.home,
             label: t.mainPage.homeTab,
+            onTap: () => context.go('/home'),
           ),
-          NavigationDestination(
+          AnyhooBottomBarButton(
             key: keys.bottomBarKeys.bottomBarButton(1),
-            icon: Icon(Icons.add_circle_outline_rounded),
+            icon: Icons.add_circle_outline_rounded,
             label: t.mainPage.counterTab,
+            onTap: () => context.go('/counter'),
           ),
-          NavigationDestination(
+          AnyhooBottomBarButton(
             key: keys.bottomBarKeys.bottomBarButton(2),
-            icon: Icon(Icons.settings),
+            icon: Icons.settings,
             label: t.mainPage.settingsTab,
+            onTap: () => context.go('/settings'),
           ),
         ],
       ),

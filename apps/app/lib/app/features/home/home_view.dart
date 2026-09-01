@@ -14,8 +14,6 @@ class HomeView extends StatelessWidget {
     required this.selectedCategory,
     required this.onCategorySelected,
     required this.onSearchChanged,
-    required this.onSettingsTap,
-    required this.onProfileTap,
     this.onListTap,
     this.onFeaturedTap,
   });
@@ -26,8 +24,6 @@ class HomeView extends StatelessWidget {
   final String selectedCategory;
   final ValueChanged<String> onCategorySelected;
   final ValueChanged<String> onSearchChanged;
-  final VoidCallback onSettingsTap;
-  final VoidCallback onProfileTap;
   final ValueChanged<ListPreview>? onListTap;
   final VoidCallback? onFeaturedTap;
 
@@ -44,16 +40,6 @@ class HomeView extends StatelessWidget {
         DesignTokens.spacingXl,
       ),
       children: [
-        Row(
-          children: [
-            AnyhooRoundButton(onPressed: onProfileTap, icon: Icons.person_outline),
-            const Spacer(),
-            AnyhooRoundButton(onPressed: onSettingsTap, icon: Icons.settings_outlined),
-          ],
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        t.homePage.header.headline(size: HeadlineSize.large),
-        const SizedBox(height: DesignTokens.spacingMd),
         AnyhooSearchField(
           hint: t.homePage.searchHint,
           onChanged: onSearchChanged,

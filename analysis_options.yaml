@@ -11,6 +11,7 @@ analyzer:
     - "**/lib/**.freezed.dart"
     - "**/lib/**.g.dart"
     - widgetbook/build/**.dart
+    - secrets/**
 
   errors:
     lines_longer_than_80_chars: ignore

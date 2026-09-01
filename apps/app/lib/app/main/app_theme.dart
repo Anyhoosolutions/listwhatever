@@ -2,8 +2,37 @@ import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData get light => AnyhooTheme.light(colors: _getLightColors());
-  static ThemeData get dark => AnyhooTheme.dark(colors: _getDarkColors());
+  static ThemeData get light => _withNavigationBar(AnyhooTheme.light(colors: _getLightColors()), _getLightColors());
+  static ThemeData get dark => _withNavigationBar(AnyhooTheme.dark(colors: _getDarkColors()), _getDarkColors());
+
+  static ThemeData _withNavigationBar(ThemeData theme, AppColors colors) {
+    return theme.copyWith(
+      colorScheme: theme.colorScheme.copyWith(
+        surface: colors.surface.scaffoldBackground,
+        surfaceContainer: colors.appBar.bottomBarBackground,
+      ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: colors.appBar.bottomBarBackground,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        height: 56,
+        indicatorColor: colors.surface.containerHigh,
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return IconThemeData(
+            color: selected ? colors.accent.primaryFixed : colors.appBar.bottomBarIconColors,
+          );
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return TextStyle(
+            fontSize: 12,
+            color: selected ? colors.accent.primaryFixed : colors.appBar.bottomBarIconColors,
+          );
+        }),
+      ),
+    );
+  }
 
   /// Slate surfaces with a sky-blue accent (from the design system guide).
   static AppColors _getLightColors() => AppColors(
@@ -33,19 +62,17 @@ class AppTheme {
       onSecondaryContainer: Color(0xFF0369A1),
       inverseSurface: Color(0xFF1E293B),
       inverseOnSurface: Color(0xFFF8FAFC),
-      topBarBackground: Color.fromARGB(255, 58, 132, 205),
-      topBarText: Color(0xFF0F172A),
-      bottomBarBackground: Color.fromARGB(255, 152, 198, 245),
-      bottomBarIconColors: Color(0xFF0F172A),
     ),
     appBar: AppBarColors(
       topBarBackground: Color(0xFFF5F5F0),
       topBarBorder: Color(0xFF8E9379),
       topBarText: Color(0xFF111508),
       backButtonColor: Color(0xFFF5F5F0),
-      iconColor: Color(0xFF111508),
-      bottomBarBackground: Color(0xFFF5F5F0),
-      bottomBarIconColors: Color(0xFF111508),
+      avatarColor: Color(0xFF111508),
+      bottomBarBackground: Color.fromARGB(255, 152, 198, 245),
+      bottomBarIconColors: Color(0xFF0F172A),
+      bottomBarIndicatorColor: Color(0xFF0F172A),
+      bottomBarBorderColor: Color(0xFF0F172A),
     ),
     status: StatusColors(
       error: Color(0xFFEF4444),
@@ -84,19 +111,17 @@ class AppTheme {
       onSecondaryContainer: Color(0xFF96BEAB),
       inverseSurface: Color(0xFFD0E8DF),
       inverseOnSurface: Color(0xFF20342F),
-      topBarBackground: Color(0xFF031712),
-      topBarText: Color(0xFFD0E8DF),
-      bottomBarBackground: Color(0xFF031712),
-      bottomBarIconColors: Color(0xFFD0E8DF),
     ),
     appBar: AppBarColors(
       topBarBackground: Color(0xFF031712),
       topBarBorder: Color(0xFF3C4A42),
       topBarText: Color(0xFFD0E8DF),
       backButtonColor: Color(0xFFD0E8DF),
-      iconColor: Color(0xFF4EDEA3),
+      avatarColor: Color(0xFF4EDEA3),
       bottomBarBackground: Color(0xFF031712),
       bottomBarIconColors: Color(0xFFD0E8DF),
+      bottomBarIndicatorColor: Color(0xFF4EDEA3),
+      bottomBarBorderColor: Color(0xFF4EDEA3),
     ),
     status: StatusColors(
       error: Color(0xFFFFB4AB),

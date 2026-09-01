@@ -61,8 +61,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_auth"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.32"
@@ -70,8 +70,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_core"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.15"
@@ -79,8 +79,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_design_system"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.1"
@@ -88,8 +88,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_extension_methods"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.1"
@@ -97,8 +97,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_firebase"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.16"
@@ -106,17 +106,26 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_logging"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.6"
+  anyhoo_models:
+    dependency: transitive
+    description:
+      path: "packages/anyhoo_models"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
+    source: git
+    version: "0.0.1"
   anyhoo_router:
     dependency: transitive
     description:
       path: "packages/anyhoo_router"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.18"
@@ -124,8 +133,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/anyhoo_widget_extension_methods"
-      ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
-      resolved-ref: "7f19894b6c61c556a6ac7aa9fc8ca61efe6b5896"
+      ref: "86def0c362fa674279cd268450ca6b03f252d36d"
+      resolved-ref: "86def0c362fa674279cd268450ca6b03f252d36d"
       url: "https://github.com/Anyhoosolutions/flutter_platform_kit.git"
     source: git
     version: "0.0.1"

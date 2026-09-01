@@ -7,6 +7,7 @@ import 'package:widgetbook_workspace/helpers/device_frame_wrapper.dart';
 Widget starterViewHost(
   Widget view, {
   ThemeMode themeMode = ThemeMode.system,
+  PreferredSizeWidget? appBar,
   Widget? floatingActionButton,
   Widget? bottomNavigationBar,
 }) {
@@ -19,6 +20,7 @@ Widget starterViewHost(
         builder: (context) => DeviceFrameWrapper.wrapInDeviceFrame(
           context,
           Scaffold(
+            appBar: appBar,
             body: view,
             floatingActionButton: floatingActionButton,
             bottomNavigationBar: bottomNavigationBar,
