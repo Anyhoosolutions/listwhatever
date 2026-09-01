@@ -26,6 +26,17 @@
 		"featuredSubtitle": "7 locations tagged.",
 		"featuredBadge": "Map view enabled."
 	},
+	"listItemsPage": {
+		"listTab": "List",
+		"mapTab": "Map",
+		"searchHint": "Search courses, locations...",
+		"empty": "No items match your search",
+		"accessPublic": "Public",
+		"accessPrivate": "Private",
+		"metaLine(access: String, par: int)": "$access · PAR $par",
+		"ratingLine(rating: String, location: String)": "$rating · $location",
+		"directions": "Directions"
+	},
 	"itemPage": {
 		"refreshButton": "Refresh"
 	},

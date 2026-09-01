@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/home/home_view.dart';
 import 'package:listwhatever/app/features/home/list_preview.dart';
+import 'package:listwhatever/app/routing/routes.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 class HomePage extends StatefulWidget {
@@ -91,6 +92,7 @@ class _HomePageState extends State<HomePage> {
       onSearchChanged: (value) {
         setState(() => _query = value);
       },
+      onListTap: (list) => ListItemsRoute(listId: list.id).push(context),
     );
   }
 }

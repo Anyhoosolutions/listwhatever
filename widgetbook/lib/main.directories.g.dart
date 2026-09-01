@@ -41,6 +41,8 @@ import 'package:widgetbook_workspace/features/home/home_page.dart'
     as _widgetbook_workspace_features_home_home_page;
 import 'package:widgetbook_workspace/features/items/item_view.dart'
     as _widgetbook_workspace_features_items_item_view;
+import 'package:widgetbook_workspace/features/list_items/list_items_page.dart'
+    as _widgetbook_workspace_features_list_items_list_items_page;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -278,6 +280,33 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Loaded',
                 builder: _widgetbook_workspace_features_items_item_view
                     .itemViewLoadedUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'list_items',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'ListItemsView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'List',
+                builder:
+                    _widgetbook_workspace_features_list_items_list_items_page
+                        .listItemsViewUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'ListMapView',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Map',
+                builder:
+                    _widgetbook_workspace_features_list_items_list_items_page
+                        .listMapViewUseCase,
               ),
             ],
           ),

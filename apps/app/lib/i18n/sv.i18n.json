@@ -26,6 +26,17 @@
 		"featuredSubtitle": "7 platser taggade.",
 		"featuredBadge": "Kartvy aktiverad."
 	},
+	"listItemsPage": {
+		"listTab": "Lista",
+		"mapTab": "Karta",
+		"searchHint": "Sök banor, platser...",
+		"empty": "Inga objekt matchar sökningen",
+		"accessPublic": "Publik",
+		"accessPrivate": "Privat",
+		"metaLine(access: String, par: int)": "$access · PAR $par",
+		"ratingLine(rating: String, location: String)": "$rating · $location",
+		"directions": "Vägbeskrivning"
+	},
 	"itemPage": {
 		"refreshButton": "Uppdatera"
 	},

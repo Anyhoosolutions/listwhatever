@@ -22,7 +22,9 @@ class AppShell extends StatelessWidget {
       _ => 0,
     };
     final isHome = path == '/' || path == '/home';
+    final isListItems = path.startsWith('/lists/');
     final showBackButton = (path != '/' && path != '/home' && path != '/counter' && path != '/settings');
+    final showFab = isHome || isListItems;
 
     return Scaffold(
       appBar: AnyhooTopBar(
@@ -37,7 +39,7 @@ class AppShell extends StatelessWidget {
           context.pop();
         },
       ),
-      floatingActionButton: isHome
+      floatingActionButton: showFab
           ? FloatingActionButton(
               onPressed: () {},
               backgroundColor: context.accent.primaryFixed,

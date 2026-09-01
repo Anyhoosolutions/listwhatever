@@ -46,6 +46,7 @@ class TranslationsSv with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _Translations$appShell$sv appShell = _Translations$appShell$sv._(_root);
 	@override late final _Translations$mainPage$sv mainPage = _Translations$mainPage$sv._(_root);
 	@override late final _Translations$homePage$sv homePage = _Translations$homePage$sv._(_root);
+	@override late final _Translations$listItemsPage$sv listItemsPage = _Translations$listItemsPage$sv._(_root);
 	@override late final _Translations$itemPage$sv itemPage = _Translations$itemPage$sv._(_root);
 	@override late final _Translations$settingsPage$sv settingsPage = _Translations$settingsPage$sv._(_root);
 }
@@ -86,6 +87,24 @@ class _Translations$homePage$sv implements Translations$homePage$en {
 	@override String get featuredTitle => 'Favoritkaféer';
 	@override String get featuredSubtitle => '7 platser taggade.';
 	@override String get featuredBadge => 'Kartvy aktiverad.';
+}
+
+// Path: listItemsPage
+class _Translations$listItemsPage$sv implements Translations$listItemsPage$en {
+	_Translations$listItemsPage$sv._(this._root);
+
+	final TranslationsSv _root; // ignore: unused_field
+
+	// Translations
+	@override String get listTab => 'Lista';
+	@override String get mapTab => 'Karta';
+	@override String get searchHint => 'Sök banor, platser...';
+	@override String get empty => 'Inga objekt matchar sökningen';
+	@override String get accessPublic => 'Publik';
+	@override String get accessPrivate => 'Privat';
+	@override String metaLine({required Object access, required Object par}) => '${access} · PAR ${par}';
+	@override String ratingLine({required Object rating, required Object location}) => '${rating} · ${location}';
+	@override String get directions => 'Vägbeskrivning';
 }
 
 // Path: itemPage
@@ -147,6 +166,15 @@ extension on TranslationsSv {
 			'homePage.featuredTitle' => 'Favoritkaféer',
 			'homePage.featuredSubtitle' => '7 platser taggade.',
 			'homePage.featuredBadge' => 'Kartvy aktiverad.',
+			'listItemsPage.listTab' => 'Lista',
+			'listItemsPage.mapTab' => 'Karta',
+			'listItemsPage.searchHint' => 'Sök banor, platser...',
+			'listItemsPage.empty' => 'Inga objekt matchar sökningen',
+			'listItemsPage.accessPublic' => 'Publik',
+			'listItemsPage.accessPrivate' => 'Privat',
+			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
+			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
+			'listItemsPage.directions' => 'Vägbeskrivning',
 			'itemPage.refreshButton' => 'Uppdatera',
 			'settingsPage.header' => 'Inställningar',
 			_ => null,

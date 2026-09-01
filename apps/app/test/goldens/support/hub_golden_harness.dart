@@ -161,6 +161,10 @@ class _HubShellGoldenHostState extends State<_HubShellGoldenHost> {
               path: '/home',
               builder: (context, state) => _page,
             ),
+            GoRoute(
+              path: '/lists/:listId',
+              builder: (context, state) => _page,
+            ),
           ],
         ),
       ],

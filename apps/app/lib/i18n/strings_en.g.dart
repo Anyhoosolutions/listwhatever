@@ -62,6 +62,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$appShell$en appShell = Translations$appShell$en._(_root);
 	late final Translations$mainPage$en mainPage = Translations$mainPage$en._(_root);
 	late final Translations$homePage$en homePage = Translations$homePage$en._(_root);
+	late final Translations$listItemsPage$en listItemsPage = Translations$listItemsPage$en._(_root);
 	late final Translations$itemPage$en itemPage = Translations$itemPage$en._(_root);
 	late final Translations$settingsPage$en settingsPage = Translations$settingsPage$en._(_root);
 }
@@ -122,6 +123,42 @@ class Translations$homePage$en {
 
 	/// en: 'Map view enabled.'
 	String get featuredBadge => 'Map view enabled.';
+}
+
+// Path: listItemsPage
+class Translations$listItemsPage$en {
+	Translations$listItemsPage$en._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'List'
+	String get listTab => 'List';
+
+	/// en: 'Map'
+	String get mapTab => 'Map';
+
+	/// en: 'Search courses, locations...'
+	String get searchHint => 'Search courses, locations...';
+
+	/// en: 'No items match your search'
+	String get empty => 'No items match your search';
+
+	/// en: 'Public'
+	String get accessPublic => 'Public';
+
+	/// en: 'Private'
+	String get accessPrivate => 'Private';
+
+	/// en: '$access · PAR $par'
+	String metaLine({required Object access, required Object par}) => '${access} · PAR ${par}';
+
+	/// en: '$rating · $location'
+	String ratingLine({required Object rating, required Object location}) => '${rating} · ${location}';
+
+	/// en: 'Directions'
+	String get directions => 'Directions';
 }
 
 // Path: itemPage
@@ -193,6 +230,15 @@ extension on Translations {
 			'homePage.featuredTitle' => 'Favorite Cafes',
 			'homePage.featuredSubtitle' => '7 locations tagged.',
 			'homePage.featuredBadge' => 'Map view enabled.',
+			'listItemsPage.listTab' => 'List',
+			'listItemsPage.mapTab' => 'Map',
+			'listItemsPage.searchHint' => 'Search courses, locations...',
+			'listItemsPage.empty' => 'No items match your search',
+			'listItemsPage.accessPublic' => 'Public',
+			'listItemsPage.accessPrivate' => 'Private',
+			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
+			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
+			'listItemsPage.directions' => 'Directions',
 			'itemPage.refreshButton' => 'Refresh',
 			'settingsPage.header' => 'Settings',
 			_ => null,
