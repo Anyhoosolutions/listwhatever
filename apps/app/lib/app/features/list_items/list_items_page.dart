@@ -2,7 +2,6 @@ import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_state.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
 import 'package:listwhatever/app/features/list_items/list_items_skeleton.dart';
 import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 import 'package:listwhatever/app/features/list_items/list_map_view.dart';
@@ -24,8 +23,8 @@ class ListItemsPage extends StatelessWidget {
       skeleton: const ListItemsSkeleton(),
       successBuilder: (context, items, cubit) {
         return _ListItemsBody(
-          items: items.map(ListItemPreview.fromListItem).toList(),
-          hasLocations: items.any((item) => item.langlong != null),
+          items: items,
+          hasLocations: items.any((item) => item.latlong != null),
           initialMode: initialMode,
         );
       },
@@ -40,7 +39,7 @@ class _ListItemsBody extends StatefulWidget {
     required this.initialMode,
   });
 
-  final List<ListItemPreview> items;
+  final List<ListItem> items;
   final bool hasLocations;
   final ListItemsViewMode initialMode;
 
@@ -50,16 +49,16 @@ class _ListItemsBody extends StatefulWidget {
 
 class _ListItemsBodyState extends State<_ListItemsBody> {
   late ListItemsViewMode _mode;
-  ListItemPreview? _selected;
+  ListItem? _selected;
   String _query = '';
 
-  List<ListItemPreview> get _filtered {
+  List<ListItem> get _filtered {
     if (_query.isEmpty) {
       return widget.items;
     }
     final q = _query.toLowerCase();
     return widget.items.where((item) {
-      return item.title.toLowerCase().contains(q) || item.location.toLowerCase().contains(q);
+      return item.title.toLowerCase().contains(q) || (item.address?.toLowerCase().contains(q) ?? false);
     }).toList();
   }
 

@@ -1,7 +1,8 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
+import 'package:listwhatever/app/features/list_items/list_item_row.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:core_models/core_models.dart';
 
 class MapItemPeekSheet extends StatelessWidget {
   const MapItemPeekSheet({
@@ -12,7 +13,7 @@ class MapItemPeekSheet extends StatelessWidget {
     this.onMore,
   });
 
-  final ListItemPreview item;
+  final ListItem item;
   final VoidCallback? onDirections;
   final VoidCallback? onShare;
   final VoidCallback? onMore;
@@ -21,10 +22,7 @@ class MapItemPeekSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     final surface = context.surface;
-    final accessLabel = switch (item.access) {
-      ListItemAccess.public => t.listItemsPage.accessPublic,
-      ListItemAccess.private => t.listItemsPage.accessPrivate,
-    };
+    final accessLabel = t.listItemsPage.accessPrivate;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -62,7 +60,7 @@ class MapItemPeekSheet extends StatelessWidget {
                 ),
                 const SizedBox(width: DesignTokens.spacingSm),
                 Text(
-                  '· ${item.distanceLabel}',
+                  '· ${item.categoryValues['distanceLabel']}',
                   style: AnyhooTypography.body(BodySize.medium).copyWith(
                     color: surface.secondaryText,
                   ),
@@ -87,7 +85,7 @@ class MapItemPeekSheet extends StatelessWidget {
                       ),
                       const SizedBox(height: DesignTokens.spacingXs),
                       Text(
-                        item.description,
+                        item.notes,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AnyhooTypography.body(BodySize.medium).copyWith(
@@ -100,13 +98,13 @@ class MapItemPeekSheet extends StatelessWidget {
                 const SizedBox(width: DesignTokens.spacingMd),
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: item.iconBackground,
+                    color: colorFor(item.iconBackground),
                     borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
                   ),
                   child: SizedBox(
                     width: 72,
                     height: 72,
-                    child: Icon(item.icon, color: Colors.white, size: 32),
+                    child: Icon(iconDataFor(item.icon), color: Colors.white, size: 32),
                   ),
                 ),
               ],

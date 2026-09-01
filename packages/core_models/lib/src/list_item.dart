@@ -35,7 +35,7 @@ abstract class ListItem with _$ListItem {
     required String notes,
     required Map<String, dynamic> categoryValues, // Keys match CategoryDef.key
     String? address,
-    LatLong? langlong,
+    LatLong? latlong,
     required DateTime createdAt,
     required DateTime updatedAt,
     ListItemIcon? icon,

@@ -12,9 +12,9 @@ _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
   notes: json['notes'] as String,
   categoryValues: json['categoryValues'] as Map<String, dynamic>,
   address: json['address'] as String?,
-  langlong: json['langlong'] == null
+  latlong: json['latlong'] == null
       ? null
-      : LatLong.fromJson(json['langlong'] as Map<String, dynamic>),
+      : LatLong.fromJson(json['latlong'] as Map<String, dynamic>),
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
   icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']),
@@ -31,7 +31,7 @@ Map<String, dynamic> _$ListItemToJson(_ListItem instance) => <String, dynamic>{
   'notes': instance.notes,
   'categoryValues': instance.categoryValues,
   'address': instance.address,
-  'langlong': instance.langlong,
+  'latlong': instance.latlong,
   'createdAt': instance.createdAt.toIso8601String(),
   'updatedAt': instance.updatedAt.toIso8601String(),
   'icon': _$ListItemIconEnumMap[instance.icon],

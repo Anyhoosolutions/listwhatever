@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
 import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 import 'package:listwhatever/app/features/list_items/list_map_placeholder.dart';
 import 'package:listwhatever/app/features/list_items/map_item_peek_sheet.dart';
@@ -15,10 +15,10 @@ class ListMapView extends StatelessWidget {
     required this.onItemSelected,
   });
 
-  final List<ListItemPreview> items;
-  final ListItemPreview selected;
+  final List<ListItem> items;
+  final ListItem selected;
   final ValueChanged<ListItemsViewMode> onModeChanged;
-  final ValueChanged<ListItemPreview> onItemSelected;
+  final ValueChanged<ListItem> onItemSelected;
 
   @override
   Widget build(BuildContext context) {

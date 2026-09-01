@@ -46,7 +46,7 @@ class FirestoreListItemsRepository implements ListItemsRepository {
   ListItem _fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data() ?? {};
     final categoryValues = data['categoryValues'];
-    final langlong = data['langlong'];
+    final latlong = data['latlong'];
     return ListItem(
       id: doc.id,
       title: data['title'] as String? ?? '',
@@ -55,7 +55,7 @@ class FirestoreListItemsRepository implements ListItemsRepository {
           ? categoryValues
           : Map<String, dynamic>.from(categoryValues as Map? ?? {}),
       address: data['address'] as String?,
-      langlong: _latLong(langlong),
+      latlong: _latLong(latlong),
       createdAt: _date(data['createdAt']),
       updatedAt: _date(data['updatedAt']),
       icon: _icon(data['icon'] as String?),
@@ -70,9 +70,7 @@ class FirestoreListItemsRepository implements ListItemsRepository {
       'notes': item.notes,
       'categoryValues': item.categoryValues,
       'address': item.address,
-      'langlong': item.langlong == null
-          ? null
-          : GeoPoint(item.langlong!.latitude, item.langlong!.longitude),
+      'latlong': item.latlong == null ? null : GeoPoint(item.latlong!.latitude, item.latlong!.longitude),
       'createdAt': Timestamp.fromDate(item.createdAt),
       'updatedAt': Timestamp.fromDate(item.updatedAt),
       'icon': item.icon?.name,
