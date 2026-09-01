@@ -22,7 +22,7 @@ class AppShell extends StatelessWidget {
       _ => 0,
     };
     final isHome = path == '/' || path == '/home';
-    final isListItems = path.startsWith('/lists/');
+    final isListItems = RegExp(r'^/lists/[^/]+$').hasMatch(path);
     final showBackButton = (path != '/' && path != '/home' && path != '/counter' && path != '/settings');
     final showFab = isHome || isListItems;
 
@@ -41,7 +41,16 @@ class AppShell extends StatelessWidget {
       ),
       floatingActionButton: showFab
           ? FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                if (isHome) {
+                  context.push('/new-list');
+                  return;
+                }
+                final listId = GoRouterState.of(context).uri.pathSegments.elementAtOrNull(1);
+                if (listId != null) {
+                  context.push('/lists/$listId/new-item');
+                }
+              },
               backgroundColor: context.accent.primaryFixed,
               foregroundColor: context.accent.onPrimaryFixed,
               child: const Icon(Icons.add),

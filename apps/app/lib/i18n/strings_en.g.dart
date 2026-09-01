@@ -63,6 +63,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$mainPage$en mainPage = Translations$mainPage$en._(_root);
 	late final Translations$homePage$en homePage = Translations$homePage$en._(_root);
 	late final Translations$listItemsPage$en listItemsPage = Translations$listItemsPage$en._(_root);
+	late final Translations$addItemPage$en addItemPage = Translations$addItemPage$en._(_root);
+	late final Translations$newListPage$en newListPage = Translations$newListPage$en._(_root);
 	late final Translations$itemPage$en itemPage = Translations$itemPage$en._(_root);
 	late final Translations$settingsPage$en settingsPage = Translations$settingsPage$en._(_root);
 }
@@ -161,6 +163,99 @@ class Translations$listItemsPage$en {
 	String get directions => 'Directions';
 }
 
+// Path: addItemPage
+class Translations$addItemPage$en {
+	Translations$addItemPage$en._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Item Name'
+	String get itemNameLabel => 'Item Name';
+
+	/// en: 'Enter item name...'
+	String get itemNameHint => 'Enter item name...';
+
+	/// en: 'Description'
+	String get descriptionLabel => 'Description';
+
+	/// en: 'Add details...'
+	String get descriptionHint => 'Add details...';
+
+	/// en: 'Categories'
+	String get categoriesTitle => 'Categories';
+
+	/// en: 'Add custom attributes like Genre or Status.'
+	String get categoriesSubtitle => 'Add custom attributes like Genre or Status.';
+
+	/// en: 'Attribute (e.g. Genre)'
+	String get attributeKeyHint => 'Attribute (e.g. Genre)';
+
+	/// en: 'Value (e.g. Drama)'
+	String get attributeValueHint => 'Value (e.g. Drama)';
+
+	/// en: 'Add New Category'
+	String get addCategory => 'Add New Category';
+
+	/// en: 'Location'
+	String get locationTitle => 'Location';
+
+	/// en: 'Tap to set'
+	String get tapToSet => 'Tap to set';
+
+	/// en: 'Latitude'
+	String get latitudeLabel => 'Latitude';
+
+	/// en: '34.0522° N'
+	String get latitudeHint => '34.0522° N';
+
+	/// en: 'Longitude'
+	String get longitudeLabel => 'Longitude';
+
+	/// en: '118.2437° W'
+	String get longitudeHint => '118.2437° W';
+
+	/// en: 'Use My Current Location'
+	String get useCurrentLocation => 'Use My Current Location';
+
+	/// en: 'Create Item'
+	String get createItem => 'Create Item';
+}
+
+// Path: newListPage
+class Translations$newListPage$en {
+	Translations$newListPage$en._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'List Preview'
+	String get previewLabel => 'List Preview';
+
+	/// en: 'List Name'
+	String get nameLabel => 'List Name';
+
+	/// en: 'e.g., Summer Road Trip 2024'
+	String get nameHint => 'e.g., Summer Road Trip 2024';
+
+	/// en: 'Choose an Icon'
+	String get iconLabel => 'Choose an Icon';
+
+	/// en: 'Theme Color'
+	String get themeColorLabel => 'Theme Color';
+
+	/// en: 'Enable Map View'
+	String get enableMapView => 'Enable Map View';
+
+	/// en: 'Share with Friends'
+	String get shareWithFriends => 'Share with Friends';
+
+	/// en: 'Create List'
+	String get createList => 'Create List';
+}
+
 // Path: itemPage
 class Translations$itemPage$en {
 	Translations$itemPage$en._(this._root);
@@ -239,6 +334,31 @@ extension on Translations {
 			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
 			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
 			'listItemsPage.directions' => 'Directions',
+			'addItemPage.itemNameLabel' => 'Item Name',
+			'addItemPage.itemNameHint' => 'Enter item name...',
+			'addItemPage.descriptionLabel' => 'Description',
+			'addItemPage.descriptionHint' => 'Add details...',
+			'addItemPage.categoriesTitle' => 'Categories',
+			'addItemPage.categoriesSubtitle' => 'Add custom attributes like Genre or Status.',
+			'addItemPage.attributeKeyHint' => 'Attribute (e.g. Genre)',
+			'addItemPage.attributeValueHint' => 'Value (e.g. Drama)',
+			'addItemPage.addCategory' => 'Add New Category',
+			'addItemPage.locationTitle' => 'Location',
+			'addItemPage.tapToSet' => 'Tap to set',
+			'addItemPage.latitudeLabel' => 'Latitude',
+			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.longitudeLabel' => 'Longitude',
+			'addItemPage.longitudeHint' => '118.2437° W',
+			'addItemPage.useCurrentLocation' => 'Use My Current Location',
+			'addItemPage.createItem' => 'Create Item',
+			'newListPage.previewLabel' => 'List Preview',
+			'newListPage.nameLabel' => 'List Name',
+			'newListPage.nameHint' => 'e.g., Summer Road Trip 2024',
+			'newListPage.iconLabel' => 'Choose an Icon',
+			'newListPage.themeColorLabel' => 'Theme Color',
+			'newListPage.enableMapView' => 'Enable Map View',
+			'newListPage.shareWithFriends' => 'Share with Friends',
+			'newListPage.createList' => 'Create List',
 			'itemPage.refreshButton' => 'Refresh',
 			'settingsPage.header' => 'Settings',
 			_ => null,

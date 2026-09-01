@@ -37,6 +37,35 @@
 		"ratingLine(rating: String, location: String)": "$rating · $location",
 		"directions": "Directions"
 	},
+	"addItemPage": {
+		"itemNameLabel": "Item Name",
+		"itemNameHint": "Enter item name...",
+		"descriptionLabel": "Description",
+		"descriptionHint": "Add details...",
+		"categoriesTitle": "Categories",
+		"categoriesSubtitle": "Add custom attributes like Genre or Status.",
+		"attributeKeyHint": "Attribute (e.g. Genre)",
+		"attributeValueHint": "Value (e.g. Drama)",
+		"addCategory": "Add New Category",
+		"locationTitle": "Location",
+		"tapToSet": "Tap to set",
+		"latitudeLabel": "Latitude",
+		"latitudeHint": "34.0522° N",
+		"longitudeLabel": "Longitude",
+		"longitudeHint": "118.2437° W",
+		"useCurrentLocation": "Use My Current Location",
+		"createItem": "Create Item"
+	},
+	"newListPage": {
+		"previewLabel": "List Preview",
+		"nameLabel": "List Name",
+		"nameHint": "e.g., Summer Road Trip 2024",
+		"iconLabel": "Choose an Icon",
+		"themeColorLabel": "Theme Color",
+		"enableMapView": "Enable Map View",
+		"shareWithFriends": "Share with Friends",
+		"createList": "Create List"
+	},
 	"itemPage": {
 		"refreshButton": "Refresh"
 	},
