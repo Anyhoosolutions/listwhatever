@@ -79,8 +79,13 @@ class _Translations$homePage$sv implements Translations$homePage$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get header => 'Hem';
-	@override String get openButton => 'Öppna exempelobjekt';
+	@override String get header => 'Mina listor';
+	@override String get searchHint => 'Sök listor...';
+	@override String itemCount({required Object n}) => '${n} objekt';
+	@override String get empty => 'Inga listor matchar filtren';
+	@override String get featuredTitle => 'Favoritkaféer';
+	@override String get featuredSubtitle => '7 platser taggade.';
+	@override String get featuredBadge => 'Kartvy aktiverad.';
 }
 
 // Path: itemPage
@@ -135,8 +140,13 @@ extension on TranslationsSv {
 			'mainPage.homeTab' => 'Hem',
 			'mainPage.counterTab' => 'Räknare',
 			'mainPage.settingsTab' => 'Inställningar',
-			'homePage.header' => 'Hem',
-			'homePage.openButton' => 'Öppna exempelobjekt',
+			'homePage.header' => 'Mina listor',
+			'homePage.searchHint' => 'Sök listor...',
+			'homePage.itemCount' => ({required Object n}) => '${n} objekt',
+			'homePage.empty' => 'Inga listor matchar filtren',
+			'homePage.featuredTitle' => 'Favoritkaféer',
+			'homePage.featuredSubtitle' => '7 platser taggade.',
+			'homePage.featuredBadge' => 'Kartvy aktiverad.',
 			'itemPage.refreshButton' => 'Uppdatera',
 			'settingsPage.header' => 'Inställningar',
 			_ => null,

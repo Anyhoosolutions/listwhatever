@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData get light => AnyhooTheme.light(colors: _getLightColors());
-  static ThemeData get dark => AnyhooTheme.dark(colors: _getLightColors());
+  static ThemeData get dark => AnyhooTheme.dark(colors: _getDarkColors());
 
   /// Slate surfaces with a sky-blue accent (from the design system guide).
   static AppColors _getLightColors() => AppColors(
@@ -54,5 +54,59 @@ class AppTheme {
       success: Color(0xFF10B981),
     ),
     shimmer: ShimmerColors(baseColor: Color(0xFFE2E8F0), highlightColor: Color(0xFFF1F5F9)),
+  );
+
+  /// Deep Emerald dark palette from `mockups/my_lists_dashboard/DESIGN.md`.
+  static AppColors _getDarkColors() => const AppColors(
+    accent: AccentColors(
+      primaryFixed: Color(0xFF4EDEA3),
+      onPrimaryFixed: Color(0xFF003824),
+      primaryDisabled: Color(0xFF005236),
+      onPrimaryDisabled: Color(0xFF6FFBBE),
+      primaryContainer: Color(0xFF10B981),
+      onPrimaryContainer: Color(0xFF00422B),
+      headline: Color(0xFFD0E8DF),
+      inversePrimary: Color(0xFF006C49),
+    ),
+    surface: SurfaceColors(
+      scaffoldBackground: Color(0xFF031712),
+      lowContrastBackground: Color(0xFF031712),
+      primaryText: Color(0xFFD0E8DF),
+      secondaryText: Color(0xFFBBCABF),
+      cardBackground: Color(0xFF0F231E),
+      cardBorder: Color(0xFF3C4A42),
+      containerHigh: Color(0xFF192E28),
+      containerLow: Color(0xFF0A1F1A),
+      containerHighest: Color(0xFF243933),
+      containerLowest: Color(0xFF00110D),
+      outline: Color(0xFF86948A),
+      secondaryContainer: Color(0xFF294E3F),
+      onSecondaryContainer: Color(0xFF96BEAB),
+      inverseSurface: Color(0xFFD0E8DF),
+      inverseOnSurface: Color(0xFF20342F),
+      topBarBackground: Color(0xFF031712),
+      topBarText: Color(0xFFD0E8DF),
+      bottomBarBackground: Color(0xFF031712),
+      bottomBarIconColors: Color(0xFFD0E8DF),
+    ),
+    appBar: AppBarColors(
+      topBarBackground: Color(0xFF031712),
+      topBarBorder: Color(0xFF3C4A42),
+      topBarText: Color(0xFFD0E8DF),
+      backButtonColor: Color(0xFFD0E8DF),
+      iconColor: Color(0xFF4EDEA3),
+      bottomBarBackground: Color(0xFF031712),
+      bottomBarIconColors: Color(0xFFD0E8DF),
+    ),
+    status: StatusColors(
+      error: Color(0xFFFFB4AB),
+      errorContainer: Color(0xFF93000A),
+      warning: Color(0xFFF59E0B),
+      success: Color(0xFF10B981),
+    ),
+    shimmer: ShimmerColors(
+      baseColor: Color(0xFF0F231E),
+      highlightColor: Color(0xFF192E28),
+    ),
   );
 }

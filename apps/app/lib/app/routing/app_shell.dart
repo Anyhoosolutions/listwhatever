@@ -24,19 +24,30 @@ class AppShell extends StatelessWidget {
       _ when path.startsWith('settings') => 2,
       _ => 0,
     };
+    final isHome = path == '/' || path == '/home';
     final showBackButton = (path != '/' && path != '/home' && path != '/counter' && path != '/settings');
 
     return Scaffold(
-      appBar: AnyhooTopBar(
-        topBarText: '${t.appName}${(appFlavor == 'production') ? '' : ' (${t.staging})'}',
-        onLogoutClick: () {
-          context.read<AnyhooAuthCubit<User>>().logout();
-        },
-        showBackButton: showBackButton,
-        onBackTap: () {
-          context.pop();
-        },
-      ),
+      appBar: isHome
+          ? null
+          : AnyhooTopBar(
+              topBarText: '${t.appName}${(appFlavor == 'production') ? '' : ' (${t.staging})'}',
+              onLogoutClick: () {
+                context.read<AnyhooAuthCubit<User>>().logout();
+              },
+              showBackButton: showBackButton,
+              onBackTap: () {
+                context.pop();
+              },
+            ),
+      floatingActionButton: isHome
+          ? FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: context.accent.primaryFixed,
+              foregroundColor: context.accent.onPrimaryFixed,
+              child: const Icon(Icons.add),
+            )
+          : null,
       body: (appFlavor == 'staging') ? StagingBanner(child: child) : child,
       bottomNavigationBar: AnyhooBottomBar(
         selectedIndex: selectedIndex,

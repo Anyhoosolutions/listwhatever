@@ -18,8 +18,13 @@
 		"settingsTab": "Settings"
 	},
 	"homePage": {
-		"header": "Home",
-		"openButton": "Open sample item"
+		"header": "My Lists",
+		"searchHint": "Search lists...",
+		"itemCount(n: int)": "$n items",
+		"empty": "No lists match your filters",
+		"featuredTitle": "Favorite Cafes",
+		"featuredSubtitle": "7 locations tagged.",
+		"featuredBadge": "Map view enabled."
 	},
 	"itemPage": {
 		"refreshButton": "Refresh"

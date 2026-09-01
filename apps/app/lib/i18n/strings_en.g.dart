@@ -84,14 +84,14 @@ class Translations$mainPage$en {
 
 	// Translations
 
-	/// en: 'Hem'
-	String get homeTab => 'Hem';
+	/// en: 'Home'
+	String get homeTab => 'Home';
 
-	/// en: 'Räknare'
-	String get counterTab => 'Räknare';
+	/// en: 'Counter'
+	String get counterTab => 'Counter';
 
-	/// en: 'Inställningar'
-	String get settingsTab => 'Inställningar';
+	/// en: 'Settings'
+	String get settingsTab => 'Settings';
 }
 
 // Path: homePage
@@ -102,11 +102,26 @@ class Translations$homePage$en {
 
 	// Translations
 
-	/// en: 'Hem'
-	String get header => 'Hem';
+	/// en: 'My Lists'
+	String get header => 'My Lists';
 
-	/// en: 'Öppna exempelobjekt'
-	String get openButton => 'Öppna exempelobjekt';
+	/// en: 'Search lists...'
+	String get searchHint => 'Search lists...';
+
+	/// en: '$n items'
+	String itemCount({required Object n}) => '${n} items';
+
+	/// en: 'No lists match your filters'
+	String get empty => 'No lists match your filters';
+
+	/// en: 'Favorite Cafes'
+	String get featuredTitle => 'Favorite Cafes';
+
+	/// en: '7 locations tagged.'
+	String get featuredSubtitle => '7 locations tagged.';
+
+	/// en: 'Map view enabled.'
+	String get featuredBadge => 'Map view enabled.';
 }
 
 // Path: itemPage
@@ -129,8 +144,8 @@ class Translations$settingsPage$en {
 
 	// Translations
 
-	/// en: 'Inställningar'
-	String get header => 'Inställningar';
+	/// en: 'Settings'
+	String get header => 'Settings';
 }
 
 // Path: appShell.menu
@@ -141,14 +156,14 @@ class Translations$appShell$menu$en {
 
 	// Translations
 
-	/// en: 'Inställningar'
-	String get settings => 'Inställningar';
+	/// en: 'Settings'
+	String get settings => 'Settings';
 
-	/// en: 'Profil'
-	String get profile => 'Profil';
+	/// en: 'Profile'
+	String get profile => 'Profile';
 
-	/// en: 'Logga ut'
-	String get logout => 'Logga ut';
+	/// en: 'Logout'
+	String get logout => 'Logout';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -165,16 +180,21 @@ extension on Translations {
 			'genericNoData' => 'No data',
 			'genericError' => 'Error',
 			'listConjunction' => 'and',
-			'appShell.menu.settings' => 'Inställningar',
-			'appShell.menu.profile' => 'Profil',
-			'appShell.menu.logout' => 'Logga ut',
-			'mainPage.homeTab' => 'Hem',
-			'mainPage.counterTab' => 'Räknare',
-			'mainPage.settingsTab' => 'Inställningar',
-			'homePage.header' => 'Hem',
-			'homePage.openButton' => 'Öppna exempelobjekt',
+			'appShell.menu.settings' => 'Settings',
+			'appShell.menu.profile' => 'Profile',
+			'appShell.menu.logout' => 'Logout',
+			'mainPage.homeTab' => 'Home',
+			'mainPage.counterTab' => 'Counter',
+			'mainPage.settingsTab' => 'Settings',
+			'homePage.header' => 'My Lists',
+			'homePage.searchHint' => 'Search lists...',
+			'homePage.itemCount' => ({required Object n}) => '${n} items',
+			'homePage.empty' => 'No lists match your filters',
+			'homePage.featuredTitle' => 'Favorite Cafes',
+			'homePage.featuredSubtitle' => '7 locations tagged.',
+			'homePage.featuredBadge' => 'Map view enabled.',
 			'itemPage.refreshButton' => 'Refresh',
-			'settingsPage.header' => 'Inställningar',
+			'settingsPage.header' => 'Settings',
 			_ => null,
 		};
 	}

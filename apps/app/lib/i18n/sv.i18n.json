@@ -18,8 +18,13 @@
 		"settingsTab": "Inställningar"
 	},
 	"homePage": {
-		"header": "Hem",
-		"openButton": "Öppna exempelobjekt"
+		"header": "Mina listor",
+		"searchHint": "Sök listor...",
+		"itemCount(n: int)": "$n objekt",
+		"empty": "Inga listor matchar filtren",
+		"featuredTitle": "Favoritkaféer",
+		"featuredSubtitle": "7 platser taggade.",
+		"featuredBadge": "Kartvy aktiverad."
 	},
 	"itemPage": {
 		"refreshButton": "Uppdatera"
