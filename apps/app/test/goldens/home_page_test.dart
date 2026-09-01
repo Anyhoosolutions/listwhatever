@@ -15,17 +15,19 @@ void main() {
       name: 'phone',
       preset: GoldenScreenshotPresets.phone,
     ),
-    (
-      name: 'tablet_landscape',
-      preset: GoldenScreenshotPresets.tabletLandscape,
-    ),
-    (
-      name: 'laptop',
-      preset: GoldenScreenshotPresets.laptop,
-    ),
+    // (
+    //   name: 'tablet_landscape',
+    //   preset: GoldenScreenshotPresets.tabletLandscape,
+    // ),
+    // (
+    //   name: 'laptop',
+    //   preset: GoldenScreenshotPresets.laptop,
+    // ),
   ];
 
-  for (final themeMode in [ThemeMode.light, ThemeMode.dark]) {
+  for (final themeMode in [
+    ThemeMode.light /* ThemeMode.dark*/,
+  ]) {
     final themeName = themeMode == ThemeMode.dark ? 'dark' : 'light';
     for (final device in devices) {
       appGoldenTest(

@@ -7,7 +7,6 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 Widget _formChrome(Widget view, {required String title}) {
   return starterViewHost(
     view,
-    themeMode: ThemeMode.dark,
     appBar: AnyhooTopBar(topBarTitle: title, showBackButton: true, onBackTap: () {}),
     bottomNavigationBar: AnyhooBottomBar(
       selectedIndex: 0,

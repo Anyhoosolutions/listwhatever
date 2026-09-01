@@ -9,7 +9,6 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 Widget newListViewUseCase(BuildContext context) {
   return starterViewHost(
     const _NewListPreview(),
-    themeMode: ThemeMode.dark,
     appBar: const AnyhooTopBar(topBarTitle: 'New List', showBackButton: true),
     bottomNavigationBar: AnyhooBottomBar(
       selectedIndex: 0,

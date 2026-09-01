@@ -9,7 +9,6 @@ import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
 Widget myListsDashboardUseCase(BuildContext context) {
   return starterViewHost(
     const _MyListsPreview(),
-    themeMode: ThemeMode.dark,
     appBar: const AnyhooTopBar(topBarTitle: 'My Lists'),
     floatingActionButton: Builder(
       builder: (context) => FloatingActionButton(

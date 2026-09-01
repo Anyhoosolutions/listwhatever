@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Listify - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#715574",
+                      "inverse-surface": "#303037",
+                      "surface-bright": "#fbf8ff",
+                      "primary-container": "#5d3fd3",
+                      "outline": "#797586",
+                      "on-background": "#1b1b22",
+                      "tertiary-fixed": "#e6deff",
+                      "on-surface": "#1b1b22",
+                      "surface-variant": "#e4e1eb",
+                      "secondary-container": "#fbd7fc",
+                      "on-tertiary-fixed-variant": "#484263",
+                      "on-primary-fixed-variant": "#4723be",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#775b7a",
+                      "secondary-fixed-dim": "#debcdf",
+                      "surface": "#fbf8ff",
+                      "outline-variant": "#c9c4d7",
+                      "on-primary-container": "#d8ceff",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f2eff9",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e9e7f1",
+                      "primary": "#451ebb",
+                      "on-secondary-fixed": "#29132d",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#cabeff",
+                      "secondary-fixed": "#fbd7fc",
+                      "on-secondary-fixed-variant": "#583e5b",
+                      "on-surface-variant": "#484554",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#cabeff",
+                      "on-tertiary-fixed": "#1c1735",
+                      "background": "#fbf8ff",
+                      "surface-tint": "#6042d6",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#e6deff",
+                      "tertiary-fixed-dim": "#cac1e8",
+                      "surface-container": "#efecf6",
+                      "on-primary-fixed": "#1c0062",
+                      "surface-dim": "#dbd9e2",
+                      "tertiary-container": "#5d5779",
+                      "tertiary": "#464060",
+                      "on-tertiary-container": "#d8cff7",
+                      "surface-container-low": "#f5f2fc",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e4e1eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "unit": "8px",
+                      "stack-lg": "32px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-xl": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Work Sans"
+                      ],
+                      "label-md": [
+                              "Work Sans"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Work Sans"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Work Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf8ff; /* Soft lavender base */
+            min-height: 100vh;
+            padding-bottom: 96px; /* Space for bottom nav */
+        }
+        
+        .ambient-shadow {
+            box-shadow: 0 10px 30px rgba(93, 63, 211, 0.08);
+        }
+
+        .ambient-shadow-hover:hover {
+            box-shadow: 0 15px 40px rgba(93, 63, 211, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Smooth transitions */
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar from JSON -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 shadow-sm flex items-center justify-between px-margin-mobile h-16 w-full">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Listify</h1>
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-stack-lg">
+<!-- Welcome Header -->
+<div class="mb-stack-lg mt-stack-sm md:hidden">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Good Morning, Alex</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Here are your active lists for today.</p>
+</div>
+<div class="mb-stack-lg mt-stack-sm hidden md:block">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Good Morning, Alex</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Here are your active lists for today.</p>
+</div>
+<!-- Filter Chips (Horizontal Scroll) -->
+<div class="flex gap-unit overflow-x-auto hide-scrollbar pb-2 mb-stack-md -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<!-- Active Chip -->
+<button class="flex-shrink-0 bg-primary-container text-on-primary-container font-label-md text-label-md px-4 py-2 rounded-full transition-soft shadow-sm whitespace-nowrap">
+                All Lists
+            </button>
+<!-- Inactive Chips -->
+<button class="flex-shrink-0 bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-fixed transition-soft whitespace-nowrap">
+                Personal
+            </button>
+<button class="flex-shrink-0 bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-fixed transition-soft whitespace-nowrap">
+                Work
+            </button>
+<button class="flex-shrink-0 bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-fixed transition-soft whitespace-nowrap">
+                Travel
+            </button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-full hover:bg-surface-container-highest transition-soft whitespace-nowrap flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add</span> New
+            </button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Standard List Card -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-[24px] p-6 ambient-shadow ambient-shadow-hover transition-soft cursor-pointer relative overflow-hidden group border border-transparent hover:border-surface-variant">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-12 relative z-10">
+<div class="w-12 h-12 bg-primary-fixed rounded-2xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Movies to Watch</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container inline-block"></span> 12 items
+                    </p>
+</div>
+</div>
+<!-- List Card with Location (Map Background Overlay) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover transition-soft cursor-pointer overflow-hidden relative group h-[200px] md:h-auto border border-transparent hover:border-surface-variant">
+<!-- Map Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-500 mix-blend-multiply" data-alt="A detailed digital map view of prestigious golf courses winding along a rugged coastal cliffline. The color palette is minimal and sophisticated, relying on the soft lavender #F8F5FF background with subtle deep plum #715574 accents defining the topography. The lighting is bright and even, casting a serene, calm mood perfect for a high-end wellness or productivity app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFvjfnEERj-KJph2azKBwqT5tWjJwIDUSqcKX0I5O1Sx9owVvFnv3OvVChUviABx9eN7X11gevqprEM8SexujDizpBOe4t_2t6CiTbgrTbM7V9g81AVPGFWpvHIEtPGd_COKW0G8tzEYyF4h0FL_G_IFo0iE9cwCCPElcUzp5OoLrSoqc4lW8PO5GzALkc30bJAmU1mlKraMnaFzPGK_zv73d0hkKPx9Ls1NBg546uJSqtjswWyl3E"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
+</div>
+<div class="relative z-10 p-6 h-full flex flex-col justify-between">
+<div class="flex justify-between items-start mb-12">
+<div class="w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">golf_course</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 bg-surface-container-lowest/50 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Golf Courses</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> 5 items
+                        </p>
+</div>
+</div>
+</div>
+<!-- Standard List Card -->
+<div class="md:col-span-6 bg-surface-container-lowest rounded-[24px] p-6 ambient-shadow ambient-shadow-hover transition-soft cursor-pointer relative overflow-hidden group border border-transparent hover:border-surface-variant">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed/30 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-12 relative z-10">
+<div class="w-12 h-12 bg-surface-container-high rounded-2xl flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_grocery_store</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Groceries</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-outline-variant inline-block"></span> 8 items
+                    </p>
+</div>
+</div>
+<!-- List Card with Location Image -->
+<div class="md:col-span-6 bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover transition-soft cursor-pointer overflow-hidden relative group h-[200px] md:h-auto border border-transparent hover:border-surface-variant">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500" data-alt="A soft, dreamlike photograph of a picturesque European coastal town at twilight. The image uses a high-key light-mode aesthetic, filtered to harmonize with a soft lavender #F8F5FF app theme. Deep plum accents are visible in the shadows of the architecture. The mood is serene, airy, and emotionally inviting, emphasizing digital wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXoxvkWWVgGjhoU6lAHXsqnlT4ITYQVQXOeVca7Yefgm0SOVLbWGCJwhmBbqycHz8IPXtDORF9S-obXrC9c8Yl_VNnGxawpB5kL-KJ3m0MI4iS5_DA8f8mVhNkJjPRKXp6hSZEYCsLAiOMr6pX3Xm9q8OqFCEsJk7itwhc48DIY8_DhI1gqRKAVY62apoCN93gTiSJJQc1rQFGWQR20KmmZeTN0kvyAKg3_ta5lth3iz4A8bedhXpM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-surface-container-lowest/20"></div>
+</div>
+<div class="relative z-10 p-6 h-full flex flex-col justify-between">
+<div class="flex justify-between items-start mb-12">
+<div class="w-12 h-12 bg-primary-fixed rounded-2xl flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 bg-surface-container-lowest/50 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Dream Trips</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container inline-block"></span> 15 items
+                        </p>
+</div>
+</div>
+</div>
+<!-- Bottom Anchored Card (Full Width) -->
+<div class="md:col-span-12 mt-stack-md bg-surface-container-lowest rounded-[24px] ambient-shadow overflow-hidden relative border border-transparent cursor-pointer group">
+<div class="absolute inset-0 z-0 bg-surface-variant/30">
+<img class="w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-50 transition-opacity duration-500" data-alt="A highly detailed top-down map interface showing a cluster of cozy coffee shops in a bustling urban neighborhood. The map styling is extremely minimal, strictly utilizing the soft lavender #F8F5FF background color. Streets are traced with delicate white lines, and the coffee shops are marked by deep plum #715574 dots. The overall aesthetic is clean, airy, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaCrLHx_ej7UHlo4EGCprdxKOq9qZAiiPHvWpOPUGaBz5wt3f7Ch3VQFs4QI9zMtIeuMz-bdlbTPEFwDNWiNzt-PUYpySQCFsvdaZB-pYVVXi-LCiuP2-i759vAVdhVfOG4HwdiU7hO_K6WWiQRrwanr7KPas0BEU06ajrv19rwja5hpho9t4cgDkz8OwvtnjeswkSka7Yn7ONkLy6cho9yp2VdemdoKoER8F9Vga-3Kap5Wk35S3e"/>
+</div>
+<div class="relative z-10 p-6 md:p-8 flex items-center justify-between bg-gradient-to-r from-surface-container-lowest/90 via-surface-container-lowest/60 to-transparent">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Favorite Cafes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> View on Map
+                            </p>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm text-primary transition-transform group-hover:translate-x-1">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-28 right-margin-mobile md:right-margin-desktop md:bottom-12 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex items-center justify-center z-40 focus:outline-none focus:ring-4 focus:ring-primary-fixed">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<!-- BottomNavBar from JSON (Visible on Mobile Only per semantics, but implementing structure for review context) -->
+<nav class="md:hidden bg-surface dark:bg-surface-container-lowest shadow-[0_-4px_20px_rgba(93,63,211,0.05)] shadow-lg fixed bottom-0 w-full z-50 rounded-t-xl flex justify-around items-center h-20 px-4 pb-safe w-full">
+<!-- Dashboard (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-full px-5 py-1 active:scale-90 transition-all hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<!-- Lists (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 active:scale-90 transition-all hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+<span class="font-label-sm text-label-sm mt-1">Lists</span>
+</a>
+<!-- Map (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 active:scale-90 transition-all hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm mt-1">Map</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 active:scale-90 transition-all hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
