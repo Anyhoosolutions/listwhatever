@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Lists Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#68dba9",
+                "surface-container": "#0f231e",
+                "surface-container-high": "#192e28",
+                "surface-container-highest": "#243933",
+                "surface-container-low": "#0a1f1a",
+                "on-secondary-fixed-variant": "#294e3f",
+                "tertiary": "#68dba9",
+                "tertiary-fixed": "#85f8c4",
+                "on-primary-container": "#00422b",
+                "on-tertiary-fixed": "#002114",
+                "surface-tint": "#4edea3",
+                "secondary-container": "#294e3f",
+                "on-secondary-fixed": "#002115",
+                "on-primary-fixed": "#002113",
+                "on-primary": "#003824",
+                "on-surface": "#d0e8df",
+                "on-error": "#690005",
+                "background": "#031712",
+                "on-background": "#d0e8df",
+                "on-primary-fixed-variant": "#005236",
+                "secondary-fixed-dim": "#a8cfbc",
+                "error": "#ffb4ab",
+                "on-secondary": "#113729",
+                "inverse-on-surface": "#20342f",
+                "on-tertiary-container": "#00422c",
+                "error-container": "#93000a",
+                "inverse-surface": "#d0e8df",
+                "on-secondary-container": "#96beab",
+                "on-tertiary": "#003825",
+                "surface": "#031712",
+                "inverse-primary": "#006c49",
+                "primary-fixed": "#6ffbbe",
+                "tertiary-container": "#3eb686",
+                "primary-fixed-dim": "#4edea3",
+                "on-surface-variant": "#bbcabf",
+                "outline": "#86948a",
+                "on-tertiary-fixed-variant": "#005137",
+                "primary": "#4edea3",
+                "surface-variant": "#243933",
+                "primary-container": "#10b981",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed": "#c3ecd7",
+                "surface-container-lowest": "#00110d",
+                "surface-bright": "#293d37",
+                "surface-dim": "#031712",
+                "outline-variant": "#3c4a42",
+                "secondary": "#a8cfbc"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "gutter": "24px",
+                "unit": "8px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "label-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-md": [
+                        "Manrope"
+                ],
+                "headline-lg": [
+                        "Hanken Grotesk"
+                ],
+                "label-md": [
+                        "JetBrains Mono"
+                ],
+                "body-lg": [
+                        "Manrope"
+                ],
+                "headline-lg-mobile": [
+                        "Hanken Grotesk"
+                ],
+                "headline-xl": [
+                        "Hanken Grotesk"
+                ]
+        },
+        "fontSize": {
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.03em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "36px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-xl": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 bg-surface/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-2">
+<div class="size-10 shrink-0 overflow-hidden rounded-full border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="User profile avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANoquwPUwDKfB_3CxDJOiVb4uk6-ZFGjlLiS_K_CVuEhTQqDufDAWNfMC-21pChbkMH25nElydgB8PjaUOZQYk2wLWhiYUTUvNVT-YWKR9dbstme5ptR2XLBojupMx2KrFH3QbpxIU0hE6MXswJg-mfshFJZMYZUeU9rmN2U57AL3WpQF1B0hzghGBMFQfg7ZnRJHq6OLsU54xgJdzhMhst_v_lk7kjMMyaWu7xYh7rTQpHG1b2PpKqbSGYTLt4Jpa-HkwHIIgi0s"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+<h1 class="text-3xl font-headline-lg px-1">My Lists</h1>
+</header>
+<!-- Search Bar Section -->
+<section class="px-4 py-3">
+<div class="relative flex items-center group">
+<div class="absolute left-4 text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container border-none rounded-xl focus:ring-2 focus:ring-primary/50 text-base placeholder:text-on-surface-variant transition-all" placeholder="Search lists..." type="text"/>
+</div>
+</section>
+<!-- Categories / Filters (Horizontal Scroll) -->
+<section class="flex gap-2 overflow-x-auto px-4 pb-4 no-scrollbar">
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-primary text-on-primary text-sm font-medium">All</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container text-on-surface text-sm font-medium">Personal</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container text-on-surface text-sm font-medium">Work</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container text-on-surface text-sm font-medium">Travel</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container text-on-surface text-sm font-medium">Shared</button>
+</section>
+<!-- List Grid -->
+<main class="flex-1 px-4 py-2">
+<div class="grid grid-cols-2 gap-4">
+<!-- List Card 1 -->
+<div class="group relative flex flex-col bg-surface-container rounded-2xl p-4 shadow-sm border border-outline-variant transition-transform active:scale-95">
+<div class="flex justify-between items-start mb-8">
+<div class="p-2 rounded-lg bg-red-500/20 text-red-400">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<span class="text-xs font-semibold bg-surface-container-high px-2 py-1 rounded-md text-on-surface-variant font-label-sm">12 items</span>
+</div>
+<div>
+<h3 class="font-bold text-lg leading-tight mb-1 font-headline-lg-mobile text-xl">Movies to Watch</h3>
+<p class="text-xs text-on-surface-variant">Updated 2h ago</p>
+</div>
+</div>
+<!-- List Card 2 -->
+<div class="group relative flex flex-col bg-surface-container rounded-2xl p-4 shadow-sm border border-outline-variant transition-transform active:scale-95">
+<div class="flex justify-between items-start mb-8">
+<div class="p-2 rounded-lg bg-green-500/20 text-green-400">
+<span class="material-symbols-outlined">golf_course</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="text-xs font-semibold bg-surface-container-high px-2 py-1 rounded-md text-on-surface-variant font-label-sm">5 items</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-lg leading-tight mb-1 font-headline-lg-mobile text-xl">Golf Courses</h3>
+<p class="text-xs text-on-surface-variant">Updated yesterday</p>
+</div>
+</div>
+<!-- List Card 3 -->
+<div class="group relative flex flex-col bg-surface-container rounded-2xl p-4 shadow-sm border border-outline-variant transition-transform active:scale-95">
+<div class="flex justify-between items-start mb-8">
+<div class="p-2 rounded-lg bg-amber-500/20 text-amber-400">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<span class="text-xs font-semibold bg-surface-container-high px-2 py-1 rounded-md text-on-surface-variant font-label-sm">8 items</span>
+</div>
+<div>
+<h3 class="font-bold text-lg leading-tight mb-1 font-headline-lg-mobile text-xl">Groceries</h3>
+<p class="text-xs text-on-surface-variant">Updated 4h ago</p>
+</div>
+</div>
+<!-- List Card 4 -->
+<div class="group relative flex flex-col bg-surface-container rounded-2xl p-4 shadow-sm border border-outline-variant transition-transform active:scale-95">
+<div class="flex justify-between items-start mb-8">
+<div class="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+<span class="material-symbols-outlined">flight_takeoff</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="text-xs font-semibold bg-surface-container-high px-2 py-1 rounded-md text-on-surface-variant font-label-sm">15 items</span>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-lg leading-tight mb-1 font-headline-lg-mobile text-xl">Dream Trips</h3>
+<p class="text-xs text-on-surface-variant">Updated 3d ago</p>
+</div>
+</div>
+<!-- List Card 5 (Map Preview Card) -->
+<div class="col-span-2 group relative flex flex-col bg-surface-container rounded-2xl overflow-hidden shadow-sm border border-outline-variant transition-transform active:scale-[0.98]">
+<div class="h-32 w-full relative">
+<img class="w-full h-full object-cover" data-alt="Abstract map background showing location pins" data-location="Los Angeles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByOmPiEQsH64YoiNaTvjYDTewWZXO4G_IPAM29vV1G4n6FIIH5yL8wpeGVaASLn01wLo6OlvVHUTHif5Lpc6Xei3Rll9gqjwRt9NVImPrePCEkQKqS0yKeUmK7FQus0gQf6qtxUvbmoA1SUeGpLAGN9EqifsWmMezW8RZCnXB1Sk9icE0ujjKFcutctawQUu3uatLZRYVued0sUeL2RdEbYTdE2P_U2UBKAyCa0uF96JeNz0zlEkkFWMQGV3DX886PiTUQ2-gDNQU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="text-on-primary text-xs font-medium bg-primary/80 backdrop-blur-sm px-2 py-0.5 rounded font-label-sm">Map view enabled</span>
+</div>
+</div>
+<div class="p-4 flex justify-between items-center">
+<div>
+<h3 class="font-bold text-lg font-headline-lg-mobile text-xl">Favorite Cafes</h3>
+<p class="text-xs text-on-surface-variant">7 locations tagged</p>
+</div>
+<div class="p-2 rounded-full bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined">map</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Button -->
+<div class="fixed bottom-24 right-6 z-20">
+<button class="flex items-center justify-center size-14 rounded-full bg-primary text-on-primary shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:scale-90">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 bg-surface-container-low/90 backdrop-blur-xl border-t border-outline-variant px-6 pt-3 pb-8 flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-icon">grid_view</span>
+<span class="text-[10px] font-bold font-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-medium font-label-sm">Map View</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-medium font-label-sm">Favorites</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium font-label-sm">Profile</span>
+</a>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>
