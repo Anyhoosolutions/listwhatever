@@ -1,6 +1,6 @@
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/home/home_view.dart';
+import 'package:listwhatever/app/features/home/pages/home_view.dart';
 import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_cubit.dart';
 import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_state.dart';
 import 'package:listwhatever/app/routing/routes.dart';

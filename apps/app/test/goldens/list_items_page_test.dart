@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/app/features/list_items/repositories/fake_list_items_repository.dart';
-import 'package:listwhatever/app/features/list_items/list_items_page.dart';
-import 'package:listwhatever/app/features/list_items/list_items_view.dart';
+import 'package:listwhatever/app/features/list_items/pages/list_items_page.dart';
+import 'package:listwhatever/app/features/list_items/pages/list_items_view.dart';
 
 import 'support/golden_screenshot_presets.dart';
 import 'support/golden_test_helpers.dart';

@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/home/home_view.dart';
+import 'package:listwhatever/app/features/home/pages/home_view.dart';
 import 'package:listwhatever/app/features/lists/repositories/fake_dynamic_lists_repository.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/helpers/starter_widgetbook_host.dart';
