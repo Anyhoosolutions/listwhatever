@@ -35,7 +35,8 @@
 		"accessPrivate": "Privat",
 		"metaLine(access: String, par: int)": "$access · PAR $par",
 		"ratingLine(rating: String, location: String)": "$rating · $location",
-		"directions": "Vägbeskrivning"
+		"directions": "Vägbeskrivning",
+		"closePeek": "Stäng"
 	},
 	"addItemPage": {
 		"itemNameLabel": "Objektnamn",

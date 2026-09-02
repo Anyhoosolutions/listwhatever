@@ -8,12 +8,14 @@ class MapItemPeekSheet extends StatelessWidget {
   const MapItemPeekSheet({
     super.key,
     required this.item,
+    this.onClose,
     this.onDirections,
     this.onShare,
     this.onMore,
   });
 
   final ListItem item;
+  final VoidCallback? onClose;
   final VoidCallback? onDirections;
   final VoidCallback? onShare;
   final VoidCallback? onMore;
@@ -41,13 +43,30 @@ class MapItemPeekSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: surface.outline,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: const SizedBox(width: 36, height: 4),
+            SizedBox(
+              height: onClose == null ? 4 : 40,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: surface.outline,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: const SizedBox(width: 36, height: 4),
+                  ),
+                  if (onClose != null)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        tooltip: t.listItemsPage.closePeek,
+                        onPressed: onClose,
+                        visualDensity: VisualDensity.compact,
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(Icons.close),
+                      ),
+                    ),
+                ],
               ),
             ),
             const SizedBox(height: DesignTokens.spacingMd),

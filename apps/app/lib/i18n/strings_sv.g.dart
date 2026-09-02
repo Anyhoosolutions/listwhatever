@@ -107,6 +107,7 @@ class _Translations$listItemsPage$sv implements Translations$listItemsPage$en {
 	@override String metaLine({required Object access, required Object par}) => '${access} · PAR ${par}';
 	@override String ratingLine({required Object rating, required Object location}) => '${rating} · ${location}';
 	@override String get directions => 'Vägbeskrivning';
+	@override String get closePeek => 'Stäng';
 }
 
 // Path: addItemPage
@@ -230,6 +231,7 @@ extension on TranslationsSv {
 			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
 			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
 			'listItemsPage.directions' => 'Vägbeskrivning',
+			'listItemsPage.closePeek' => 'Stäng',
 			'addItemPage.itemNameLabel' => 'Objektnamn',
 			'addItemPage.itemNameHint' => 'Ange objektnamn...',
 			'addItemPage.descriptionLabel' => 'Beskrivning',

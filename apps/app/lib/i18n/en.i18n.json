@@ -35,7 +35,8 @@
 		"accessPrivate": "Private",
 		"metaLine(access: String, par: int)": "$access · PAR $par",
 		"ratingLine(rating: String, location: String)": "$rating · $location",
-		"directions": "Directions"
+		"directions": "Directions",
+		"closePeek": "Close"
 	},
 	"addItemPage": {
 		"itemNameLabel": "Item Name",

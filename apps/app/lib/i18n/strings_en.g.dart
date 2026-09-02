@@ -161,6 +161,9 @@ class Translations$listItemsPage$en {
 
 	/// en: 'Directions'
 	String get directions => 'Directions';
+
+	/// en: 'Close'
+	String get closePeek => 'Close';
 }
 
 // Path: addItemPage
@@ -364,6 +367,7 @@ extension on Translations {
 			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
 			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
 			'listItemsPage.directions' => 'Directions',
+			'listItemsPage.closePeek' => 'Close',
 			'addItemPage.itemNameLabel' => 'Item Name',
 			'addItemPage.itemNameHint' => 'Enter item name...',
 			'addItemPage.descriptionLabel' => 'Description',

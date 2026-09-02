@@ -92,7 +92,10 @@ class _ListItemsBodyState extends State<_ListItemsBody> {
           if (peekItem == null) {
             return const SizedBox.shrink();
           }
-          return MapItemPeekSheet(item: peekItem);
+          return MapItemPeekSheet(
+            item: peekItem,
+            onClose: () => Navigator.pop(context),
+          );
         },
       ),
       backgroundColor: Colors.transparent,
