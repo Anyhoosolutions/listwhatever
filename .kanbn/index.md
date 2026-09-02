@@ -22,6 +22,8 @@ completedColumns:
 - [list-title-in-top-bar](tasks/list-title-in-top-bar.md)
 - [real-address-lookup](tasks/real-address-lookup.md)
 - [location-not-required-but-a-pop-up-warning](tasks/location-not-required-but-a-pop-up-warning.md)
+- [better-bottom-sheet-for-list-item](tasks/better-bottom-sheet-for-list-item.md)
+- [map-view](tasks/map-view.md)
 
 ## In Progress
 
