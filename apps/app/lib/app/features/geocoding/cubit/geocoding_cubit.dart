@@ -3,9 +3,8 @@ import 'package:listwhatever/app/features/geocoding/cubit/geocoding_state.dart';
 import 'package:listwhatever/app/features/geocoding/geocoding_repository.dart';
 
 class GeocodingCubit extends Cubit<GeocodingState> {
-  GeocodingCubit({required GeocodingRepository repository})
-    : _repository = repository,
-      super(const GeocodingState(data: []));
+  GeocodingCubit({required this._repository})
+    : super(const GeocodingState(data: []));
 
   final GeocodingRepository _repository;
 

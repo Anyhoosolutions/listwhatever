@@ -28,6 +28,7 @@ class AddItemView extends StatelessWidget {
     required this.list,
     required this.attributeIds,
     required this.onAddAttribute,
+    required this.onSearchLocation,
     required this.onUseCurrentLocation,
     required this.onCreate,
   });
@@ -36,6 +37,7 @@ class AddItemView extends StatelessWidget {
   final ListWithItems list;
   final List<int> attributeIds;
   final VoidCallback onAddAttribute;
+  final VoidCallback onSearchLocation;
   final VoidCallback onUseCurrentLocation;
   final VoidCallback onCreate;
 
@@ -90,7 +92,7 @@ class AddItemView extends StatelessWidget {
               const SizedBox(height: DesignTokens.spacingMd),
               LocationMapPreview(
                 tapToSetLabel: t.addItemPage.tapToSet,
-                onTap: onUseCurrentLocation,
+                onTap: onSearchLocation,
               ),
               const SizedBox(height: DesignTokens.spacingMd),
               Row(

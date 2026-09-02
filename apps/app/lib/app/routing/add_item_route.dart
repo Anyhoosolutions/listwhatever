@@ -17,6 +17,11 @@ class AddItemRoute extends GoRouteData with $AddItemRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return AddItemPage(listId: listId);
+    return BlocProvider(
+      create: (context) => GeocodingCubit(
+        repository: context.read<GeocodingRepository>(),
+      ),
+      child: AddItemPage(listId: listId),
+    );
   }
 }

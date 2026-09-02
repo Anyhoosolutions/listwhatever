@@ -6,6 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_state.dart';
+import 'package:listwhatever/app/features/add_item/location_search_sheet.dart';
+import 'package:listwhatever/app/features/geocoding/coordinate_format.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/shared/cubit_helpers/state_switcher.dart';
 
@@ -36,6 +39,30 @@ class _AddItemPageState extends State<AddItemPage> {
     });
   }
 
+  Future<void> _searchLocation() async {
+    final result = await LocationSearchSheet.show(context);
+    if (result == null || !mounted) {
+      return;
+    }
+    _applyLocation(result);
+  }
+
+  void _useFakeCurrentLocation() {
+    _applyLocation(
+      const GeocodingResult(
+        displayName: 'Los Angeles, CA, USA',
+        latitude: 34.0522,
+        longitude: -118.2437,
+      ),
+    );
+  }
+
+  void _applyLocation(GeocodingResult result) {
+    final fields = _formKey.currentState?.fields;
+    fields?[AddItemFormFields.latitude]?.didChange(formatLatitude(result.latitude));
+    fields?[AddItemFormFields.longitude]?.didChange(formatLongitude(result.longitude));
+  }
+
   @override
   Widget build(BuildContext context) {
     final body = StateSwitcher<ListWithItemsCubit, ListWithItemsState, ListWithItems>(
@@ -48,7 +75,8 @@ class _AddItemPageState extends State<AddItemPage> {
         list: data,
         attributeIds: _attributeIds,
         onAddAttribute: _addAttribute,
-        onUseCurrentLocation: () {},
+        onSearchLocation: _searchLocation,
+        onUseCurrentLocation: _useFakeCurrentLocation,
         onCreate: () async {
           final formState = _formKey.currentState;
           if (formState == null || !formState.saveAndValidate()) {

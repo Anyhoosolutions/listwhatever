@@ -222,6 +222,18 @@ class Translations$addItemPage$en {
 	/// en: 'Use My Current Location'
 	String get useCurrentLocation => 'Use My Current Location';
 
+	/// en: 'Search address'
+	String get searchAddressTitle => 'Search address';
+
+	/// en: 'Start typing a place or address...'
+	String get searchAddressHint => 'Start typing a place or address...';
+
+	/// en: 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.'
+	String get noAddressResults => 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.';
+
+	/// en: 'Could not search addresses. Try again.'
+	String get searchAddressError => 'Could not search addresses. Try again.';
+
 	/// en: 'Create Item'
 	String get createItem => 'Create Item';
 }
@@ -354,6 +366,10 @@ extension on Translations {
 			'addItemPage.longitudeLabel' => 'Longitude',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Use My Current Location',
+			'addItemPage.searchAddressTitle' => 'Search address',
+			'addItemPage.searchAddressHint' => 'Start typing a place or address...',
+			'addItemPage.noAddressResults' => 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.',
+			'addItemPage.searchAddressError' => 'Could not search addresses. Try again.',
 			'addItemPage.createItem' => 'Create Item',
 			'newListPage.previewLabel' => 'List Preview',
 			'newListPage.nameLabel' => 'List Name',

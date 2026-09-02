@@ -55,6 +55,10 @@
 		"longitudeLabel": "Longitude",
 		"longitudeHint": "118.2437° W",
 		"useCurrentLocation": "Use My Current Location",
+		"searchAddressTitle": "Search address",
+		"searchAddressHint": "Start typing a place or address...",
+		"noAddressResults": "No matching addresses. Try Los Angeles, Stockholm, or Central Park.",
+		"searchAddressError": "Could not search addresses. Try again.",
 		"createItem": "Create Item"
 	},
 	"newListPage": {

@@ -133,6 +133,10 @@ class _Translations$addItemPage$sv implements Translations$addItemPage$en {
 	@override String get longitudeLabel => 'Longitud';
 	@override String get longitudeHint => '118.2437° W';
 	@override String get useCurrentLocation => 'Använd min position';
+	@override String get searchAddressTitle => 'Sök adress';
+	@override String get searchAddressHint => 'Börja skriv en plats eller adress...';
+	@override String get noAddressResults => 'Inga matchande adresser. Prova Los Angeles, Stockholm eller Central Park.';
+	@override String get searchAddressError => 'Kunde inte söka adresser. Försök igen.';
 	@override String get createItem => 'Skapa objekt';
 }
 
@@ -238,6 +242,10 @@ extension on TranslationsSv {
 			'addItemPage.longitudeLabel' => 'Longitud',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Använd min position',
+			'addItemPage.searchAddressTitle' => 'Sök adress',
+			'addItemPage.searchAddressHint' => 'Börja skriv en plats eller adress...',
+			'addItemPage.noAddressResults' => 'Inga matchande adresser. Prova Los Angeles, Stockholm eller Central Park.',
+			'addItemPage.searchAddressError' => 'Kunde inte söka adresser. Försök igen.',
 			'addItemPage.createItem' => 'Skapa objekt',
 			'newListPage.previewLabel' => 'Listförhandsvisning',
 			'newListPage.nameLabel' => 'Listnamn',
