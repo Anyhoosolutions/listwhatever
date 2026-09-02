@@ -9,6 +9,7 @@ class LabeledFormBuilderTextField extends StatelessWidget {
     required this.hint,
     this.label,
     this.initialValue,
+    this.validator,
     this.maxLines = 1,
   });
 
@@ -16,6 +17,7 @@ class LabeledFormBuilderTextField extends StatelessWidget {
   final String? label;
   final String hint;
   final String? initialValue;
+  final FormFieldValidator<String>? validator;
   final int maxLines;
 
   @override
@@ -43,6 +45,7 @@ class LabeledFormBuilderTextField extends StatelessWidget {
           child: FormBuilderTextField(
             name: name,
             initialValue: initialValue,
+            validator: validator,
             maxLines: maxLines,
             style: AnyhooTypography.body(BodySize.large).copyWith(
               color: surface.primaryText,
@@ -53,6 +56,9 @@ class LabeledFormBuilderTextField extends StatelessWidget {
                 color: surface.secondaryText,
               ),
               border: InputBorder.none,
+              errorBorder: InputBorder.none,
+              focusedErrorBorder: InputBorder.none,
+              errorMaxLines: 2,
               contentPadding: const EdgeInsets.all(DesignTokens.spacingMd),
               isDense: true,
             ),

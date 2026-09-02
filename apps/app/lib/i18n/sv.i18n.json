@@ -51,6 +51,7 @@
 		"tapToSet": "Tryck för att ange",
 		"latitudeLabel": "Latitud",
 		"latitudeHint": "34.0522° N",
+		"latitudeInvalid": "Använd formatet 34.0522° N",
 		"longitudeLabel": "Longitud",
 		"longitudeHint": "118.2437° W",
 		"useCurrentLocation": "Använd min position",

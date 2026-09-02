@@ -129,6 +129,7 @@ class _Translations$addItemPage$sv implements Translations$addItemPage$en {
 	@override String get tapToSet => 'Tryck för att ange';
 	@override String get latitudeLabel => 'Latitud';
 	@override String get latitudeHint => '34.0522° N';
+	@override String get latitudeInvalid => 'Använd formatet 34.0522° N';
 	@override String get longitudeLabel => 'Longitud';
 	@override String get longitudeHint => '118.2437° W';
 	@override String get useCurrentLocation => 'Använd min position';
@@ -233,6 +234,7 @@ extension on TranslationsSv {
 			'addItemPage.tapToSet' => 'Tryck för att ange',
 			'addItemPage.latitudeLabel' => 'Latitud',
 			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.latitudeInvalid' => 'Använd formatet 34.0522° N',
 			'addItemPage.longitudeLabel' => 'Longitud',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Använd min position',

@@ -210,6 +210,9 @@ class Translations$addItemPage$en {
 	/// en: '34.0522° N'
 	String get latitudeHint => '34.0522° N';
 
+	/// en: 'Use the format 34.0522° N'
+	String get latitudeInvalid => 'Use the format 34.0522° N';
+
 	/// en: 'Longitude'
 	String get longitudeLabel => 'Longitude';
 
@@ -347,6 +350,7 @@ extension on Translations {
 			'addItemPage.tapToSet' => 'Tap to set',
 			'addItemPage.latitudeLabel' => 'Latitude',
 			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.latitudeInvalid' => 'Use the format 34.0522° N',
 			'addItemPage.longitudeLabel' => 'Longitude',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Use My Current Location',

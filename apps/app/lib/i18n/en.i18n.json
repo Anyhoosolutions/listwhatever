@@ -51,6 +51,7 @@
 		"tapToSet": "Tap to set",
 		"latitudeLabel": "Latitude",
 		"latitudeHint": "34.0522° N",
+		"latitudeInvalid": "Use the format 34.0522° N",
 		"longitudeLabel": "Longitude",
 		"longitudeHint": "118.2437° W",
 		"useCurrentLocation": "Use My Current Location",

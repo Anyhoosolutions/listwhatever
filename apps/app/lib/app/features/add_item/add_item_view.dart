@@ -15,6 +15,8 @@ abstract final class AddItemFormFields {
   static const latitude = 'latitude';
   static const longitude = 'longitude';
 
+  static final latitudePattern = RegExp(r'^([0-9.]+)° [NS]$');
+
   static String attributeKey(int id) => 'attributeKey_$id';
   static String attributeValue(int id) => 'attributeValue_$id';
 }
@@ -99,6 +101,12 @@ class AddItemView extends StatelessWidget {
                       label: t.addItemPage.latitudeLabel,
                       hint: t.addItemPage.latitudeHint,
                       initialValue: '34.0522° N',
+                      validator: (value) {
+                        if (value == null || !AddItemFormFields.latitudePattern.hasMatch(value)) {
+                          return t.addItemPage.latitudeInvalid;
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(width: DesignTokens.spacingMd),
