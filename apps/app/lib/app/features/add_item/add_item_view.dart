@@ -1,4 +1,5 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:anyhoo_widget_extension_methods/anyhoo_widget_extension_methods.dart';
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/add_item/category_attribute_row.dart';
@@ -44,12 +45,6 @@ class AddItemView extends StatelessWidget {
     print('list: ${list.toJson()}');
 
     return ListView(
-      padding: const EdgeInsets.fromLTRB(
-        DesignTokens.marginMobile,
-        DesignTokens.spacingMd,
-        DesignTokens.marginMobile,
-        DesignTokens.spacingXl,
-      ),
       children: [
         LabeledTextField(
           label: t.addItemPage.itemNameLabel,
@@ -130,6 +125,11 @@ class AddItemView extends StatelessWidget {
           onPressed: onCreate,
         ),
       ],
+    ).pad(
+      l: DesignTokens.marginMobile,
+      t: DesignTokens.spacingMd,
+      r: DesignTokens.marginMobile,
+      b: DesignTokens.spacingXl,
     );
   }
 }

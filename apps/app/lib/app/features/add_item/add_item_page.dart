@@ -83,9 +83,8 @@ class _AddItemPageState extends State<AddItemPage> {
         onCreate: () async {
           final navigator = GoRouter.of(context);
 
-          // TODO: fix this
-          final lat = double.parse(_latitude.text.replaceAll('° N', '').replaceAll('° S', '').replaceAll('°', ''));
-          final lon = double.parse(_longitude.text.replaceAll('° E', '').replaceAll('° W', '').replaceAll('°', ''));
+          final lat = _parseLatitude(_latitude.text);
+          final lon = _parseLongitude(_longitude.text);
 
           final item = ListItem(
             id: '',
@@ -112,5 +111,31 @@ class _AddItemPageState extends State<AddItemPage> {
     );
 
     return body;
+  }
+
+  double _parseLatitude(String latitude) {
+    final match = RegExp(r'([0-9.]+)° (N|S)').firstMatch(latitude);
+    if (match == null) {
+      throw Exception('Invalid latitude: $latitude');
+    }
+    final value = match.group(1);
+    final direction = match.group(2);
+    if (direction == 'S') {
+      return -double.parse(value!);
+    }
+    return double.parse(value!);
+  }
+
+  double _parseLongitude(String longitude) {
+    final match = RegExp(r'([0-9.]+)° (E|W)').firstMatch(longitude);
+    if (match == null) {
+      throw Exception('Invalid longitude: $longitude');
+    }
+    final value = match.group(1);
+    final direction = match.group(2);
+    if (direction == 'W') {
+      return -double.parse(value!);
+    }
+    return double.parse(value!);
   }
 }
