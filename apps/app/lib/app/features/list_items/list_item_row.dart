@@ -16,7 +16,6 @@ class ListItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = Translations.of(context);
     final surface = context.surface;
 
     return InkWell(
