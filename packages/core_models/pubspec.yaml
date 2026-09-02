@@ -17,17 +17,17 @@ dependencies:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_core
-      ref: dd36384a3fb30c7442795676d579d2a01773caf3
+      ref: 89cd2456021535b656793caebd7b126cdf570468
   anyhoo_logging:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_logging
-      ref: dd36384a3fb30c7442795676d579d2a01773caf3
+      ref: 89cd2456021535b656793caebd7b126cdf570468
   anyhoo_models:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_models
-      ref: dd36384a3fb30c7442795676d579d2a01773caf3
+      ref: 89cd2456021535b656793caebd7b126cdf570468
 
 dev_dependencies:
   lints: ^6.0.0

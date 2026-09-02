@@ -68,6 +68,7 @@ class AddItemView extends StatelessWidget {
               subtitle: t.addItemPage.categoriesSubtitle,
             ),
             const SizedBox(height: DesignTokens.spacingMd),
+            // TODO: Headers?
             for (final id in attributeIds) ...[
               CategoryAttributeRow(
                 keyFieldName: AddItemFormFields.attributeKey(id),
