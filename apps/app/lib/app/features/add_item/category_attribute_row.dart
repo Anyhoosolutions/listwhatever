@@ -14,6 +14,9 @@ class CategoryAttributeRow extends StatelessWidget {
     required this.valuesFor,
     required this.onCategoryCreated,
     required this.onValueCreated,
+    required this.onRemove,
+    required this.removeTooltip,
+    required this.requiredLabel,
     this.initialKey,
   });
 
@@ -25,6 +28,9 @@ class CategoryAttributeRow extends StatelessWidget {
   final List<String> Function(String key) valuesFor;
   final ValueChanged<String> onCategoryCreated;
   final void Function(String key, String value) onValueCreated;
+  final VoidCallback onRemove;
+  final String removeTooltip;
+  final String requiredLabel;
   final String? initialKey;
 
   @override
@@ -36,7 +42,7 @@ class CategoryAttributeRow extends StatelessWidget {
     return FormBuilderField<String>(
       name: keyFieldName,
       initialValue: initialKey,
-      validator: (value) => value == null ? 'Required' : null,
+      validator: (value) => value == null ? requiredLabel : null,
       builder: (keyField) {
         final selectedKey = keyField.value;
         final valueOptions = [
@@ -79,6 +85,11 @@ class CategoryAttributeRow extends StatelessWidget {
                         return name;
                       },
               ),
+            ),
+            IconButton(
+              tooltip: removeTooltip,
+              onPressed: onRemove,
+              icon: const Icon(Icons.close),
             ),
           ],
         );

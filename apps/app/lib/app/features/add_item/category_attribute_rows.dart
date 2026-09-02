@@ -13,12 +13,14 @@ class CategoryAttributeRows extends StatefulWidget {
     required this.attributeIds,
     required this.initialCategoryKeys,
     required this.onAddAttribute,
+    required this.onRemoveAttribute,
   });
 
   final ListWithItems list;
   final List<int> attributeIds;
   final Map<int, String> initialCategoryKeys;
   final VoidCallback onAddAttribute;
+  final ValueChanged<int> onRemoveAttribute;
 
   @override
   State<CategoryAttributeRows> createState() => _CategoryAttributeRowsState();
@@ -83,6 +85,9 @@ class _CategoryAttributeRowsState extends State<CategoryAttributeRows> {
             valuesFor: (key) => _valuesByCategory[key] ?? [],
             onCategoryCreated: _addCategory,
             onValueCreated: _addValue,
+            onRemove: () => widget.onRemoveAttribute(id),
+            removeTooltip: t.addItemPage.removeCategory,
+            requiredLabel: t.addItemPage.attributeKeyRequired,
             initialKey: widget.initialCategoryKeys[id],
           ),
           const SizedBox(height: DesignTokens.spacingSm),

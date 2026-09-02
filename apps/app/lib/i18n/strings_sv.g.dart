@@ -124,6 +124,8 @@ class _Translations$addItemPage$sv implements Translations$addItemPage$en {
 	@override String get categoriesSubtitle => 'Lägg till egna attribut som genre eller status.';
 	@override String get attributeKeyHint => 'Attribut (t.ex. Genre)';
 	@override String get attributeValueHint => 'Värde (t.ex. Drama)';
+	@override String get attributeKeyRequired => 'Obligatoriskt';
+	@override String get removeCategory => 'Ta bort kategori';
 	@override String get addCategory => 'Lägg till kategori';
 	@override String get locationTitle => 'Plats';
 	@override String get tapToSet => 'Tryck för att ange';
@@ -236,6 +238,8 @@ extension on TranslationsSv {
 			'addItemPage.categoriesSubtitle' => 'Lägg till egna attribut som genre eller status.',
 			'addItemPage.attributeKeyHint' => 'Attribut (t.ex. Genre)',
 			'addItemPage.attributeValueHint' => 'Värde (t.ex. Drama)',
+			'addItemPage.attributeKeyRequired' => 'Obligatoriskt',
+			'addItemPage.removeCategory' => 'Ta bort kategori',
 			'addItemPage.addCategory' => 'Lägg till kategori',
 			'addItemPage.locationTitle' => 'Plats',
 			'addItemPage.tapToSet' => 'Tryck för att ange',

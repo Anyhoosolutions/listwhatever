@@ -46,6 +46,8 @@
 		"categoriesSubtitle": "Add custom attributes like Genre or Status.",
 		"attributeKeyHint": "Attribute (e.g. Genre)",
 		"attributeValueHint": "Value (e.g. Drama)",
+		"attributeKeyRequired": "Required",
+		"removeCategory": "Remove category",
 		"addCategory": "Add New Category",
 		"locationTitle": "Location",
 		"tapToSet": "Tap to set",

@@ -60,7 +60,7 @@ class MapItemPeekSheet extends StatelessWidget {
                 ),
                 const SizedBox(width: DesignTokens.spacingSm),
                 Text(
-                  '· ${item.categoryValues['distanceLabel']}',
+                  '· ${item.firstCategoryValue('distanceLabel') ?? ''}',
                   style: AnyhooTypography.body(BodySize.medium).copyWith(
                     color: surface.secondaryText,
                   ),

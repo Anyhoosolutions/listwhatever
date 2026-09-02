@@ -4,27 +4,16 @@ Map<String, List<String>> categoryValuesFromItems(Iterable<ListItem> items) {
   final valuesByCategory = <String, Set<String>>{};
 
   for (final item in items) {
-    item.categoryValues.forEach((key, value) {
+    item.categoryValues.forEach((key, values) {
       final category = key.trim();
       if (category.isEmpty) {
         return;
       }
-      valuesByCategory.putIfAbsent(category, () => <String>{}).addAll(stringValues(value));
+      valuesByCategory.putIfAbsent(category, () => <String>{}).addAll(values);
     });
   }
 
   return {
     for (final entry in valuesByCategory.entries) entry.key: (entry.value.toList()..sort()),
   };
-}
-
-List<String> stringValues(Object? value) {
-  if (value == null) {
-    return [];
-  }
-  if (value is Iterable) {
-    return value.map((entry) => entry.toString().trim()).where((entry) => entry.isNotEmpty).toList();
-  }
-  final asString = value.toString().trim();
-  return asString.isEmpty ? [] : [asString];
 }

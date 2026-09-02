@@ -49,27 +49,6 @@ class ListItemRow extends StatelessWidget {
                       color: surface.primaryText,
                     ),
                   ),
-
-                  const SizedBox(height: DesignTokens.spacingXs),
-                  Row(
-                    children: [
-                      Icon(Icons.star, size: 14, color: context.accent.headline),
-                      const SizedBox(width: DesignTokens.spacingXs),
-                      Flexible(
-                        child: Text(
-                          t.listItemsPage.ratingLine(
-                            rating: item.firstCategoryNumber('rating')?.toStringAsFixed(1) ?? '',
-                            location: '', // item.address,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AnyhooTypography.body(BodySize.medium).copyWith(
-                            color: surface.secondaryText,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),

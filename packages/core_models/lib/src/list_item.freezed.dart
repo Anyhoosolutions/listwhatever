@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ListItem {
 
- String get id; String get title; String? get notes; Map<String, dynamic> get categoryValues;// Keys match CategoryDef.key
- String? get address; Map<String, double>? get latlong; DateTime get createdAt; DateTime get updatedAt; ListItemIcon? get icon; ListItemIconBackground? get iconBackground; String? get imageUrl;
+ String get id; String get title; String? get notes;@CategoryValuesConverter() Map<String, List<String>> get categoryValues; String? get address; Map<String, double>? get latlong; DateTime get createdAt; DateTime get updatedAt; ListItemIcon? get icon; ListItemIconBackground? get iconBackground; String? get imageUrl;
 /// Create a copy of ListItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +48,7 @@ abstract mixin class $ListItemCopyWith<$Res>  {
   factory $ListItemCopyWith(ListItem value, $Res Function(ListItem) _then) = _$ListItemCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String? notes, Map<String, dynamic> categoryValues, String? address, Map<String, double>? latlong, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground, String? imageUrl
+ String id, String title, String? notes,@CategoryValuesConverter() Map<String, List<String>> categoryValues, String? address, Map<String, double>? latlong, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground, String? imageUrl
 });
 
 
@@ -72,7 +71,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,notes: freezed == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
 as String?,categoryValues: null == categoryValues ? _self.categoryValues : categoryValues // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,latlong: freezed == latlong ? _self.latlong : latlong // ignore: cast_nullable_to_non_nullable
 as Map<String, double>?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -164,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? notes,  Map<String, dynamic> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? notes, @CategoryValuesConverter()  Map<String, List<String>> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ListItem() when $default != null:
 return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.address,_that.latlong,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground,_that.imageUrl);case _:
@@ -185,7 +184,7 @@ return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.addr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? notes,  Map<String, dynamic> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? notes, @CategoryValuesConverter()  Map<String, List<String>> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _ListItem():
 return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.address,_that.latlong,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground,_that.imageUrl);case _:
@@ -205,7 +204,7 @@ return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.addr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? notes,  Map<String, dynamic> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? notes, @CategoryValuesConverter()  Map<String, List<String>> categoryValues,  String? address,  Map<String, double>? latlong,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground,  String? imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _ListItem() when $default != null:
 return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.address,_that.latlong,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground,_that.imageUrl);case _:
@@ -219,21 +218,20 @@ return $default(_that.id,_that.title,_that.notes,_that.categoryValues,_that.addr
 /// @nodoc
 @JsonSerializable()
 
-class _ListItem implements ListItem {
-  const _ListItem({required this.id, required this.title, this.notes = null, required final  Map<String, dynamic> categoryValues, this.address = null, final  Map<String, double>? latlong = null, required this.createdAt, required this.updatedAt, this.icon = null, this.iconBackground = null, this.imageUrl}): _categoryValues = categoryValues,_latlong = latlong;
+class _ListItem extends ListItem {
+  const _ListItem({required this.id, required this.title, this.notes = null, @CategoryValuesConverter() required final  Map<String, List<String>> categoryValues, this.address = null, final  Map<String, double>? latlong = null, required this.createdAt, required this.updatedAt, this.icon = null, this.iconBackground = null, this.imageUrl}): _categoryValues = categoryValues,_latlong = latlong,super._();
   factory _ListItem.fromJson(Map<String, dynamic> json) => _$ListItemFromJson(json);
 
 @override final  String id;
 @override final  String title;
 @override@JsonKey() final  String? notes;
- final  Map<String, dynamic> _categoryValues;
-@override Map<String, dynamic> get categoryValues {
+ final  Map<String, List<String>> _categoryValues;
+@override@CategoryValuesConverter() Map<String, List<String>> get categoryValues {
   if (_categoryValues is EqualUnmodifiableMapView) return _categoryValues;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableMapView(_categoryValues);
 }
 
-// Keys match CategoryDef.key
 @override@JsonKey() final  String? address;
  final  Map<String, double>? _latlong;
 @override@JsonKey() Map<String, double>? get latlong {
@@ -283,7 +281,7 @@ abstract mixin class _$ListItemCopyWith<$Res> implements $ListItemCopyWith<$Res>
   factory _$ListItemCopyWith(_ListItem value, $Res Function(_ListItem) _then) = __$ListItemCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String? notes, Map<String, dynamic> categoryValues, String? address, Map<String, double>? latlong, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground, String? imageUrl
+ String id, String title, String? notes,@CategoryValuesConverter() Map<String, List<String>> categoryValues, String? address, Map<String, double>? latlong, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground, String? imageUrl
 });
 
 
@@ -306,7 +304,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,notes: freezed == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
 as String?,categoryValues: null == categoryValues ? _self._categoryValues : categoryValues // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,latlong: freezed == latlong ? _self._latlong : latlong // ignore: cast_nullable_to_non_nullable
 as Map<String, double>?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable

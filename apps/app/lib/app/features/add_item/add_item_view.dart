@@ -20,6 +20,7 @@ class AddItemView extends StatelessWidget {
     required this.attributeIds,
     required this.initialCategoryKeys,
     required this.onAddAttribute,
+    required this.onRemoveAttribute,
     required this.onSearchLocation,
     required this.onUseCurrentLocation,
     required this.onCreate,
@@ -30,6 +31,7 @@ class AddItemView extends StatelessWidget {
   final List<int> attributeIds;
   final Map<int, String> initialCategoryKeys;
   final VoidCallback onAddAttribute;
+  final ValueChanged<int> onRemoveAttribute;
   final VoidCallback onSearchLocation;
   final VoidCallback onUseCurrentLocation;
   final VoidCallback onCreate;
@@ -67,6 +69,7 @@ class AddItemView extends StatelessWidget {
               attributeIds: attributeIds,
               initialCategoryKeys: initialCategoryKeys,
               onAddAttribute: onAddAttribute,
+              onRemoveAttribute: onRemoveAttribute,
             ),
             const SizedBox(height: DesignTokens.spacingLg),
             if (list.hasLocations) ...[

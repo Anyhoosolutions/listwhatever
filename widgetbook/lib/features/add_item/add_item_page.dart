@@ -44,6 +44,8 @@ class _AddItemPreviewState extends State<_AddItemPreview> {
   Widget build(BuildContext context) {
     return AddItemView(
       formKey: _formKey,
+      initialCategoryKeys: {},
+      onRemoveAttribute: (id) {},
       list: ListWithItems(
         id: '1',
         ownerId: '1',

@@ -46,6 +46,8 @@
 		"categoriesSubtitle": "Lägg till egna attribut som genre eller status.",
 		"attributeKeyHint": "Attribut (t.ex. Genre)",
 		"attributeValueHint": "Värde (t.ex. Drama)",
+		"attributeKeyRequired": "Obligatoriskt",
+		"removeCategory": "Ta bort kategori",
 		"addCategory": "Lägg till kategori",
 		"locationTitle": "Plats",
 		"tapToSet": "Tryck för att ange",

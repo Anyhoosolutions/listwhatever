@@ -60,6 +60,13 @@ class _AddItemPageState extends State<AddItemPage> {
     });
   }
 
+  void _removeAttribute(int id) {
+    setState(() {
+      _attributeIds.remove(id);
+      _initialCategoryKeys.remove(id);
+    });
+  }
+
   Future<void> _searchLocation() async {
     final result = await LocationSearchSheet.show(context);
     if (result == null || !mounted) {
@@ -97,6 +104,7 @@ class _AddItemPageState extends State<AddItemPage> {
           attributeIds: _attributeIds,
           initialCategoryKeys: _initialCategoryKeys,
           onAddAttribute: _addAttribute,
+          onRemoveAttribute: _removeAttribute,
           onSearchLocation: _searchLocation,
           onUseCurrentLocation: _useFakeCurrentLocation,
           onCreate: () async {
@@ -127,7 +135,7 @@ class _AddItemPageState extends State<AddItemPage> {
                     .map(
                       (id) => MapEntry(
                         (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
-                        stringValues(values[AddItemFormFields.attributeValue(id)]).join(', '),
+                        stringValues(values[AddItemFormFields.attributeValue(id)]),
                       ),
                     )
                     .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),

@@ -21,6 +21,7 @@ completedColumns:
 - [skeletons](tasks/skeletons.md)
 - [list-title-in-top-bar](tasks/list-title-in-top-bar.md)
 - [real-address-lookup](tasks/real-address-lookup.md)
+- [location-not-required-but-a-pop-up-warning](tasks/location-not-required-but-a-pop-up-warning.md)
 
 ## In Progress
 

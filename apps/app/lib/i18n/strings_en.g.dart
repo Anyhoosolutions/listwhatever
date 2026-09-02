@@ -195,6 +195,12 @@ class Translations$addItemPage$en {
 	/// en: 'Value (e.g. Drama)'
 	String get attributeValueHint => 'Value (e.g. Drama)';
 
+	/// en: 'Required'
+	String get attributeKeyRequired => 'Required';
+
+	/// en: 'Remove category'
+	String get removeCategory => 'Remove category';
+
 	/// en: 'Add New Category'
 	String get addCategory => 'Add New Category';
 
@@ -366,6 +372,8 @@ extension on Translations {
 			'addItemPage.categoriesSubtitle' => 'Add custom attributes like Genre or Status.',
 			'addItemPage.attributeKeyHint' => 'Attribute (e.g. Genre)',
 			'addItemPage.attributeValueHint' => 'Value (e.g. Drama)',
+			'addItemPage.attributeKeyRequired' => 'Required',
+			'addItemPage.removeCategory' => 'Remove category',
 			'addItemPage.addCategory' => 'Add New Category',
 			'addItemPage.locationTitle' => 'Location',
 			'addItemPage.tapToSet' => 'Tap to set',
