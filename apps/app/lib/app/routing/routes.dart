@@ -10,6 +10,7 @@ import 'package:listwhatever/app/features/login/login_page.dart';
 import 'package:listwhatever/app/features/new_list/new_list_page.dart';
 import 'package:listwhatever/app/features/settings/settings_page.dart';
 import 'package:listwhatever/app/routing/app_shell.dart';
+import 'package:listwhatever/app/routing/page_transitions.dart';
 
 part 'home_route.dart';
 part 'settings_route.dart';
