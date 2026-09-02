@@ -9,8 +9,6 @@ completedColumns:
 
 ## Backlog
 
-- [update-theme](tasks/update-theme.md)
-- [remove-unwanted-code](tasks/remove-unwanted-code.md)
 - [replace-fill-in](tasks/replace-fill-in.md)
 - [generate-age-key](tasks/generate-age-key.md)
 - [verify-files](tasks/verify-files.md)
@@ -22,8 +20,10 @@ completedColumns:
 
 ## In Progress
 
-- [prd-brd-srs](tasks/prd-brd-srs.md)
-
 ## Done
 
 - [set-git-origin](tasks/set-git-origin.md)
+- [update-theme](tasks/update-theme.md)
+- [prd-brd-srs](tasks/prd-brd-srs.md)
+- [remove-unwanted-code](tasks/remove-unwanted-code.md)
+- [download-firestore-data](tasks/download-firestore-data.md)
