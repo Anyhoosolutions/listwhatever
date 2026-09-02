@@ -46,27 +46,27 @@ dependencies:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_core
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_auth:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_auth
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_firebase:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_firebase
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_router:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_router
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_logging:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_logging
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   screenshot_kit:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
@@ -76,17 +76,17 @@ dependencies:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_design_system
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_extension_methods:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_extension_methods
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
   anyhoo_widget_extension_methods:
     git:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_widget_extension_methods
-      ref: 86def0c362fa674279cd268450ca6b03f252d36d
+      ref: 97554aa8c8c468eb824eddfa6bd09fdbece2aea8
 
 dev_dependencies:
   flutter_test:

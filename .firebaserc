@@ -2,7 +2,7 @@
 	"projects": {
 		"default": "listwhatever-staging",
 		"staging": "listwhatever-staging",
-		"prod": "listwhatever"
+		"prod": "listwhatever-ad43ed"
 	},
 	"targets": {
 		"listwhatever-staging": {
@@ -11,7 +11,7 @@
 				"widgetbook": ["your-staging-widgetbook-site-id"]
 			}
 		},
-		"listwhatever": {
+		"listwhatever-ad43ed": {
 			"hosting": {
 				"main": ["your-prod-site-id"],
 				"widgetbook": ["your-prod-widgetbook-site-id"]

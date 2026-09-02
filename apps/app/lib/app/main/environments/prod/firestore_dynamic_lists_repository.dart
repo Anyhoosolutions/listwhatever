@@ -22,7 +22,7 @@ class FirestoreDynamicListsRepository implements DynamicListsRepository {
 
   @override
   Future<DynamicList> create(DynamicList list) async {
-    await _firestoreService.addDocument(path: 'lists/$list.id', data: list.toJson());
+    await _firestoreService.addDocument(path: 'lists', data: list.toJson());
     return list;
   }
 

@@ -50,6 +50,7 @@ class _NewListPageState extends State<NewListPage> {
           id: 'empty',
           title: _name.text,
           icon: _icon,
+          iconBackground: _color,
           hasLocations: _enableMapView,
           ownerId: '',
           description: '',
@@ -57,7 +58,7 @@ class _NewListPageState extends State<NewListPage> {
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
         );
-        await context.read<DynamicListsCubit>().create(list);
+        context.read<DynamicListsCubit>().create(list);
 
         if (navigator.canPop()) {
           navigator.pop();
