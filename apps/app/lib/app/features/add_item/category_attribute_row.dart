@@ -18,8 +18,6 @@ class CategoryAttributeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final surface = context.surface;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,21 +27,14 @@ class CategoryAttributeRow extends StatelessWidget {
             controller: keyController,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: DesignTokens.spacingMd),
-          child: Text(
-            ':',
-            style: AnyhooTypography.headline(HeadlineSize.small).copyWith(
-              color: surface.secondaryText,
-            ),
-          ),
-        ),
+        SizedBox(width: DesignTokens.spacingSm),
         Expanded(
           child: LabeledTextField(
             hint: valueHint,
             controller: valueController,
           ),
         ),
+        // TODO: Delete button
       ],
     );
   }

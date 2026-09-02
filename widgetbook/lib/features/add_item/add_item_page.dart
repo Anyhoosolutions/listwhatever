@@ -1,4 +1,5 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -76,6 +77,20 @@ class _AddItemPreviewState extends State<_AddItemPreview> {
   @override
   Widget build(BuildContext context) {
     return AddItemView(
+      list: ListWithItems(
+        id: '1',
+        ownerId: '1',
+        title: 'Test List',
+        description: 'Test Description',
+        visibility: 'private',
+        collaboratorIds: [],
+        items: [],
+        hasLocations: false,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        icon: null,
+        iconBackground: null,
+      ),
       nameController: _name,
       descriptionController: _description,
       latitudeController: _latitude,

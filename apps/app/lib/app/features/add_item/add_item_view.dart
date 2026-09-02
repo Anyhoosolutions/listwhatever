@@ -1,4 +1,5 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/add_item/category_attribute_row.dart';
 import 'package:listwhatever/app/features/add_item/location_map_preview.dart';
@@ -16,6 +17,7 @@ class AttributeFieldPair {
 class AddItemView extends StatelessWidget {
   const AddItemView({
     super.key,
+    required this.list,
     required this.nameController,
     required this.descriptionController,
     required this.latitudeController,
@@ -26,6 +28,7 @@ class AddItemView extends StatelessWidget {
     required this.onCreate,
   });
 
+  final ListWithItems list;
   final TextEditingController nameController;
   final TextEditingController descriptionController;
   final TextEditingController latitudeController;
@@ -38,6 +41,7 @@ class AddItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
+    print('list: ${list.toJson()}');
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(
@@ -83,40 +87,43 @@ class AddItemView extends StatelessWidget {
           ),
         ),
         const SizedBox(height: DesignTokens.spacingLg),
-        FormSectionHeader(title: t.addItemPage.locationTitle),
-        const SizedBox(height: DesignTokens.spacingMd),
-        LocationMapPreview(
-          tapToSetLabel: t.addItemPage.tapToSet,
-          onTap: onUseCurrentLocation,
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        Row(
-          children: [
-            Expanded(
-              child: LabeledTextField(
-                label: t.addItemPage.latitudeLabel,
-                hint: t.addItemPage.latitudeHint,
-                controller: latitudeController,
+        if (list.hasLocations) ...[
+          FormSectionHeader(title: t.addItemPage.locationTitle),
+          const SizedBox(height: DesignTokens.spacingMd),
+          LocationMapPreview(
+            tapToSetLabel: t.addItemPage.tapToSet,
+            onTap: onUseCurrentLocation,
+          ),
+          const SizedBox(height: DesignTokens.spacingMd),
+          Row(
+            children: [
+              Expanded(
+                child: LabeledTextField(
+                  label: t.addItemPage.latitudeLabel,
+                  hint: t.addItemPage.latitudeHint,
+                  controller: latitudeController,
+                ),
               ),
-            ),
-            const SizedBox(width: DesignTokens.spacingMd),
-            Expanded(
-              child: LabeledTextField(
-                label: t.addItemPage.longitudeLabel,
-                hint: t.addItemPage.longitudeHint,
-                controller: longitudeController,
+              const SizedBox(width: DesignTokens.spacingMd),
+              Expanded(
+                child: LabeledTextField(
+                  label: t.addItemPage.longitudeLabel,
+                  hint: t.addItemPage.longitudeHint,
+                  controller: longitudeController,
+                ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        AnyhooSecondaryButton(
-          label: t.addItemPage.useCurrentLocation,
-          leadingIcon: Icons.my_location,
-          fullWidth: true,
-          onPressed: onUseCurrentLocation,
-        ),
-        const SizedBox(height: DesignTokens.spacingLg),
+            ],
+          ),
+          const SizedBox(height: DesignTokens.spacingMd),
+          AnyhooSecondaryButton(
+            label: t.addItemPage.useCurrentLocation,
+            leadingIcon: Icons.my_location,
+            fullWidth: true,
+            onPressed: onUseCurrentLocation,
+          ),
+          const SizedBox(height: DesignTokens.spacingLg),
+        ],
+
         AnyhooPrimaryButton(
           label: t.addItemPage.createItem,
           fullWidth: true,

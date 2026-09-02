@@ -2,6 +2,7 @@ import 'package:anyhoo_auth/anyhoo_auth.dart';
 import 'package:anyhoo_logging/anyhoo_logging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core_models/core_models.dart';
+import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_cubit.dart';
@@ -28,6 +29,12 @@ abstract final class BlocProvidersFactory {
       BlocProvider<ListItemsCubit>(
         create: (context) => ListItemsCubit(
           repository: context.read<ListItemsRepository>(),
+        ),
+      ),
+      BlocProvider<ListWithItemsCubit>(
+        create: (context) => ListWithItemsCubit(
+          listRepository: context.read<DynamicListsRepository>(),
+          listItemsRepository: context.read<ListItemsRepository>(),
         ),
       ),
     ];

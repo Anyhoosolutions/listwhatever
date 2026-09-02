@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
+import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
+import 'package:listwhatever/app/features/add_item/cubit/list_with_items_state.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
+import 'package:listwhatever/shared/cubit_helpers/state_switcher.dart';
 
 class AddItemPage extends StatefulWidget {
   const AddItemPage({super.key, required this.listId});
@@ -33,11 +36,8 @@ class _AddItemPageState extends State<AddItemPage> {
         keyController: TextEditingController(),
         valueController: TextEditingController(),
       ),
-      AttributeFieldPair(
-        keyController: TextEditingController(text: 'Status'),
-        valueController: TextEditingController(text: 'In Progress'),
-      ),
     ]);
+    (context.read<ListWithItemsCubit>()).load(widget.listId);
   }
 
   @override
@@ -66,41 +66,51 @@ class _AddItemPageState extends State<AddItemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AddItemView(
-      nameController: _name,
-      descriptionController: _description,
-      latitudeController: _latitude,
-      longitudeController: _longitude,
-      attributes: _attributes,
-      onAddAttribute: _addAttribute,
-      onUseCurrentLocation: () {},
-      onCreate: () async {
-        final navigator = GoRouter.of(context);
-
-        final lat = double.parse(_latitude.text.replaceAll('° N', '').replaceAll('° S', '').replaceAll('°', ''));
-        final lon = double.parse(_longitude.text.replaceAll('° E', '').replaceAll('° W', '').replaceAll('°', ''));
-
-        final item = ListItem(
-          id: '',
-          title: _name.text,
-          notes: _description.text,
-          latlong: {'latitude': lat, 'longitude': lon},
-          categoryValues: Map.fromEntries(
-            _attributes
-                .map((e) => MapEntry(e.keyController.text.trim(), e.valueController.text.trim()))
-                .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
-          ),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-          icon: ListItemIcon.movie,
-          iconBackground: ListItemIconBackground.blue,
-        );
-
-        await context.read<ListItemsCubit>().create(widget.listId, item);
-        if (navigator.canPop()) {
-          navigator.pop();
-        }
+    final body = StateSwitcher<ListWithItemsCubit, ListWithItemsState, ListWithItems>(
+      skeleton: const Text('Loading...'),
+      emptyBuilder: (context, cubit) {
+        return const Text('No data');
       },
+      successBuilder: (context, data, cubit) => AddItemView(
+        list: data,
+        nameController: _name,
+        descriptionController: _description,
+        latitudeController: _latitude,
+        longitudeController: _longitude,
+        attributes: _attributes,
+        onAddAttribute: _addAttribute,
+        onUseCurrentLocation: () {},
+        onCreate: () async {
+          final navigator = GoRouter.of(context);
+
+          // TODO: fix this
+          final lat = double.parse(_latitude.text.replaceAll('° N', '').replaceAll('° S', '').replaceAll('°', ''));
+          final lon = double.parse(_longitude.text.replaceAll('° E', '').replaceAll('° W', '').replaceAll('°', ''));
+
+          final item = ListItem(
+            id: '',
+            title: _name.text,
+            notes: _description.text,
+            latlong: {'latitude': lat, 'longitude': lon},
+            categoryValues: Map.fromEntries(
+              _attributes
+                  .map((e) => MapEntry(e.keyController.text.trim(), e.valueController.text.trim()))
+                  .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
+            ),
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+            icon: ListItemIcon.movie,
+            iconBackground: ListItemIconBackground.blue,
+          );
+
+          await context.read<ListItemsCubit>().create(widget.listId, item);
+          if (navigator.canPop()) {
+            navigator.pop();
+          }
+        },
+      ),
     );
+
+    return body;
   }
 }
