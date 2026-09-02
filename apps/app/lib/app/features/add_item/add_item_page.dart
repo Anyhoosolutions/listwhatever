@@ -1,6 +1,7 @@
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
@@ -18,49 +19,20 @@ class AddItemPage extends StatefulWidget {
 }
 
 class _AddItemPageState extends State<AddItemPage> {
-  late final TextEditingController _name;
-  late final TextEditingController _description;
-  late final TextEditingController _latitude;
-  late final TextEditingController _longitude;
-  final _attributes = <AttributeFieldPair>[];
+  final _formKey = GlobalKey<FormBuilderState>();
+  final _attributeIds = <int>[0];
+  var _nextAttributeId = 1;
 
   @override
   void initState() {
     super.initState();
-    _name = TextEditingController();
-    _description = TextEditingController();
-    _latitude = TextEditingController(text: '34.0522° N');
-    _longitude = TextEditingController(text: '118.2437° W');
-    _attributes.addAll([
-      AttributeFieldPair(
-        keyController: TextEditingController(),
-        valueController: TextEditingController(),
-      ),
-    ]);
-    (context.read<ListWithItemsCubit>()).load(widget.listId);
-  }
-
-  @override
-  void dispose() {
-    _name.dispose();
-    _description.dispose();
-    _latitude.dispose();
-    _longitude.dispose();
-    for (final attribute in _attributes) {
-      attribute.keyController.dispose();
-      attribute.valueController.dispose();
-    }
-    super.dispose();
+    context.read<ListWithItemsCubit>().load(widget.listId);
   }
 
   void _addAttribute() {
     setState(() {
-      _attributes.add(
-        AttributeFieldPair(
-          keyController: TextEditingController(),
-          valueController: TextEditingController(),
-        ),
-      );
+      _attributeIds.add(_nextAttributeId);
+      _nextAttributeId += 1;
     });
   }
 
@@ -72,28 +44,40 @@ class _AddItemPageState extends State<AddItemPage> {
         return const Text('No data');
       },
       successBuilder: (context, data, cubit) => AddItemView(
+        formKey: _formKey,
         list: data,
-        nameController: _name,
-        descriptionController: _description,
-        latitudeController: _latitude,
-        longitudeController: _longitude,
-        attributes: _attributes,
+        attributeIds: _attributeIds,
         onAddAttribute: _addAttribute,
         onUseCurrentLocation: () {},
         onCreate: () async {
+          final formState = _formKey.currentState;
+          if (formState == null || !formState.saveAndValidate()) {
+            return;
+          }
+
+          final values = formState.value;
           final navigator = GoRouter.of(context);
 
-          final lat = _parseLatitude(_latitude.text);
-          final lon = _parseLongitude(_longitude.text);
+          final latlong = data.hasLocations
+              ? {
+                  'latitude': _parseLatitude(values[AddItemFormFields.latitude] as String? ?? ''),
+                  'longitude': _parseLongitude(values[AddItemFormFields.longitude] as String? ?? ''),
+                }
+              : <String, double>{};
 
           final item = ListItem(
             id: '',
-            title: _name.text,
-            notes: _description.text,
-            latlong: {'latitude': lat, 'longitude': lon},
+            title: values[AddItemFormFields.name] as String? ?? '',
+            notes: values[AddItemFormFields.description] as String? ?? '',
+            latlong: latlong,
             categoryValues: Map.fromEntries(
-              _attributes
-                  .map((e) => MapEntry(e.keyController.text.trim(), e.valueController.text.trim()))
+              _attributeIds
+                  .map(
+                    (id) => MapEntry(
+                      (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
+                      (values[AddItemFormFields.attributeValue(id)] as String? ?? '').trim(),
+                    ),
+                  )
                   .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
             ),
             createdAt: DateTime.now(),

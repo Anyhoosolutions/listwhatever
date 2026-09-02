@@ -87,6 +87,7 @@ dependencies:
       url: https://github.com/Anyhoosolutions/flutter_platform_kit.git
       path: packages/anyhoo_widget_extension_methods
       ref: dd36384a3fb30c7442795676d579d2a01773caf3
+  flutter_form_builder: ^10.3.0+2
 
 dev_dependencies:
   flutter_test:

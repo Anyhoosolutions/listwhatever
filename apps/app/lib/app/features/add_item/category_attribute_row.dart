@@ -1,18 +1,18 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/forms/labeled_text_field.dart';
+import 'package:listwhatever/app/features/forms/labeled_form_builder_text_field.dart';
 
 class CategoryAttributeRow extends StatelessWidget {
   const CategoryAttributeRow({
     super.key,
-    required this.keyController,
-    required this.valueController,
+    required this.keyFieldName,
+    required this.valueFieldName,
     required this.keyHint,
     required this.valueHint,
   });
 
-  final TextEditingController keyController;
-  final TextEditingController valueController;
+  final String keyFieldName;
+  final String valueFieldName;
   final String keyHint;
   final String valueHint;
 
@@ -22,16 +22,16 @@ class CategoryAttributeRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: LabeledTextField(
+          child: LabeledFormBuilderTextField(
+            name: keyFieldName,
             hint: keyHint,
-            controller: keyController,
           ),
         ),
-        SizedBox(width: DesignTokens.spacingSm),
+        const SizedBox(width: DesignTokens.spacingSm),
         Expanded(
-          child: LabeledTextField(
+          child: LabeledFormBuilderTextField(
+            name: valueFieldName,
             hint: valueHint,
-            controller: valueController,
           ),
         ),
         // TODO: Delete button
