@@ -1,6 +1,6 @@
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
 import 'package:core_models/core_models.dart';
-import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 
 class FirestoreListItemsRepository implements ListItemsRepository {
   FirestoreListItemsRepository({required this.firestoreService});

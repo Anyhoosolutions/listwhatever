@@ -2,7 +2,7 @@ import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_state.dart';
-import 'package:listwhatever/app/features/list_items/list_items_skeleton.dart';
+import 'package:listwhatever/app/features/list_items/widgets/list_items_skeleton.dart';
 import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 import 'package:listwhatever/app/features/list_items/list_map_view.dart';
 import 'package:listwhatever/shared/cubit_helpers/state_switcher.dart';

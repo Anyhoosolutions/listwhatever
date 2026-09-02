@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core_models/core_models.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_state.dart';
-import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 
 class ListItemsCubit extends Cubit<ListItemsState> {
   ListItemsCubit({required this._repository}) : super(const ListItemsState());

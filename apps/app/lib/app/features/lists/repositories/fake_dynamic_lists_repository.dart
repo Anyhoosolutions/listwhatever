@@ -1,28 +1,25 @@
 import 'package:core_models/core_models.dart';
-import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
 
 class FakeDynamicListsRepository implements DynamicListsRepository {
   FakeDynamicListsRepository({List<DynamicList>? seed})
     : _lists = {
-        for (final list in seed ?? defaultLists) list.id: list,
+        for (final list in seed ?? _defaultLists) list.id: list,
       };
 
   final Map<String, DynamicList> _lists;
 
   static final _now = DateTime.utc(2026, 9, 1, 17);
 
-  static final defaultLists = [
+  static final _defaultLists = [
     DynamicList(
       id: 'movies',
       ownerId: 'user-1',
       title: 'Movies to Watch',
       description: 'Personal watchlist',
       visibility: 'private',
-      itemCount: 12,
       createdAt: _now.subtract(const Duration(days: 14)),
       updatedAt: _now.subtract(const Duration(hours: 2)),
-      icon: ListItemIcon.movie,
-      iconBackground: ListItemIconBackground.red,
     ),
     DynamicList(
       id: 'golf',
@@ -30,12 +27,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       title: 'Golf Courses',
       description: 'Courses to play',
       visibility: 'private',
-      itemCount: 5,
-      hasLocations: true,
       createdAt: _now.subtract(const Duration(days: 30)),
       updatedAt: _now.subtract(const Duration(days: 1)),
-      icon: ListItemIcon.flag,
-      iconBackground: ListItemIconBackground.green,
     ),
     DynamicList(
       id: 'groceries',
@@ -43,11 +36,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       title: 'Groceries',
       description: 'Weekly shopping',
       visibility: 'private',
-      itemCount: 24,
       createdAt: _now.subtract(const Duration(days: 7)),
       updatedAt: _now.subtract(const Duration(hours: 4)),
-      icon: ListItemIcon.eco,
-      iconBackground: ListItemIconBackground.yellow,
     ),
     DynamicList(
       id: 'trips',
@@ -55,12 +45,8 @@ class FakeDynamicListsRepository implements DynamicListsRepository {
       title: 'Dream Trips',
       description: 'Places to go',
       visibility: 'private',
-      itemCount: 5,
-      hasLocations: true,
       createdAt: _now.subtract(const Duration(days: 60)),
       updatedAt: _now.subtract(const Duration(days: 7)),
-      icon: ListItemIcon.flight,
-      iconBackground: ListItemIconBackground.blue,
     ),
   ];
 

@@ -1,6 +1,6 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_item_sample_data.dart';
 import 'package:listwhatever/app/features/list_items/list_items_view.dart';
 import 'package:listwhatever/app/features/list_items/list_map_view.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;

@@ -1,6 +1,6 @@
 import 'package:anyhoo_firebase/anyhoo_firebase.dart';
 import 'package:core_models/core_models.dart';
-import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
 
 class FirestoreDynamicListsRepository implements DynamicListsRepository {
   FirestoreDynamicListsRepository({required this._firestoreService});

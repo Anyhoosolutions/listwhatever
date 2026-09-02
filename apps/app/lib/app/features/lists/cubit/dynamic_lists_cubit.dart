@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core_models/core_models.dart';
 import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_state.dart';
-import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
 
 class DynamicListsCubit extends Cubit<DynamicListsState> {
   DynamicListsCubit({required this._repository}) : super(const DynamicListsState());
