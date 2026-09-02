@@ -3,22 +3,14 @@ import 'package:anyhoo_widget_extension_methods/anyhoo_widget_extension_methods.
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:listwhatever/app/features/add_item/category_attribute_row.dart';
+import 'package:listwhatever/app/features/add_item/add_item_form_fields.dart';
+import 'package:listwhatever/app/features/add_item/category_attribute_rows.dart';
 import 'package:listwhatever/app/features/add_item/location_map_preview.dart';
 import 'package:listwhatever/app/features/forms/form_section_header.dart';
 import 'package:listwhatever/app/features/forms/labeled_form_builder_text_field.dart';
 import 'package:listwhatever/app/features/geocoding/coordinate_format.dart';
 import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
-
-abstract final class AddItemFormFields {
-  static const name = 'name';
-  static const description = 'description';
-  static const location = 'location';
-
-  static String attributeKey(int id) => 'attributeKey_$id';
-  static String attributeValue(int id) => 'attributeValue_$id';
-}
 
 class AddItemView extends StatelessWidget {
   const AddItemView({
@@ -68,23 +60,10 @@ class AddItemView extends StatelessWidget {
               subtitle: t.addItemPage.categoriesSubtitle,
             ),
             const SizedBox(height: DesignTokens.spacingMd),
-            // TODO: Headers?
-            for (final id in attributeIds) ...[
-              CategoryAttributeRow(
-                keyFieldName: AddItemFormFields.attributeKey(id),
-                valueFieldName: AddItemFormFields.attributeValue(id),
-                keyHint: t.addItemPage.attributeKeyHint,
-                valueHint: t.addItemPage.attributeValueHint,
-              ),
-              const SizedBox(height: DesignTokens.spacingSm),
-            ],
-            Align(
-              alignment: Alignment.centerLeft,
-              child: AnyhooTextButton(
-                label: t.addItemPage.addCategory,
-                leadingIcon: Icons.add,
-                onPressed: onAddAttribute,
-              ),
+            CategoryAttributeRows(
+              list: list,
+              attributeIds: attributeIds,
+              onAddAttribute: onAddAttribute,
             ),
             const SizedBox(height: DesignTokens.spacingLg),
             if (list.hasLocations) ...[

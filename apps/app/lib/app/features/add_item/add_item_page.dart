@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listwhatever/app/features/add_item/add_item_form_fields.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
+import 'package:listwhatever/app/features/add_item/category_values_from_items.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_state.dart';
 import 'package:listwhatever/app/features/add_item/location_search_sheet.dart';
@@ -102,7 +104,7 @@ class _AddItemPageState extends State<AddItemPage> {
                   .map(
                     (id) => MapEntry(
                       (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
-                      (values[AddItemFormFields.attributeValue(id)] as String? ?? '').trim(),
+                      stringValues(values[AddItemFormFields.attributeValue(id)]).join(', '),
                     ),
                   )
                   .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
