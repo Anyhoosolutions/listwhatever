@@ -1,6 +1,5 @@
 import 'package:core_models/src/item_icon_backgrounds.dart';
 import 'package:core_models/src/item_icons.dart';
-import 'package:core_models/src/lat_long.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_item.freezed.dart';
@@ -14,7 +13,7 @@ abstract class ListItem with _$ListItem {
     @Default(null) String? notes,
     required Map<String, dynamic> categoryValues, // Keys match CategoryDef.key
     @Default(null) String? address,
-    @Default(null) LatLong? latlong,
+    @Default(null) Map<String, double>? latlong,
     required DateTime createdAt,
     required DateTime updatedAt,
     @Default(null) ListItemIcon? icon,

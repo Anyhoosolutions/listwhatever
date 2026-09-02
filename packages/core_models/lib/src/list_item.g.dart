@@ -12,9 +12,11 @@ _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
   notes: json['notes'] as String? ?? null,
   categoryValues: json['categoryValues'] as Map<String, dynamic>,
   address: json['address'] as String? ?? null,
-  latlong: json['latlong'] == null
-      ? null
-      : LatLong.fromJson(json['latlong'] as Map<String, dynamic>),
+  latlong:
+      (json['latlong'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ) ??
+      null,
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
   icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']) ?? null,

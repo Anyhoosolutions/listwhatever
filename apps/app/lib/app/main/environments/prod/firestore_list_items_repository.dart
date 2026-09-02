@@ -22,14 +22,23 @@ class FirestoreListItemsRepository implements ListItemsRepository {
 
   @override
   Future<ListItem> create({required String listId, required ListItem item}) async {
-    await firestoreService.addDocument(path: 'lists/$listId/items/$item.id', data: item.toJson());
+    final json = item.toJson();
+    print('create: $json');
+    await firestoreService.addDocument(
+      path: 'lists/$listId/items',
+      data: json,
+    );
     return item;
   }
 
   @override
   Future<ListItem> update({required String listId, required ListItem item}) async {
     final updated = item.copyWith(updatedAt: DateTime.now().toUtc());
-    await firestoreService.updateDocument('lists/$listId/items/', item.id, updated.toJson());
+    await firestoreService.updateDocument(
+      'lists/$listId/items/${item.id}',
+      item.id,
+      updated.toJson(),
+    );
     return updated;
   }
 
