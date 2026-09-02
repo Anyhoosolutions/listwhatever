@@ -35,7 +35,8 @@
 		"accessPrivate": "Privat",
 		"metaLine(access: String, par: int)": "$access · PAR $par",
 		"ratingLine(rating: String, location: String)": "$rating · $location",
-		"directions": "Vägbeskrivning"
+		"directions": "Vägbeskrivning",
+		"closePeek": "Stäng"
 	},
 	"addItemPage": {
 		"itemNameLabel": "Objektnamn",
@@ -46,14 +47,24 @@
 		"categoriesSubtitle": "Lägg till egna attribut som genre eller status.",
 		"attributeKeyHint": "Attribut (t.ex. Genre)",
 		"attributeValueHint": "Värde (t.ex. Drama)",
+		"attributeKeyRequired": "Obligatoriskt",
+		"removeCategory": "Ta bort kategori",
 		"addCategory": "Lägg till kategori",
 		"locationTitle": "Plats",
 		"tapToSet": "Tryck för att ange",
+		"changeLocation": "Ändra",
+		"locationRequired": "Sök en adress för att ange platsen",
+		"noLocationSelected": "Ingen adress vald",
 		"latitudeLabel": "Latitud",
 		"latitudeHint": "34.0522° N",
+		"latitudeInvalid": "Använd formatet 34.0522° N",
 		"longitudeLabel": "Longitud",
 		"longitudeHint": "118.2437° W",
 		"useCurrentLocation": "Använd min position",
+		"searchAddressTitle": "Sök adress",
+		"searchAddressHint": "Börja skriv en plats eller adress...",
+		"noAddressResults": "Inga matchande adresser. Prova Los Angeles, Stockholm eller Central Park.",
+		"searchAddressError": "Kunde inte söka adresser. Försök igen.",
 		"createItem": "Skapa objekt"
 	},
 	"newListPage": {

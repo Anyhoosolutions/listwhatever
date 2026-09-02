@@ -161,6 +161,9 @@ class Translations$listItemsPage$en {
 
 	/// en: 'Directions'
 	String get directions => 'Directions';
+
+	/// en: 'Close'
+	String get closePeek => 'Close';
 }
 
 // Path: addItemPage
@@ -195,6 +198,12 @@ class Translations$addItemPage$en {
 	/// en: 'Value (e.g. Drama)'
 	String get attributeValueHint => 'Value (e.g. Drama)';
 
+	/// en: 'Required'
+	String get attributeKeyRequired => 'Required';
+
+	/// en: 'Remove category'
+	String get removeCategory => 'Remove category';
+
 	/// en: 'Add New Category'
 	String get addCategory => 'Add New Category';
 
@@ -204,11 +213,23 @@ class Translations$addItemPage$en {
 	/// en: 'Tap to set'
 	String get tapToSet => 'Tap to set';
 
+	/// en: 'Change'
+	String get changeLocation => 'Change';
+
+	/// en: 'Search for an address to set the location'
+	String get locationRequired => 'Search for an address to set the location';
+
+	/// en: 'No address selected'
+	String get noLocationSelected => 'No address selected';
+
 	/// en: 'Latitude'
 	String get latitudeLabel => 'Latitude';
 
 	/// en: '34.0522° N'
 	String get latitudeHint => '34.0522° N';
+
+	/// en: 'Use the format 34.0522° N'
+	String get latitudeInvalid => 'Use the format 34.0522° N';
 
 	/// en: 'Longitude'
 	String get longitudeLabel => 'Longitude';
@@ -218,6 +239,18 @@ class Translations$addItemPage$en {
 
 	/// en: 'Use My Current Location'
 	String get useCurrentLocation => 'Use My Current Location';
+
+	/// en: 'Search address'
+	String get searchAddressTitle => 'Search address';
+
+	/// en: 'Start typing a place or address...'
+	String get searchAddressHint => 'Start typing a place or address...';
+
+	/// en: 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.'
+	String get noAddressResults => 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.';
+
+	/// en: 'Could not search addresses. Try again.'
+	String get searchAddressError => 'Could not search addresses. Try again.';
 
 	/// en: 'Create Item'
 	String get createItem => 'Create Item';
@@ -334,6 +367,7 @@ extension on Translations {
 			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
 			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
 			'listItemsPage.directions' => 'Directions',
+			'listItemsPage.closePeek' => 'Close',
 			'addItemPage.itemNameLabel' => 'Item Name',
 			'addItemPage.itemNameHint' => 'Enter item name...',
 			'addItemPage.descriptionLabel' => 'Description',
@@ -342,14 +376,24 @@ extension on Translations {
 			'addItemPage.categoriesSubtitle' => 'Add custom attributes like Genre or Status.',
 			'addItemPage.attributeKeyHint' => 'Attribute (e.g. Genre)',
 			'addItemPage.attributeValueHint' => 'Value (e.g. Drama)',
+			'addItemPage.attributeKeyRequired' => 'Required',
+			'addItemPage.removeCategory' => 'Remove category',
 			'addItemPage.addCategory' => 'Add New Category',
 			'addItemPage.locationTitle' => 'Location',
 			'addItemPage.tapToSet' => 'Tap to set',
+			'addItemPage.changeLocation' => 'Change',
+			'addItemPage.locationRequired' => 'Search for an address to set the location',
+			'addItemPage.noLocationSelected' => 'No address selected',
 			'addItemPage.latitudeLabel' => 'Latitude',
 			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.latitudeInvalid' => 'Use the format 34.0522° N',
 			'addItemPage.longitudeLabel' => 'Longitude',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Use My Current Location',
+			'addItemPage.searchAddressTitle' => 'Search address',
+			'addItemPage.searchAddressHint' => 'Start typing a place or address...',
+			'addItemPage.noAddressResults' => 'No matching addresses. Try Los Angeles, Stockholm, or Central Park.',
+			'addItemPage.searchAddressError' => 'Could not search addresses. Try again.',
 			'addItemPage.createItem' => 'Create Item',
 			'newListPage.previewLabel' => 'List Preview',
 			'newListPage.nameLabel' => 'List Name',

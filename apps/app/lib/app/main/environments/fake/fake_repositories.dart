@@ -1,4 +1,6 @@
 import 'package:anyhoo_core/repositories/current_time_repository.dart';
+import 'package:listwhatever/app/features/geocoding/fake_geocoding_repository.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_repository.dart';
 import 'package:listwhatever/app/features/list_items/repositories/fake_list_items_repository.dart';
 import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
@@ -15,6 +17,9 @@ class FakeRepositories extends AppRepositories {
 
   @override
   ListItemsRepository get listItemsRepository => FakeListItemsRepository();
+
+  @override
+  GeocodingRepository get geocodingRepository => FakeGeocodingRepository();
 
   @override
   CurrentTimeRepository get currentTimeRepository => CurrentTimeRepository(_fixedNow);

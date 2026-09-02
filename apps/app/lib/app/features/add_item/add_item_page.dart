@@ -1,9 +1,17 @@
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
+import 'package:listwhatever/app/features/add_item/add_item_form_fields.dart';
 import 'package:listwhatever/app/features/add_item/add_item_view.dart';
+import 'package:listwhatever/app/features/add_item/category_values_from_items.dart';
+import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
+import 'package:listwhatever/app/features/add_item/cubit/list_with_items_state.dart';
+import 'package:listwhatever/app/features/add_item/location_search_sheet.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
+import 'package:listwhatever/shared/cubit_helpers/state_switcher.dart';
 
 class AddItemPage extends StatefulWidget {
   const AddItemPage({super.key, required this.listId});
@@ -15,92 +23,138 @@ class AddItemPage extends StatefulWidget {
 }
 
 class _AddItemPageState extends State<AddItemPage> {
-  late final TextEditingController _name;
-  late final TextEditingController _description;
-  late final TextEditingController _latitude;
-  late final TextEditingController _longitude;
-  final _attributes = <AttributeFieldPair>[];
+  final _formKey = GlobalKey<FormBuilderState>();
+  final _attributeIds = <int>[];
+  final _initialCategoryKeys = <int, String>{};
+  var _nextAttributeId = 0;
+  var _didSeedCategories = false;
 
   @override
   void initState() {
     super.initState();
-    _name = TextEditingController();
-    _description = TextEditingController();
-    _latitude = TextEditingController(text: '34.0522° N');
-    _longitude = TextEditingController(text: '118.2437° W');
-    _attributes.addAll([
-      AttributeFieldPair(
-        keyController: TextEditingController(),
-        valueController: TextEditingController(),
-      ),
-      AttributeFieldPair(
-        keyController: TextEditingController(text: 'Status'),
-        valueController: TextEditingController(text: 'In Progress'),
-      ),
-    ]);
+    context.read<ListWithItemsCubit>().load(widget.listId);
   }
 
-  @override
-  void dispose() {
-    _name.dispose();
-    _description.dispose();
-    _latitude.dispose();
-    _longitude.dispose();
-    for (final attribute in _attributes) {
-      attribute.keyController.dispose();
-      attribute.valueController.dispose();
+  void _seedCategories(ListWithItems list) {
+    if (_didSeedCategories) {
+      return;
     }
-    super.dispose();
+    _didSeedCategories = true;
+    final keys = categoryValuesFromItems(list.items).keys.toList()..sort();
+    if (keys.isEmpty) {
+      _attributeIds.add(0);
+      _nextAttributeId = 1;
+      return;
+    }
+    for (var i = 0; i < keys.length; i++) {
+      _attributeIds.add(i);
+      _initialCategoryKeys[i] = keys[i];
+    }
+    _nextAttributeId = keys.length;
   }
 
   void _addAttribute() {
     setState(() {
-      _attributes.add(
-        AttributeFieldPair(
-          keyController: TextEditingController(),
-          valueController: TextEditingController(),
-        ),
-      );
+      _attributeIds.add(_nextAttributeId);
+      _nextAttributeId += 1;
     });
+  }
+
+  void _removeAttribute(int id) {
+    setState(() {
+      _attributeIds.remove(id);
+      _initialCategoryKeys.remove(id);
+    });
+  }
+
+  Future<void> _searchLocation() async {
+    final result = await LocationSearchSheet.show(context);
+    if (result == null || !mounted) {
+      return;
+    }
+    _applyLocation(result);
+  }
+
+  void _useFakeCurrentLocation() {
+    _applyLocation(
+      const GeocodingResult(
+        displayName: 'Los Angeles, CA, USA',
+        latitude: 34.0522,
+        longitude: -118.2437,
+      ),
+    );
+  }
+
+  void _applyLocation(GeocodingResult result) {
+    _formKey.currentState?.fields[AddItemFormFields.location]?.didChange(result);
   }
 
   @override
   Widget build(BuildContext context) {
-    return AddItemView(
-      nameController: _name,
-      descriptionController: _description,
-      latitudeController: _latitude,
-      longitudeController: _longitude,
-      attributes: _attributes,
-      onAddAttribute: _addAttribute,
-      onUseCurrentLocation: () {},
-      onCreate: () async {
-        final navigator = GoRouter.of(context);
+    final body = StateSwitcher<ListWithItemsCubit, ListWithItemsState, ListWithItems>(
+      skeleton: const Text('Loading...'),
+      emptyBuilder: (context, cubit) {
+        return const Text('No data');
+      },
+      successBuilder: (context, data, cubit) {
+        _seedCategories(data);
+        return AddItemView(
+          formKey: _formKey,
+          list: data,
+          attributeIds: _attributeIds,
+          initialCategoryKeys: _initialCategoryKeys,
+          onAddAttribute: _addAttribute,
+          onRemoveAttribute: _removeAttribute,
+          onSearchLocation: _searchLocation,
+          onUseCurrentLocation: _useFakeCurrentLocation,
+          onCreate: () async {
+            final formState = _formKey.currentState;
+            if (formState == null || !formState.saveAndValidate()) {
+              return;
+            }
 
-        final lat = double.parse(_latitude.text.replaceAll('° N', '').replaceAll('° S', '').replaceAll('°', ''));
-        final lon = double.parse(_longitude.text.replaceAll('° E', '').replaceAll('° W', '').replaceAll('°', ''));
+            final values = formState.value;
+            final navigator = GoRouter.of(context);
 
-        final item = ListItem(
-          id: '',
-          title: _name.text,
-          notes: _description.text,
-          latlong: {'latitude': lat, 'longitude': lon},
-          categoryValues: Map.fromEntries(
-            _attributes
-                .map((e) => MapEntry(e.keyController.text.trim(), e.valueController.text.trim()))
-                .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
-          ),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-          icon: ListItemIcon.movie,
-          iconBackground: ListItemIconBackground.blue,
+            final location = values[AddItemFormFields.location] as GeocodingResult?;
+            final latlong = location == null
+                ? <String, double>{}
+                : {
+                    'latitude': location.latitude,
+                    'longitude': location.longitude,
+                  };
+
+            final item = ListItem(
+              id: '',
+              title: values[AddItemFormFields.name] as String? ?? '',
+              notes: values[AddItemFormFields.description] as String? ?? '',
+              address: location?.displayName,
+              latlong: latlong,
+              categoryValues: Map.fromEntries(
+                _attributeIds
+                    .map(
+                      (id) => MapEntry(
+                        (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
+                        stringValues(values[AddItemFormFields.attributeValue(id)]),
+                      ),
+                    )
+                    .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
+              ),
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+              icon: ListItemIcon.movie,
+              iconBackground: ListItemIconBackground.blue,
+            );
+
+            await context.read<ListItemsCubit>().create(widget.listId, item);
+            if (navigator.canPop()) {
+              navigator.pop();
+            }
+          },
         );
-
-        await context.read<ListItemsCubit>().create(widget.listId, item);
-        if (navigator.canPop()) {
-          navigator.pop();
-        }
       },
     );
+
+    return body;
   }
 }

@@ -1,0 +1,199 @@
+import 'package:core_models/core_models.dart';
+
+enum ListItemAccess { public, private }
+
+abstract final class ListItemsSampleData {
+  static final _now = DateTime.utc(2026, 9, 1, 17);
+
+  static final movies = [
+    ListItem(
+      id: 'the_dark_knight',
+      title: 'The Dark Knight',
+      notes: 'A superhero movie',
+      address: 'USA',
+      categoryValues: {
+        'type': ['action'],
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.red,
+    ),
+    ListItem(
+      id: 'the_godfather',
+      title: 'Hawaii',
+      notes: 'A crime movie',
+      address: 'USA',
+      categoryValues: {
+        'type': ['crime'],
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.green,
+    ),
+  ];
+
+  static final golfCourses = [
+    ListItem(
+      id: 'pebble',
+      title: 'Pebble Beach Golf Links',
+      notes: 'Iconic coastal destination featuring scenic golf courses, luxury resort...',
+      address: 'California',
+      categoryValues: {
+        'access': [ListItemAccess.public.name],
+        'par': [72.toString()],
+        'rating': [4.9.toString()],
+        'distanceLabel': ['5 miles away'],
+        'mapX': [0.42.toString()],
+        'mapY': [0.38.toString()],
+      },
+      latlong: const {'latitude': 36.88, 'longitude': -121.48},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.flag,
+      iconBackground: ListItemIconBackground.green,
+    ),
+    ListItem(
+      id: 'cypress',
+      title: 'Cypress Point Club',
+      notes: 'Exclusive clifftop layout known for its cypress trees and ocean holes.',
+      address: 'California',
+      categoryValues: {
+        'access': [ListItemAccess.private.name],
+        'par': [72.toString()],
+        'rating': [5.0.toString()],
+        'distanceLabel': ['8 miles away'],
+        'mapX': [0.28.toString()],
+        'mapY': [0.52.toString()],
+      },
+      latlong: const {'latitude': 37.02, 'longitude': -121.62},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
+    ),
+    ListItem(
+      id: 'st-andrews',
+      title: 'St Andrews (Old Course)',
+      notes: 'The home of golf, with historic fairways and a town-center finish.',
+      address: 'Scotland',
+      categoryValues: {
+        'access': [ListItemAccess.public.name],
+        'par': [72.toString()],
+        'rating': [4.8.toString()],
+        'distanceLabel': ['5,200 miles away'],
+        'mapX': [0.62.toString()],
+        'mapY': [0.22.toString()],
+      },
+      latlong: const {'latitude': 36.72, 'longitude': -121.28},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.golfCourse,
+      iconBackground: ListItemIconBackground.blue,
+    ),
+    ListItem(
+      id: 'augusta',
+      title: 'Augusta National',
+      notes: 'Home of the Masters, famous for amen corner and azaleas.',
+      address: 'Georgia',
+      categoryValues: {
+        'access': [ListItemAccess.private.name],
+        'par': [72.toString()],
+        'rating': [5.0.toString()],
+        'distanceLabel': ['2,400 miles away'],
+        'mapX': [0.7.toString()],
+        'mapY': [0.58.toString()],
+      },
+      latlong: const {'latitude': 37.08, 'longitude': -121.2},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.eco,
+      iconBackground: ListItemIconBackground.green,
+    ),
+    ListItem(
+      id: 'county-down',
+      title: 'Royal County Down',
+      notes: 'Links golf beneath the Mountains of Mourne, with dunes and sea views.',
+      address: 'Northern Ireland',
+      categoryValues: {
+        'access': [ListItemAccess.private.name],
+        'par': [71.toString()],
+        'rating': [4.9.toString()],
+        'distanceLabel': ['5,100 miles away'],
+        'mapX': [0.18.toString()],
+        'mapY': [0.3.toString()],
+      },
+      latlong: const {'latitude': 36.8, 'longitude': -121.72},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.waves,
+      iconBackground: ListItemIconBackground.purple,
+    ),
+  ];
+
+  static final groceries = [
+    ListItem(
+      id: 'milk',
+      title: 'Milk',
+      categoryValues: {
+        'type': ['dairy'],
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.red,
+    ),
+    ListItem(
+      id: 'bread',
+      title: 'Bread',
+      categoryValues: {
+        'type': ['bread'],
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
+    ),
+  ];
+  static final trips = [
+    ListItem(
+      id: 'washington_dc',
+      title: 'Washington DC',
+      notes: 'The capital of the United States',
+      address: 'Washington DC',
+      categoryValues: {
+        'type': ['city'],
+      },
+      latlong: const {'latitude': 38.89, 'longitude': -77.03},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.flag,
+      iconBackground: ListItemIconBackground.green,
+    ),
+    ListItem(
+      id: 'hawaii',
+      title: 'Hawaii',
+      notes: 'The state of Hawaii',
+      address: 'Hawaii',
+      categoryValues: {
+        'type': ['beach'],
+      },
+      latlong: const {'latitude': 37.02, 'longitude': -121.62},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
+    ),
+  ];
+
+  static List<ListItem> forListId(String listId) {
+    return switch (listId) {
+      'golf' => golfCourses,
+      'trips' => golfCourses,
+      _ => golfCourses,
+    };
+  }
+
+  static bool hasLocations(String listId) => listId == 'golf' || listId == 'trips';
+}

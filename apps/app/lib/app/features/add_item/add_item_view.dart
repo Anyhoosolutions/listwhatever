@@ -1,37 +1,38 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:anyhoo_widget_extension_methods/anyhoo_widget_extension_methods.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/add_item/category_attribute_row.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:listwhatever/app/features/add_item/add_item_form_fields.dart';
+import 'package:listwhatever/app/features/add_item/category_attribute_rows.dart';
 import 'package:listwhatever/app/features/add_item/location_map_preview.dart';
 import 'package:listwhatever/app/features/forms/form_section_header.dart';
-import 'package:listwhatever/app/features/forms/labeled_text_field.dart';
+import 'package:listwhatever/app/features/forms/labeled_form_builder_text_field.dart';
+import 'package:listwhatever/app/features/geocoding/coordinate_format.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
-
-class AttributeFieldPair {
-  const AttributeFieldPair({required this.keyController, required this.valueController});
-
-  final TextEditingController keyController;
-  final TextEditingController valueController;
-}
 
 class AddItemView extends StatelessWidget {
   const AddItemView({
     super.key,
-    required this.nameController,
-    required this.descriptionController,
-    required this.latitudeController,
-    required this.longitudeController,
-    required this.attributes,
+    required this.formKey,
+    required this.list,
+    required this.attributeIds,
+    required this.initialCategoryKeys,
     required this.onAddAttribute,
+    required this.onRemoveAttribute,
+    required this.onSearchLocation,
     required this.onUseCurrentLocation,
     required this.onCreate,
   });
 
-  final TextEditingController nameController;
-  final TextEditingController descriptionController;
-  final TextEditingController latitudeController;
-  final TextEditingController longitudeController;
-  final List<AttributeFieldPair> attributes;
+  final GlobalKey<FormBuilderState> formKey;
+  final ListWithItems list;
+  final List<int> attributeIds;
+  final Map<int, String> initialCategoryKeys;
   final VoidCallback onAddAttribute;
+  final ValueChanged<int> onRemoveAttribute;
+  final VoidCallback onSearchLocation;
   final VoidCallback onUseCurrentLocation;
   final VoidCallback onCreate;
 
@@ -39,90 +40,116 @@ class AddItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
 
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(
-        DesignTokens.marginMobile,
-        DesignTokens.spacingMd,
-        DesignTokens.marginMobile,
-        DesignTokens.spacingXl,
-      ),
-      children: [
-        LabeledTextField(
-          label: t.addItemPage.itemNameLabel,
-          hint: t.addItemPage.itemNameHint,
-          controller: nameController,
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        LabeledTextField(
-          label: t.addItemPage.descriptionLabel,
-          hint: t.addItemPage.descriptionHint,
-          controller: descriptionController,
-          maxLines: 4,
-        ),
-        const SizedBox(height: DesignTokens.spacingLg),
-        FormSectionHeader(
-          title: t.addItemPage.categoriesTitle,
-          subtitle: t.addItemPage.categoriesSubtitle,
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        for (final attribute in attributes) ...[
-          CategoryAttributeRow(
-            keyController: attribute.keyController,
-            valueController: attribute.valueController,
-            keyHint: t.addItemPage.attributeKeyHint,
-            valueHint: t.addItemPage.attributeValueHint,
-          ),
-          const SizedBox(height: DesignTokens.spacingSm),
-        ],
-        Align(
-          alignment: Alignment.centerLeft,
-          child: AnyhooTextButton(
-            label: t.addItemPage.addCategory,
-            leadingIcon: Icons.add,
-            onPressed: onAddAttribute,
-          ),
-        ),
-        const SizedBox(height: DesignTokens.spacingLg),
-        FormSectionHeader(title: t.addItemPage.locationTitle),
-        const SizedBox(height: DesignTokens.spacingMd),
-        LocationMapPreview(
-          tapToSetLabel: t.addItemPage.tapToSet,
-          onTap: onUseCurrentLocation,
-        ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        Row(
+    return FormBuilder(
+      key: formKey,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: LabeledTextField(
-                label: t.addItemPage.latitudeLabel,
-                hint: t.addItemPage.latitudeHint,
-                controller: latitudeController,
-              ),
+            LabeledFormBuilderTextField(
+              name: AddItemFormFields.name,
+              label: t.addItemPage.itemNameLabel,
+              hint: t.addItemPage.itemNameHint,
             ),
-            const SizedBox(width: DesignTokens.spacingMd),
-            Expanded(
-              child: LabeledTextField(
-                label: t.addItemPage.longitudeLabel,
-                hint: t.addItemPage.longitudeHint,
-                controller: longitudeController,
+            const SizedBox(height: DesignTokens.spacingMd),
+            LabeledFormBuilderTextField(
+              name: AddItemFormFields.description,
+              label: t.addItemPage.descriptionLabel,
+              hint: t.addItemPage.descriptionHint,
+              maxLines: 4,
+            ),
+            const SizedBox(height: DesignTokens.spacingLg),
+            FormSectionHeader(
+              title: t.addItemPage.categoriesTitle,
+              subtitle: t.addItemPage.categoriesSubtitle,
+            ),
+            const SizedBox(height: DesignTokens.spacingMd),
+            CategoryAttributeRows(
+              list: list,
+              attributeIds: attributeIds,
+              initialCategoryKeys: initialCategoryKeys,
+              onAddAttribute: onAddAttribute,
+              onRemoveAttribute: onRemoveAttribute,
+            ),
+            const SizedBox(height: DesignTokens.spacingLg),
+            if (list.hasLocations) ...[
+              FormSectionHeader(title: t.addItemPage.locationTitle),
+              const SizedBox(height: DesignTokens.spacingMd),
+              FormBuilderField<GeocodingResult>(
+                name: AddItemFormFields.location,
+                validator: (value) {
+                  if (value == null) {
+                    return t.addItemPage.locationRequired;
+                  }
+                  return null;
+                },
+                builder: (field) {
+                  final location = field.value;
+                  final surface = context.surface;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      LocationMapPreview(
+                        tapToSetLabel: location == null ? t.addItemPage.tapToSet : t.addItemPage.changeLocation,
+                        showPin: location != null,
+                        onTap: onSearchLocation,
+                      ),
+                      const SizedBox(height: DesignTokens.spacingMd),
+                      Row(
+                        children: [
+                          Text(
+                            location?.displayName ?? t.addItemPage.noLocationSelected,
+                            style: AnyhooTypography.body(BodySize.large).copyWith(
+                              color: location == null ? surface.secondaryText : surface.primaryText,
+                            ),
+                          ),
+                          if (location != null) ...[
+                            Spacer(),
+                            const SizedBox(height: DesignTokens.spacingXs),
+                            Text(
+                              '(${formatLatitude(location.latitude)}, ${formatLongitude(location.longitude)})',
+                              style: AnyhooTypography.body(BodySize.medium).copyWith(
+                                color: surface.secondaryText,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      if (field.errorText != null) ...[
+                        const SizedBox(height: DesignTokens.spacingXs),
+                        Text(
+                          field.errorText!,
+                          style: AnyhooTypography.label(LabelSize.medium).copyWith(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                      ],
+                    ],
+                  );
+                },
               ),
+              // const SizedBox(height: DesignTokens.spacingMd),
+              // AnyhooSecondaryButton(
+              //   label: t.addItemPage.useCurrentLocation,
+              //   leadingIcon: Icons.my_location,
+              //   fullWidth: true,
+              //   onPressed: onUseCurrentLocation,
+              // ),
+              const SizedBox(height: DesignTokens.spacingLg),
+            ],
+            AnyhooPrimaryButton(
+              label: t.addItemPage.createItem,
+              fullWidth: true,
+              onPressed: onCreate,
             ),
           ],
         ),
-        const SizedBox(height: DesignTokens.spacingMd),
-        AnyhooSecondaryButton(
-          label: t.addItemPage.useCurrentLocation,
-          leadingIcon: Icons.my_location,
-          fullWidth: true,
-          onPressed: onUseCurrentLocation,
-        ),
-        const SizedBox(height: DesignTokens.spacingLg),
-        AnyhooPrimaryButton(
-          label: t.addItemPage.createItem,
-          fullWidth: true,
-          onPressed: onCreate,
-        ),
-      ],
+      ),
+    ).pad(
+      l: DesignTokens.marginMobile,
+      t: DesignTokens.spacingMd,
+      r: DesignTokens.marginMobile,
+      b: DesignTokens.spacingXl,
     );
   }
 }

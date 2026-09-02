@@ -107,6 +107,7 @@ class _Translations$listItemsPage$sv implements Translations$listItemsPage$en {
 	@override String metaLine({required Object access, required Object par}) => '${access} · PAR ${par}';
 	@override String ratingLine({required Object rating, required Object location}) => '${rating} · ${location}';
 	@override String get directions => 'Vägbeskrivning';
+	@override String get closePeek => 'Stäng';
 }
 
 // Path: addItemPage
@@ -124,14 +125,24 @@ class _Translations$addItemPage$sv implements Translations$addItemPage$en {
 	@override String get categoriesSubtitle => 'Lägg till egna attribut som genre eller status.';
 	@override String get attributeKeyHint => 'Attribut (t.ex. Genre)';
 	@override String get attributeValueHint => 'Värde (t.ex. Drama)';
+	@override String get attributeKeyRequired => 'Obligatoriskt';
+	@override String get removeCategory => 'Ta bort kategori';
 	@override String get addCategory => 'Lägg till kategori';
 	@override String get locationTitle => 'Plats';
 	@override String get tapToSet => 'Tryck för att ange';
+	@override String get changeLocation => 'Ändra';
+	@override String get locationRequired => 'Sök en adress för att ange platsen';
+	@override String get noLocationSelected => 'Ingen adress vald';
 	@override String get latitudeLabel => 'Latitud';
 	@override String get latitudeHint => '34.0522° N';
+	@override String get latitudeInvalid => 'Använd formatet 34.0522° N';
 	@override String get longitudeLabel => 'Longitud';
 	@override String get longitudeHint => '118.2437° W';
 	@override String get useCurrentLocation => 'Använd min position';
+	@override String get searchAddressTitle => 'Sök adress';
+	@override String get searchAddressHint => 'Börja skriv en plats eller adress...';
+	@override String get noAddressResults => 'Inga matchande adresser. Prova Los Angeles, Stockholm eller Central Park.';
+	@override String get searchAddressError => 'Kunde inte söka adresser. Försök igen.';
 	@override String get createItem => 'Skapa objekt';
 }
 
@@ -220,6 +231,7 @@ extension on TranslationsSv {
 			'listItemsPage.metaLine' => ({required Object access, required Object par}) => '${access} · PAR ${par}',
 			'listItemsPage.ratingLine' => ({required Object rating, required Object location}) => '${rating} · ${location}',
 			'listItemsPage.directions' => 'Vägbeskrivning',
+			'listItemsPage.closePeek' => 'Stäng',
 			'addItemPage.itemNameLabel' => 'Objektnamn',
 			'addItemPage.itemNameHint' => 'Ange objektnamn...',
 			'addItemPage.descriptionLabel' => 'Beskrivning',
@@ -228,14 +240,24 @@ extension on TranslationsSv {
 			'addItemPage.categoriesSubtitle' => 'Lägg till egna attribut som genre eller status.',
 			'addItemPage.attributeKeyHint' => 'Attribut (t.ex. Genre)',
 			'addItemPage.attributeValueHint' => 'Värde (t.ex. Drama)',
+			'addItemPage.attributeKeyRequired' => 'Obligatoriskt',
+			'addItemPage.removeCategory' => 'Ta bort kategori',
 			'addItemPage.addCategory' => 'Lägg till kategori',
 			'addItemPage.locationTitle' => 'Plats',
 			'addItemPage.tapToSet' => 'Tryck för att ange',
+			'addItemPage.changeLocation' => 'Ändra',
+			'addItemPage.locationRequired' => 'Sök en adress för att ange platsen',
+			'addItemPage.noLocationSelected' => 'Ingen adress vald',
 			'addItemPage.latitudeLabel' => 'Latitud',
 			'addItemPage.latitudeHint' => '34.0522° N',
+			'addItemPage.latitudeInvalid' => 'Använd formatet 34.0522° N',
 			'addItemPage.longitudeLabel' => 'Longitud',
 			'addItemPage.longitudeHint' => '118.2437° W',
 			'addItemPage.useCurrentLocation' => 'Använd min position',
+			'addItemPage.searchAddressTitle' => 'Sök adress',
+			'addItemPage.searchAddressHint' => 'Börja skriv en plats eller adress...',
+			'addItemPage.noAddressResults' => 'Inga matchande adresser. Prova Los Angeles, Stockholm eller Central Park.',
+			'addItemPage.searchAddressError' => 'Kunde inte söka adresser. Försök igen.',
 			'addItemPage.createItem' => 'Skapa objekt',
 			'newListPage.previewLabel' => 'Listförhandsvisning',
 			'newListPage.nameLabel' => 'Listnamn',

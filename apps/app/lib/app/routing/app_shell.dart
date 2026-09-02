@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 import 'package:flutter/services.dart';
 import 'package:listwhatever/shared/keys.dart';
+import 'package:listwhatever/shared/widgets/end_float_above_bottom_sheet_fab_location.dart';
 import 'package:listwhatever/shared/widgets/staging_banner.dart';
 
 class AppShell extends StatelessWidget {
@@ -39,6 +40,7 @@ class AppShell extends StatelessWidget {
           context.pop();
         },
       ),
+      floatingActionButtonLocation: const EndFloatAboveBottomSheetFabLocation(),
       floatingActionButton: showFab
           ? FloatingActionButton(
               onPressed: () {

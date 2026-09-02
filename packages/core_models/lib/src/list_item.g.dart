@@ -10,7 +10,9 @@ _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
   id: json['id'] as String,
   title: json['title'] as String,
   notes: json['notes'] as String? ?? null,
-  categoryValues: json['categoryValues'] as Map<String, dynamic>,
+  categoryValues: const CategoryValuesConverter().fromJson(
+    json['categoryValues'],
+  ),
   address: json['address'] as String? ?? null,
   latlong:
       (json['latlong'] as Map<String, dynamic>?)?.map(
@@ -33,7 +35,9 @@ Map<String, dynamic> _$ListItemToJson(_ListItem instance) => <String, dynamic>{
   'id': instance.id,
   'title': instance.title,
   'notes': instance.notes,
-  'categoryValues': instance.categoryValues,
+  'categoryValues': const CategoryValuesConverter().toJson(
+    instance.categoryValues,
+  ),
   'address': instance.address,
   'latlong': instance.latlong,
   'createdAt': instance.createdAt.toIso8601String(),

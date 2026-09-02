@@ -5,10 +5,12 @@ class LocationMapPreview extends StatelessWidget {
   const LocationMapPreview({
     super.key,
     required this.tapToSetLabel,
+    this.showPin = false,
     this.onTap,
   });
 
   final String tapToSetLabel;
+  final bool showPin;
   final VoidCallback? onTap;
 
   @override
@@ -34,7 +36,11 @@ class LocationMapPreview extends StatelessWidget {
               ),
               Align(
                 alignment: const Alignment(0, -0.1),
-                child: Icon(Icons.location_on, color: accent.primaryFixed, size: 32),
+                child: Icon(
+                  Icons.location_on,
+                  color: accent.primaryFixed.withValues(alpha: showPin ? 1 : 0.35),
+                  size: 32,
+                ),
               ),
               Positioned(
                 right: DesignTokens.spacingSm,

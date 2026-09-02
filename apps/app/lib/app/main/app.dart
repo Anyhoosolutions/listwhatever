@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:listwhatever/app/di/bloc_providers_factory.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_repository.dart';
 import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
 import 'package:listwhatever/app/main/app_theme.dart';
@@ -82,6 +83,9 @@ class _AppState extends State<App> {
       ),
       RepositoryProvider<ListItemsRepository>(
         create: (_) => widget.repositories.listItemsRepository,
+      ),
+      RepositoryProvider<GeocodingRepository>(
+        create: (_) => widget.repositories.geocodingRepository,
       ),
       RepositoryProvider<CurrentTimeRepository>(
         create: (_) => widget.repositories.currentTimeRepository,

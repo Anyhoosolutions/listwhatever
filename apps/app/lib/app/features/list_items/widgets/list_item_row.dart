@@ -58,7 +58,7 @@ class ListItemRow extends StatelessWidget {
                       Flexible(
                         child: Text(
                           t.listItemsPage.ratingLine(
-                            rating: item.categoryValues['rating']?.toStringAsFixed(1) ?? '',
+                            rating: item.firstCategoryNumber('rating')?.toStringAsFixed(1) ?? '',
                             location: '', // item.address,
                           ),
                           maxLines: 1,
