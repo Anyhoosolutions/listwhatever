@@ -1,10 +1,12 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
 import 'package:listwhatever/app/features/forms/form_section_header.dart';
 import 'package:listwhatever/app/features/forms/labeled_text_field.dart';
 import 'package:listwhatever/app/features/new_list/list_icon_picker.dart';
 import 'package:listwhatever/app/features/new_list/theme_color_swatch_picker.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class NewListView extends StatelessWidget {
   const NewListView({
@@ -23,12 +25,12 @@ class NewListView extends StatelessWidget {
   });
 
   final TextEditingController nameController;
-  final List<ListIconOption> icons;
-  final IconData selectedIcon;
-  final ValueChanged<IconData> onIconSelected;
-  final List<Color> colors;
-  final Color selectedColor;
-  final ValueChanged<Color> onColorSelected;
+  final List<ListItemIcon> icons;
+  final ListItemIcon selectedIcon;
+  final ValueChanged<ListItemIcon> onIconSelected;
+  final List<ListItemIconBackground> colors;
+  final ListItemIconBackground selectedColor;
+  final ValueChanged<ListItemIconBackground> onColorSelected;
   final bool enableMapView;
   final ValueChanged<bool> onEnableMapViewChanged;
   final VoidCallback onShareWithFriends;
@@ -52,13 +54,13 @@ class NewListView extends StatelessWidget {
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: selectedColor,
+                  color: ColorMapping.colorFor(selectedColor),
                   borderRadius: BorderRadius.circular(DesignTokens.radiusXl),
                 ),
                 child: SizedBox(
                   width: 88,
                   height: 88,
-                  child: Icon(selectedIcon, color: Colors.white, size: 40),
+                  child: Icon(IconMapping.iconDataFor(selectedIcon), color: Colors.white, size: 40),
                 ),
               ),
               const SizedBox(height: DesignTokens.spacingSm),

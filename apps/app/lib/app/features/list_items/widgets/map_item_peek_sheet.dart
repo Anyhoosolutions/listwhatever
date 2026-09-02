@@ -1,8 +1,8 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_row.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 import 'package:core_models/core_models.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class MapItemPeekSheet extends StatelessWidget {
   const MapItemPeekSheet({
@@ -83,28 +83,30 @@ class MapItemPeekSheet extends StatelessWidget {
                           color: surface.primaryText,
                         ),
                       ),
-                      const SizedBox(height: DesignTokens.spacingXs),
-                      Text(
-                        item.notes,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AnyhooTypography.body(BodySize.medium).copyWith(
-                          color: surface.secondaryText,
+                      if (item.notes != null) ...[
+                        const SizedBox(height: DesignTokens.spacingXs),
+                        Text(
+                          item.notes!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: AnyhooTypography.body(BodySize.medium).copyWith(
+                            color: surface.secondaryText,
+                          ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ),
                 const SizedBox(width: DesignTokens.spacingMd),
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: colorFor(item.iconBackground),
+                    color: ColorMapping.colorFor(item.iconBackground),
                     borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
                   ),
                   child: SizedBox(
                     width: 72,
                     height: 72,
-                    child: Icon(iconDataFor(item.icon), color: Colors.white, size: 32),
+                    child: Icon(IconMapping.iconDataFor(item.icon), color: Colors.white, size: 32),
                   ),
                 ),
               ],

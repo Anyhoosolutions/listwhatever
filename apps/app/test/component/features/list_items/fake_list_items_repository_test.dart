@@ -1,7 +1,7 @@
 @Tags(['component'])
 library;
 
-import 'package:listwhatever/app/features/list_items/fake_list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/fake_list_items_repository.dart';
 import 'package:listwhatever/app/main/environments/fake/fake_repositories.dart';
 import 'package:test/test.dart';
 

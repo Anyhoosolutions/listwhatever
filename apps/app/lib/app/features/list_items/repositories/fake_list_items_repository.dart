@@ -1,18 +1,20 @@
 import 'package:core_models/core_models.dart';
-import 'package:listwhatever/app/features/list_items/list_item_preview.dart';
-import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_item_sample_data.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 
 class FakeListItemsRepository implements ListItemsRepository {
   FakeListItemsRepository({Map<String, List<ListItem>>? seed})
-      : _itemsByListId = {
-          for (final entry in (seed ?? _defaultItems).entries) entry.key: {for (final item in entry.value) item.id: item},
-        };
+    : _itemsByListId = {
+        for (final entry in (seed ?? _defaultItems).entries) entry.key: {for (final item in entry.value) item.id: item},
+      };
 
   final Map<String, Map<String, ListItem>> _itemsByListId;
 
   static final _defaultItems = {
+    'movies': ListItemsSampleData.movies,
     'golf': ListItemsSampleData.golfCourses,
-    'trips': ListItemsSampleData.golfCourses,
+    'groceries': ListItemsSampleData.groceries,
+    'trips': ListItemsSampleData.trips,
   };
 
   @override

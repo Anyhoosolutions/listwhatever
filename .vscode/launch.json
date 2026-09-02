@@ -50,6 +50,23 @@
 			]
 		},
 		{
+			"name": "  -  Firebase emulator + web",
+			"request": "launch",
+			"type": "dart",
+			"cwd": "${workspaceFolder}/apps/app",
+			"program": "lib/app/main/main.dart",
+			"args": [
+				"-d",
+				"chrome",
+				"--flavor",
+				"production",
+				"--dart-define=APP_FLAVOR=production",
+				"--dart-define=USE_FIREBASE_EMULATOR=true",
+				"--dart-define=USER_EMAIL=test@test.com",
+				"--dart-define=USER_PASSWORD=testtest"
+			]
+		},
+		{
 			"name": "  -  Firebase emulator + android device",
 			"request": "launch",
 			"type": "dart",

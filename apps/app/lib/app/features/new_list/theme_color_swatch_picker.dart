@@ -1,5 +1,7 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class ThemeColorSwatchPicker extends StatelessWidget {
   const ThemeColorSwatchPicker({
@@ -9,9 +11,9 @@ class ThemeColorSwatchPicker extends StatelessWidget {
     required this.onSelected,
   });
 
-  final List<Color> colors;
-  final Color selected;
-  final ValueChanged<Color> onSelected;
+  final List<ListItemIconBackground> colors;
+  final ListItemIconBackground selected;
+  final ValueChanged<ListItemIconBackground> onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class ThemeColorSwatchPicker extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: ColorMapping.colorFor(color), shape: BoxShape.circle),
                   child: const SizedBox(width: 28, height: 28),
                 ),
               ),

@@ -21,18 +21,57 @@ _DynamicList _$DynamicListFromJson(Map<String, dynamic> json) => _DynamicList(
   hasLocations: json['hasLocations'] as bool? ?? false,
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
+  icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']) ?? null,
+  iconBackground:
+      $enumDecodeNullable(
+        _$ListItemIconBackgroundEnumMap,
+        json['iconBackground'],
+      ) ??
+      null,
 );
 
-Map<String, dynamic> _$DynamicListToJson(_DynamicList instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'ownerId': instance.ownerId,
-      'title': instance.title,
-      'description': instance.description,
-      'visibility': instance.visibility,
-      'collaboratorIds': instance.collaboratorIds,
-      'itemCount': instance.itemCount,
-      'hasLocations': instance.hasLocations,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-    };
+Map<String, dynamic> _$DynamicListToJson(
+  _DynamicList instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'ownerId': instance.ownerId,
+  'title': instance.title,
+  'description': instance.description,
+  'visibility': instance.visibility,
+  'collaboratorIds': instance.collaboratorIds,
+  'itemCount': instance.itemCount,
+  'hasLocations': instance.hasLocations,
+  'createdAt': instance.createdAt.toIso8601String(),
+  'updatedAt': instance.updatedAt.toIso8601String(),
+  'icon': _$ListItemIconEnumMap[instance.icon],
+  'iconBackground': _$ListItemIconBackgroundEnumMap[instance.iconBackground],
+};
+
+const _$ListItemIconEnumMap = {
+  ListItemIcon.movie: 'movie',
+  ListItemIcon.restaurant: 'restaurant',
+  ListItemIcon.hotel: 'hotel',
+  ListItemIcon.flight: 'flight',
+  ListItemIcon.car: 'car',
+  ListItemIcon.train: 'train',
+  ListItemIcon.bus: 'bus',
+  ListItemIcon.flag: 'flag',
+  ListItemIcon.park: 'park',
+  ListItemIcon.golfCourse: 'golfCourse',
+  ListItemIcon.eco: 'eco',
+  ListItemIcon.waves: 'waves',
+};
+
+const _$ListItemIconBackgroundEnumMap = {
+  ListItemIconBackground.blue: 'blue',
+  ListItemIconBackground.red: 'red',
+  ListItemIconBackground.green: 'green',
+  ListItemIconBackground.orange: 'orange',
+  ListItemIconBackground.purple: 'purple',
+  ListItemIconBackground.yellow: 'yellow',
+  ListItemIconBackground.bronze: 'bronze',
+  ListItemIconBackground.lightblue: 'lightblue',
+  ListItemIconBackground.lightpurple: 'lightpurple',
+  ListItemIconBackground.lightgreen: 'lightgreen',
+  ListItemIconBackground.pink: 'pink',
+};

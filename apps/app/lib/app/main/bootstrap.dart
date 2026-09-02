@@ -44,7 +44,7 @@ Future<(LoggingCubit, LoggingConfiguration)> setupLogging() async {
       'GoRouterWrapper',
       'AnyhooAuthCubit',
       'AnyhooRouteRedirector',
-      'FirebaseInitializer',
+      // 'FirebaseInitializer',
       'Arguments',
     ],
     loggersAtSevere: const [],

@@ -1,5 +1,7 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class ListIconOption {
   const ListIconOption({required this.icon});
@@ -15,9 +17,9 @@ class ListIconPicker extends StatelessWidget {
     required this.onSelected,
   });
 
-  final List<ListIconOption> icons;
-  final IconData selected;
-  final ValueChanged<IconData> onSelected;
+  final List<ListItemIcon> icons;
+  final ListItemIcon selected;
+  final ValueChanged<ListItemIcon> onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +32,18 @@ class ListIconPicker extends StatelessWidget {
       children: [
         for (final option in icons)
           GestureDetector(
-            onTap: () => onSelected(option.icon),
+            onTap: () => onSelected(option),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: option.icon == selected ? accent.primaryFixed : surface.containerHigh,
+                color: option == selected ? accent.primaryFixed : surface.containerHigh,
                 borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
               ),
               child: SizedBox(
                 width: 48,
                 height: 48,
                 child: Icon(
-                  option.icon,
-                  color: option.icon == selected ? accent.onPrimaryFixed : surface.primaryText,
+                  IconMapping.iconDataFor(option),
+                  color: option == selected ? accent.onPrimaryFixed : surface.primaryText,
                 ),
               ),
             ),

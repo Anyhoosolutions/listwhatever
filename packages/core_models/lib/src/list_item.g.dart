@@ -9,19 +9,23 @@ part of 'list_item.dart';
 _ListItem _$ListItemFromJson(Map<String, dynamic> json) => _ListItem(
   id: json['id'] as String,
   title: json['title'] as String,
-  notes: json['notes'] as String,
+  notes: json['notes'] as String? ?? null,
   categoryValues: json['categoryValues'] as Map<String, dynamic>,
-  address: json['address'] as String?,
-  latlong: json['latlong'] == null
-      ? null
-      : LatLong.fromJson(json['latlong'] as Map<String, dynamic>),
+  address: json['address'] as String? ?? null,
+  latlong:
+      (json['latlong'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ) ??
+      null,
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
-  icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']),
-  iconBackground: $enumDecodeNullable(
-    _$ListItemIconBackgroundEnumMap,
-    json['iconBackground'],
-  ),
+  icon: $enumDecodeNullable(_$ListItemIconEnumMap, json['icon']) ?? null,
+  iconBackground:
+      $enumDecodeNullable(
+        _$ListItemIconBackgroundEnumMap,
+        json['iconBackground'],
+      ) ??
+      null,
   imageUrl: json['imageUrl'] as String?,
 );
 
@@ -55,9 +59,15 @@ const _$ListItemIconEnumMap = {
 };
 
 const _$ListItemIconBackgroundEnumMap = {
+  ListItemIconBackground.blue: 'blue',
   ListItemIconBackground.red: 'red',
   ListItemIconBackground.green: 'green',
-  ListItemIconBackground.blue: 'blue',
-  ListItemIconBackground.yellow: 'yellow',
+  ListItemIconBackground.orange: 'orange',
   ListItemIconBackground.purple: 'purple',
+  ListItemIconBackground.yellow: 'yellow',
+  ListItemIconBackground.bronze: 'bronze',
+  ListItemIconBackground.lightblue: 'lightblue',
+  ListItemIconBackground.lightpurple: 'lightpurple',
+  ListItemIconBackground.lightgreen: 'lightgreen',
+  ListItemIconBackground.pink: 'pink',
 };

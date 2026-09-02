@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$DynamicList {
 
  String get id; String get ownerId; String get title; String get description; String get visibility;// 'private' | 'shared' | 'public'
- List<UserId> get collaboratorIds; int get itemCount; bool get hasLocations; DateTime get createdAt; DateTime get updatedAt;
+ List<UserId> get collaboratorIds; int get itemCount; bool get hasLocations; DateTime get createdAt; DateTime get updatedAt; ListItemIcon? get icon; ListItemIconBackground? get iconBackground;
 /// Create a copy of DynamicList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $DynamicListCopyWith<DynamicList> get copyWith => _$DynamicListCopyWithImpl<Dyna
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DynamicList&&(identical(other.id, id) || other.id == id)&&(identical(other.ownerId, ownerId) || other.ownerId == ownerId)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.visibility, visibility) || other.visibility == visibility)&&const DeepCollectionEquality().equals(other.collaboratorIds, collaboratorIds)&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.hasLocations, hasLocations) || other.hasLocations == hasLocations)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DynamicList&&(identical(other.id, id) || other.id == id)&&(identical(other.ownerId, ownerId) || other.ownerId == ownerId)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.visibility, visibility) || other.visibility == visibility)&&const DeepCollectionEquality().equals(other.collaboratorIds, collaboratorIds)&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.hasLocations, hasLocations) || other.hasLocations == hasLocations)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.iconBackground, iconBackground) || other.iconBackground == iconBackground));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,ownerId,title,description,visibility,const DeepCollectionEquality().hash(collaboratorIds),itemCount,hasLocations,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,ownerId,title,description,visibility,const DeepCollectionEquality().hash(collaboratorIds),itemCount,hasLocations,createdAt,updatedAt,icon,iconBackground);
 
 @override
 String toString() {
-  return 'DynamicList(id: $id, ownerId: $ownerId, title: $title, description: $description, visibility: $visibility, collaboratorIds: $collaboratorIds, itemCount: $itemCount, hasLocations: $hasLocations, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DynamicList(id: $id, ownerId: $ownerId, title: $title, description: $description, visibility: $visibility, collaboratorIds: $collaboratorIds, itemCount: $itemCount, hasLocations: $hasLocations, createdAt: $createdAt, updatedAt: $updatedAt, icon: $icon, iconBackground: $iconBackground)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $DynamicListCopyWith<$Res>  {
   factory $DynamicListCopyWith(DynamicList value, $Res Function(DynamicList) _then) = _$DynamicListCopyWithImpl;
 @useResult
 $Res call({
- String id, String ownerId, String title, String description, String visibility, List<UserId> collaboratorIds, int itemCount, bool hasLocations, DateTime createdAt, DateTime updatedAt
+ String id, String ownerId, String title, String description, String visibility, List<UserId> collaboratorIds, int itemCount, bool hasLocations, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground
 });
 
 
@@ -66,7 +66,7 @@ class _$DynamicListCopyWithImpl<$Res>
 
 /// Create a copy of DynamicList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? ownerId = null,Object? title = null,Object? description = null,Object? visibility = null,Object? collaboratorIds = null,Object? itemCount = null,Object? hasLocations = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? ownerId = null,Object? title = null,Object? description = null,Object? visibility = null,Object? collaboratorIds = null,Object? itemCount = null,Object? hasLocations = null,Object? createdAt = null,Object? updatedAt = null,Object? icon = freezed,Object? iconBackground = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,ownerId: null == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,9 @@ as List<UserId>,itemCount: null == itemCount ? _self.itemCount : itemCount // ig
 as int,hasLocations: null == hasLocations ? _self.hasLocations : hasLocations // ignore: cast_nullable_to_non_nullable
 as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as ListItemIcon?,iconBackground: freezed == iconBackground ? _self.iconBackground : iconBackground // ignore: cast_nullable_to_non_nullable
+as ListItemIconBackground?,
   ));
 }
 
@@ -163,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DynamicList() when $default != null:
-return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground);case _:
   return orElse();
 
 }
@@ -184,10 +186,10 @@ return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visib
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground)  $default,) {final _that = this;
 switch (_that) {
 case _DynamicList():
-return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +206,10 @@ return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visib
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String ownerId,  String title,  String description,  String visibility,  List<UserId> collaboratorIds,  int itemCount,  bool hasLocations,  DateTime createdAt,  DateTime updatedAt,  ListItemIcon? icon,  ListItemIconBackground? iconBackground)?  $default,) {final _that = this;
 switch (_that) {
 case _DynamicList() when $default != null:
-return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visibility,_that.collaboratorIds,_that.itemCount,_that.hasLocations,_that.createdAt,_that.updatedAt,_that.icon,_that.iconBackground);case _:
   return null;
 
 }
@@ -219,7 +221,7 @@ return $default(_that.id,_that.ownerId,_that.title,_that.description,_that.visib
 @JsonSerializable()
 
 class _DynamicList implements DynamicList {
-  const _DynamicList({required this.id, required this.ownerId, required this.title, required this.description, required this.visibility, final  List<UserId> collaboratorIds = const [], this.itemCount = 0, this.hasLocations = false, required this.createdAt, required this.updatedAt}): _collaboratorIds = collaboratorIds;
+  const _DynamicList({required this.id, required this.ownerId, required this.title, required this.description, required this.visibility, final  List<UserId> collaboratorIds = const [], this.itemCount = 0, this.hasLocations = false, required this.createdAt, required this.updatedAt, this.icon = null, this.iconBackground = null}): _collaboratorIds = collaboratorIds;
   factory _DynamicList.fromJson(Map<String, dynamic> json) => _$DynamicListFromJson(json);
 
 @override final  String id;
@@ -240,6 +242,8 @@ class _DynamicList implements DynamicList {
 @override@JsonKey() final  bool hasLocations;
 @override final  DateTime createdAt;
 @override final  DateTime updatedAt;
+@override@JsonKey() final  ListItemIcon? icon;
+@override@JsonKey() final  ListItemIconBackground? iconBackground;
 
 /// Create a copy of DynamicList
 /// with the given fields replaced by the non-null parameter values.
@@ -254,16 +258,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DynamicList&&(identical(other.id, id) || other.id == id)&&(identical(other.ownerId, ownerId) || other.ownerId == ownerId)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.visibility, visibility) || other.visibility == visibility)&&const DeepCollectionEquality().equals(other._collaboratorIds, _collaboratorIds)&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.hasLocations, hasLocations) || other.hasLocations == hasLocations)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DynamicList&&(identical(other.id, id) || other.id == id)&&(identical(other.ownerId, ownerId) || other.ownerId == ownerId)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.visibility, visibility) || other.visibility == visibility)&&const DeepCollectionEquality().equals(other._collaboratorIds, _collaboratorIds)&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.hasLocations, hasLocations) || other.hasLocations == hasLocations)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.iconBackground, iconBackground) || other.iconBackground == iconBackground));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,ownerId,title,description,visibility,const DeepCollectionEquality().hash(_collaboratorIds),itemCount,hasLocations,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,ownerId,title,description,visibility,const DeepCollectionEquality().hash(_collaboratorIds),itemCount,hasLocations,createdAt,updatedAt,icon,iconBackground);
 
 @override
 String toString() {
-  return 'DynamicList(id: $id, ownerId: $ownerId, title: $title, description: $description, visibility: $visibility, collaboratorIds: $collaboratorIds, itemCount: $itemCount, hasLocations: $hasLocations, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DynamicList(id: $id, ownerId: $ownerId, title: $title, description: $description, visibility: $visibility, collaboratorIds: $collaboratorIds, itemCount: $itemCount, hasLocations: $hasLocations, createdAt: $createdAt, updatedAt: $updatedAt, icon: $icon, iconBackground: $iconBackground)';
 }
 
 
@@ -274,7 +278,7 @@ abstract mixin class _$DynamicListCopyWith<$Res> implements $DynamicListCopyWith
   factory _$DynamicListCopyWith(_DynamicList value, $Res Function(_DynamicList) _then) = __$DynamicListCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String ownerId, String title, String description, String visibility, List<UserId> collaboratorIds, int itemCount, bool hasLocations, DateTime createdAt, DateTime updatedAt
+ String id, String ownerId, String title, String description, String visibility, List<UserId> collaboratorIds, int itemCount, bool hasLocations, DateTime createdAt, DateTime updatedAt, ListItemIcon? icon, ListItemIconBackground? iconBackground
 });
 
 
@@ -291,7 +295,7 @@ class __$DynamicListCopyWithImpl<$Res>
 
 /// Create a copy of DynamicList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? ownerId = null,Object? title = null,Object? description = null,Object? visibility = null,Object? collaboratorIds = null,Object? itemCount = null,Object? hasLocations = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? ownerId = null,Object? title = null,Object? description = null,Object? visibility = null,Object? collaboratorIds = null,Object? itemCount = null,Object? hasLocations = null,Object? createdAt = null,Object? updatedAt = null,Object? icon = freezed,Object? iconBackground = freezed,}) {
   return _then(_DynamicList(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,ownerId: null == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
@@ -303,7 +307,9 @@ as List<UserId>,itemCount: null == itemCount ? _self.itemCount : itemCount // ig
 as int,hasLocations: null == hasLocations ? _self.hasLocations : hasLocations // ignore: cast_nullable_to_non_nullable
 as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as ListItemIcon?,iconBackground: freezed == iconBackground ? _self.iconBackground : iconBackground // ignore: cast_nullable_to_non_nullable
+as ListItemIconBackground?,
   ));
 }
 

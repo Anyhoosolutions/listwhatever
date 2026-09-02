@@ -1,3 +1,5 @@
+import 'package:core_models/src/item_icon_backgrounds.dart';
+import 'package:core_models/src/item_icons.dart';
 import 'package:core_models/src/typedefs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +19,8 @@ abstract class DynamicList with _$DynamicList {
     @Default(false) bool hasLocations,
     required DateTime createdAt,
     required DateTime updatedAt,
+    @Default(null) ListItemIcon? icon,
+    @Default(null) ListItemIconBackground? iconBackground,
   }) = _DynamicList;
 
   factory DynamicList.fromJson(Map<String, dynamic> json) => _$DynamicListFromJson(json);

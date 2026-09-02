@@ -1,33 +1,12 @@
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/new_list/list_icon_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_cubit.dart';
 import 'package:listwhatever/app/features/new_list/new_list_view.dart';
 
 class NewListPage extends StatefulWidget {
   const NewListPage({super.key});
-
-  static const icons = [
-    ListIconOption(icon: Icons.explore_outlined),
-    ListIconOption(icon: Icons.restaurant_outlined),
-    ListIconOption(icon: Icons.local_cafe_outlined),
-    ListIconOption(icon: Icons.flight_outlined),
-    ListIconOption(icon: Icons.shopping_bag_outlined),
-    ListIconOption(icon: Icons.fitness_center_outlined),
-  ];
-
-  static const colors = [
-    Color(0xFF3B82F6),
-    Color(0xFFEF4444),
-    Color(0xFF10B981),
-    Color(0xFFF59E0B),
-    Color(0xFF8B5CF6),
-    Color(0xFFEA580C),
-    Color(0xFF06B6D4),
-    Color(0xFFEC4899),
-    Color(0xFFA78BFA),
-    Color(0xFF84CC16),
-    Color(0xFF64748B),
-    Color(0xFFD946EF),
-  ];
 
   @override
   State<NewListPage> createState() => _NewListPageState();
@@ -35,8 +14,8 @@ class NewListPage extends StatefulWidget {
 
 class _NewListPageState extends State<NewListPage> {
   late final TextEditingController _name;
-  IconData _icon = NewListPage.icons.first.icon;
-  Color _color = NewListPage.colors.first;
+  ListItemIcon _icon = ListItemIcon.movie;
+  ListItemIconBackground _color = ListItemIconBackground.blue;
   bool _enableMapView = true;
 
   @override
@@ -55,18 +34,34 @@ class _NewListPageState extends State<NewListPage> {
   Widget build(BuildContext context) {
     return NewListView(
       nameController: _name,
-      icons: NewListPage.icons,
+      icons: ListItemIcon.values,
       selectedIcon: _icon,
       onIconSelected: (icon) => setState(() => _icon = icon),
-      colors: NewListPage.colors,
+      colors: ListItemIconBackground.values,
       selectedColor: _color,
       onColorSelected: (color) => setState(() => _color = color),
       enableMapView: _enableMapView,
       onEnableMapViewChanged: (value) => setState(() => _enableMapView = value),
       onShareWithFriends: () {},
-      onCreate: () {
-        if (Navigator.of(context).canPop()) {
-          Navigator.of(context).pop();
+      onCreate: () async {
+        final navigator = GoRouter.of(context);
+
+        final list = DynamicList(
+          id: 'empty',
+          title: _name.text,
+          icon: _icon,
+          iconBackground: _color,
+          hasLocations: _enableMapView,
+          ownerId: '',
+          description: '',
+          visibility: '',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
+        context.read<DynamicListsCubit>().create(list);
+
+        if (navigator.canPop()) {
+          navigator.pop();
         }
       },
     );

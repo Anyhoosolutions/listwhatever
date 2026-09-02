@@ -28,7 +28,7 @@ class AppShell extends StatelessWidget {
 
     return Scaffold(
       appBar: AnyhooTopBar(
-        topBarTitle: isHome ? t.homePage.header : '${t.appName}${(appFlavor == 'production') ? '' : ' (${t.staging})'}',
+        topBarTitle: isHome ? t.homePage.header : '${t.appName}${(appFlavor == 'staging') ? ' (${t.staging})' : ''}',
         onLogoutClick: () {
           // context.read<AnyhooAuthCubit<User>>().logout();
         },

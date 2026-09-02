@@ -5,6 +5,35 @@ enum ListItemAccess { public, private }
 abstract final class ListItemsSampleData {
   static final _now = DateTime.utc(2026, 9, 1, 17);
 
+  static final movies = [
+    ListItem(
+      id: 'the_dark_knight',
+      title: 'The Dark Knight',
+      notes: 'A superhero movie',
+      address: 'USA',
+      categoryValues: {
+        'type': 'action',
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.red,
+    ),
+    ListItem(
+      id: 'the_godfather',
+      title: 'Hawaii',
+      notes: 'A crime movie',
+      address: 'USA',
+      categoryValues: {
+        'type': 'crime',
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.green,
+    ),
+  ];
+
   static final golfCourses = [
     ListItem(
       id: 'pebble',
@@ -19,7 +48,7 @@ abstract final class ListItemsSampleData {
         'mapX': 0.42,
         'mapY': 0.38,
       },
-      latlong: const LatLong(latitude: 36.88, longitude: -121.48),
+      latlong: const {'latitude': 36.88, 'longitude': -121.48},
       createdAt: _now,
       updatedAt: _now,
       icon: ListItemIcon.flag,
@@ -38,7 +67,7 @@ abstract final class ListItemsSampleData {
         'mapX': 0.28,
         'mapY': 0.52,
       },
-      latlong: const LatLong(latitude: 37.02, longitude: -121.62),
+      latlong: const {'latitude': 37.02, 'longitude': -121.62},
       createdAt: _now,
       updatedAt: _now,
       icon: ListItemIcon.park,
@@ -57,7 +86,7 @@ abstract final class ListItemsSampleData {
         'mapX': 0.62,
         'mapY': 0.22,
       },
-      latlong: const LatLong(latitude: 36.72, longitude: -121.28),
+      latlong: const {'latitude': 36.72, 'longitude': -121.28},
       createdAt: _now,
       updatedAt: _now,
       icon: ListItemIcon.golfCourse,
@@ -76,7 +105,7 @@ abstract final class ListItemsSampleData {
         'mapX': 0.7,
         'mapY': 0.58,
       },
-      latlong: const LatLong(latitude: 37.08, longitude: -121.2),
+      latlong: const {'latitude': 37.08, 'longitude': -121.2},
       createdAt: _now,
       updatedAt: _now,
       icon: ListItemIcon.eco,
@@ -95,11 +124,66 @@ abstract final class ListItemsSampleData {
         'mapX': 0.18,
         'mapY': 0.3,
       },
-      latlong: const LatLong(latitude: 36.8, longitude: -121.72),
+      latlong: const {'latitude': 36.8, 'longitude': -121.72},
       createdAt: _now,
       updatedAt: _now,
       icon: ListItemIcon.waves,
       iconBackground: ListItemIconBackground.purple,
+    ),
+  ];
+
+  static final groceries = [
+    ListItem(
+      id: 'milk',
+      title: 'Milk',
+      categoryValues: {
+        'type': 'dairy',
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.movie,
+      iconBackground: ListItemIconBackground.red,
+    ),
+    ListItem(
+      id: 'bread',
+      title: 'Bread',
+      categoryValues: {
+        'type': 'bread',
+      },
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
+    ),
+  ];
+  static final trips = [
+    ListItem(
+      id: 'washington_dc',
+      title: 'Washington DC',
+      notes: 'The capital of the United States',
+      address: 'Washington DC',
+      categoryValues: {
+        'type': 'city',
+      },
+      latlong: const {'latitude': 38.89, 'longitude': -77.03},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.flag,
+      iconBackground: ListItemIconBackground.green,
+    ),
+    ListItem(
+      id: 'hawaii',
+      title: 'Hawaii',
+      notes: 'The state of Hawaii',
+      address: 'Hawaii',
+      categoryValues: {
+        'type': 'beach',
+      },
+      latlong: const {'latitude': 37.02, 'longitude': -121.62},
+      createdAt: _now,
+      updatedAt: _now,
+      icon: ListItemIcon.park,
+      iconBackground: ListItemIconBackground.green,
     ),
   ];
 

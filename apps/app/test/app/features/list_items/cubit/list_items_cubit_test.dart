@@ -1,8 +1,8 @@
 import 'package:core_models/core_models.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
-import 'package:listwhatever/app/features/list_items/fake_list_items_repository.dart';
-import 'package:listwhatever/app/features/list_items/list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/fake_list_items_repository.dart';
+import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 
 void main() {
   test('load returns seeded items for a list', () async {

@@ -1,7 +1,7 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
 import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/list_items/list_item_row.dart';
+import 'package:listwhatever/app/features/list_items/widgets/list_item_row.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 enum ListItemsViewMode { list, map }

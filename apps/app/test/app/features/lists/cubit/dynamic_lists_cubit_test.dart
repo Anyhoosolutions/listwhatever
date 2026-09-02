@@ -1,8 +1,8 @@
 import 'package:core_models/core_models.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:listwhatever/app/features/lists/cubit/dynamic_lists_cubit.dart';
-import 'package:listwhatever/app/features/lists/dynamic_lists_repository.dart';
-import 'package:listwhatever/app/features/lists/fake_dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/repositories/dynamic_lists_repository.dart';
+import 'package:listwhatever/app/features/lists/repositories/fake_dynamic_lists_repository.dart';
 
 void main() {
   DynamicList newList({

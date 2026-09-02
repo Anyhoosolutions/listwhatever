@@ -19,8 +19,14 @@ service cloud.firestore {
     }
 
     // Shared items catalog — any signed-in user can read
-    match /items/{itemId} {
-      allow read: if  true; //isAuthenticated();
+    match /lists/{listId} {
+      allow read: if true;//isAuthenticated();
+      allow write: if true;//isAuthenticated();
+    }
+
+    // List items
+    match /lists/{listId}/items/{itemId} {
+      allow read: if isAuthenticated();
       allow write: if isAuthenticated();
     }
   }

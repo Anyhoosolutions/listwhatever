@@ -18,6 +18,7 @@ completedColumns:
 - [get-files-from-firebase](tasks/get-files-from-firebase.md)
 - [re-generate-key-and-re-encrypt](tasks/re-generate-key-and-re-encrypt.md)
 - [github-actions](tasks/github-actions.md)
+- [better-transitions](tasks/better-transitions.md)
 
 ## In Progress
 

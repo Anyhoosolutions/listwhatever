@@ -1,7 +1,8 @@
 import 'package:anyhoo_design_system/anyhoo_design_system.dart';
+import 'package:core_models/core_models.dart';
 import 'package:flutter/material.dart';
-import 'package:listwhatever/app/features/home/list_preview.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
+import 'package:listwhatever/shared/colorAndIcons/mapping.dart';
 
 class HomeListCard extends StatelessWidget {
   const HomeListCard({
@@ -10,7 +11,7 @@ class HomeListCard extends StatelessWidget {
     this.onTap,
   });
 
-  final ListPreview list;
+  final DynamicList list;
   final VoidCallback? onTap;
 
   @override
@@ -30,12 +31,12 @@ class HomeListCard extends StatelessWidget {
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: list.iconBackground,
+                    color: ColorMapping.colorFor(list.iconBackground),
                     borderRadius: BorderRadius.circular(DesignTokens.radiusMd),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(DesignTokens.spacingSm),
-                    child: Icon(list.icon, color: Colors.white, size: 20),
+                    child: Icon(IconMapping.iconDataFor(list.icon), color: Colors.white, size: 20),
                   ),
                 ),
                 const SizedBox(width: DesignTokens.spacingSm),
@@ -66,7 +67,7 @@ class HomeListCard extends StatelessWidget {
             ),
             const SizedBox(height: DesignTokens.spacingXs),
             Text(
-              list.updatedLabel,
+              list.updatedAt.toIso8601String(),
               style: AppFonts.inter.copyWith(
                 fontSize: 12,
                 height: 16 / 12,
