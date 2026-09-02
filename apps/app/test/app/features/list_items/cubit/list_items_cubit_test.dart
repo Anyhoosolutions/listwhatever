@@ -5,40 +5,42 @@ import 'package:listwhatever/app/features/list_items/repositories/fake_list_item
 import 'package:listwhatever/app/features/list_items/repositories/list_items_repository.dart';
 
 void main() {
-  test('load returns seeded items for a list', () async {
-    final cubit = ListItemsCubit(repository: FakeListItemsRepository());
-    addTearDown(cubit.close);
+  group('load', () {
+    test('load returns seeded items for a list', () async {
+      final cubit = ListItemsCubit(repository: FakeListItemsRepository());
+      addTearDown(cubit.close);
 
-    await cubit.load('golf');
+      await cubit.load('golf');
 
-    expect(cubit.state.isLoading, isFalse);
-    expect(cubit.state.errorMessage, isNull);
-    expect(cubit.state.data?.map((item) => item.id), [
-      'pebble',
-      'cypress',
-      'st-andrews',
-      'augusta',
-      'county-down',
-    ]);
-  });
+      expect(cubit.state.isLoading, isFalse);
+      expect(cubit.state.errorMessage, isNull);
+      expect(cubit.state.data?.map((item) => item.id), [
+        'pebble',
+        'cypress',
+        'st-andrews',
+        'augusta',
+        'county-down',
+      ]);
+    });
 
-  test('load returns an empty list when the list has no items', () async {
-    final cubit = ListItemsCubit(repository: FakeListItemsRepository());
-    addTearDown(cubit.close);
+    test('load returns an empty list when the list has no items', () async {
+      final cubit = ListItemsCubit(repository: FakeListItemsRepository());
+      addTearDown(cubit.close);
 
-    await cubit.load('movies');
+      await cubit.load('missing');
 
-    expect(cubit.state.data, isEmpty);
-  });
+      expect(cubit.state.data, isEmpty);
+    });
 
-  test('load reports repository errors', () async {
-    final cubit = ListItemsCubit(repository: _ThrowingItemsRepository());
-    addTearDown(cubit.close);
+    test('load reports repository errors', () async {
+      final cubit = ListItemsCubit(repository: _ThrowingItemsRepository());
+      addTearDown(cubit.close);
 
-    await cubit.load('golf');
+      await cubit.load('golf');
 
-    expect(cubit.state.data, isNull);
-    expect(cubit.state.errorMessage, contains('unavailable'));
+      expect(cubit.state.data, isNull);
+      expect(cubit.state.errorMessage, contains('unavailable'));
+    });
   });
 }
 
