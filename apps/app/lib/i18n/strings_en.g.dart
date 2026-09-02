@@ -204,6 +204,15 @@ class Translations$addItemPage$en {
 	/// en: 'Tap to set'
 	String get tapToSet => 'Tap to set';
 
+	/// en: 'Change'
+	String get changeLocation => 'Change';
+
+	/// en: 'Search for an address to set the location'
+	String get locationRequired => 'Search for an address to set the location';
+
+	/// en: 'No address selected'
+	String get noLocationSelected => 'No address selected';
+
 	/// en: 'Latitude'
 	String get latitudeLabel => 'Latitude';
 
@@ -360,6 +369,9 @@ extension on Translations {
 			'addItemPage.addCategory' => 'Add New Category',
 			'addItemPage.locationTitle' => 'Location',
 			'addItemPage.tapToSet' => 'Tap to set',
+			'addItemPage.changeLocation' => 'Change',
+			'addItemPage.locationRequired' => 'Search for an address to set the location',
+			'addItemPage.noLocationSelected' => 'No address selected',
 			'addItemPage.latitudeLabel' => 'Latitude',
 			'addItemPage.latitudeHint' => '34.0522° N',
 			'addItemPage.latitudeInvalid' => 'Use the format 34.0522° N',

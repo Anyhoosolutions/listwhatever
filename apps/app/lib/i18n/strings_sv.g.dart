@@ -127,6 +127,9 @@ class _Translations$addItemPage$sv implements Translations$addItemPage$en {
 	@override String get addCategory => 'Lägg till kategori';
 	@override String get locationTitle => 'Plats';
 	@override String get tapToSet => 'Tryck för att ange';
+	@override String get changeLocation => 'Ändra';
+	@override String get locationRequired => 'Sök en adress för att ange platsen';
+	@override String get noLocationSelected => 'Ingen adress vald';
 	@override String get latitudeLabel => 'Latitud';
 	@override String get latitudeHint => '34.0522° N';
 	@override String get latitudeInvalid => 'Använd formatet 34.0522° N';
@@ -236,6 +239,9 @@ extension on TranslationsSv {
 			'addItemPage.addCategory' => 'Lägg till kategori',
 			'addItemPage.locationTitle' => 'Plats',
 			'addItemPage.tapToSet' => 'Tryck för att ange',
+			'addItemPage.changeLocation' => 'Ändra',
+			'addItemPage.locationRequired' => 'Sök en adress för att ange platsen',
+			'addItemPage.noLocationSelected' => 'Ingen adress vald',
 			'addItemPage.latitudeLabel' => 'Latitud',
 			'addItemPage.latitudeHint' => '34.0522° N',
 			'addItemPage.latitudeInvalid' => 'Använd formatet 34.0522° N',

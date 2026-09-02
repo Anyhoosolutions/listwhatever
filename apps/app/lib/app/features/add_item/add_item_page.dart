@@ -7,7 +7,6 @@ import 'package:listwhatever/app/features/add_item/add_item_view.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_cubit.dart';
 import 'package:listwhatever/app/features/add_item/cubit/list_with_items_state.dart';
 import 'package:listwhatever/app/features/add_item/location_search_sheet.dart';
-import 'package:listwhatever/app/features/geocoding/coordinate_format.dart';
 import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/app/features/list_items/cubit/list_items_cubit.dart';
 import 'package:listwhatever/shared/cubit_helpers/state_switcher.dart';
@@ -58,9 +57,7 @@ class _AddItemPageState extends State<AddItemPage> {
   }
 
   void _applyLocation(GeocodingResult result) {
-    final fields = _formKey.currentState?.fields;
-    fields?[AddItemFormFields.latitude]?.didChange(formatLatitude(result.latitude));
-    fields?[AddItemFormFields.longitude]?.didChange(formatLongitude(result.longitude));
+    _formKey.currentState?.fields[AddItemFormFields.location]?.didChange(result);
   }
 
   @override
@@ -86,17 +83,19 @@ class _AddItemPageState extends State<AddItemPage> {
           final values = formState.value;
           final navigator = GoRouter.of(context);
 
-          final latlong = data.hasLocations
-              ? {
-                  'latitude': _parseLatitude(values[AddItemFormFields.latitude] as String? ?? ''),
-                  'longitude': _parseLongitude(values[AddItemFormFields.longitude] as String? ?? ''),
-                }
-              : <String, double>{};
+          final location = values[AddItemFormFields.location] as GeocodingResult?;
+          final latlong = location == null
+              ? <String, double>{}
+              : {
+                  'latitude': location.latitude,
+                  'longitude': location.longitude,
+                };
 
           final item = ListItem(
             id: '',
             title: values[AddItemFormFields.name] as String? ?? '',
             notes: values[AddItemFormFields.description] as String? ?? '',
+            address: location?.displayName,
             latlong: latlong,
             categoryValues: Map.fromEntries(
               _attributeIds
@@ -123,31 +122,5 @@ class _AddItemPageState extends State<AddItemPage> {
     );
 
     return body;
-  }
-
-  double _parseLatitude(String latitude) {
-    final match = RegExp(r'([0-9.]+)° (N|S)').firstMatch(latitude);
-    if (match == null) {
-      throw Exception('Invalid latitude: $latitude');
-    }
-    final value = match.group(1);
-    final direction = match.group(2);
-    if (direction == 'S') {
-      return -double.parse(value!);
-    }
-    return double.parse(value!);
-  }
-
-  double _parseLongitude(String longitude) {
-    final match = RegExp(r'([0-9.]+)° (E|W)').firstMatch(longitude);
-    if (match == null) {
-      throw Exception('Invalid longitude: $longitude');
-    }
-    final value = match.group(1);
-    final direction = match.group(2);
-    if (direction == 'W') {
-      return -double.parse(value!);
-    }
-    return double.parse(value!);
   }
 }

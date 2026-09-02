@@ -7,15 +7,14 @@ import 'package:listwhatever/app/features/add_item/category_attribute_row.dart';
 import 'package:listwhatever/app/features/add_item/location_map_preview.dart';
 import 'package:listwhatever/app/features/forms/form_section_header.dart';
 import 'package:listwhatever/app/features/forms/labeled_form_builder_text_field.dart';
+import 'package:listwhatever/app/features/geocoding/coordinate_format.dart';
+import 'package:listwhatever/app/features/geocoding/geocoding_result.dart';
 import 'package:listwhatever/i18n/strings.g.dart';
 
 abstract final class AddItemFormFields {
   static const name = 'name';
   static const description = 'description';
-  static const latitude = 'latitude';
-  static const longitude = 'longitude';
-
-  static final latitudePattern = RegExp(r'^([0-9.]+)° [NS]$');
+  static const location = 'location';
 
   static String attributeKey(int id) => 'attributeKey_$id';
   static String attributeValue(int id) => 'attributeValue_$id';
@@ -90,45 +89,66 @@ class AddItemView extends StatelessWidget {
             if (list.hasLocations) ...[
               FormSectionHeader(title: t.addItemPage.locationTitle),
               const SizedBox(height: DesignTokens.spacingMd),
-              LocationMapPreview(
-                tapToSetLabel: t.addItemPage.tapToSet,
-                onTap: onSearchLocation,
+              FormBuilderField<GeocodingResult>(
+                name: AddItemFormFields.location,
+                validator: (value) {
+                  if (value == null) {
+                    return t.addItemPage.locationRequired;
+                  }
+                  return null;
+                },
+                builder: (field) {
+                  final location = field.value;
+                  final surface = context.surface;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      LocationMapPreview(
+                        tapToSetLabel: location == null ? t.addItemPage.tapToSet : t.addItemPage.changeLocation,
+                        showPin: location != null,
+                        onTap: onSearchLocation,
+                      ),
+                      const SizedBox(height: DesignTokens.spacingMd),
+                      Row(
+                        children: [
+                          Text(
+                            location?.displayName ?? t.addItemPage.noLocationSelected,
+                            style: AnyhooTypography.body(BodySize.large).copyWith(
+                              color: location == null ? surface.secondaryText : surface.primaryText,
+                            ),
+                          ),
+                          if (location != null) ...[
+                            Spacer(),
+                            const SizedBox(height: DesignTokens.spacingXs),
+                            Text(
+                              '(${formatLatitude(location.latitude)}, ${formatLongitude(location.longitude)})',
+                              style: AnyhooTypography.body(BodySize.medium).copyWith(
+                                color: surface.secondaryText,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      if (field.errorText != null) ...[
+                        const SizedBox(height: DesignTokens.spacingXs),
+                        Text(
+                          field.errorText!,
+                          style: AnyhooTypography.label(LabelSize.medium).copyWith(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                      ],
+                    ],
+                  );
+                },
               ),
-              const SizedBox(height: DesignTokens.spacingMd),
-              Row(
-                children: [
-                  Expanded(
-                    child: LabeledFormBuilderTextField(
-                      name: AddItemFormFields.latitude,
-                      label: t.addItemPage.latitudeLabel,
-                      hint: t.addItemPage.latitudeHint,
-                      initialValue: '34.0522° N',
-                      validator: (value) {
-                        if (value == null || !AddItemFormFields.latitudePattern.hasMatch(value)) {
-                          return t.addItemPage.latitudeInvalid;
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: DesignTokens.spacingMd),
-                  Expanded(
-                    child: LabeledFormBuilderTextField(
-                      name: AddItemFormFields.longitude,
-                      label: t.addItemPage.longitudeLabel,
-                      hint: t.addItemPage.longitudeHint,
-                      initialValue: '118.2437° W',
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: DesignTokens.spacingMd),
-              AnyhooSecondaryButton(
-                label: t.addItemPage.useCurrentLocation,
-                leadingIcon: Icons.my_location,
-                fullWidth: true,
-                onPressed: onUseCurrentLocation,
-              ),
+              // const SizedBox(height: DesignTokens.spacingMd),
+              // AnyhooSecondaryButton(
+              //   label: t.addItemPage.useCurrentLocation,
+              //   leadingIcon: Icons.my_location,
+              //   fullWidth: true,
+              //   onPressed: onUseCurrentLocation,
+              // ),
               const SizedBox(height: DesignTokens.spacingLg),
             ],
             AnyhooPrimaryButton(

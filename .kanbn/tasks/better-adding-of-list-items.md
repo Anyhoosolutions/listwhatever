@@ -6,9 +6,9 @@ created: 2026-09-02T05:23:13.676Z
 
 - [x] Only location fields if list has locations
 - [ ] Drop down of categories from other items
-- [ ] Parsing latitude and longiture
-- [ ] Address field
-  - [ ] Look up latlong from address
+- [x] Parsing latitude and longiture
+- [x] Address field
+  - [x] Look up latlong from address
 
 ## History
 

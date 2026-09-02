@@ -20,6 +20,7 @@ completedColumns:
 - [allow-sharing-from-another-app](tasks/allow-sharing-from-another-app.md)
 - [skeletons](tasks/skeletons.md)
 - [list-title-in-top-bar](tasks/list-title-in-top-bar.md)
+- [real-address-lookup](tasks/real-address-lookup.md)
 
 ## In Progress
 
