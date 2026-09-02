@@ -15,6 +15,11 @@ completedColumns:
 - [get-files-from-firebase](tasks/get-files-from-firebase.md)
 - [re-generate-key-and-re-encrypt](tasks/re-generate-key-and-re-encrypt.md)
 - [github-actions](tasks/github-actions.md)
+- [ai-to-generate-more-items](tasks/ai-to-generate-more-items.md)
+- [ai-to-set-categories](tasks/ai-to-set-categories.md)
+- [allow-sharing-from-another-app](tasks/allow-sharing-from-another-app.md)
+- [skeletons](tasks/skeletons.md)
+- [list-title-in-top-bar](tasks/list-title-in-top-bar.md)
 
 ## In Progress
 
@@ -27,3 +32,4 @@ completedColumns:
 - [download-firestore-data](tasks/download-firestore-data.md)
 - [better-transitions](tasks/better-transitions.md)
 - [generate-icons](tasks/generate-icons.md)
+- [better-adding-of-list-items](tasks/better-adding-of-list-items.md)
