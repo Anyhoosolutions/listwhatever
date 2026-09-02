@@ -9,11 +9,7 @@ Map<String, List<String>> categoryValuesFromItems(Iterable<ListItem> items) {
       if (category.isEmpty) {
         return;
       }
-      final values = stringValues(value);
-      if (values.isEmpty) {
-        return;
-      }
-      valuesByCategory.putIfAbsent(category, () => <String>{}).addAll(values);
+      valuesByCategory.putIfAbsent(category, () => <String>{}).addAll(stringValues(value));
     });
   }
 

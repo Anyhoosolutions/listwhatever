@@ -18,6 +18,7 @@ class AddItemView extends StatelessWidget {
     required this.formKey,
     required this.list,
     required this.attributeIds,
+    required this.initialCategoryKeys,
     required this.onAddAttribute,
     required this.onSearchLocation,
     required this.onUseCurrentLocation,
@@ -27,6 +28,7 @@ class AddItemView extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final ListWithItems list;
   final List<int> attributeIds;
+  final Map<int, String> initialCategoryKeys;
   final VoidCallback onAddAttribute;
   final VoidCallback onSearchLocation;
   final VoidCallback onUseCurrentLocation;
@@ -63,6 +65,7 @@ class AddItemView extends StatelessWidget {
             CategoryAttributeRows(
               list: list,
               attributeIds: attributeIds,
+              initialCategoryKeys: initialCategoryKeys,
               onAddAttribute: onAddAttribute,
             ),
             const SizedBox(height: DesignTokens.spacingLg),

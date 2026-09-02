@@ -11,11 +11,13 @@ class CategoryAttributeRows extends StatefulWidget {
     super.key,
     required this.list,
     required this.attributeIds,
+    required this.initialCategoryKeys,
     required this.onAddAttribute,
   });
 
   final ListWithItems list;
   final List<int> attributeIds;
+  final Map<int, String> initialCategoryKeys;
   final VoidCallback onAddAttribute;
 
   @override
@@ -81,6 +83,7 @@ class _CategoryAttributeRowsState extends State<CategoryAttributeRows> {
             valuesFor: (key) => _valuesByCategory[key] ?? [],
             onCategoryCreated: _addCategory,
             onValueCreated: _addValue,
+            initialKey: widget.initialCategoryKeys[id],
           ),
           const SizedBox(height: DesignTokens.spacingSm),
         ],

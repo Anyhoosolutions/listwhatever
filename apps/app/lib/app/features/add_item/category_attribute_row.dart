@@ -14,6 +14,7 @@ class CategoryAttributeRow extends StatelessWidget {
     required this.valuesFor,
     required this.onCategoryCreated,
     required this.onValueCreated,
+    this.initialKey,
   });
 
   final String keyFieldName;
@@ -24,6 +25,7 @@ class CategoryAttributeRow extends StatelessWidget {
   final List<String> Function(String key) valuesFor;
   final ValueChanged<String> onCategoryCreated;
   final void Function(String key, String value) onValueCreated;
+  final String? initialKey;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class CategoryAttributeRow extends StatelessWidget {
 
     return FormBuilderField<String>(
       name: keyFieldName,
+      initialValue: initialKey,
       validator: (value) => value == null ? 'Required' : null,
       builder: (keyField) {
         final selectedKey = keyField.value;

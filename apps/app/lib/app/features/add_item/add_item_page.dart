@@ -24,13 +24,33 @@ class AddItemPage extends StatefulWidget {
 
 class _AddItemPageState extends State<AddItemPage> {
   final _formKey = GlobalKey<FormBuilderState>();
-  final _attributeIds = <int>[0];
-  var _nextAttributeId = 1;
+  final _attributeIds = <int>[];
+  final _initialCategoryKeys = <int, String>{};
+  var _nextAttributeId = 0;
+  var _didSeedCategories = false;
 
   @override
   void initState() {
     super.initState();
     context.read<ListWithItemsCubit>().load(widget.listId);
+  }
+
+  void _seedCategories(ListWithItems list) {
+    if (_didSeedCategories) {
+      return;
+    }
+    _didSeedCategories = true;
+    final keys = categoryValuesFromItems(list.items).keys.toList()..sort();
+    if (keys.isEmpty) {
+      _attributeIds.add(0);
+      _nextAttributeId = 1;
+      return;
+    }
+    for (var i = 0; i < keys.length; i++) {
+      _attributeIds.add(i);
+      _initialCategoryKeys[i] = keys[i];
+    }
+    _nextAttributeId = keys.length;
   }
 
   void _addAttribute() {
@@ -69,58 +89,62 @@ class _AddItemPageState extends State<AddItemPage> {
       emptyBuilder: (context, cubit) {
         return const Text('No data');
       },
-      successBuilder: (context, data, cubit) => AddItemView(
-        formKey: _formKey,
-        list: data,
-        attributeIds: _attributeIds,
-        onAddAttribute: _addAttribute,
-        onSearchLocation: _searchLocation,
-        onUseCurrentLocation: _useFakeCurrentLocation,
-        onCreate: () async {
-          final formState = _formKey.currentState;
-          if (formState == null || !formState.saveAndValidate()) {
-            return;
-          }
+      successBuilder: (context, data, cubit) {
+        _seedCategories(data);
+        return AddItemView(
+          formKey: _formKey,
+          list: data,
+          attributeIds: _attributeIds,
+          initialCategoryKeys: _initialCategoryKeys,
+          onAddAttribute: _addAttribute,
+          onSearchLocation: _searchLocation,
+          onUseCurrentLocation: _useFakeCurrentLocation,
+          onCreate: () async {
+            final formState = _formKey.currentState;
+            if (formState == null || !formState.saveAndValidate()) {
+              return;
+            }
 
-          final values = formState.value;
-          final navigator = GoRouter.of(context);
+            final values = formState.value;
+            final navigator = GoRouter.of(context);
 
-          final location = values[AddItemFormFields.location] as GeocodingResult?;
-          final latlong = location == null
-              ? <String, double>{}
-              : {
-                  'latitude': location.latitude,
-                  'longitude': location.longitude,
-                };
+            final location = values[AddItemFormFields.location] as GeocodingResult?;
+            final latlong = location == null
+                ? <String, double>{}
+                : {
+                    'latitude': location.latitude,
+                    'longitude': location.longitude,
+                  };
 
-          final item = ListItem(
-            id: '',
-            title: values[AddItemFormFields.name] as String? ?? '',
-            notes: values[AddItemFormFields.description] as String? ?? '',
-            address: location?.displayName,
-            latlong: latlong,
-            categoryValues: Map.fromEntries(
-              _attributeIds
-                  .map(
-                    (id) => MapEntry(
-                      (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
-                      stringValues(values[AddItemFormFields.attributeValue(id)]).join(', '),
-                    ),
-                  )
-                  .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
-            ),
-            createdAt: DateTime.now(),
-            updatedAt: DateTime.now(),
-            icon: ListItemIcon.movie,
-            iconBackground: ListItemIconBackground.blue,
-          );
+            final item = ListItem(
+              id: '',
+              title: values[AddItemFormFields.name] as String? ?? '',
+              notes: values[AddItemFormFields.description] as String? ?? '',
+              address: location?.displayName,
+              latlong: latlong,
+              categoryValues: Map.fromEntries(
+                _attributeIds
+                    .map(
+                      (id) => MapEntry(
+                        (values[AddItemFormFields.attributeKey(id)] as String? ?? '').trim(),
+                        stringValues(values[AddItemFormFields.attributeValue(id)]).join(', '),
+                      ),
+                    )
+                    .where((e) => e.key.isNotEmpty && e.value.isNotEmpty),
+              ),
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+              icon: ListItemIcon.movie,
+              iconBackground: ListItemIconBackground.blue,
+            );
 
-          await context.read<ListItemsCubit>().create(widget.listId, item);
-          if (navigator.canPop()) {
-            navigator.pop();
-          }
-        },
-      ),
+            await context.read<ListItemsCubit>().create(widget.listId, item);
+            if (navigator.canPop()) {
+              navigator.pop();
+            }
+          },
+        );
+      },
     );
 
     return body;
